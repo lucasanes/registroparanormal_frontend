@@ -39,6 +39,7 @@ export const Header = styled('div', {
     overflow: 'hidden',
     whiteSpace: 'nowrap',
     textOverflow: 'ellipsis',
+    textTransform: 'capitalize'
   },
 })
 

@@ -89,7 +89,7 @@ export const LabelContainer = styled('label', {
   position: 'absolute',
   width: 'fit-content',
   whiteSpace: 'nowrap',
-  bottom: '22%',
+  bottom: '21%',
   left: 15,
   zIndex: 0,
   fontSize: '2.4rem',

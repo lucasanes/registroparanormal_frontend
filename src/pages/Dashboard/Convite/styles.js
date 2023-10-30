@@ -28,6 +28,7 @@ export const Header = styled('div', {
     color: "#20b2aa",
     fontSize: '2rem',
     textAlign: 'left',
+    textTransform: 'capitalize'
   },
 
   button: {

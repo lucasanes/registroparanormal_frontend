@@ -41,14 +41,15 @@ export const Main = styled("main", {
 
 export const Entrar = styled("button", {
 
-  padding: '1rem 5rem',
+  padding: '.7rem 4rem',
   borderRadius: "3rem",
   border: "none",
   backgroundColor: "#352effff",
   cursor: 'pointer',
-  fontSize: "3.5rem",
+  fontSize: "4rem",
   color: "#ffffff",
-  fontFamily: 'Arial',
+  fontFamily: 'Cormorant Garamond',
+  fontWeight: 700,
   transition: '.2s',
 
   '&:hover': {
@@ -68,10 +69,10 @@ export const Criar = styled('button', {
   alignItems: 'center',
   justifyContent: 'center',
   marginTop: '1rem',
-  fontFamily: 'Concert One',
-  fontWeight: 100,
+  fontFamily: 'Cormorant Garamond',
+  fontWeight: 700,
   background: "none",
-  fontSize: "2.5rem",
+  fontSize: "2.6rem",
 
   '&:hover': {
     textDecoration: 'underline'

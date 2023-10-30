@@ -51,6 +51,9 @@ export const Entrar = styled("button", {
   color: "#ffffff",
   fontFamily: 'Concert One',
   transition: '.2s',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
   paddingBottom: '2px',
 
   '&:hover': {

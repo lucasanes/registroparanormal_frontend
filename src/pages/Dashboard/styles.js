@@ -4,7 +4,7 @@ import Loading from "../../assets/img/Loading2.gif";
 
 export const Container = styled('div', {
   width: "100%",
-  height: '100%',
+  height: 'calc(100% - 72px)',
   position: 'fixed',
   display: "flex",
   backgroundImage: `url(${BackgroundImage})`,

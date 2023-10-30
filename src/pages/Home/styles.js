@@ -41,8 +41,7 @@ export const Main = styled("main", {
 
 export const Entrar = styled("button", {
 
-  height: '6rem',
-  width: '20rem',
+  padding: '1rem 5rem',
   borderRadius: "3rem",
   border: "none",
   backgroundColor: "#352effff",
@@ -51,10 +50,6 @@ export const Entrar = styled("button", {
   color: "#ffffff",
   fontFamily: 'Concert One',
   transition: '.2s',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  paddingBottom: '2px',
 
   '&:hover': {
     backgroundColor: '#201c95ff'

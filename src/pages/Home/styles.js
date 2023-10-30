@@ -48,7 +48,7 @@ export const Entrar = styled("button", {
   cursor: 'pointer',
   fontSize: "3.5rem",
   color: "#ffffff",
-  fontFamily: 'Concert One',
+  fontFamily: 'Arial',
   transition: '.2s',
 
   '&:hover': {

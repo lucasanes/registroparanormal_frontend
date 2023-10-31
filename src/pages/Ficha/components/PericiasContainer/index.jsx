@@ -86,11 +86,11 @@ export function PericiasContainer({ data, atributos }) {
         setPericias(periciasMenorQueCinco);
         break;
       case "t":
-        const periciasMaiorQueCinco = todasPericias.filter(pericia => pericia.valor >= 5 && pericia.valor < 10);
+        const periciasMaiorQueCinco = todasPericias.filter(pericia => pericia.valor >= 5);
         setPericias(periciasMaiorQueCinco);
         break;
       case "v":
-        const periciasMaiorQueDez = todasPericias.filter(pericia => pericia.valor >= 10 && pericia.valor < 15);
+        const periciasMaiorQueDez = todasPericias.filter(pericia => pericia.valor >= 10);
         setPericias(periciasMaiorQueDez);
         break;
       case "e":

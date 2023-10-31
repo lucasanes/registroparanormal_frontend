@@ -6,12 +6,15 @@ const FichasContext = createContext({});
 function FichasProvider({ children }) {
 
   const [fichas, setFichas] = useState([])
+  const [dc, setDc] = useState([])
 
   return (
     <FichasContext.Provider
       value={{
         fichas,
-        setFichas
+        setFichas,
+        dc,
+        setDc
       }}
     >
       {children}

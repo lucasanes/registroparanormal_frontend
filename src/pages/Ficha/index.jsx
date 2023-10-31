@@ -13,6 +13,7 @@ import { PrincipalContainer } from './components/PrincipalContainer';
 import { StatusContainer } from './components/StatusContainer';
 import { AtributoContainer } from './components/AtributoContainer';
 import { PericiasContainer } from './components/PericiasContainer';
+import { DadosContainer } from './components/DadosContainer';
 
 const socket = io(api.defaults.baseURL);
 
@@ -25,7 +26,7 @@ export function Ficha() {
   const navigate = useNavigate()
   const {user} = useAuth()
   const { setTitle } = useTitle()
-  const { setFichas } = useFichas()
+  const { setFichas, setDc } = useFichas()
 
   const [imgAberta, setImgAberta] = useState(false)
   const [imagem, setImagem] = useState('')
@@ -63,6 +64,42 @@ export function Ficha() {
         setTitle(response.data.Principal[0].nome)
         document.title = `Registro Paranormal - ${response.data.Principal[0].nome}`
 
+        setDc({
+          "FOR": response.data.Atributos[0].for,
+          "AGI": response.data.Atributos[0].agi,
+          "INT": response.data.Atributos[0].int,
+          "PRE": response.data.Atributos[0].pre,
+          "VIG": response.data.Atributos[0].vig,
+          "ACRO": response.data.Pericias[0].acrobacia,
+          "ADES": response.data.Pericias[0].adestramento,
+          "ARTE": response.data.Pericias[0].arte,
+          "ATLE": response.data.Pericias[0].atletismo,
+          "ATUA": response.data.Pericias[0].atualidade,
+          "CIEN": response.data.Pericias[0].ciencia,
+          "CRIM": response.data.Pericias[0].crime,
+          "DIPL": response.data.Pericias[0].diplomacia,
+          "ENGA": response.data.Pericias[0].enganacao,
+          "FORT": response.data.Pericias[0].fortitude,
+          "FURT": response.data.Pericias[0].furtividade,
+          "INIT": response.data.Pericias[0].iniciativa,
+          "INTI": response.data.Pericias[0].intimidacao,
+          "INTU": response.data.Pericias[0].intuicao,
+          "INVE": response.data.Pericias[0].investigacao,
+          "LUTA": response.data.Pericias[0].luta,
+          "MEDI": response.data.Pericias[0].medicina,
+          "OCUL": response.data.Pericias[0].ocultismo,
+          "PERC": response.data.Pericias[0].percepcao,
+          "PILO": response.data.Pericias[0].pilotagem,
+          "PONT": response.data.Pericias[0].pontaria,
+          "PROF": response.data.Pericias[0].profissao,
+          "REFL": response.data.Pericias[0].reflexo,
+          "RELI": response.data.Pericias[0].religiao,
+          "SOBR": response.data.Pericias[0].sobrevivencia,
+          "TATI": response.data.Pericias[0].tatica,
+          "TECN": response.data.Pericias[0].tecnologia,
+          "VONT": response.data.Pericias[0].vontade,
+        })
+
       } catch (error) { console.log(error) }
       finally {setIsLoading(false)}
     }
@@ -96,7 +133,7 @@ export function Ficha() {
 
         <DoubleParteContainer>
           <AtributoContainer data={ficha?.Atributos[0]} />
-          {/* <DadosContainer data={ficha && ficha.Dados} /> */}
+          <DadosContainer data={ficha?.Dados} />
         </DoubleParteContainer>
 
         <DoubleParteContainer>

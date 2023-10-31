@@ -4,7 +4,7 @@ import { styled } from "../../../stitches.config";
 export const Container = styled('div', {
   width: '100%',
   minWidth: '3rem',
-  height: '26rem',
+  minHeight: '26rem',
   background: 'rgb(27,27,27, 0.8)',
   border: '2px solid',
   borderColor: '#4040ff',
@@ -116,11 +116,16 @@ export const Button = styled('button', {
 })
 
 export const Desc = styled('div', {
-  height: '12.5rem',
   display: 'flex',
   justifyContent: 'left',
   marginTop: '1rem',
   marginBottom: '1rem',
+  alignItems: 'center',
+
+  '@md': {
+    flexDirection: 'column',
+    gap: '2rem'
+  },
 
   h2: {
     width: 'max-content',
@@ -135,20 +140,25 @@ export const Desc = styled('div', {
   img: {
     border: '1px solid white',
     borderRadius: '70rem',
-    marginLeft: '1rem'
+    marginLeft: '1rem',
+    width: '125px',
+    height: '125px'
   },
 })
 
 export const Grade = styled('div', {
 
-  padding: '2rem',
-  paddingRight: '1rem',
+  padding: '0 1rem 0 2rem',
   display: "grid",
   gap: '1rem',
   width: '100%',
   gridTemplateColumns: '1fr 1fr',
   alignContent: 'center',
   justifyItems: 'center',
+
+  '@md': {
+    paddingBottom: 0
+  }
 
 })
 

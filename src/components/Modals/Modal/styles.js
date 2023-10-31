@@ -17,9 +17,21 @@ export const ContentContainer = styled("div", {
   zIndex: 2,
   padding: '3rem',
 
-  '@md': {
-    overflowY: 'hidden',
-    padding: 0
+  variants: {
+    padding: {
+      true: {
+        '@md': {
+          overflowY: 'hidden',
+          padding: '3rem' 
+        }
+      },
+      false: {
+        '@md': {
+          overflowY: 'hidden',
+          padding: 0
+        }
+      },
+    }
   }
 
 });

@@ -6,6 +6,10 @@ export const Container = styled("div", {
   borderRadius: "0.5rem",
   width: "100%",
   position: 'relative',
+
+  hr: {
+    borderColor: '#ffffff75'
+  }
 });
 
 export const HeaderContainer = styled("div", {
@@ -60,19 +64,13 @@ export const Pericias = styled("div", {
 });
 
 export const Body = styled('div', {
-  minHeight: '918px',
-  height: 'calc(100% - 44px)',
-  paddingTop: '3rem',
+  padding: '3rem 2rem',
   position: 'relative',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
   flexDirection: 'column',
   gap: '3rem',
-
-  '@lg3': {
-    height: 'calc(100% - 44px)',
-  }
 })
 
 export const Footer = styled('div', {
@@ -84,9 +82,8 @@ export const Footer = styled('div', {
   alignItems: 'center',
   justifyContent: 'center',
   padding: '0 3rem',
-  gap: '3rem',
+  gap: '2rem 3rem',
   flexWrap: 'wrap',
-  margin: '2rem 0 4rem 0'
 
 })
 

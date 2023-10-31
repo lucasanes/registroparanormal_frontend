@@ -3,64 +3,40 @@ import { Input } from '../../../../../components/Input';
 import { api } from '../../../../../services/api';
 import { Container, Header, Footer, Body } from './styles';
 import { toast } from 'react-toastify'
+import { useFichas } from '../../../../../hooks/useFichas';
 
 export function ModalPericias({ data, atualizar, setModalClose, atributos, pericias }) {
 
   const [acrobacia, setAcrobacia] = useState(pericias[0].valor || '0')
-
   const [adestramento, setAdestramento] = useState(pericias[1].valor || '0')
-
   const [arte, setArte] = useState(pericias[2].valor || '0')
-
   const [atletismo, setAtletismo] = useState(pericias[3].valor || '0')
-
   const [atualidade, setAtualidade] = useState(pericias[4].valor || '0')
-
   const [ciencia, setCiencia] = useState(pericias[5].valor || '0')
-
   const [crime, setCrime] = useState(pericias[6].valor || '0')
-
   const [diplomacia, setDiplomacia] = useState(pericias[7].valor || '0')
-
   const [enganacao, setEnganacao] = useState(pericias[8].valor || '0')
-
   const [fortitude, setFortitude] = useState(pericias[9].valor || '0')
-
   const [furtividade, setFurtividade] = useState(pericias[10].valor || '0')
-
   const [iniciativa, setIniciativa] = useState(pericias[11].valor || '0')
-
   const [intimidacao, setIntimidacao] = useState(pericias[12].valor || '0')
-
   const [intuicao, setIntuicao] = useState(pericias[13].valor || '0')
-
   const [investigacao, setInvestigacao] = useState(pericias[14].valor || '0')
-
   const [luta, setLuta] = useState(pericias[15].valor || '0')
-
   const [medicina, setMedicina] = useState(pericias[16].valor || '0')
-
   const [ocultismo, setOcultismo] = useState(pericias[17].valor || '0')
-
   const [percepcao, setPercepcao] = useState(pericias[18].valor || '0')
-
   const [pilotagem, setPilotagem] = useState(pericias[19].valor || '0')
-
   const [pontaria, setPontaria] = useState(pericias[20].valor || '0')
-
   const [profissao, setProfissao] = useState(pericias[21].valor || '0')
-
   const [reflexo, setReflexo] = useState(pericias[22].valor || '0')
-
   const [religiao, setReligiao] = useState(pericias[23].valor || '0')
-
   const [sobrevivencia, setSobrevivencia] = useState(pericias[24].valor || '0')
-
   const [tatica, setTatica] = useState(pericias[25].valor || '0')
-
   const [tecnologia, setTecnologia] = useState(pericias[26].valor || '0')
-
   const [vontade, setVontade] = useState(pericias[27].valor || '0')
+
+  const {setDc} = useFichas()
 
   async function handleEdit(e) {
 
@@ -148,6 +124,42 @@ export function ModalPericias({ data, atualizar, setModalClose, atributos, peric
       }
       atualizar(varPericias)
 
+      setDc(rest => ({
+        "FOR": rest.FOR,
+        "AGI": rest.AGI,
+        "INT": rest.INT,
+        "PRE": rest.PRE,
+        "VIG": rest.VIG,
+        "ACRO": Number(acrobacia),
+        "ADES": Number(adestramento),
+        "ARTE": Number(arte),
+        "ATLE": Number(atletismo),
+        "ATUA": Number(atualidade),
+        "CIEN": Number(ciencia),
+        "CRIM": Number(crime),
+        "DIPL": Number(diplomacia),
+        "ENGA": Number(enganacao),
+        "FORT": Number(fortitude),
+        "FURT": Number(furtividade),
+        "INIT": Number(iniciativa),
+        "INTI": Number(intimidacao),
+        "INTU": Number(intuicao),
+        "INVE": Number(investigacao),
+        "LUTA": Number(luta),
+        "MEDI": Number(medicina),
+        "OCUL": Number(ocultismo),
+        "PERC": Number(percepcao),
+        "PILO": Number(pilotagem),
+        "PONT": Number(pontaria),
+        "PROF": Number(profissao),
+        "REFL": Number(reflexo),
+        "RELI": Number(religiao),
+        "SOBR": Number(sobrevivencia),
+        "TATI": Number(tatica),
+        "TECN": Number(tecnologia),
+        "VONT": Number(vontade),
+      }))
+
     } catch (erro) {
       toast.error(erro.response.data.msg)
     }
@@ -203,7 +215,7 @@ export function ModalPericias({ data, atualizar, setModalClose, atributos, peric
 
         <Footer>
 
-          <button type="submit">Cadastrar</button>
+          <button type="submit">Salvar</button>
 
         </Footer>
 

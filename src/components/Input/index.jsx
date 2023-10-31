@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import { Button, Container, ContainerInput, Img, InputB, LabelContainer} from "./styles"
 import {AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
 
-export function Input({label, type, maxValor = null, setValor, valor, opcional = false, img = false, ...rest }) {
+export function Input({label, type, isDado = false, maxValor = null, setValor, valor, opcional = false, img = false, ...rest }) {
 
   const [hover, setHover] = useState(false)
   const [isSenhaVisible, setIsSenhaVisible] = useState(false)

@@ -1,11 +1,11 @@
-import { styled } from '../../stitches.config';
+import { keyframes, styled } from '../../stitches.config';
 
 export const Container = styled('div', {
 
   minWidth: '30rem',
   borderRadius: '1.2rem',
-  backgroundColor: 'rgb(27,27,27)',
-  boxShadow: 'rgba(255, 255, 255, 0.45) 0rem 0.5rem 1.5rem',
+  backgroundColor: 'rgb(20,20,20)',
+  boxShadow: 'rgba(255, 255, 255, 0.75) 0rem 0rem 1rem',
   textAlign: 'center',
   display: 'flex',
   flexDirection: 'column',
@@ -21,7 +21,7 @@ export const Header = styled('div', {
   flexDirection: 'row',
   alignItems: 'center',
   justifyContent: 'space-between',
-  background: 'rgb(20,20,20)',
+  background: 'rgb(16,16,16)',
   padding: '0 2rem',
 
   h1: {
@@ -51,6 +51,42 @@ export const CloseButton = styled('button', {
     opacity: 0.5,
   },
 
+})
+
+const shake = keyframes({
+  '0%': {
+    transform: 'translate(1px, 1px) rotate(0deg)'
+  },
+  '10%': {
+    transform: 'translate(-1px, -1px) rotate(-0.5deg)'
+  },
+  '20%': {
+    transform: 'translate(-1px, 1px) rotate(.5deg)'
+  },
+  '30%': {
+    transform: 'translate(1px, 1px) rotate(0deg)'
+  },
+  '40%': {
+    transform: 'translate(-1px, -1px) rotate(.5deg)'
+  },
+  '50%': {
+    transform: 'translate(1px, -1px) rotate(-.5deg)'
+  },
+  '60%': {
+    transform: 'translate(1px, 1px) rotate(0deg)'
+  },
+  '70%': {
+    transform: 'translate(-1px, -1px) rotate(-0.5deg)'
+  },
+  '80%': {
+    transform: 'translate(-1px, -1px) rotate(.5deg)'
+  },
+  '90%': {
+    transform: 'translate(1px, 1px) rotate(0deg)'
+  },
+  '100%': {
+    transform: 'translate(1px, 1px) rotate(.5deg)'
+  }
 })
 
 export const Main = styled('div', {
@@ -87,6 +123,11 @@ export const Main = styled('div', {
       false: {
         h1: { color: 'purple' }
       }
+    },
+    isCritico: {
+      true: {
+        animation: `${shake} .5s infinite`
+      }
     }
   }
 
@@ -103,6 +144,16 @@ export const Footer = styled('div', {
   paddingTop: '2rem',
   color: '#e7e7e7b9',
   fontFamily: 'Special Elite',
-  gap: '.5rem'
+  gap: '.5rem',
+
+  variants: {
+    isCritico: {
+      true: {
+        span: {
+          animation: `${shake} .5s infinite`
+        }
+      }
+    }
+  }
 
 })

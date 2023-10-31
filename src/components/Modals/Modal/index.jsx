@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Container, Content, ContentContainer } from "./styles";
-export function Modal({ isOpen, setClose, children }) {
+export function Modal({ isOpen, setClose, children, padding = true }) {
 
   const [realIsOpen, setRealIsOpen] = useState(isOpen)
 
@@ -18,7 +18,7 @@ export function Modal({ isOpen, setClose, children }) {
 
   return (
     <Container open={realIsOpen} onClose={setClose}>
-      <ContentContainer>
+      <ContentContainer padding={padding.toString()}>
         <Content animation={isOpen}>{children}</Content>
       </ContentContainer>
     </Container>

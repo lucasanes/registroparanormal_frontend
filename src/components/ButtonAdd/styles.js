@@ -14,13 +14,9 @@ export const Container = styled('div', {
     border: '1px solid transparent',
     borderRadius: '.5rem',
     padding: '.2rem',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 
   'button:hover': {
-    border: '1px solid #dcd91c',
+    border: '1px solid #00b740',
   },
-
 })

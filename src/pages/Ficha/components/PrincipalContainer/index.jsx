@@ -12,7 +12,7 @@ export function PrincipalContainer({ data }) {
   return (
     <Container>
 
-      <Modal isOpen={modalEditIsOpen} setClose={() => setModalEditIsOpen(false)}>
+      <Modal padding={false} isOpen={modalEditIsOpen} setClose={() => setModalEditIsOpen(false)}>
         <ModalEdit data={data} setModalClose={() => setModalEditIsOpen(false)} />
       </Modal>
 

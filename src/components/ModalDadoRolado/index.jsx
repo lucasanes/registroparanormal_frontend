@@ -4,12 +4,14 @@ import { io } from 'socket.io-client';
 import { api } from '../../services/api';
 import { useParams } from 'react-router-dom';
 import pericias from './pericias';
+import {useFichas} from '../../hooks/useFichas'
 
 const socket = io(api.defaults.baseURL);
 
 export function ModalDadoRolado({ setModalEditIsOpenFalse, data }) {
 
   const { id } = useParams()
+  const {dc} = useFichas()
 
   const [dados, setDados] = useState({
     valorTotal: 0,
@@ -22,8 +24,21 @@ export function ModalDadoRolado({ setModalEditIsOpenFalse, data }) {
     ]
   });
 
+  const [isCritico, setIsCritico] = useState(false)
+
   useEffect(() => {
-    const rolarDado = () => {
+
+    function dadoDinamico(dado, arr = null) {
+      if (dado.includes("/")) {
+        for (const [i, v] of Object.entries(arr)) {
+          dado = dado.replaceAll(i, v);
+        }
+        dado = dado.replaceAll("/", "");
+      }
+      return dado;
+    }
+
+    function rolarDado(valor) {
 
       if (data.isDano == false) {
 
@@ -36,13 +51,13 @@ export function ModalDadoRolado({ setModalEditIsOpenFalse, data }) {
 
         let soma = 0
 
-        if (data.valor.includes('+')) {
-          const splitMais = data.valor.split('+')
+        if (valor.includes('+')) {
+          const splitMais = valor.split('+')
           soma = splitMais[1]
 
           splitD = splitMais[0].split('d')
         } else {
-          splitD = data.valor.split('d')
+          splitD = valor.split('d')
         }
 
         qtdDado = Number(splitD[0])
@@ -60,17 +75,9 @@ export function ModalDadoRolado({ setModalEditIsOpenFalse, data }) {
           const menor = Math.min.apply(null, totalValores)
           contaTotal.push(menor)
 
-        } else if (qtdDado == -1) {
-
-          for (let i = 0; i < 3; i++) {
-
-            const valorGerado = Math.floor(Math.random() * valorMax + 1);
-            totalValores.push(valorGerado);
-
+          if (menor == 20) {
+            setIsCritico(true)
           }
-
-          const menor = Math.min.apply(null, totalValores)
-          contaTotal.push(menor)
 
         } else {
 
@@ -83,6 +90,10 @@ export function ModalDadoRolado({ setModalEditIsOpenFalse, data }) {
 
           const maior = Math.max.apply(null, totalValores)
           contaTotal.push(maior)
+
+          if (maior == 20) {
+            setIsCritico(true)
+          }
 
         }
 
@@ -112,8 +123,8 @@ export function ModalDadoRolado({ setModalEditIsOpenFalse, data }) {
         let contaTotal = [];
         let todosDadosRolados = []
 
-        if (data.valor.includes('+')) {
-          const splitSoma = data.valor.split('+')
+        if (valor.includes('+')) {
+          const splitSoma = valor.split('+')
 
           for (let i = 0; i < splitSoma.length; i++) {
 
@@ -161,7 +172,7 @@ export function ModalDadoRolado({ setModalEditIsOpenFalse, data }) {
           let totalValores = []
           let contaTotal = []
 
-          const splitDado = data.valor.split('d')
+          const splitDado = valor.split('d')
 
           let qtdDado = splitDado[0]
           let valorMax = splitDado[1]
@@ -191,7 +202,7 @@ export function ModalDadoRolado({ setModalEditIsOpenFalse, data }) {
       };
     }
 
-    rolarDado();
+    rolarDado(dadoDinamico(data.valor, dc));
   }, []);
 
   return (
@@ -204,14 +215,14 @@ export function ModalDadoRolado({ setModalEditIsOpenFalse, data }) {
 
       </Header>
 
-      <Main isDano={data.isDano}>
+      <Main isCritico={isCritico} isDano={data.isDano}>
         <h1>{pericias(data.nome) != null ? pericias(data.nome) : data.nome}:</h1>
         <span>
           {dados.conta} = {dados.valorTotal}
         </span>
       </Main>
 
-      <Footer>
+      <Footer isCritico={isCritico}>
         {dados.dadosRolados.map((dado) => (
           <span key={dado.dado}>
             {dado.dado}: {dado.valores.join(', ')}

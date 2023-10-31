@@ -247,11 +247,11 @@ export function StatusContainer({ status, defesasData, portraitData, infosBarrin
   return (
     <Container>
 
-      <Modal isOpen={modalPortraitIsOpen} setClose={() => setModalPortraitIsOpen(false)}>
+      <Modal padding={false} isOpen={modalPortraitIsOpen} setClose={() => setModalPortraitIsOpen(false)}>
         <ModalPortrait atualizar={setPortrait} data={portrait} setModalClose={() => setModalPortraitIsOpen(false)} />
       </Modal>
 
-      <Modal isOpen={modalStatusIsOpen} setClose={() => setModalStatusIsOpen(false)}>
+      <Modal padding={false} isOpen={modalStatusIsOpen} setClose={() => setModalStatusIsOpen(false)}>
         <ModalStatus atualizar={setDefesas} data={defesas} setModalClose={() => setModalStatusIsOpen(false)} />
       </Modal>
 

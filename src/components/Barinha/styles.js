@@ -15,6 +15,10 @@ export const Botoes = styled('div', {
   justifyContent: 'space-between',
   padding: '0rem 2rem',
 
+  '@sm': {
+    padding: 0
+  },
+
   span: {
     color: 'white',
     fontFamily: 'Arial',
@@ -44,7 +48,7 @@ export const Botoes = styled('div', {
   'button:hover': {
     border: '1px solid white'
   },
-})
+})  
 
 export const InputDiv = styled('div', {
   width: '33%',
@@ -65,6 +69,12 @@ export const Esquerda = styled('div', {
     },
   },
 
+  '@md': {
+    '.mid': {
+      display: 'none'
+    }
+  },
+
   svg: {
     marginLeft: '-.4rem'
   }
@@ -81,6 +91,12 @@ export const Direita = styled('div', {
     'button:last-child': {
       display: 'none'
     },
+  },
+
+  '@md': {
+    '.mid': {
+      display: 'none'
+    }
   },
 
   svg: {

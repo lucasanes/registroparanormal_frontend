@@ -1,21 +1,14 @@
-import { styled } from "../../../../../../stitches.config";
+import { styled } from "../../../../../stitches.config";
 
 export const Container = styled('div', {
 
-  width: '33rem',
+  width: '45rem',
   borderRadius: '1.2rem',
   position: 'relative',
   backgroundColor: 'rgb(20,20,20)',
   boxShadow: 'rgba(255, 255, 255, 0.75) 0rem 0rem 1rem',
   display: 'flex',
   flexDirection: 'column',
-
-  '@md': {
-    width: '100vw',
-    height: '100%',
-    borderRadius: 0
-  },
-
 
   hr: {
     borderColor: '#ffffff90'
@@ -30,7 +23,11 @@ export const Container = styled('div', {
     fontFamily: 'Special Elite',
     fontWeight: 100,
     letterSpacing: '1px'
-  }
+  },
+
+  '@sm': {
+    width: '33rem'
+  },
 
 })
 
@@ -63,9 +60,7 @@ export const Header = styled('div', {
 
   'button:hover': {
     opacity: 0.5,
-  },
-
-   
+  },   
 
 });
 
@@ -80,11 +75,33 @@ export const Body = styled('div', {
   padding: '2rem',
   gap: '2rem',
 
-  '@md': {
-    overflowY: 'auto',
-    height: 'calc(100vh - 130px)',
-    justifyContent: 'flex-start'
-  }
+  '@sm': {
+    height: '32rem'
+  },
+  
+  '.div': {
+    width: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+
+    'button': {
+      whiteSpace: 'nowrap',
+      color: '#00fff7',
+      fontSize: '1.4rem',
+      background: 'none',
+      border: '2px solid #00fff7',
+      padding: '.5rem 1rem',
+      borderRadius: '.5rem',
+      transition: '.3s',
+    },
+  
+    'button:hover': {
+  
+      background: '#00fff750',
+  
+    }
+  },
 
 });
 

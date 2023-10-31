@@ -10,6 +10,12 @@ export const Container = styled('div', {
   display: 'flex',
   flexDirection: 'column',
 
+  '@md': {
+    width: '100vw',
+    height: '100%',
+    borderRadius: 0
+  },
+
   hr: {
     borderColor: '#ffffff90'
   },
@@ -24,10 +30,6 @@ export const Container = styled('div', {
     fontWeight: 100,
     letterSpacing: '1px'
   },
-
-  '@md': {
-    width: '33rem'
-  }
 
 })
 
@@ -77,29 +79,11 @@ export const Body = styled('div', {
   padding: '3rem 2rem',
   gap: '2rem',
 
-  '.div': {
-    width: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-
-    'button': {
-      whiteSpace: 'nowrap',
-      color: '#00fff7',
-      fontSize: '1.4rem',
-      background: 'none',
-      border: '2px solid #00fff7',
-      padding: '.5rem 1rem',
-      borderRadius: '.5rem',
-      transition: '.3s',
-    },
-  
-    'button:hover': {
-  
-      background: '#00fff750',
-  
-    }
-  },
+  '@md': {
+    overflowY: 'auto',
+    height: 'calc(100vh - 130px)',
+    justifyContent: 'flex-start'
+  }
 
 });
 

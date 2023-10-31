@@ -6,7 +6,7 @@ import AtributosImg from '../../assets/img/AtributosImg.png'
 export function AtributoInput({ agi, setAgi, int, setInt, vig, setVig, pre, setPre, forca, setFor, ...rest }) {
 
     return (
-        <Container>
+        <Container {...rest}>
 
             <Top>
                 <InputAtributo valor={agi} setValor={setAgi} />
@@ -24,7 +24,7 @@ export function AtributoInput({ agi, setAgi, int, setInt, vig, setVig, pre, setP
                 <InputAtributo valor={vig} setValor={setVig} />
             </Bot>
 
-            <Img {...rest} src={AtributosImg} />
+            <Img src={AtributosImg} />
 
         </Container>
     )

@@ -50,6 +50,10 @@ export const Header = styled("div", {
         margin: '0 5.5rem 0 2rem'
     },
 
+    img: {
+        width: '50px'
+    },
+
     button: {
         color: "white",
         background: 'none',

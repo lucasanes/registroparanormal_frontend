@@ -5,13 +5,14 @@ export const Container = styled("div", {
   marginBottom: "2rem",
   borderRadius: "0.5rem",
   width: "100%",
+  minWidth: '301px',
 
   hr: {
     borderColor: '#ffffff75'
   }
 });
 
-export const Header = styled("div", {
+export const HeaderContainer = styled("div", {
   padding: "1rem 0",
   display: "flex",
   justifyContent: "center",
@@ -49,17 +50,15 @@ export const Header = styled("div", {
   },
 });
 
-export const Body = styled('div', {
+export const BodyContainer = styled("div", {
 
-  padding: '3rem 2rem',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  padding: '3rem',
 
-  h1: {
-    fontSize: '2rem',
-    color: 'white',
-    textAlign: 'center',
-  },
+  '@sm': {
+    height: '33rem'
+  }
 
-  display: 'grid',
-  gap: '4rem 3rem',
-  gridTemplateColumns: '1fr',
-})
+});

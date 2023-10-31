@@ -11,6 +11,8 @@ import { useFichas } from '../../hooks/useFichas';
 import { useAuth } from '../../hooks/useAuth';
 import { PrincipalContainer } from './components/PrincipalContainer';
 import { StatusContainer } from './components/StatusContainer';
+import { AtributoContainer } from './components/AtributoContainer';
+import { PericiasContainer } from './components/PericiasContainer';
 
 const socket = io(api.defaults.baseURL);
 
@@ -93,22 +95,22 @@ export function Ficha() {
         </DoubleParteContainer>
 
         <DoubleParteContainer>
-          {/* <AtributoContainer data={ficha && ficha.Atributos[0]} /> */}
+          <AtributoContainer data={ficha?.Atributos[0]} />
           {/* <DadosContainer data={ficha && ficha.Dados} /> */}
         </DoubleParteContainer>
 
-        {/*<DoubleParteContainer>
+        <DoubleParteContainer>
 
           <PericiasContainer data={ficha && ficha.Pericias[0]} atributos={ficha && ficha.Atributos[0]} />
 
-          <DoubleParteColumnContainer>
+          {/* <DoubleParteColumnContainer>
             <HabilidadesContainer poderesData={ficha && ficha.Poderes} proficienciasData={ficha && ficha.Proficiencias} habilidadesData={ficha && ficha.Habilidades} />
             <PersonagemContainer data={ficha && ficha.Personagem[0]} />
-          </DoubleParteColumnContainer>
+          </DoubleParteColumnContainer> */}
 
         </DoubleParteContainer>
 
-        <InventarioContainer armasData={ficha && ficha.Armas} itensData={ficha && ficha.Itens} peso={ficha && ficha.Status[0].peso} />
+        {/*<InventarioContainer armasData={ficha && ficha.Armas} itensData={ficha && ficha.Itens} peso={ficha && ficha.Status[0].peso} />
         <RituaisContainer data={ficha && ficha.Rituais} /> */}
 
       </Body>}

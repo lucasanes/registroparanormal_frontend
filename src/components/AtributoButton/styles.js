@@ -8,6 +8,10 @@ export const Container = styled('div', {
     justifyContent: 'center',
     position: 'relative',
 
+    '@sm': {
+        scale: '0.7'
+    },
+
     button: {
         width: 'fit-content',
         height: 'fit-content',

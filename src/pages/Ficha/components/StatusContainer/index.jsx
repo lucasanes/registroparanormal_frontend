@@ -292,7 +292,7 @@ export function StatusContainer({ status, defesasData, portraitData, infosBarrin
 
             </Portrait>
 
-            <ButtonEdit style={{position: 'relative', bottom: 100, right: 20}} size={25} onClick={() => setModalPortraitIsOpen(true)} />
+            <ButtonEdit className='edit' style={{position: 'relative', bottom: 100, right: 20}} size={25} onClick={() => setModalPortraitIsOpen(true)} />
 
           </AreaPortrait>
 

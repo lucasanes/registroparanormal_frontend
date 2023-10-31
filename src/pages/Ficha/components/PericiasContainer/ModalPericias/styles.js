@@ -1,8 +1,8 @@
-import { styled } from "../../../../../../stitches.config";
+import { styled } from "../../../../../stitches.config";
 
 export const Container = styled('div', {
 
-  width: '33rem',
+  width: '60rem',
   borderRadius: '1.2rem',
   position: 'relative',
   backgroundColor: 'rgb(20,20,20)',
@@ -15,7 +15,6 @@ export const Container = styled('div', {
     height: '100%',
     borderRadius: 0
   },
-
 
   hr: {
     borderColor: '#ffffff90'
@@ -71,16 +70,16 @@ export const Header = styled('div', {
 
 export const Body = styled('div', {
 
-  display: 'flex',
+  width: '100%',
+  display: 'grid',
   alignItems: 'center',
   justifyContent: 'center',
-  flexDirection: 'column',
-  textAlign: 'center',
-  color: '#ffffff90',
-  padding: '2rem',
+  padding: '3rem 2rem',
   gap: '2rem',
+  gridTemplateColumns: '1fr 1fr 1fr',
 
   '@md': {
+    gridTemplateColumns: '1fr',
     overflowY: 'auto',
     height: 'calc(100vh - 130px)',
     justifyContent: 'flex-start'

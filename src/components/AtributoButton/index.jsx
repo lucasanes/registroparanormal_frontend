@@ -1,7 +1,4 @@
-import { useEffect } from "react"
 import { useState } from "react"
-import { useParams } from "react-router-dom"
-import { api } from "../../services/api"
 import { Modal } from "../Modals/Modal"
 import { ModalDadoRolado } from "../ModalDadoRolado"
 import { Container, Top, Bot, Mid, Img } from "./styles"
@@ -23,7 +20,7 @@ export function AtributoButton({ agi, int, vig, pre, forca, ...rest }) {
     return (
         <Container>
 
-            <Modal isOpen={modalDadoRoladoIsOpen} setIsOpen={() => setModalDadoRoladoIsOpen(false)}>
+            <Modal isOpen={modalDadoRoladoIsOpen} setClose={() => setModalDadoRoladoIsOpen(false)}>
                 <ModalDadoRolado setModalEditIsOpenFalse={() => setModalDadoRoladoIsOpen(false)} data={data} />
             </Modal>
 

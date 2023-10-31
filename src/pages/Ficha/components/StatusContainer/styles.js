@@ -110,6 +110,15 @@ export const AreaPortrait = styled('div', {
   justifyContent: 'center',
   zIndex: 1,
 
+  '@sm': {
+    '.edit': {
+      left: -15,
+      top: -80
+    }
+  }
+
+  
+
 })
 
 export const Portrait = styled(Link, {
@@ -123,6 +132,12 @@ export const Portrait = styled(Link, {
   justifyContent: 'center',
   width: '250px',
   height: '250px',
+
+  '@sm': {
+    width: '190px',
+    height: '190px'
+  }
+
 })
 
 export const Img = styled('img', {
@@ -135,8 +150,8 @@ export const Img = styled('img', {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  width: '250px',
-  height: '250px',
+  width: '100%',
+  height: '100%',
   transition: 'filter 1s',
 
   variants: {

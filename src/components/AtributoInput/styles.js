@@ -7,7 +7,10 @@ export const Container = styled('div', {
     alignItems: 'center',
     justifyContent: 'center',
     position: 'relative',
-    marginTop: '4rem',
+
+    '@sm': {
+        scale: '0.7'
+    }
 
 })
 

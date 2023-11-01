@@ -13,7 +13,7 @@ export const Body = styled("div", {
   overflowY: "auto",
   width: '100%',
   height: '100%',
-  padding: "3rem 2rem 1rem 2rem",
+  padding: "3rem 2rem",
   overflowX: 'hidden',
 });
 

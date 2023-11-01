@@ -12,8 +12,8 @@ export const Container = styled("div", {
 export const Body = styled("div", {
   overflowY: "auto",
   width: '100%',
-  height: '100%',
-  padding: "3rem 2rem",
+  maxHeight: '100%',
+  padding: "3rem 2rem 2rem 2rem",
   overflowX: 'hidden',
 });
 

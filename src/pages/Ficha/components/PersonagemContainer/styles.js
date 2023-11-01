@@ -5,31 +5,11 @@ export const Container = styled('div', {
   width: '100%',
   height: '100%',
   border: "2px solid #ffffff75",
-  marginBottom: "2rem",
   borderRadius: "0.5rem",
 
   hr: {
     borderColor: '#ffffff75'
   }
-
-})
-
-export const Header = styled('div', {
-
-  width: '100%',
-  height: '43px',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-
-  h1: {
-    textAlign: "center",
-    color: "#fff",
-    fontSize: "2rem",
-    fontFamily: 'Special Elite',
-    letterSpacing: '.1rem',
-    paddingTop: '.3rem'
-  },
 
 })
 
@@ -39,7 +19,7 @@ export const Select = styled('div', {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  gap: '2rem',
+  gap: '1rem',
   flexWrap: 'wrap'
 
 })

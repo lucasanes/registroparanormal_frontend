@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDisabled } from '../../../../hooks/useDisabled';
 import { api } from '../../../../services/api';
-import { Container, Header, Select, Main, Button } from './styles';
+import { Container, Select, Main, Button } from './styles';
 import { TextAreaPersonagem } from './TextAreaPersonagem';
 
 export function PersonagemContainer({ data }) {

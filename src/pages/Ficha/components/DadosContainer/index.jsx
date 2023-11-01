@@ -20,12 +20,12 @@ export function DadosContainer({ data }) {
 
       <HeaderContainer>
         <h1>Dados</h1>
-        <ButtonAdd onClick={() => setModalAddIsOpen(true)} />
+        <ButtonAdd className='edit' onClick={() => setModalAddIsOpen(true)} />
       </HeaderContainer>
 
       <hr />
 
-      <Body>
+      <Body nulo={dados.length == 0}>
         {dados.map(dado => <Dado key={dado.id} data={dado} atualizar={setDados} dados={dados} />)}
       </Body>
 

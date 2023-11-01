@@ -11,7 +11,7 @@ import { ModalProficiencia } from './ModalProficiencia';
 
 export function HabilidadesContainer({ habilidadesData, poderesData, proficienciasData }) {
 
-  const [body, setBody] = useState('habilidades')
+  const [body, setBody] = useState(habilidadesData.length > 0 ? 'hab' : poderesData.length > 0 ? 'pod' : proficienciasData.length > 0 ? 'prof' : 'hab')
 
   const [habilidades, setHabilidades] = useState(habilidadesData)
   const [poderes, setPoderes] = useState(poderesData)
@@ -22,9 +22,9 @@ export function HabilidadesContainer({ habilidadesData, poderesData, proficienci
   const [modalProficienciaIsOpen, setModalProficienciaIsOpen] = useState(false)
 
   function openModal() {
-    if (body == 'habilidades') {
+    if (body == 'hab') {
       setModalHabilidadeIsOpen(true)
-    } else if (body == 'poderes') {
+    } else if (body == 'pod') {
       setModalPoderIsOpen(true)
     } else {
       setModalProficienciaIsOpen(true)
@@ -47,34 +47,24 @@ export function HabilidadesContainer({ habilidadesData, poderesData, proficienci
       </Modal>
 
       <HeaderContainer>
-        <Button active={body == 'habilidades'} onClick={() => { setBody('habilidades') }}>Hab.</Button>
-        <Button active={body == 'poderes'} onClick={() => { setBody('poderes') }}>Pod.</Button>
-        <Button active={body == 'proficiencias'} onClick={() => { setBody('proficiencias') }}>Prof.</Button>
-        <ButtonAdd onClick={openModal} />
+        <Button active={body == 'hab'} onClick={() => { setBody('hab') }}>Habilidades</Button>
+        <Button active={body == 'pod'} onClick={() => { setBody('pod') }}>Poderes </Button>
+        <Button active={body == 'prof'} onClick={() => { setBody('prof') }}>Prof.</Button>
+        <ButtonAdd className='add' onClick={openModal} />
       </HeaderContainer>
 
       <hr />
 
-      <BodyContainer>
+      <BodyContainer nulo={habilidades.length == 0} style={{display: body != 'hab' && 'none'}}>
+        {habilidades.map(habilidade => <Habilidade key={habilidade.id} data={habilidade} lista={habilidades} atualizar={setHabilidades} />)}
+      </BodyContainer>
 
-        {body == 'habilidades' && habilidades &&
+      <BodyContainer nulo={poderes.length == 0} style={{display: body != 'pod' && 'none'}}>
+        {poderes.map(poder => <Poder key={poder.id} data={poder} lista={poderes} atualizar={setPoderes} />)}
+      </BodyContainer>
 
-          habilidades.map(habilidade => <Habilidade key={habilidade.id} data={habilidade} lista={habilidades} atualizar={setHabilidades} />)
-
-        }
-
-        {body == 'poderes' &&
-
-          poderes.map(poder => <Poder key={poder.id} data={poder} lista={poderes} atualizar={setPoderes} />)
-
-        }
-
-        {body == 'proficiencias' &&
-
-          proficiencias.map(proficiencia => <Proficiencia key={proficiencia.id} data={proficiencia} lista={proficiencias} atualizar={setProficiencias} />)
-
-        }
-
+      <BodyContainer nulo={proficiencias.length == 0} style={{display: body != 'prof' && 'none'}}>
+        {proficiencias.map(proficiencia => <Proficiencia key={proficiencia.id} data={proficiencia} lista={proficiencias} atualizar={setProficiencias} />)}
       </BodyContainer>
 
     </Container>

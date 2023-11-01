@@ -81,8 +81,7 @@ export const Footer = styled('div', {
   bottom: 0,
   alignItems: 'center',
   justifyContent: 'center',
-  padding: '0 3rem',
-  gap: '2rem 3rem',
+  gap: '2rem',
   flexWrap: 'wrap',
 
 })

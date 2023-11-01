@@ -6,33 +6,29 @@ export function ModalDeleteConfirm({handleExecute, setModalClose}) {
   return (
     <Container>
 
-      <form onSubmit={handleExecute}>
+      <Header>
 
-        <Header>
+        <h1>Tem certeza?</h1>
+        <button type="button" onClick={setModalClose}>x</button>
 
-          <h1>Tem certeza?</h1>
-          <button type="button" onClick={setModalClose}>x</button>
+      </Header>
 
-        </Header>
+      <hr />
 
-        <hr />
+      <Body>
 
-        <Body>
+        <h2>Ao deletar/desvincular, não será possível reverter.</h2>
 
-          <h2>Ao deletar/desvincular, não será possível reverter.</h2>
+      </Body>
 
-        </Body>
+      <hr />
 
-        <hr />
+      <Footer>
 
-        <Footer>
+        <Button color={'red'} onClick={setModalClose} type="button">Cancelar</Button>
+        <Button onClick={handleExecute} type="button">Confirmar</Button>
 
-          <Button color={'red'} onClick={setModalClose} type="button">Cancelar</Button>
-          <Button type="submit">Confirmar</Button>
-
-        </Footer>
-
-      </form>
+      </Footer>
 
     </Container>
   );

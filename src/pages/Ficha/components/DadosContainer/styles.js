@@ -27,7 +27,7 @@ export const HeaderContainer = styled("div", {
     paddingTop: '.3rem'
   },
 
-  button: {
+  '.edit': {
     position: "absolute",
     right: "1.5rem",
     display: "flex",
@@ -44,6 +44,14 @@ export const Body = styled('div', {
   flexWrap: 'wrap',
   justifyContent: 'center',
   alignItems: 'flex-start',
-  gap: '3rem'
+  gap: '3rem',
+
+  variants: {
+    nulo: {
+      true: {
+        padding: 0
+      }
+    }
+  }
 
 })

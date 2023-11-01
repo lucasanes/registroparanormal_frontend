@@ -14,17 +14,16 @@ export const Container = styled("div", {
 
 export const HeaderContainer = styled("div", {
   minHeight: '43px',
-  padding: '0rem 1rem',
+  padding: '1rem 4.9rem',
   position: 'relative',
   display: "flex",
   justifyContent: "center",
-
   gap: '1rem',
   alignItems: "center",
   position: "relative",
-  flexWrap: 'wrap',
+  flexWrap: 'wrap', 
 
-  'button:last-child': {
+  '.add': {
     position: "absolute",
     right: "1.5rem",
     display: "flex",
@@ -75,5 +74,13 @@ export const BodyContainer = styled("div", {
   flexDirection: 'column',
   padding: '3rem',
   gap: '3rem',
+
+  variants: {
+    nulo: {
+      true: {
+        padding: 0
+      }
+    }
+  }
 
 });

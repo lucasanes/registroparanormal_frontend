@@ -2,7 +2,7 @@ import { styled, keyframes } from "../../stitches.config";
 
 export const Container = styled("div", {
   width: "100%",
-  height: "100%",
+  height: 'calc(100% - 72px)',
   background: "rgb(20,20,20)",
   display: 'flex',
   flexDirection: 'column',
@@ -13,7 +13,7 @@ export const Container = styled("div", {
 export const Body = styled("div", {
   overflowY: "auto",
   width: '100%',
-  height: 'calc(100% - 72px)',
+  height: '100%',
   padding: "3rem 2rem 2rem 2rem",
   overflowX: 'hidden',
 });

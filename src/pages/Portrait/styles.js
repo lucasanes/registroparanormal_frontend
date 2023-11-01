@@ -29,7 +29,7 @@ export const Main = styled('main', {
     fontFamily: 'Special Elite',
     color: '#da3141',
     fontWeight: 100,
-    textShadow: '0 0 20px',
+    textShadow: '#a31624 0 0 15px, #a31624 0 0 20px',
     zIndex: 10
   },
 
@@ -38,20 +38,7 @@ export const Main = styled('main', {
     fontFamily: 'Special Elite',
     fontWeight: 100,
     color: '#5e97e5',
-    textShadow: '0 0 20px',
-    zIndex: 10
-  },
-
-  h3: {
-    fontSize: '15rem',
-    fontFamily: 'Special Elite',
-    position: 'absolute',
-    fontWeight: 100,
-    bottom: '10rem',
-    left: '9rem',
-    color: '#ffd900ff',
-    transform: 'rotate(-7deg)',
-    textShadow: '#ffa600 0 0 15px, #ffa600 0 0 20px',
+    textShadow: '#2660b2 0 0 15px, #2660b2 0 0 20px',
     zIndex: 10
   },
 
@@ -123,7 +110,7 @@ export const Municao = styled('div', {
     fontFamily: 'Special Elite',
     fontWeight: 100,
     color: '#00ff7b90',
-    textShadow: '0 0 10px',
+    textShadow: '#009246ff 0 0 15px, #009246ff 0 0 20px',
   },
 
   variants: {
@@ -230,6 +217,68 @@ export const Status2 = styled('div', {
   }
 })
 
+export const Status3 = styled('div', {
+  
+  opacity: 0,
+  zIndex: 10,
+  position: 'absolute',
+  bottom: '10rem',
+  left: '9rem',
+  transform: 'rotate(-7deg)',
+
+  h3: {
+    fontSize: '15rem',
+    fontFamily: 'Special Elite',
+    fontWeight: 100,
+    color: '#ffd900ff',
+    textShadow: '#ffa600 0 0 15px, #ffa600 0 0 20px',
+  },
+
+  variants: {
+    combate: {
+      true: {
+        animation: `${opacityUp1} 1s`,
+        animationDelay: '.3s',
+        animationFillMode: 'forwards'
+      },
+      false: {
+        animation: `${opacityDown1} .4s`,
+      }
+    }
+  }
+})
+
+export const Status4 = styled('div', {
+
+  opacity: 0,
+  zIndex: 10,
+  position: 'absolute',
+  bottom: '10rem',
+  left: '9rem',
+  transform: 'rotate(-7deg)',
+
+  h3: {
+    fontSize: '15rem',
+    fontFamily: 'Special Elite',
+    fontWeight: 100,
+    color: '#5e97e5',
+    textShadow: '#2660b2 0 0 15px, #2660b2 0 0 20px',
+  },
+
+  variants: {
+    combate: {
+      true: {
+        animation: `${opacityDown2} .4s`,
+      },
+      false: {
+        animation: `${opacityUp2} 1s`,
+        animationDelay: '.3s',
+        animationFillMode: 'forwards'
+      }
+    }
+  }
+})
+
 export const PortraitImg = styled('img', {
 
   position: 'absolute',
@@ -283,6 +332,43 @@ const DadoAnimation = keyframes({
   },
 });
 
+
+const shake = keyframes({
+  '0%': {
+    transform: 'translate(2px, 2px) rotate(0deg)'
+  },
+  '10%': {
+    transform: 'translate(-2px, -2px) rotate(-01deg)'
+  },
+  '20%': {
+    transform: 'translate(-2px, 2px) rotate(1deg)'
+  },
+  '30%': {
+    transform: 'translate(2px, 2px) rotate(0deg)'
+  },
+  '40%': {
+    transform: 'translate(-2px, -2px) rotate(1deg)'
+  },
+  '50%': {
+    transform: 'translate(2px, -2px) rotate(-1deg)'
+  },
+  '60%': {
+    transform: 'translate(2px, 2px) rotate(0deg)'
+  },
+  '70%': {
+    transform: 'translate(-2px, -2px) rotate(-01deg)'
+  },
+  '80%': {
+    transform: 'translate(-2px, -2px) rotate(1deg)'
+  },
+  '90%': {
+    transform: 'translate(2px, 2px) rotate(0deg)'
+  },
+  '100%': {
+    transform: 'translate(2px, 2px) rotate(1deg)'
+  }
+})
+
 export const Dado = styled('div', {
   position: 'relative',
   right: '5rem',
@@ -297,8 +383,7 @@ export const Dado = styled('div', {
   },
 
   span: {
-    color: '#ffffff',
-    textShadow: '#ff0000 0 0 20px, #ff0000 0 0 30px',
+    color: '#ffffff',  
     fontFamily: 'Special Elite',
     fontWeight: 700,
     fontSize: '12rem',
@@ -312,6 +397,19 @@ export const Dado = styled('div', {
       true: {
         animation: `${DadoAnimation} 7s`
       },
+    },
+    isDano: {
+      true: {
+        textShadow: '#ff3737 0 0 20px, #ff3737 0 0 30px',
+      },
+      false: {
+        textShadow: '#854cff 0 0 20px, #854cff 0 0 20px, #854cff 0 0 30px',
+      }
+    },
+    isCritico: {
+      true: { 
+        animation: `${DadoAnimation} 7s, ${shake} .5s infinite`,
+      }
     }
   }
 })

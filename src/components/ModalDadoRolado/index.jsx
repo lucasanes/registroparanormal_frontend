@@ -46,6 +46,7 @@ export function ModalDadoRolado({ setModalEditIsOpenFalse, data }) {
         let valorMax;
         let totalValores = [];
         let contaTotal = [];
+        let isCriticoA = false
 
         let splitD
 
@@ -77,6 +78,7 @@ export function ModalDadoRolado({ setModalEditIsOpenFalse, data }) {
 
           if (menor == 20) {
             setIsCritico(true)
+            isCriticoA = true
           }
 
         } else {
@@ -93,6 +95,7 @@ export function ModalDadoRolado({ setModalEditIsOpenFalse, data }) {
 
           if (maior == 20) {
             setIsCritico(true)
+            isCriticoA = true
           }
 
         }
@@ -102,7 +105,7 @@ export function ModalDadoRolado({ setModalEditIsOpenFalse, data }) {
         }
 
         socket.emit('dado.rolado', {
-          fichaId: id, nomeNPC: data.nomeNPC, nome: data.nome, isDano: data.isDano, conta: contaTotal.join("+"), valorTotal: eval(contaTotal.join("+")),
+          fichaId: id, nomeNPC: data.nomeNPC, nome: data.nome, isDano: data.isDano, isCritico: isCriticoA, conta: contaTotal.join("+"), valorTotal: eval(contaTotal.join("+")),
           dadosRolados: [{ dado: 'd' + valorMax, valores: totalValores }]
         })
 

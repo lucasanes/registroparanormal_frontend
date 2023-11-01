@@ -118,10 +118,10 @@ export const Main = styled('div', {
   variants: {
     isDano: {
       true: {
-        h1: { color: 'Crimson' }
+        h1: { color: '#ff3737' }
       },
       false: {
-        h1: { color: 'purple' }
+        h1: { color: '#854cff' }
       }
     },
     isCritico: {
@@ -129,7 +129,7 @@ export const Main = styled('div', {
         animation: `${shake} .5s infinite`,
 
         span: {
-          color: '#ff3d3d'
+          color: '#ff3737'
         }
       }
     }

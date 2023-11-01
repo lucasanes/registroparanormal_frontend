@@ -1,4 +1,4 @@
-import { Container, Main, PortraitImg, Status1, Status2, Dado, Municao } from './styles';
+import { Container, Main, PortraitImg, Status1, Status2, Dado, Municao, Status3, Status4 } from './styles';
 import FundoPortrait from '../../assets/img/FundoPortrait.png'
 import { useState, useEffect } from 'react';
 import { FaDiceD20 } from 'react-icons/fa'
@@ -15,32 +15,30 @@ export function Portrait() {
   const [isLoading, setIsLoading] = useState(true)
 
   const { id } = useParams()
-
-  const [nomePortrait, setNome] = useState('')
-
-  const [combate, setCombate] = useState(false)
-  const [insano, setInsano] = useState(false)
-  const [massivo, setMassivo] = useState(false)
-  const [inconsciente, setInconsciente] = useState(false)
-
-  const [portraitImg, setPortraitImg] = useState(null)
-
-  const [pvA, setPvA] = useState(0)
-  const [pvMax, setPvMax] = useState(0)
-  const [sanA, setSanA] = useState(0)
-  const [sanMax, setSanMax] = useState(0)
-  const [peA, setPeA] = useState(0)
-  const [municao, setMunicao] = useState(0)
-  const [municaoAtiva, setMunicaoAtiva] = useState(false)
-
-  const [animation, setAnimation] = useState(false)
+  const {user} = useAuth()
 
   const [semPerm, setSemPerm] = useState(false)
 
-  const [valorDado, setValorDado] = useState(0)
-  const [dadoActive, setDadoActive] = useState(false)
+  const [status, setStatus] = useState({
+    nome: '',
+    combate: false,
+    insano: false,
+    massivo: false,
+    inconsciente: false,
+    pvA: 0,
+    pvMax: 0,
+    sanA: 0,
+    sanMax: 0,
+    peA: 0,
+    municao: 0,
+  })
 
-  const {user} = useAuth()
+  const [dadoActive, setDadoActive] = useState(false)
+  const [municaoActive, setMunicaoActive] = useState(false)
+  const [animation, setAnimation] = useState(false)
+
+  const [portraitImg, setPortraitImg] = useState(null)
+  const [dado, setDado] = useState({valorTotal: 0, isCritico: false, isDano: false})
 
   useEffect(() => {
 
@@ -63,22 +61,23 @@ export function Portrait() {
           return
         }
 
-        setNome(response.data.Principal[0].nome)
-        document.title = `Fichas RPG - Portrait ${response.data.Principal[0].nome}`
+        document.title = `Registro Paranormal - Portrait ${response.data.Principal[0].nome}`
 
         const status = response.data.Status[0]
 
-        setPvA(status.pv)
-        setSanA(status.ps)
-        setPeA(status.pe)
-
-        setPvMax(status.pvMax)
-        setSanMax(status.psMax)
-
-        setCombate(status.combate)
-        setInsano(status.insano)
-        setMassivo(status.danoMassivo)
-        setInconsciente(status.inconsciente)
+        setStatus({
+          nome: response.data.Principal[0].nome, 
+          combate: status.combate,
+          insano: status.insano,
+          massivo: status.danoMassivo,
+          inconsciente: status.inconsciente,
+          pvA: status.pv,
+          pvMax: status.pvMax,
+          sanA: status.ps,
+          sanMax: status.psMax,
+          peA: status.pe,
+          municao: 0,
+        })
 
         const portrait = response.data.Portrait[0]
 
@@ -119,80 +118,120 @@ export function Portrait() {
 
     function executeUpdateCombate({ fichaId, newCombate }) {
       if (fichaId == id) {
-        setCombate(newCombate)
+        setStatus(rest => {
+          const status = {...rest}
+          status.combate = newCombate
+          return status
+        })
       }
     }
     socket.on(`status.combate?${id}`, executeUpdateCombate);
 
     function executeUpdateInsano({ fichaId, newInsano }) {
       if (fichaId == id) {
-        setInsano(newInsano)
+        setStatus(rest => {
+          const status = {...rest}
+          status.insano = newInsano
+          return status
+        })
       }
     }
     socket.on(`status.insano?${id}`, executeUpdateInsano);
 
     function executeUpdateMassivo({ fichaId, newMassivo }) {
       if (fichaId == id) {
-        setMassivo(newMassivo)
+        setStatus(rest => {
+          const status = {...rest}
+          status.massivo = newMassivo
+          return status
+        })
       }
     }
     socket.on(`status.massivo?${id}`, executeUpdateMassivo);
 
     function executeUpdateInconsciente({ fichaId, newInconsciente }) {
       if (fichaId == id) {
-        setInconsciente(newInconsciente)
+        setStatus(rest => {
+          const status = {...rest}
+          status.inconsciente = newInconsciente
+          return status
+        })
       }
     }
     socket.on(`status.inconsciente?${id}`, executeUpdateInconsciente);
 
     function executeUpdatePvAtual({ fichaId, newPvAtual }) {
       if (fichaId == id) {
-        setPvA(newPvAtual)
+        setStatus(rest => {
+          const status = {...rest}
+          status.pvA = newPvAtual
+          return status
+        })
       }
     }
     socket.on(`status.pvA?${id}`, executeUpdatePvAtual);
 
     function executeUpdatePvMax({ fichaId, newPvMax }) {
       if (fichaId == id) {
-        setPvMax(newPvMax)
+        setStatus(rest => {
+          const status = {...rest}
+          status.pvMax = newPvMax
+          return status
+        })
       }
     }
     socket.on(`status.pvMax?${id}`, executeUpdatePvMax);
 
     function executeUpdateSanAtual({ fichaId, newSanAtual }) {
       if (fichaId == id) {
-        setSanA(newSanAtual)
+        setStatus(rest => {
+          const status = {...rest}
+          status.sanA = newSanAtual
+          return status
+        })
       }
     }
     socket.on(`status.sanA?${id}`, executeUpdateSanAtual);
 
     function executeUpdateSanMax({ fichaId, newSanMax }) {
       if (fichaId == id) {
-        setSanMax(newSanMax)
+        setStatus(rest => {
+          const status = {...rest}
+          status.sanMax = newSanMax
+          return status
+        })
       }
     }
     socket.on(`status.sanMax?${id}`, executeUpdateSanMax);
 
     function executeUpdatePeAtual({ fichaId, newPeAtual }) {
       if (fichaId == id) {
-        setPeA(newPeAtual)
+        setStatus(rest => {
+          const status = {...rest}
+          status.peA = newPeAtual
+          return status
+        })
       }
     }
     socket.on(`status.peA?${id}`, executeUpdatePeAtual);
 
     function executeUpdateMunicao({ fichaId, municao }) {
       if (fichaId == id) {
-        setMunicao(municao)
-        setMunicaoAtiva(true)
+        setStatus(rest => {
+          const status = {...rest}
+          status.municao = municao
+          return status
+        })
+        setMunicaoActive(true)
 
         setTimeout(() => {
-          setMunicaoAtiva(false)
+          setMunicaoActive(false)
         }, 5000)
       }
     }
     socket.on(`status.municao?${id}`, executeUpdateMunicao);
 
-    function executeDado({ fichaId, valorTotal }) {
+    function executeDado({ fichaId, valorTotal, isDano, isCritico }) {
       if (fichaId == id && valorTotal != undefined) {
 
         setDadoActive(false)
@@ -200,7 +239,7 @@ export function Portrait() {
         setTimeout(() => {
 
           setDadoActive(true)
-          setValorDado(valorTotal)
+          setDado({valorTotal, isDano, isCritico})
 
         }, 50)
 
@@ -230,29 +269,35 @@ export function Portrait() {
 
       <Main>
 
-        <Status1 combate={combate}>
-          <h1>{pvA}/{pvMax}</h1>
-          <h2>{sanA}/{sanMax}</h2>
+        <Status1 combate={status.combate}>
+          <h1>{status.pvA}/{status.pvMax}</h1>
+          <h2>{status.sanA}/{status.sanMax}</h2>
         </Status1>
 
-        <Status2 combate={combate}>
-          <h4>{nomePortrait}</h4>
+        <Status2 combate={status.combate}>
+          <h4>{status.nome}</h4>
         </Status2>
 
-        {!semPerm && <h3>{peA}</h3>}
+        <Status3 combate={status.combate}>
+          <h3>{status.peA}</h3>
+        </Status3>
 
-         <Municao active={municaoAtiva}> 
+        <Status4 combate={status.combate}>
+          <h3>{!semPerm && status.sanA}</h3>
+        </Status4>
+
+        <Municao active={municaoActive}> 
           <img src={municaoImg}/>
-          <h5>x {municao}</h5>
+          <h5>x {status.municao}</h5>
         </Municao>
 
         {semPerm && <h6>Portrait Privado</h6>}
-        <PortraitImg id='imagem' animation={animation} inconsciente={inconsciente} semPerm={semPerm} src={portraitImg} />
+        <PortraitImg id='imagem' animation={animation} inconsciente={status.inconsciente} semPerm={semPerm} src={portraitImg} />
         <img src={FundoPortrait} />
       </Main>
 
-      <Dado id='dado' active={dadoActive}>
-        <span>{valorDado}</span>
+      <Dado id='dado' active={dadoActive} isCritico={dado.isCritico} isDano={dado.isDano}>
+        <span>{dado.valorTotal}</span>
         <FaDiceD20 color='#60eeff' size={200} />
       </Dado>
 

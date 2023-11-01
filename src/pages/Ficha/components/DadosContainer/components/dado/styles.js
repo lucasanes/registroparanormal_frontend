@@ -37,25 +37,25 @@ export const Button = styled('button', {
   variants: {
     isDano: {
       true: {
-        color: 'crimson',
+        color: '#ff3737',
 
         h1: {
-          textShadow: '2px 2px 2px crimson'
+          textShadow: '2px 2px 2px #ff3737'
         },
 
         '&:hover': {
-          border: '2px solid crimson',
+          border: '2px solid #ff3737',
         },
       },
       false: {
-        color: 'Purple',
+        color: '#854cff',
 
         h1: {
           textShadow: '2px 2px 1px #854cff'
         },
 
         '&:hover': {
-          border: '2px solid Purple',
+          border: '2px solid #854cff',
         },
       }
     }

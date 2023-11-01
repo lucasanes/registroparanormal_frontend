@@ -4,6 +4,11 @@ export const Container = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'flex-end',
+  position: 'relative',
+
+  '.edit': {
+    position: 'absolute'
+  }
 })
 
 export const Body = styled('div', {
@@ -24,7 +29,7 @@ export const Button = styled('button', {
   },
 
   background: 'none',
-  padding: '.8rem 1rem 0.5rem 1rem',
+  padding: '1.5rem .7rem 0.5rem .7rem',
   border: '2px solid transparent',
   borderRadius: '1rem',
   transition: '.3s',

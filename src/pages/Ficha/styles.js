@@ -28,6 +28,18 @@ export const DoubleParteContainer = styled("div", {
   }
 });
 
+export const DoubleParteColumnContainer = styled("div", {
+  display: "flex",
+  gridColumnGap: "2rem",
+  flexDirection: 'column',
+  width: '100%',
+
+  '@lg': {
+    gridTemplateRows: '1fr'
+  }
+});
+
+
 export const ParteImgModal = styled('div', {
   height: '95vh',
   width: '100%',

@@ -125,8 +125,12 @@ export const Main = styled('div', {
       }
     },
     isCritico: {
-      true: {
-        animation: `${shake} .5s infinite`
+      true: { 
+        animation: `${shake} .5s infinite`,
+
+        span: {
+          color: '#ff3d3d'
+        }
       }
     }
   }

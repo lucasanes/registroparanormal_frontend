@@ -84,28 +84,28 @@ export function StatusContainer({ status, defesasData, portraitData, infosBarrin
         setCombate(newCombate)
       }
     }
-    socket.on("status.combate", executeUpdateCombate);
+    socket.on(`status.combate?${id}`, executeUpdateCombate);
 
     function executeUpdateInsano({ fichaId, newInsano }) {
       if (fichaId == id) {
         setInsano(newInsano)
       }
     }
-    socket.on("status.insano", executeUpdateInsano);
+    socket.on(`status.insano?${id}`, executeUpdateInsano);
 
     function executeUpdateMassivo({ fichaId, newMassivo }) {
       if (fichaId == id) {
         setMassivo(newMassivo)
       }
     }
-    socket.on("status.massivo", executeUpdateMassivo);
+    socket.on(`status.massivo?${id}`, executeUpdateMassivo);
 
     function executeUpdateInconsciente({ fichaId, newInconsciente }) {
       if (fichaId == id) {
         setInconsciente(newInconsciente)
       }
     }
-    socket.on("status.inconsciente", executeUpdateInconsciente);
+    socket.on(`status.inconsciente?${id}`, executeUpdateInconsciente);
 
     return () => {
       handleEdit(false, false, false, false)

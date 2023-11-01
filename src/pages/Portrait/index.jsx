@@ -122,63 +122,63 @@ export function Portrait() {
         setCombate(newCombate)
       }
     }
-    socket.on("status.combate", executeUpdateCombate);
+    socket.on(`status.combate?${id}`, executeUpdateCombate);
 
     function executeUpdateInsano({ fichaId, newInsano }) {
       if (fichaId == id) {
         setInsano(newInsano)
       }
     }
-    socket.on("status.insano", executeUpdateInsano);
+    socket.on(`status.insano?${id}`, executeUpdateInsano);
 
     function executeUpdateMassivo({ fichaId, newMassivo }) {
       if (fichaId == id) {
         setMassivo(newMassivo)
       }
     }
-    socket.on("status.massivo", executeUpdateMassivo);
+    socket.on(`status.massivo?${id}`, executeUpdateMassivo);
 
     function executeUpdateInconsciente({ fichaId, newInconsciente }) {
       if (fichaId == id) {
         setInconsciente(newInconsciente)
       }
     }
-    socket.on("status.inconsciente", executeUpdateInconsciente);
+    socket.on(`status.inconsciente?${id}`, executeUpdateInconsciente);
 
     function executeUpdatePvAtual({ fichaId, newPvAtual }) {
       if (fichaId == id) {
         setPvA(newPvAtual)
       }
     }
-    socket.on("status.pvA", executeUpdatePvAtual);
+    socket.on(`status.pvA?${id}`, executeUpdatePvAtual);
 
     function executeUpdatePvMax({ fichaId, newPvMax }) {
       if (fichaId == id) {
         setPvMax(newPvMax)
       }
     }
-    socket.on("status.pvMax", executeUpdatePvMax);
+    socket.on(`status.pvMax?${id}`, executeUpdatePvMax);
 
     function executeUpdateSanAtual({ fichaId, newSanAtual }) {
       if (fichaId == id) {
         setSanA(newSanAtual)
       }
     }
-    socket.on("status.sanA", executeUpdateSanAtual);
+    socket.on(`status.sanA?${id}`, executeUpdateSanAtual);
 
     function executeUpdateSanMax({ fichaId, newSanMax }) {
       if (fichaId == id) {
         setSanMax(newSanMax)
       }
     }
-    socket.on("status.sanMax", executeUpdateSanMax);
+    socket.on(`status.sanMax?${id}`, executeUpdateSanMax);
 
     function executeUpdatePeAtual({ fichaId, newPeAtual }) {
       if (fichaId == id) {
         setPeA(newPeAtual)
       }
     }
-    socket.on("status.peA", executeUpdatePeAtual);
+    socket.on(`status.peA?${id}`, executeUpdatePeAtual);
 
     function executeUpdateMunicao({ fichaId, municao }) {
       if (fichaId == id) {
@@ -190,7 +190,7 @@ export function Portrait() {
         }, 5000)
       }
     }
-    socket.on("status.municao", executeUpdateMunicao);
+    socket.on(`status.municao?${id}`, executeUpdateMunicao);
 
     function executeDado({ fichaId, valorTotal }) {
       if (fichaId == id && valorTotal != undefined) {
@@ -206,7 +206,7 @@ export function Portrait() {
 
       }
     }
-    socket.on('dado.rolado', executeDado)
+    socket.on(`dado.rolado?${id}`, executeDado)
 
     function executeUpdatePortrait({ fichaId, newPortrait }) {
       if (fichaId == id) {
@@ -220,7 +220,7 @@ export function Portrait() {
         }
       }
     }
-    socket.on("status.portrait", executeUpdatePortrait);
+    socket.on(`status.portrait?${id}`, executeUpdatePortrait);
 
   }, [])
 

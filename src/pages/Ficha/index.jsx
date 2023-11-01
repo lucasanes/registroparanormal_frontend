@@ -1,4 +1,4 @@
-import { ParteImgModal, ImgModal, Container, DoubleParteContainer, Body } from './styles';
+import { ParteImgModal, ImgModal, Container, DoubleParteContainer, Body, DoubleParteColumnContainer } from './styles';
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
@@ -14,6 +14,8 @@ import { StatusContainer } from './components/StatusContainer';
 import { AtributoContainer } from './components/AtributoContainer';
 import { PericiasContainer } from './components/PericiasContainer';
 import { DadosContainer } from './components/DadosContainer';
+import { HabilidadesContainer } from './components/HabilidadesContainer';
+import { PersonagemContainer } from './components/PersonagemContainer';
 
 const socket = io(api.defaults.baseURL);
 
@@ -111,7 +113,7 @@ export function Ficha() {
         setImagem(imagem)
       }
     }
-    socket.on("enviado.itemImg", executeItemImg);
+    socket.on(`enviado.itemImg?${id}`, executeItemImg);
 
   }, []);
 
@@ -138,12 +140,12 @@ export function Ficha() {
 
         <DoubleParteContainer>
 
-          <PericiasContainer data={ficha && ficha.Pericias[0]} atributos={ficha && ficha.Atributos[0]} />
+          <PericiasContainer data={ficha?.Pericias[0]} atributos={ficha?.Atributos[0]} />
 
-          {/* <DoubleParteColumnContainer>
-            <HabilidadesContainer poderesData={ficha && ficha.Poderes} proficienciasData={ficha && ficha.Proficiencias} habilidadesData={ficha && ficha.Habilidades} />
-            <PersonagemContainer data={ficha && ficha.Personagem[0]} />
-          </DoubleParteColumnContainer> */}
+          <DoubleParteColumnContainer>
+            <HabilidadesContainer poderesData={ficha?.Poderes} proficienciasData={ficha?.Proficiencias} habilidadesData={ficha?.Habilidades} />
+            <PersonagemContainer data={ficha?.Personagem[0]} />
+          </DoubleParteColumnContainer>
 
         </DoubleParteContainer>
 

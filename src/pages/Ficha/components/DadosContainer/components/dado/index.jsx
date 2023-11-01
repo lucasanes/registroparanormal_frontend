@@ -28,7 +28,7 @@ export function Dado({ data, atualizar, dados }) {
         <ModalEditDado setModalClose={() => setModalDadoEditIsOpen(false)} data={data} atualizar={atualizar} dados={dados} />
       </Modal>
 
-      <ButtonEdit onClick={() => setModalDadoEditIsOpen(true)} />
+      <ButtonEdit className='edit' onClick={() => setModalDadoEditIsOpen(true)} />
 
       <Body>
 

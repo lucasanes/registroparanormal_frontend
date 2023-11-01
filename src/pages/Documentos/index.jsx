@@ -25,7 +25,7 @@ export function Documentos() {
         }
       }
     }
-    socket.on("enviado.itemImg", executeItemImg);
+    socket.on(`enviado.itemImg?${id}`, executeItemImg);
 
   }, [])
 

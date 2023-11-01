@@ -71,7 +71,7 @@ export const Button = styled('button', {
 export const Span = styled('span', {
   textTransform: 'capitalize',
   fontWeight: 700,
-  fontSize: '2rem',
+  fontSize: '1.8rem',
   overflow: 'hidden',
   textOverflow: 'clip',
 

@@ -5,7 +5,6 @@ export const Container = styled("div", {
   marginBottom: "2rem",
   borderRadius: "0.5rem",
   width: "100%",
-  position: 'relative',
 
   hr: {
     borderColor: '#ffffff75'
@@ -64,6 +63,7 @@ export const Pericias = styled("div", {
 });
 
 export const Body = styled('div', {
+  height: 'calc(100% - 43px)',
   padding: '3rem 2rem',
   position: 'relative',
   display: 'flex',

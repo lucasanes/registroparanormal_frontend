@@ -12,8 +12,14 @@ export function Menu() {
   const [active, setActive] = useState('fechado')
   const { signOut } = useAuth();
   const { title } = useTitle()
+  const {user} = useAuth()
 
   function abrirMenu() {
+
+    if (!user) {
+      return
+    }
+
     if (active == 'fechado') {
       setActive('aberto')
     } else if (active == 'aberto') {

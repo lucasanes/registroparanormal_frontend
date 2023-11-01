@@ -7,12 +7,13 @@ export const Container = styled("div", {
   display: 'flex',
   flexDirection: 'column',
   overflowX: 'hidden',
+  position: 'fixed'
 });
 
 export const Body = styled("div", {
   overflowY: "auto",
   width: '100%',
-  maxHeight: '100%',
+  height: 'calc(100% - 72px)',
   padding: "3rem 2rem 2rem 2rem",
   overflowX: 'hidden',
 });

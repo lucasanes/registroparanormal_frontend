@@ -47,7 +47,7 @@ export const Header = styled("div", {
     borderBottom: '2px solid white',
 
     a: {
-        margin: '0 5.5rem 0 2rem'
+        margin: '0 5.5rem 0 2rem',
     },
 
     img: {

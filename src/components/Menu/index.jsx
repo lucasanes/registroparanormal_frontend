@@ -5,6 +5,7 @@ import { BsFillDice6Fill } from 'react-icons/bs'
 import { useAuth } from "../../hooks/useAuth";
 import { useTitle } from '../../hooks/useTitle';
 import { Link } from 'react-router-dom';
+import {AiFillHome} from 'react-icons/ai'
 import icon from '../../assets/img/Calamidade.png'
 
 export function Menu() {
@@ -15,10 +16,6 @@ export function Menu() {
   const {user} = useAuth()
 
   function abrirMenu() {
-
-    if (!user) {
-      return
-    }
 
     if (active == 'fechado') {
       setActive('aberto')
@@ -62,15 +59,25 @@ export function Menu() {
 
         <ul>
 
-          <Li>
-            <ButtonLink onClick={abrirMenu} color={'purple'} to={"/"}> <BsFillDice6Fill size={25} /> Painel </ButtonLink>
-          </Li>
-          <Li>
-            <ButtonLink onClick={abrirMenu} color={'yellow'} to={'/conta'}> <RiUserLine size={30} /> Conta </ButtonLink>
-          </Li>
-          <Li>
-            <Button onClick={() => { signOut(); abrirMenu() }}> <RiUserUnfollowLine size={30} /> Sair </Button>
-          </Li>
+          {user ? <>
+
+            <Li>
+              <ButtonLink onClick={abrirMenu} color={'purple'} to={"/"}> <BsFillDice6Fill size={25} /> Painel </ButtonLink>
+            </Li>
+            <Li>
+              <ButtonLink onClick={abrirMenu} color={'yellow'} to={'/conta'}> <RiUserLine size={30} /> Conta </ButtonLink>
+            </Li>
+            <Li>
+              <Button onClick={() => { signOut(); abrirMenu() }}> <RiUserUnfollowLine size={30} /> Sair </Button>
+            </Li>
+
+          </>:
+
+            <Li>
+              <ButtonLink onClick={abrirMenu} color={'purple'} to={"/"}> <AiFillHome size={25} /> Home </ButtonLink>
+            </Li>
+
+          }
 
         </ul>
 

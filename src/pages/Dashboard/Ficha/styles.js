@@ -42,7 +42,7 @@ export const Botoes = styled('div', {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  gap: '1rem',
+  gap: '.5rem',
 
 })
 
@@ -54,7 +54,7 @@ export const LinkButton = styled(Link, {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  transition: 'ease 0.3s',
+  transition: '0.3s',
   border: 'solid 1px transparent',
   borderRadius: '.5rem',
 
@@ -85,7 +85,7 @@ export const Button = styled('button', {
   alignItems: 'center',
   justifyContent: 'center',
   border: 'solid 1px transparent',
-  transition: 'ease 0.3s',
+  transition: '0.3s',
   borderRadius: '.5rem',
 
   variants: {

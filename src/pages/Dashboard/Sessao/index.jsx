@@ -8,28 +8,29 @@ import { useState } from 'react'
 import { useAuth } from '../../../hooks/useAuth'
 import { toast } from 'react-toastify'
 import { api } from '../../../services/api'
+import { BiTrashAlt } from 'react-icons/bi'
+import { ModalDeleteConfirm } from '../../../components/Modals/ModalDeleteConfirm'
 
 export function Sessao({data, sessoes, setSessoes}) {
 
   const [modalEditarSessaoIsOpen, setModalEditarSessaoIsOpen] = useState(false)
+  const [modalDeleteIsOpen, setModalDeleteIsOpen] = useState(false)
 
   const {user} = useAuth()
 
   async function handleDelete() {
 
-    if (window.confirm("Tem certeza que deseja excluir esta sessão? Uma vez deletada jamais será recuperada.")) {
-      try {
+    try {
 
-        await api.delete(`/sessoes/${data.id}`)
+      await api.delete(`/sessoes/${data.id}`)
 
-        const sessoesAtualizadas = sessoes.filter(sessao => sessao.id != data.id)
+      const sessoesAtualizadas = sessoes.filter(sessao => sessao.id != data.id)
 
-        setSessoes(sessoesAtualizadas)
-        toast.success("Sessão deletada com sucesso!")
+      setSessoes(sessoesAtualizadas)
+      toast.success("Sessão deletada com sucesso!")
 
-      } catch (error) {
-        toast.error(error.response.data.msg);
-      }
+    } catch (error) {
+      toast.error(error.response.data.msg);
     }
 
   }
@@ -41,11 +42,15 @@ export function Sessao({data, sessoes, setSessoes}) {
         <ModalEditSessao data={data} sessoes={sessoes} setSessoes={setSessoes} setModalClose={() => setModalEditarSessaoIsOpen(false)} />
       </Modal>
 
+      <Modal isOpen={modalDeleteIsOpen} setClose={() => setModalDeleteIsOpen(false)}>
+        <ModalDeleteConfirm setModalClose={() => setModalDeleteIsOpen(false)} handleExecute={handleDelete}/>
+      </Modal>
+
       <Header>
         <h2>{data.nome}</h2>
         <div>
-          <Button color={'blue'} onClick={() => setModalEditarSessaoIsOpen(true)}><BsGear size={17} /></Button>
-          <Button onClick={handleDelete}><IoTrashOutline size={19} /></Button>
+          <Button color={'blue'} onClick={() => setModalEditarSessaoIsOpen(true)}><BsGear size={18} /></Button>
+          <Button onClick={() => setModalDeleteIsOpen(true)}><BiTrashAlt size={20} /></Button>
         </div>
       </Header>
       <hr />

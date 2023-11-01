@@ -55,7 +55,7 @@ export function HabilidadesContainer({ habilidadesData, poderesData, proficienci
 
       <hr />
 
-      <BodyContainer nulo={body == 'habilidades' && habilidades && habilidades.length == 0 || body == 'poderes' && poderes && poderes.length == 0 || body == 'proficiencias' && proficiencias && proficiencias.length == 0}>
+      <BodyContainer>
 
         {body == 'habilidades' && habilidades &&
 

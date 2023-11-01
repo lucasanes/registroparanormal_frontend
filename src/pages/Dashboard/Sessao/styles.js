@@ -28,7 +28,8 @@ export const Header = styled('div', {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: '.7rem'
+    gap: '.5rem',
+    paddingBottom: '.3rem'
   },
 
   h2: {
@@ -46,19 +47,26 @@ export const Header = styled('div', {
 export const Button = styled('button', {
 
   background: 'none',
-  color: '#fff',
-  border: 'none',
+  textDecoration: 'none',
+  padding: '.3rem',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  border: 'solid 1px transparent',
   transition: '0.3s',
+  borderRadius: '.5rem',
+  color: '#de0000',
 
   '&:hover': {
-    color: '#de0000'
+    border: 'solid 1px #de0000',
   },
 
   variants: {
     color: {
       blue: {
+        color: '#00fff7',
         '&:hover': {
-          color: '#00fff7'
+          border: 'solid 1px #00fff7',
         },
       }
     }

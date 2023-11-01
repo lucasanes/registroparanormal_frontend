@@ -7,24 +7,27 @@ import { api } from '../../../services/api'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
 import noportrait from '../../../assets/img/noportrait.png'
+import { Modal } from '../../../components/Modals/Modal'
+import { ModalDeleteConfirm } from '../../../components/Modals/ModalDeleteConfirm'
 
 export function Ficha({ data, fichas, setFichas }) {
 
   const [isPublic, setIsPublic] = useState(data.isPublic)
+  const [modalDeleteIsOpen, setModalDeleteIsOpen] = useState(false)
 
   const infos = data.Principal[0]
   const portrait = data.Portrait[0]
 
   async function handleDelete() {
 
-    if (window.confirm("Tem certeza que deseja excluir esta ficha? Uma vez deletada jamais poderá ser recuperada")) {
+    try {
 
       await api.delete(`/fichas/${data.id}`)
 
       const fichasAtt = fichas.filter(ficha => ficha.id != data.id)
       setFichas(fichasAtt)
 
-    }
+    } catch(e) {console.log(e)}
 
   }
 
@@ -39,12 +42,17 @@ export function Ficha({ data, fichas, setFichas }) {
 
   return (
     <Container>
+
+      <Modal isOpen={modalDeleteIsOpen} setClose={() => setModalDeleteIsOpen(false)}>
+        <ModalDeleteConfirm setModalClose={() => setModalDeleteIsOpen(false)} handleExecute={handleDelete}/>
+      </Modal>
+
       <Header>
         <h2>{infos.nome} {data.sessaoId && ' - ' + data.sessao.nome}</h2>
         <Botoes>
           <LinkButton color={'aqua'} to={`/ficha/portrait/${data.id}`}><FaUserCircle size={20} color="#03d9ffff" /></LinkButton>
           <Button onClick={handleEdit} color={isPublic ? 'green' : 'crimson'}>{isPublic ? <BsEye size={20} color="#13ff72" /> : <BsEyeSlash size={20} color="crimson" />}</Button>
-          <Button onClick={handleDelete} color={'red'}><BiTrashAlt size={20} color='red' /></Button>
+          <Button onClick={() => setModalDeleteIsOpen(true)} color={'red'}><BiTrashAlt size={20} color='red' /></Button>
         </Botoes>
       </Header>
       <hr />

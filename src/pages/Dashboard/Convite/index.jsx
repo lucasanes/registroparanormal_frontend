@@ -6,12 +6,16 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import { toast } from 'react-toastify'
 import { useAuth } from '../../../hooks/useAuth'
+import { Modal } from '../../../components/Modals/Modal'
+import { ModalDeleteConfirm } from '../../../components/Modals/ModalDeleteConfirm'
 
 export function Convite({ data, convites, setConvites }) {
 
   const [participantes, setParticipantes] = useState('')
   const [fichas, setFichas] = useState([])
   const [fichaSelecionada, setFichaSelecionada] = useState('Indefinida')
+
+  const [modalDeleteIsOpen, setModalDeleteIsOpen] = useState(false)
 
   const {user} = useAuth()
 
@@ -34,15 +38,13 @@ export function Convite({ data, convites, setConvites }) {
 
   async function handleDelete() {
 
-    if (window.confirm("Tem certeza que deseja excluir este convite?")) {
-      try {
+    try {
 
-        await api.delete(`/sessoes/convite/${data.id}`)
-        const listaAtualizada = convites.filter(convite => data.id != convite.id)
-        setConvites(listaAtualizada)
+      await api.delete(`/sessoes/convite/${data.id}`)
+      const listaAtualizada = convites.filter(convite => data.id != convite.id)
+      setConvites(listaAtualizada)
 
-      } catch (erro) { console.log(erro) }
-    }
+    } catch (erro) { console.log(erro) }
 
   }
 
@@ -77,9 +79,14 @@ export function Convite({ data, convites, setConvites }) {
 
   return (
     <Container>
+
+      <Modal isOpen={modalDeleteIsOpen} setClose={() => setModalDeleteIsOpen(false)}>
+        <ModalDeleteConfirm setModalClose={() => setModalDeleteIsOpen(false)} handleExecute={handleDelete}/>
+      </Modal>
+
       <Header>
         <h2>Convite - {data.nome}</h2>
-        <button onClick={handleDelete}>Recusar <AiOutlineCloseCircle size={18} /></button>
+        <button onClick={() => setModalDeleteIsOpen(true)}>Recusar <AiOutlineCloseCircle size={18} /></button>
       </Header>
       <hr />
       <Desc>

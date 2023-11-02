@@ -16,6 +16,7 @@ import { PericiasContainer } from './components/PericiasContainer';
 import { DadosContainer } from './components/DadosContainer';
 import { HabilidadesContainer } from './components/HabilidadesContainer';
 import { PersonagemContainer } from './components/PersonagemContainer';
+import { InventarioContainer } from './components/InventarioContainer';
 
 const socket = io(api.defaults.baseURL);
 
@@ -149,8 +150,8 @@ export function Ficha() {
 
         </DoubleParteContainer>
 
-        {/*<InventarioContainer armasData={ficha && ficha.Armas} itensData={ficha && ficha.Itens} peso={ficha && ficha.Status[0].peso} />
-        <RituaisContainer data={ficha && ficha.Rituais} /> */}
+        <InventarioContainer armasData={ficha?.Armas} itensData={ficha?.Itens} peso={ficha?.Status[0].peso} />
+        {/* <RituaisContainer data={ficha && ficha.Rituais} /> */}
 
       </Body>}
 

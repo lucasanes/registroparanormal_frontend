@@ -97,7 +97,7 @@ export const Button = styled('button', {
       },
       crimson: {
         '&:hover': {
-          border: 'solid 1px crimson',
+          border: 'solid 1px #ff3737',
         },
       },
       red: {

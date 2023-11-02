@@ -239,12 +239,12 @@ export const Button = styled('button', {
   background: 'none',
   transition: '.3s',
   border: '1px solid transparent',
-  fontSize: '1.8rem',
+  fontSize: '1.7rem',
   borderRadius: '7px',
   fontWeight: 700,
 
   '&:hover': {
-    color: 'white'
+    scale: '1.05',
   },
 
   variants: {
@@ -257,7 +257,7 @@ export const Button = styled('button', {
       },
       insanotrue: {
         border: '1px solid #00f2ff',
-        color: 'aqua',
+        color: '#00f2ff',
         background: '#00f2ff50'
       },
       inconscientetrue: {
@@ -276,34 +276,18 @@ export const Button = styled('button', {
       aqua: {
         border: '1px solid #00f2ff',
         color: 'aqua',
-
-        '&:hover': {
-          background: '#00f2ff50'
-        }
       },
       yellow: {
         border: '1px solid #ffff00',
         color: '#ffff00',
-
-        '&:hover': {
-          background: '#ffff0050'
-        }
       },
       red: {
         border: '1px solid #ff5858',
         color: '#ff5858',
-
-        '&:hover': {
-          background: '#ff585850'
-        }
       },
       red2: {
         border: '1px solid #ff0000',
         color: '#ff0000',
-
-        '&:hover': {
-          background: '#ff000050'
-        }
       }
     }
   }

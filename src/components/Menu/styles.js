@@ -68,7 +68,7 @@ export const Header = styled("div", {
     },
 
     h1: {
-        color: 'Purple',
+        color: '#800080',
         fontFamily: 'Fredoka One',
         letterSpacing: '.2rem',
 
@@ -137,7 +137,7 @@ export const ButtonLink = styled(Link, {
     variants: {
         color: {
             purple: {
-                color: 'Purple',
+                color: '#800080',
                 marginLeft: '.7rem'
             },
             yellow: {
@@ -154,7 +154,7 @@ export const Button = styled('button', {
     border: "none",
     display: "flex",
     alignItems: "flex-end",
-    color: 'Crimson',
+    color: '#ff3737',
     justifyContent: "center",
     fontSize: "2.3rem",
     gap: "1rem",

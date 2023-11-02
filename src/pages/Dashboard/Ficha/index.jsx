@@ -51,7 +51,7 @@ export function Ficha({ data, fichas, setFichas }) {
         <h2>{infos.nome} {data.sessaoId && ' - ' + data.sessao.nome}</h2>
         <Botoes>
           <LinkButton color={'aqua'} to={`/ficha/portrait/${data.id}`}><FaUserCircle size={20} color="#03d9ffff" /></LinkButton>
-          <Button onClick={handleEdit} color={isPublic ? 'green' : 'crimson'}>{isPublic ? <BsEye size={20} color="#13ff72" /> : <BsEyeSlash size={20} color="crimson" />}</Button>
+          <Button onClick={handleEdit} color={isPublic ? 'green' : '#ff3737'}>{isPublic ? <BsEye size={20} color="#13ff72" /> : <BsEyeSlash size={20} color="crimson" />}</Button>
           <Button onClick={() => setModalDeleteIsOpen(true)} color={'red'}><BiTrashAlt size={20} color='red' /></Button>
         </Botoes>
       </Header>

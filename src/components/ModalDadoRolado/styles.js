@@ -42,7 +42,7 @@ export const CloseButton = styled('button', {
   color: '#ffffff90',
   fontSize: '2.5rem',
   transition: '0.2s',
-  padding: '0 10px 2px 10px',
+  padding: '0 10px 5px 10px',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -106,7 +106,7 @@ export const Main = styled('div', {
     width: 'min-content',
     textAlign: 'left',
     textTransform: 'capitalize',
-    fontFamily: 'Rye'
+    fontFamily: 'Rye',
   },
 
   span: {
@@ -121,7 +121,7 @@ export const Main = styled('div', {
         h1: { color: '#ff3737' }
       },
       false: {
-        h1: { color: '#854cff' }
+        h1: { color: '#800080' }
       }
     },
     isCritico: {

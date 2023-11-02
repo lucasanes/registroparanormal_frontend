@@ -62,7 +62,7 @@ export function Menu() {
           {user ? <>
 
             <Li>
-              <ButtonLink onClick={abrirMenu} color={'purple'} to={"/"}> <BsFillDice6Fill size={25} /> Painel </ButtonLink>
+              <ButtonLink onClick={abrirMenu} color={'#800080'} to={"/"}> <BsFillDice6Fill size={25} /> Painel </ButtonLink>
             </Li>
             <Li>
               <ButtonLink onClick={abrirMenu} color={'yellow'} to={'/conta'}> <RiUserLine size={30} /> Conta </ButtonLink>
@@ -74,7 +74,7 @@ export function Menu() {
           </>:
 
             <Li>
-              <ButtonLink onClick={abrirMenu} color={'purple'} to={"/"}> <AiFillHome size={25} /> Home </ButtonLink>
+              <ButtonLink onClick={abrirMenu} color={'#800080'} to={"/"}> <AiFillHome size={25} /> Home </ButtonLink>
             </Li>
 
           }

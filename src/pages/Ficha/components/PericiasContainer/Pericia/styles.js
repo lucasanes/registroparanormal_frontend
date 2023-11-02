@@ -24,6 +24,10 @@ export const Button = styled('button', {
   fontSize: '2rem',
   color: 'white',
 
+  b: {
+    fontSize: '2.6rem'
+  },
+
   variants: {
     level: {
       nt: {

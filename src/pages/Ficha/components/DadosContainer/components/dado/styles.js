@@ -48,14 +48,14 @@ export const Button = styled('button', {
         },
       },
       false: {
-        color: '#854cff',
+        color: '#800080',
 
         h1: {
-          textShadow: '2px 2px 1px #854cff'
+          textShadow: '2px 2px 1px #800080'
         },
 
         '&:hover': {
-          border: '2px solid #854cff',
+          border: '2px solid #800080',
         },
       }
     }

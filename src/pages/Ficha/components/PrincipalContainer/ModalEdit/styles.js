@@ -54,7 +54,7 @@ export const Header = styled('div', {
     color: '#ffffff90',
     fontSize: '2.5rem',
     transition: '0.2s',
-    padding: '0 10px 2px 10px',
+    padding: '0 10px 5px 10px',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',

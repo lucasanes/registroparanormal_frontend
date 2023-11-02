@@ -37,14 +37,16 @@ export function StatusContainer({ status, defesasData, portraitData, infosBarrin
 
   const [portraitImg, setPortraitImg] = useState(null)
 
-  const [pvA, setPvA] = useState(null)
-  const [pvMax, setPvMax] = useState(0)
-  const [sanA, setSanA] = useState(null)
-  const [sanMax, setSanMax] = useState(0)
-  const [peA, setPeA] = useState(0)
-  const [peMax, setPeMax] = useState(0)
+  const [pvA, setPvA] = useState(status.pv)
+  const [pvMax, setPvMax] = useState(status.pvMax)
+  const [sanA, setSanA] = useState(status.ps)
+  const [sanMax, setSanMax] = useState(status.psMax)
+  const [peA, setPeA] = useState(status.pe)
+  const [peMax, setPeMax] = useState(status.peMax)
 
-  async function handleEditAll(combate, insano, danoMassivo, inconsciente) {
+  const [changinTimer, setChanginTimer] = useState(null)
+
+  async function handleEdit(combate, insano, danoMassivo, inconsciente) {
 
     await api.put(`/fichas/status/${id}`, {
       combate,
@@ -57,27 +59,15 @@ export function StatusContainer({ status, defesasData, portraitData, infosBarrin
       psMax: sanMax,
       pe: peA,
       peMax,
-      municao: null,
-      municaoMax: null
     })
   }
-
-  async function handleEdit(combate, insano, danoMassivo, inconsciente) {
-
-    await api.put(`/fichas/status/${id}`, {
-      combate,
-      insano,
-      danoMassivo,
-      inconsciente,
-    })
+  
+  function subtimer(combate, insano, danoMassivo, inconsciente) {
+    clearTimeout(changinTimer)
+    setChanginTimer(setTimeout(() => handleEdit(combate, insano, danoMassivo, inconsciente), 3000))
   }
 
   useEffect(() => {
-
-    setarCombate(false)
-    setarInsano(false)
-    setarMassivo(false)
-    setarInconsciente(false)
 
     function executeUpdateCombate({ fichaId, newCombate }) {
       if (fichaId == id) {
@@ -114,17 +104,6 @@ export function StatusContainer({ status, defesasData, portraitData, infosBarrin
 
   useEffect(() => {
 
-    if (status) {
-      setarPvAtual(status.pv)
-      setarPvMax(status.pvMax)
-
-      setarSanAtual(status.ps)
-      setarSanMax(status.psMax)
-
-      setarPeAtual(status.pe)
-      setarPeMax(status.peMax)
-    }
-
     let varDefesas = []
     let varRes = []
 
@@ -148,7 +127,7 @@ export function StatusContainer({ status, defesasData, portraitData, infosBarrin
       setDataRes(varRes)
     }
 
-  }, [status, defesas])
+  }, [defesas])
 
   useEffect(() => {
 
@@ -183,7 +162,7 @@ export function StatusContainer({ status, defesasData, portraitData, infosBarrin
   useEffect(() => {
 
     if (pvMax != 0) {
-      handleEditAll(combate, insano, massivo, inconsciente)
+      subtimer(combate, insano, massivo, inconsciente)
     }
 
   }, [pvA, pvMax, sanA, sanMax, peA, peMax])
@@ -272,10 +251,10 @@ export function StatusContainer({ status, defesasData, portraitData, infosBarrin
 
             <hr />
 
-            <Button disabled={disabled} active={'combate' + combate} onClick={() => { setarCombate(!combate); handleEdit(!combate, insano, massivo, inconsciente) }} color={'yellow'}>Combate</Button>
-            <Button disabled={disabled} active={'insano' + insano} onClick={() => { setarInsano(!insano); handleEdit(combate, !insano, massivo, inconsciente) }} color={'aqua'}>Insano</Button>
-            <Button disabled={disabled} active={'massivo' + massivo} onClick={() => { setarMassivo(!massivo); handleEdit(combate, insano, !massivo, inconsciente) }} color={'red'}>Dano Massivo</Button>
-            <Button disabled={disabled} active={'inconsciente' + inconsciente} onClick={() => { setarInconsciente(!inconsciente); handleEdit(combate, insano, massivo, !inconsciente) }} color={'red2'}>Inconsciente</Button>
+            <Button disabled={disabled} active={'combate' + combate} onClick={() => { setarCombate(!combate); subtimer(!combate, insano, massivo, inconsciente) }} color={'yellow'}>Combate</Button>
+            <Button disabled={disabled} active={'insano' + insano} onClick={() => { setarInsano(!insano); subtimer(combate, !insano, massivo, inconsciente) }} color={'aqua'}>Insano</Button>
+            <Button disabled={disabled} active={'massivo' + massivo} onClick={() => { setarMassivo(!massivo); subtimer(combate, insano, !massivo, inconsciente) }} color={'red'}>Dano Massivo</Button>
+            <Button disabled={disabled} active={'inconsciente' + inconsciente} onClick={() => { setarInconsciente(!inconsciente); subtimer(combate, insano, massivo, !inconsciente) }} color={'red2'}>Inconsciente</Button>
 
           </Buttons>
 

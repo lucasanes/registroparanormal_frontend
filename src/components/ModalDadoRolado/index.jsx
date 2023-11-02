@@ -122,9 +122,11 @@ export function ModalDadoRolado({ setModalEditIsOpenFalse, data }) {
 
       } else {
 
+        let isCriticoA = false
         let soma = []
         let contaTotal = [];
         let todosDadosRolados = []
+        let valorTotalMax = 0
 
         if (valor.includes('+')) {
           const splitSoma = valor.split('+')
@@ -153,6 +155,8 @@ export function ModalDadoRolado({ setModalEditIsOpenFalse, data }) {
 
               todosDadosRolados.push(novoDado)
 
+              valorTotalMax += qtdDado * valorMax
+
             } else {
               soma.push(splitSoma[i])
             }
@@ -160,9 +164,15 @@ export function ModalDadoRolado({ setModalEditIsOpenFalse, data }) {
 
           if (soma.length > 0) {
             contaTotal.push('(' + soma.join('+') + ')')
+            valorTotalMax += eval(soma.join('+'))
           }
 
-          socket.emit('dado.rolado', { fichaId: id, nomeNPC: data.nomeNPC, nome: data.nome, isDano: data.isDano, conta: contaTotal.join("+"), valorTotal: eval(contaTotal.join("+")), dadosRolados: todosDadosRolados })
+          if (valorTotalMax == eval(contaTotal.join("+"))) {
+            setIsCritico(true)
+            isCriticoA = true
+          }
+
+          socket.emit('dado.rolado', { fichaId: id, nomeNPC: data.nomeNPC, nome: data.nome, isDano: data.isDano, isCritico: isCriticoA, conta: contaTotal.join("+"), valorTotal: eval(contaTotal.join("+")), dadosRolados: todosDadosRolados })
 
           setDados({
             valorTotal: eval(contaTotal.join("+")),
@@ -186,8 +196,15 @@ export function ModalDadoRolado({ setModalEditIsOpenFalse, data }) {
             contaTotal.push(valorGerado)
           }
 
+          valorTotalMax += qtdDado * valorMax
+
+          if (valorTotalMax == eval(contaTotal.join("+"))) {
+            setIsCritico(true)
+            isCriticoA = true
+          }
+
           socket.emit('dado.rolado', {
-            fichaId: id, nomeNPC: data.nomeNPC, nome: data.nome, isDano: data.isDano, conta: contaTotal.join("+"), valorTotal: eval(contaTotal.join("+")), dadosRolados: [{ dado: 'd' + valorMax, valores: totalValores }]
+            fichaId: id, nomeNPC: data.nomeNPC, nome: data.nome, isDano: data.isDano, isCritico: isCriticoA, conta: contaTotal.join("+"), valorTotal: eval(contaTotal.join("+")), dadosRolados: [{ dado: 'd' + valorMax, valores: totalValores }]
           })
 
           setDados({

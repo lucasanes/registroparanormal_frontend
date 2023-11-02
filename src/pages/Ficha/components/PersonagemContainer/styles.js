@@ -6,6 +6,7 @@ export const Container = styled('div', {
   height: '100%',
   border: "2px solid #ffffff75",
   borderRadius: "0.5rem",
+  marginBottom: '2rem',
 
   hr: {
     borderColor: '#ffffff75'

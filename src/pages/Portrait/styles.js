@@ -113,6 +113,7 @@ export const Municao = styled('div', {
     textShadow: '#009246ff 0 0 15px, #009246ff 0 0 20px',
   },
 
+
   variants: {
     active: {
       true: {
@@ -403,7 +404,7 @@ export const Dado = styled('div', {
         textShadow: '#ff3737 0 0 20px, #ff3737 0 0 30px',
       },
       false: {
-        textShadow: '#854cff 0 0 20px, #854cff 0 0 20px, #854cff 0 0 30px',
+        textShadow: '#800080 0 0 20px, #800080 0 0 20px, #800080 0 0 30px',
       }
     },
     isCritico: {

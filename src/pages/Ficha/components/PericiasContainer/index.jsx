@@ -1,5 +1,5 @@
 import { Body, Pericias, Container, HeaderContainer, Footer, Button, ButtonIcon } from './styles';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Modal } from '../../../../components/Modals/Modal';
 import { ToastContainer } from 'react-toastify';
 import { ButtonEdit } from '../../../../components/ButtonEdit';
@@ -13,6 +13,8 @@ export function PericiasContainer({ data, atributos }) {
   const [pericias, setPericias] = useState([])
   const [active, setActive] = useState('p')
   const [modalPericiasIsOpen, setModalPericiasIsOpen] = useState(false)
+
+  const contentRef = useRef(null)
 
   function gerarPericias() {
     let varPericias = []
@@ -101,12 +103,29 @@ export function PericiasContainer({ data, atributos }) {
 
   }, [active, todasPericias])
 
-  function trocarOlho() {
-    if (active != 'p') {
-      setActive('p')
-    } else {
-      setActive('todas')
-    }
+  function trocarOlho(ref, to) {
+
+    const content = ref.current;
+  
+    content.style.transition = "0.3s ease-out";
+    content.style.opacity = 0
+
+    setTimeout(() => {
+      if (!to) {
+        if (active != 'p') {
+          setActive('p')
+        } else {
+          setActive('todas')
+        }
+      } else {
+        setActive(to)
+      }
+    }, 300);
+
+    setTimeout(() => {
+      content.style.transition = "0.3s ease-in";
+      content.style.opacity = 1
+    }, 310);
   }
 
   return (
@@ -117,7 +136,7 @@ export function PericiasContainer({ data, atributos }) {
       </Modal>
 
       <HeaderContainer>
-        <ButtonIcon onClick={trocarOlho}>{active != 'todas' ? <BsEyeSlash color='aqua' size={23} /> : <BsEye color='aqua' size={23} />}</ButtonIcon>
+        <ButtonIcon onClick={() => trocarOlho(contentRef)}>{active != 'todas' ? <BsEyeSlash color='aqua' size={23} /> : <BsEye color='aqua' size={23} />}</ButtonIcon>
         <h1>Perícias</h1>
         <ButtonEdit onClick={() => setModalPericiasIsOpen(true)} />
       </HeaderContainer>
@@ -126,17 +145,17 @@ export function PericiasContainer({ data, atributos }) {
 
       <Body>
 
-        <Pericias>
+        <Pericias ref={contentRef}>
 
           {pericias.map(pericia => <Pericia key={pericia.nome} nome={pericia.nome} valor={pericia.valor} atributoChave={pericia.atributoChave} />)}
 
         </Pericias>
 
         <Footer>
-          <Button onClick={() => setActive('nt')} color={'nt'}>Não Treinadas</Button>
-          <Button onClick={() => setActive('t')} color={'t'}>Treinadas</Button>
-          <Button onClick={() => setActive('v')} color={'v'}>Veteranas</Button>
-          <Button onClick={() => setActive('e')} color={'e'}>Expert</Button>
+          <Button onClick={() => trocarOlho(contentRef, 'nt')} color={'nt'}>Não Treinadas</Button>
+          <Button onClick={() => trocarOlho(contentRef, 't')} color={'t'}>Treinadas</Button>
+          <Button onClick={() => trocarOlho(contentRef, 'v')} color={'v'}>Veteranas</Button>
+          <Button onClick={() => trocarOlho(contentRef, 'e')} color={'e'}>Expert</Button>
         </Footer>
 
       </Body>

@@ -29,7 +29,7 @@ export const Container = styled('div', {
     },
 
     'button:hover': {
-        color: 'Crimson'
+        color: '#ff3737'
     }
 
 })

@@ -17,6 +17,13 @@ export const Body = styled('div', {
 
 export const Button = styled('button', {
 
+  minWidth: '10rem',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  flexDirection: 'column',
+  gap: '.5rem',
+
   h1: {
     width: 'min-content',
     fontSize: '2rem',

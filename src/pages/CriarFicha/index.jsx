@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Input } from '../../components/Input';
 import { AtributoInput } from '../../components/AtributoInput';
@@ -9,7 +9,7 @@ import { useTitle } from '../../hooks/useTitle';
 import { api } from '../../services/api';
 import { Container, Body, Principal, Atributos, Footer, Span } from './styles';
 import {useAuth} from '../../hooks/useAuth'
-import origens from './origens';
+import origens from '../../components/mappers/origens';
 
 export function CriarFicha() {
 

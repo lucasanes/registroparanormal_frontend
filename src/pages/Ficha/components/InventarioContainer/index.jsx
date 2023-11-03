@@ -33,7 +33,7 @@ export function InventarioContainer({ armasData, itensData, peso }) {
   const [fichaIdAEnviar, setFichaAEnviar] = useState('')
 
   const { id } = useParams()
-  const { fichas } = useFichas()
+  const { fichas, sessaoIdFicha } = useFichas()
   const { disabled } = useDisabled()
 
   useEffect(() => {
@@ -44,6 +44,8 @@ export function InventarioContainer({ armasData, itensData, peso }) {
     armasData.map(arma => setPesoAtual((prev) => prev + arma.espaco))
 
     async function fetchData() {
+
+      toast('Você recebeu um item em seu inventário.')
 
       const responseItens = await api.get(`/fichas/item/${id}`)
       const responseArmas = await api.get(`/fichas/arma/${id}`)
@@ -58,12 +60,10 @@ export function InventarioContainer({ armasData, itensData, peso }) {
 
     }
 
-    function atualizarInv({ fichaId }) {
-      if (fichaId == id) {
-        fetchData()
-      }
+    function atualizarInv() {
+      fetchData()
     }
-    socket.on('enviado.inv', atualizarInv)
+    socket.on(`enviado.inv?${id}`, atualizarInv)
 
   }, [])
 
@@ -74,18 +74,51 @@ export function InventarioContainer({ armasData, itensData, peso }) {
 
     const ficha = fichas.filter(ficha => ficha.id == fichaIdAEnviar)
 
+    if (fichaIdAEnviar == '') {
+      toast.error('Você precisa selecionar alguém para enviar.')
+      return
+    }
+
+    let nome
+
+    if (ficha.length > 0) {
+      nome = ficha[0].Principal[0].nome
+    } else {
+      nome = 'Mestre'
+    }
+
+
     if (item.length > 0) {
 
       try {
 
-        await api.post(`/fichas/item/enviar`, {
-          nome: item[0].nome,
-          espaco: item[0].espaco,
-          categoria: item[0].categoria,
-          descricao: item[0].descricao,
-          imagem: item[0].imagem,
-          fichaId: fichaIdAEnviar
-        });
+        if (ficha.length > 0) {
+
+          await api.post(`/fichas/item`, {
+            nome: item[0].nome,
+            espaco: item[0].espaco,
+            categoria: item[0].categoria,
+            descricao: item[0].descricao,
+            imagem: item[0].imagem,
+            isMunicao: item[0].isMunicao,
+            municao: item[0].municao,
+            municaoMax: item[0].municaoMax,
+            fichaId: fichaIdAEnviar,
+          });
+
+        } else {
+          await api.post(`/sessoes/item`, {
+            nome: item[0].nome,
+            espaco: item[0].espaco,
+            categoria: item[0].categoria,
+            descricao: item[0].descricao,
+            imagem: item[0].imagem,
+            isMunicao: item[0].isMunicao,
+            municao: item[0].municao,
+            municaoMax: item[0].municaoMax,
+            sessaoId: fichaIdAEnviar
+          });
+        }
 
         await api.delete(`/fichas/item/${itemAEnviar}`)
 
@@ -96,7 +129,7 @@ export function InventarioContainer({ armasData, itensData, peso }) {
 
         socket.emit("enviado.inv", { fichaId: fichaIdAEnviar });
 
-        toast.success(`Item enviado com sucesso para a ficha de ${ficha[0].Principal[0].nome}.`)
+        toast.success(`Item enviado com sucesso para a ficha de ${nome}.`)
 
       } catch (erro) {
         toast.error(erro.response.data.msg)
@@ -106,22 +139,42 @@ export function InventarioContainer({ armasData, itensData, peso }) {
 
       try {
 
-        await api.post(`/fichas/arma/enviar`, {
-          nome: arma[0].nome,
-          tipo: arma[0].tipo,
-          alcance: arma[0].alcance,
-          recarga: arma[0].recarga,
-          especial: arma[0].especial,
-          ataque: arma[0].ataque,
-          dano: arma[0].dano,
-          margemCritico: arma[0].margemCritico,
-          danoCritico: arma[0].danoCritico,
-          espaco: arma[0].espaco,
-          categoria: arma[0].categoria,
-          descricao: arma[0].descricao,
-          imagem: arma[0].imagem,
-          fichaId: fichaIdAEnviar
-        });
+        if (ficha.length > 0) {
+          await api.post(`/fichas/arma`, {
+            nome: arma[0].nome,
+            tipo: arma[0].tipo,
+            alcance: arma[0].alcance,
+            recarga: arma[0].recarga,
+            especial: arma[0].especial,
+            ataque: arma[0].ataque,
+            dano: arma[0].dano,
+            margemCritico: arma[0].margemCritico,
+            danoCritico: arma[0].danoCritico,
+            espaco: arma[0].espaco,
+            categoria: arma[0].categoria,
+            descricao: arma[0].descricao,
+            imagem: arma[0].imagem,
+            fichaId: fichaIdAEnviar,
+          });
+        } else {
+          await api.post(`/sessoes/arma`, {
+            nome: arma[0].nome,
+            tipo: arma[0].tipo,
+            alcance: arma[0].alcance,
+            recarga: arma[0].recarga,
+            especial: arma[0].especial,
+            ataque: arma[0].ataque,
+            dano: arma[0].dano,
+            margemCritico: arma[0].margemCritico,
+            danoCritico: arma[0].danoCritico,
+            espaco: arma[0].espaco,
+            categoria: arma[0].categoria,
+            descricao: arma[0].descricao,
+            imagem: arma[0].imagem,
+            sessaoId: fichaIdAEnviar
+          });
+        }
+
 
         await api.delete(`/fichas/arma/${itemAEnviar}`)
 
@@ -177,7 +230,7 @@ export function InventarioContainer({ armasData, itensData, peso }) {
 
         <hr />
 
-        <Footer>
+        {sessaoIdFicha && <Footer>
 
           <Row>
 
@@ -194,6 +247,7 @@ export function InventarioContainer({ armasData, itensData, peso }) {
               <span>Ficha</span>
               <select disabled={disabled} onChange={(e) => setFichaAEnviar(e.target.value)}>
                 <Option value={null}>Nenhuma</Option>
+                <Option value={sessaoIdFicha}>Mestre</Option>
                 {fichas.map(ficha => <Option key={ficha.id} value={ficha.id}>{ficha.Principal[0].nome}</Option>)}
               </select>
             </Column>
@@ -202,7 +256,7 @@ export function InventarioContainer({ armasData, itensData, peso }) {
 
           <Button disabled={disabled} onClick={enviarInventario}>Enviar</Button>
 
-        </Footer>
+        </Footer>}
 
       </Main>
 

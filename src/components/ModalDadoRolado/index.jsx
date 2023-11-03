@@ -3,7 +3,7 @@ import { Container, Header, Main, Footer, CloseButton } from './styles';
 import { io } from 'socket.io-client';
 import { api } from '../../services/api';
 import { useParams } from 'react-router-dom';
-import pericias from './pericias';
+import pericias from '../mappers/pericias';
 import {useFichas} from '../../hooks/useFichas'
 
 const socket = io(api.defaults.baseURL);

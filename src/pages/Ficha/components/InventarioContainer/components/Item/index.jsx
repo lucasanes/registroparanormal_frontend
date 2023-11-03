@@ -49,7 +49,7 @@ export function Item({ data, atualizar, itens, setPesoAtual }) {
 
   function subtimer() {
     clearTimeout(changinTimer)
-    setChanginTimer(setTimeout(handleEdit, 2000))
+    setChanginTimer(setTimeout(handleEdit, 1000))
   }
 
   useEffect(() => {

@@ -27,8 +27,8 @@ export function ModalEditItem({ data, setModalClose, atualizar, itens, setPesoAt
         categoria,
         descricao,
         isMunicao,
-        municao: isMunicao ? 30 : null,
-        municaoMax: isMunicao ? 30 : null,
+        municao: isMunicao && data.municao == null ? 30 : data.municao,
+        municaoMax: isMunicao && data.municaoMax == null ? 30 : data.municaoMax,
         imagem,
       });
 

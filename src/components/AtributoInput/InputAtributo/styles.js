@@ -5,13 +5,14 @@ export const Container = styled('div', {
 })
 
 export const Input = styled('input', {
-  width: '3.2rem',
-  height: '4rem',
+  width: '4rem',
+  height: '4.5rem',
   fontSize: "4rem",
-  paddingTop: '1.2rem',
-  paddingLeft: '.5rem',
+  padding: '1.2rem 0rem 0rem .8rem',
   background: "none",
-  border: 'none',
+  border: '1px solid #fff',
+  outline: 'none',
+  borderRadius: '5px',
   color: 'white',
   zIndex: 1,
   fontFamily: 'Special Elite',

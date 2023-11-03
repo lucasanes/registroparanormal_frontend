@@ -18,6 +18,7 @@ import { HabilidadesContainer } from './components/HabilidadesContainer';
 import { PersonagemContainer } from './components/PersonagemContainer';
 import { InventarioContainer } from './components/InventarioContainer';
 import { RituaisContainer } from './components/RituaisContainer';
+import { toast } from 'react-toastify';
 
 const socket = io(api.defaults.baseURL);
 
@@ -60,6 +61,7 @@ export function Ficha() {
         } else if (response.data.isPublic) {
           setDisabled(true)
         } else {
+          toast.error('Você não tem acesso a esta ficha!')
           navigate('/')
           return
         }

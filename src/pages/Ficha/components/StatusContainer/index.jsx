@@ -11,7 +11,7 @@ import { Container, Header, Body, BottomBody, TopBody, Buttons, AreaPortrait, Po
 import { io } from 'socket.io-client';
 import { useDisabled } from '../../../../hooks/useDisabled';
 import { ModalStatus } from './components/ModalStatus';
-import resistencias from './components/resistencias';
+import resistencias from '../../../../components/mappers/resistencias';
 
 const socket = io(api.defaults.baseURL);
 

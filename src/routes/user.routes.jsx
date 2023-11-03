@@ -5,6 +5,7 @@ import { Documentos } from '../pages/Documentos'
 import Dashboard from "../pages/Dashboard";
 import { CriarFicha } from "../pages/CriarFicha";
 import { Ficha } from "../pages/Ficha";
+import { Sessao } from "../pages/Sessao";
 
 export function UserRoutes() {
 
@@ -15,9 +16,9 @@ export function UserRoutes() {
         <Route path="/criarficha/" element={<CriarFicha />} />
         <Route path="/sessao/ficha/:id" element={<Ficha />} />
         <Route path="/ficha/:id" element={<Ficha />} /> 
-        {/* <Route path="/sessao/mestre/:id" element={<Sessao />} />
+        <Route path="/sessao/mestre/:id" element={<Sessao />} />
+        {/* 
         <Route path="/conta" element={<EditarConta />} />
-        <Route path="/criarficha/convite/:id" element={<CriarFichaConvite />} />
         */}
       </Route>
       <Route path="/ficha/portrait/:id" element={<Portrait />} />

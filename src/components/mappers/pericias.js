@@ -1,3 +1,3 @@
-import mapper from './mapper'
+import mapper from './periciasmapper'
 
 export default (nome) => mapper.get(nome)

@@ -4,7 +4,7 @@ import { ModalDadoRolado } from '../../../../../components/ModalDadoRolado';
 import { Modal } from '../../../../../components/Modals/Modal';
 import { useState } from 'react';
 import { useDisabled } from '../../../../../hooks/useDisabled';
-import pericias from '../../../../../components/ModalDadoRolado/pericias';
+import pericias from '../../../../../components/mappers/pericias';
 
 export function Pericia({ nome, valor, atributoChave }) {
 

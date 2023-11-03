@@ -1,0 +1,16 @@
+export default new Map([
+  ["mental", 'Mental'],
+  ["morte", 'Morte'],
+  ["conhecimento", 'Conhecimento'],
+  ["sangue", 'Sangue'],
+  ["energia", 'Energia'],
+  ["fisica", 'Física'],
+  ["balistica", 'Balística'],
+  ["corte", 'Corte'],
+  ["impacto", 'Impacto'],
+  ["perfuracao", 'Perfuração'],
+  ["eletricidade", 'Eletricidade'],
+  ["fogo", 'Fogo'],
+  ["frio", 'Frio'],
+  ["quimica", 'Química'],
+])

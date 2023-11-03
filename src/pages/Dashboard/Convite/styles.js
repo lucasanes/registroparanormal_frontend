@@ -2,6 +2,7 @@ import { styled } from "../../../stitches.config";
 
 export const Container = styled('div', {
   width: '100%',
+  height: '24rem',
   minWidth: '3rem',
   background: 'rgb(27,27,27, 0.8)',
   border: '2px solid',
@@ -51,7 +52,7 @@ export const Header = styled('div', {
 })
 
 export const Desc = styled('div', {
-  height: '12.2rem',
+  height: '10.9rem',
   display: 'flex',
   justifyContent: 'left',
   marginTop: '1rem',
@@ -71,7 +72,6 @@ export const Desc = styled('div', {
 })
 
 export const Footer = styled('div', {
-  height: '10rem',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
@@ -116,12 +116,12 @@ export const Footer = styled('div', {
     borderRadius: '1rem',
     transition: 'ease 0.3s',
   },
+
   'button:hover': {
-    backgroundColor: 'rgb(47,47,47,0.5)'
+    backgroundColor: 'rgb(47,47,47,0.75)'
   },
 
   select: {
-    width: '20%'
-  },
-
+    width: '100%'
+  }
 })

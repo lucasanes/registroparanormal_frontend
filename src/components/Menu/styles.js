@@ -71,7 +71,7 @@ export const Header = styled("div", {
         color: '#800080',
         fontFamily: 'Fredoka One',
         letterSpacing: '.2rem',
-
+        textTransform: 'capitalize',
         whiteSpace: 'nowrap',
         fontSize: '3.3rem',
         textShadow: "4px 3px 2px black",
@@ -182,7 +182,6 @@ export const Line2 = styled('div', {
     width: '3rem',
     height: '3px',
     background: 'white',
-    transition: '.3s',
 
     variants: {
         active: {

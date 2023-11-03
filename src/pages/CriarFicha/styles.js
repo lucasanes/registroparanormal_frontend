@@ -108,18 +108,18 @@ export const Footer = styled('div', {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    border: '2px solid #7538ef',
+    border: '2px solid #00ff88',
+    background: 'none',
     padding: '1rem',
-    color: 'white',
+    color: '#00ff88',
     borderRadius: '8px',
     fontSize: '2.5rem',
     cursor: 'pointer',
     transition: '0.2s',
-    backgroundColor: '#4f1db4',
     fontFamily: 'Crimson Text',
 
     '&:hover': {
-      backgroundColor: '#3f178f',
+      backgroundColor: '#00ff8850',
     },
   }
 

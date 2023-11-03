@@ -48,10 +48,10 @@ export default function Dashboard() {
     }
     fetchData();
 
-    async function atualizarConvites({email}) {
+    async function atualizarConvites() {
 
-      const responseConvite = await api.get(`/sessoes/convite/${email}`)
-      setConvites(responseConvite)
+      const responseConvite = await api.get(`/sessoes/convite/${user.email}`)
+      setConvites(responseConvite.data)
       toast('Você recebeu um convite!')
   
     }
@@ -71,7 +71,7 @@ export default function Dashboard() {
         <hr />
         <S.DivFlex>
           <AddSessao setModalOpen={() => setModalCriarSessaoIsOpen(true)}/>
-          {convites.map(convite => <Convite data={convite} convites={convites} setConvites={setConvites}/>)}
+          {convites.map(convite => <Convite key={convite.id} data={convite} convites={convites} setConvites={setConvites}/>)}
           {sessoes.map(sessao => <Sessao key={sessao.id} data={sessao} sessoes={sessoes} setSessoes={setSessoes}/>)}
         </S.DivFlex>
       </S.ContainerDiv>

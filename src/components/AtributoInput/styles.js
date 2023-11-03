@@ -18,28 +18,28 @@ export const Top = styled('div', {
     position: 'absolute',
     display: 'flex',
     justifyContent: 'center',
-    top: '11%'
+    top: '10%'
 })
 
 export const Mid = styled('div', {
     position: 'absolute',
-    top: '32%',
+    top: '31%',
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: '21.8rem',
+    gap: '21rem',
 })
 
 export const Bot = styled('div', {
     position: 'absolute',
-    marginRight: '.3rem',
-    top: '69%',
+    marginRight: '0.2rem',
+    top: '68.5%',
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: '14.7rem',
+    gap: '13.8rem',
 })
 
 export const Img = styled('img', {

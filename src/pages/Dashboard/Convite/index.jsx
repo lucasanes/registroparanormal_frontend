@@ -8,8 +8,9 @@ import { toast } from 'react-toastify'
 import { useAuth } from '../../../hooks/useAuth'
 import { Modal } from '../../../components/Modals/Modal'
 import { ModalDeleteConfirm } from '../../../components/Modals/ModalDeleteConfirm'
+import {Select} from '../../../components/Select'
 
-export function Convite({ data, convites, setConvites }) {
+export function Convite({ data, setConvites }) {
 
   const [participantes, setParticipantes] = useState('')
   const [fichas, setFichas] = useState([])
@@ -21,9 +22,10 @@ export function Convite({ data, convites, setConvites }) {
 
   useEffect(() => {
 
-    const listaParticipantes = data.participantes.map(participante => participante.user.nome)
+    console.log(data.sessao.Participantes)
+    const listaParticipantes = data.sessao.Participantes.map(participante => participante.user.nome)
 
-    if (data.participantes.length > 0) {
+    if (data.sessao.Participantes.length > 0) {
       setParticipantes('E seus participantes são: ' + listaParticipantes.join(', '))
     }
 
@@ -64,8 +66,8 @@ export function Convite({ data, convites, setConvites }) {
         })
         await api.delete(`/sessoes/convite/${data.id}`)
 
-        const listaAtualizada = lista.filter(convite => data.id != convite.id)
-        setConvites(listaAtualizada)
+        setConvites(rest => rest.filter(convite => data.id != convite.id))
+        toast.success('Você agorá faz parte de ' + data.sessao.nome + '.')
 
       } catch (erro) {
         console.log(erro)
@@ -85,21 +87,21 @@ export function Convite({ data, convites, setConvites }) {
       </Modal>
 
       <Header>
-        <h2>Convite - {data.nome}</h2>
+        <h2>Convite - {data.sessao.nome}</h2>
         <button onClick={() => setModalDeleteIsOpen(true)}>Recusar <AiOutlineCloseCircle size={18} /></button>
       </Header>
       <hr />
       <Desc>
-        <h2>{data.owner} te convidou para sua sessão: {data.nome}. <br /> Cuja descrição é: {data.descricao} <br /> {data.participantes.length > 0 && participantes}</h2>
+        <h2>{data.sessao.user.nome} te convidou para sua sessão: {data.sessao.nome}. <br /> Cuja descrição é: {data.sessao.descricao} <br /> {participantes}</h2>
       </Desc>
       <hr />
       <Footer>
         <div>
           <button onClick={handleEdit}>Entrar com a Ficha:</button>
-          <select onChange={(e) => setFichaSelecionada(e.target.value)}>
+          <Select label={''} valor={fichaSelecionada} setValor={setFichaSelecionada}>
             <option value={'Indefinida'}>Indefinida</option>
             {fichas.map(ficha => <option key={ficha.id} value={ficha.id}>{ficha.Principal[0].nome}</option>)}
-          </select>
+          </Select>
         </div>
         {/* <Link to={`/criarficha/convite/${data.id}`}>Entrar e Criar Ficha</Link> */}
       </Footer>

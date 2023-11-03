@@ -113,7 +113,6 @@ export const Municao = styled('div', {
     textShadow: '#009246ff 0 0 15px, #009246ff 0 0 20px',
   },
 
-
   variants: {
     active: {
       true: {
@@ -322,7 +321,7 @@ const DadoAnimation = keyframes({
   '0%': {
     top: '60rem',
   },
-  '20%': {
+  '10%': {
     top: '28rem',
   },
   '70%': {
@@ -378,6 +377,7 @@ export const Dado = styled('div', {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+  animation: `${DadoAnimation} 7s`,
 
   svg: {
     filter: 'drop-shadow(#00e5ff 0 0 10px)',
@@ -394,17 +394,12 @@ export const Dado = styled('div', {
   },
 
   variants: {
-    active: {
-      true: {
-        animation: `${DadoAnimation} 7s`
-      },
-    },
     isDano: {
       true: {
         textShadow: '#ff3737 0 0 20px, #ff3737 0 0 30px',
       },
       false: {
-        textShadow: '#800080 0 0 20px, #800080 0 0 20px, #800080 0 0 30px',
+        textShadow: '#854cff 0 0 20px, #854cff 0 0 20px, #854cff 0 0 30px',
       }
     },
     isCritico: {

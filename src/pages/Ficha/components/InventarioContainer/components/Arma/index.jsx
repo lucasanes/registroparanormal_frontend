@@ -34,9 +34,7 @@ export function Arma({ data, atualizar, armas, setPesoAtual }) {
   const [modalEditArmaIsOpen, setModalEditArmaIsOpen] = useState(false)
 
   const { disabled } = useDisabled()
-
-  const { fichas } = useFichas()
-
+  const { fichas, sessaoIdFicha } = useFichas()
   const { id } = useParams()
 
   const [municaoA, setMunicaoA] = useState(data.municao)
@@ -91,12 +89,16 @@ export function Arma({ data, atualizar, armas, setPesoAtual }) {
       socket.emit("enviado.itemImg", { fichaId: ficha.id, imagem: data.imagem, sessaoId: ficha.sessaoId });
     });
 
+    if (sessaoIdFicha) {
+      socket.emit("enviado.itemImg", { sessaoId: sessaoIdFicha, imagem: data.imagem });
+    }
+
   }
 
   return (
     <Container>
 
-      <Modal isOpen={modalEditArmaIsOpen} setClose={() => setModalEditArmaIsOpen(false)}>
+      <Modal padding={false} isOpen={modalEditArmaIsOpen} setClose={() => setModalEditArmaIsOpen(false)}>
         <ModalEditArma setPesoAtual={setPesoAtual} armas={armas} data={data} atualizar={atualizar} setModalClose={() => setModalEditArmaIsOpen(false)} />
       </Modal>
 

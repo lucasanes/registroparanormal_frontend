@@ -15,7 +15,7 @@ const socket = io(api.defaults.baseURL);
 export function Item({ data, atualizar, itens, setPesoAtual }) {
   
   const { disabled } = useDisabled()
-  const { fichas } = useFichas()
+  const { fichas, sessaoIdFicha } = useFichas()
 
   const [imgAberta, setImgAberta] = useState(false)
   
@@ -68,8 +68,12 @@ export function Item({ data, atualizar, itens, setPesoAtual }) {
   function handleSend() {
 
     fichas.forEach(ficha => {
-      socket.emit("enviado.itemImg", { fichaId: ficha.id, imagem: data.imagem, sessaoId: ficha.sessaoId });
+      socket.emit("enviado.itemImg", { fichaId: ficha.id, imagem: data.imagem });
     });
+
+    if (sessaoIdFicha) {
+      socket.emit("enviado.itemImg", { sessaoId: sessaoIdFicha, imagem: data.imagem });
+    }
 
   }
 

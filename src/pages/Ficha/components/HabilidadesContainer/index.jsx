@@ -49,7 +49,7 @@ export function HabilidadesContainer({ habilidadesData, poderesData, proficienci
       <HeaderContainer>
         <Button active={body == 'hab'} onClick={() => { setBody('hab') }}>Habilidades</Button>
         <Button active={body == 'pod'} onClick={() => { setBody('pod') }}>Poderes </Button>
-        <Button active={body == 'prof'} onClick={() => { setBody('prof') }}>Prof.</Button>
+        <Button active={body == 'prof'} onClick={() => { setBody('prof') }}>Proficiências</Button>
         <ButtonAdd className='add' onClick={openModal} />
       </HeaderContainer>
 

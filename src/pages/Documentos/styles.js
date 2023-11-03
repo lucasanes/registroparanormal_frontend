@@ -8,7 +8,8 @@ export const Container = styled('div', {
   display: 'flex',
 
   img: {
-    objectFit: 'contain'
+    scale: 0,
+    objectFit: 'contain',
   }
 
 })

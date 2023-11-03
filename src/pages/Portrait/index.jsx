@@ -37,6 +37,8 @@ export function Portrait() {
   const [municaoActive, setMunicaoActive] = useState(false)
   const [animation, setAnimation] = useState(false)
 
+  const [dadoRolado, setDadoRolado] = useState(0)
+
   const [portraitImg, setPortraitImg] = useState(null)
   const [dado, setDado] = useState({valorTotal: 0, isCritico: false, isDano: false})
 
@@ -116,146 +118,118 @@ export function Portrait() {
     fetchData();
 
 
-    function executeUpdateCombate({ fichaId, newCombate }) {
-      if (fichaId == id) {
-        setStatus(rest => {
-          const status = {...rest}
-          status.combate = newCombate
-          return status
-        })
-      }
+    function executeUpdateCombate({ newCombate }) {
+      setStatus(rest => {
+        const status = {...rest}
+        status.combate = newCombate
+        return status
+      })
     }
     socket.on(`status.combate?${id}`, executeUpdateCombate);
 
-    function executeUpdateInsano({ fichaId, newInsano }) {
-      if (fichaId == id) {
-        setStatus(rest => {
-          const status = {...rest}
-          status.insano = newInsano
-          return status
-        })
-      }
+    function executeUpdateInsano({ newInsano }) {
+      setStatus(rest => {
+        const status = {...rest}
+        status.insano = newInsano
+        return status
+      })
     }
     socket.on(`status.insano?${id}`, executeUpdateInsano);
 
-    function executeUpdateMassivo({ fichaId, newMassivo }) {
-      if (fichaId == id) {
-        setStatus(rest => {
-          const status = {...rest}
-          status.massivo = newMassivo
-          return status
-        })
-      }
+    function executeUpdateMassivo({ newMassivo }) {
+      setStatus(rest => {
+        const status = {...rest}
+        status.massivo = newMassivo
+        return status
+      })
     }
     socket.on(`status.massivo?${id}`, executeUpdateMassivo);
 
-    function executeUpdateInconsciente({ fichaId, newInconsciente }) {
-      if (fichaId == id) {
-        setStatus(rest => {
-          const status = {...rest}
-          status.inconsciente = newInconsciente
-          return status
-        })
-      }
+    function executeUpdateInconsciente({ newInconsciente }) {
+      setStatus(rest => {
+        const status = {...rest}
+        status.inconsciente = newInconsciente
+        return status
+      })
     }
     socket.on(`status.inconsciente?${id}`, executeUpdateInconsciente);
 
-    function executeUpdatePvAtual({ fichaId, newPvAtual }) {
-      if (fichaId == id) {
-        setStatus(rest => {
-          const status = {...rest}
-          status.pvA = newPvAtual
-          return status
-        })
-      }
+    function executeUpdatePvAtual({ newPvAtual }) {
+      setStatus(rest => {
+        const status = {...rest}
+        status.pvA = newPvAtual
+        return status
+      })
     }
     socket.on(`status.pvA?${id}`, executeUpdatePvAtual);
 
-    function executeUpdatePvMax({ fichaId, newPvMax }) {
-      if (fichaId == id) {
-        setStatus(rest => {
-          const status = {...rest}
-          status.pvMax = newPvMax
-          return status
-        })
-      }
+    function executeUpdatePvMax({ newPvMax }) {
+      setStatus(rest => {
+        const status = {...rest}
+        status.pvMax = newPvMax
+        return status
+      })
     }
     socket.on(`status.pvMax?${id}`, executeUpdatePvMax);
 
-    function executeUpdateSanAtual({ fichaId, newSanAtual }) {
-      if (fichaId == id) {
-        setStatus(rest => {
-          const status = {...rest}
-          status.sanA = newSanAtual
-          return status
-        })
-      }
+    function executeUpdateSanAtual({ newSanAtual }) {
+      setStatus(rest => {
+        const status = {...rest}
+        status.sanA = newSanAtual
+        return status
+      })
     }
     socket.on(`status.sanA?${id}`, executeUpdateSanAtual);
 
-    function executeUpdateSanMax({ fichaId, newSanMax }) {
-      if (fichaId == id) {
-        setStatus(rest => {
-          const status = {...rest}
-          status.sanMax = newSanMax
-          return status
-        })
-      }
+    function executeUpdateSanMax({ newSanMax }) {
+      setStatus(rest => {
+        const status = {...rest}
+        status.sanMax = newSanMax
+        return status
+      })
     }
     socket.on(`status.sanMax?${id}`, executeUpdateSanMax);
 
-    function executeUpdatePeAtual({ fichaId, newPeAtual }) {
-      if (fichaId == id) {
-        setStatus(rest => {
-          const status = {...rest}
-          status.peA = newPeAtual
-          return status
-        })
-      }
+    function executeUpdatePeAtual({ newPeAtual }) {
+      setStatus(rest => {
+        const status = {...rest}
+        status.peA = newPeAtual
+        return status
+      })
     }
     socket.on(`status.peA?${id}`, executeUpdatePeAtual);
 
-    function executeUpdateMunicao({ fichaId, municao }) {
-      if (fichaId == id) {
-        setStatus(rest => {
-          const status = {...rest}
-          status.municao = municao
-          return status
-        })
-        setMunicaoActive(true)
+    function executeUpdateMunicao({ municao }) {
+      setStatus(rest => {
+        const status = {...rest}
+        status.municao = municao
+        return status
+      })
+      setMunicaoActive(true)
 
-        setTimeout(() => {
-          setMunicaoActive(false)
-        }, 5000)
-      }
+      setTimeout(() => {
+        setMunicaoActive(false)
+      }, 5000)
     }
     socket.on(`status.municao?${id}`, executeUpdateMunicao);
 
-    function executeDado({ fichaId, valorTotal, isDano, isCritico }) {
-      if (fichaId == id && valorTotal != undefined) {
+    function executeDado({ valorTotal, isDano, isCritico }) {
+      if (valorTotal != undefined) {
 
-        setDadoActive(false)
-
-        setTimeout(() => {
-
-          setDadoActive(true)
-          setDado({valorTotal, isDano, isCritico})
-
-        }, 50)
+        setDadoRolado(rest => rest + 1)
+        setDado({valorTotal, isDano, isCritico})
 
       }
     }
     socket.on(`dado.rolado?${id}`, executeDado)
 
-    function executeUpdatePortrait({ fichaId, newPortrait }) {
-      if (fichaId == id) {
-        const portraitAtual = document.getElementById('imagem')
-        if (portraitAtual != undefined && portraitAtual != null) {
-          if (portraitAtual.src != newPortrait) {
-            setAnimation(true)
-            setTimeout(() => { setAnimation(false) }, 500)
-            setTimeout(() => { setPortraitImg(newPortrait) }, 500)
-          }
+    function executeUpdatePortrait({ newPortrait }) {
+      const portraitAtual = document.getElementById('imagem')
+      if (portraitAtual != undefined && portraitAtual != null) {
+        if (portraitAtual.src != newPortrait) {
+          setAnimation(true)
+          setTimeout(() => { setAnimation(false) }, 500)
+          setTimeout(() => { setPortraitImg(newPortrait) }, 500)
         }
       }
     }
@@ -296,7 +270,7 @@ export function Portrait() {
         <img src={FundoPortrait} />
       </Main>
 
-      <Dado id='dado' active={dadoActive} isCritico={dado.isCritico} isDano={dado.isDano}>
+      <Dado key={dadoRolado} id='dado' isCritico={dado.isCritico} isDano={dado.isDano}>
         <span>{dado.valorTotal}</span>
         <FaDiceD20 color='#60eeff' size={200} />
       </Dado>

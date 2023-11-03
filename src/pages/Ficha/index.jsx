@@ -17,6 +17,7 @@ import { DadosContainer } from './components/DadosContainer';
 import { HabilidadesContainer } from './components/HabilidadesContainer';
 import { PersonagemContainer } from './components/PersonagemContainer';
 import { InventarioContainer } from './components/InventarioContainer';
+import { RituaisContainer } from './components/RituaisContainer';
 
 const socket = io(api.defaults.baseURL);
 
@@ -29,7 +30,7 @@ export function Ficha() {
   const navigate = useNavigate()
   const {user} = useAuth()
   const { setTitle } = useTitle()
-  const { setFichas, setDc } = useFichas()
+  const { setFichas, setDc, setSessaoIdFicha } = useFichas()
 
   const [imgAberta, setImgAberta] = useState(false)
   const [imagem, setImagem] = useState('')
@@ -64,6 +65,7 @@ export function Ficha() {
         }
 
         setFicha(response.data)
+        setSessaoIdFicha(response.data.sessaoId)
         setTitle(response.data.Principal[0].nome)
         document.title = `Registro Paranormal - ${response.data.Principal[0].nome}`
 
@@ -151,7 +153,7 @@ export function Ficha() {
         </DoubleParteContainer>
 
         <InventarioContainer armasData={ficha?.Armas} itensData={ficha?.Itens} peso={ficha?.Status[0].peso} />
-        {/* <RituaisContainer data={ficha && ficha.Rituais} /> */}
+        <RituaisContainer data={ficha?.Rituais} />
 
       </Body>}
 

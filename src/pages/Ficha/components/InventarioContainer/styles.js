@@ -4,6 +4,7 @@ export const Container = styled("div", {
   border: "2px solid #ffffff75",
   borderRadius: "0.5rem",
   width: "100%",
+  marginBottom: '2rem',
 
   hr: {
     borderColor: '#ffffff75'
@@ -145,6 +146,7 @@ export const Button = styled('button', {
   fontSize: '2.2rem',
   border: '2px solid #ffffff75',
   fontFamily: 'Crimson Text',
+  marginTop: '1rem',
 
   '@sm': {
     marginTop: '2rem'

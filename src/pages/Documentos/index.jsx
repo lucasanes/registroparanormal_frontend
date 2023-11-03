@@ -1,6 +1,6 @@
 import { Container } from './styles';
 import { io } from 'socket.io-client';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { api } from '../../services/api';
 import { useEffect } from 'react';
@@ -11,19 +11,47 @@ export function Documentos() {
 
   const { id } = useParams()
 
-  const [imagem, setImagem] = useState('')
+  const contentRef = useRef(null)
+
+  function slide(imagem) {
+
+    const content = contentRef.current
+
+    if (imagem == 'fechar') {
+      content.style.scale = 0
+      content.src = ''
+    } else if (content.src != '') {
+      
+      content.style.transition = '0.3s'
+      content.style.scale = 0
+      
+      setTimeout(() => {
+        content.src = imagem
+        content.style.transition = 'ease 0.2s'
+        content.style.scale = 1.5
+        setTimeout(() => {
+          content.style.transition = 'ease 0.4s'
+          content.style.scale = 1
+        }, 220);
+      }, 300);
+ 
+    } else {
+      content.src = imagem
+      content.style.transition = 'ease 0.2s'
+      content.style.scale = 1.5
+      setTimeout(() => {
+        content.style.transition = 'ease 0.4s'
+        content.style.scale = 1
+      }, 220);
+    }
+  }
 
   useEffect(() => {
 
-    function executeItemImg({ sessaoId, imagem }) {
+    function executeItemImg({imagem}) {
 
-      if (sessaoId == id) {
-        if (imagem == 'fechar') {
-          setImagem('')
-        } else {
-          setImagem(imagem)
-        }
-      }
+      slide(imagem)
+      
     }
     socket.on(`enviado.itemImg?${id}`, executeItemImg);
 
@@ -31,7 +59,7 @@ export function Documentos() {
 
   return (
     <Container>
-      <img src={imagem} width='100%' />
+      <img ref={contentRef} width='100%' />
     </Container>
   );
 }

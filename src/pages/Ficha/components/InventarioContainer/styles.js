@@ -69,7 +69,7 @@ export const Main = styled('div', {
 export const BodyContainer = styled("div", {
   padding: "2rem",
   display: "grid",
-  gridTemplateColumns: 'repeat(auto-fill, minmax(500px, 1fr))',
+  gridTemplateColumns: 'repeat(auto-fill, minmax(400px, 1fr))',
   gridColumnGap: "2rem",
   gridRowGap: "3rem",
 

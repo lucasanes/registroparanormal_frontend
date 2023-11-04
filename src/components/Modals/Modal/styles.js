@@ -3,14 +3,13 @@ import { keyframes, styled } from "../../../stitches.config";
 
 export const Container = styled(Dialog, {
   display: 'flex',
-  height: '100vh'
+  flex: 1
 });
 
 export const ContentContainer = styled("div", {
 
   position: "fixed",
-  width: '100%',
-  height: '100%',
+  flex: 1,
   inset: 0,
   display: "flex",
   justifyContent: 'center',
@@ -68,7 +67,6 @@ const animation2 = keyframes({
 
 export const Content = styled(Dialog.Panel, {
 
-  height: 'fit-content',
   display: 'flex',
   margin: 'auto',
   animation: `${animation} .3s`,

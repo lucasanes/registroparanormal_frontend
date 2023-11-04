@@ -15,12 +15,12 @@ export const Container = styled('div', {
   },
 
   form: {
-    height: '100vh',
+    height: '100%'
   },
 
   '@md': {
     width: '100vw',
-    height: '100%',
+    height: '100vh',
     borderRadius: 0
   }
 

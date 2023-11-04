@@ -164,9 +164,19 @@ export const Dados = styled('div', {
   width: '100%',
   alignItems: 'center',
   justifyContent: 'center',
+  flexDirection: 'column',
+
+  '.div': {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '1rem'
+  },
 
   '@sm': {
-    flexDirection: 'column'
+    '.div': {
+      flexDirection: 'column'
+    }
   },
 
   variants: {

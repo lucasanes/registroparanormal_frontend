@@ -160,22 +160,23 @@ export function Arma({ data, atualizar, armas, setPesoAtual }) {
           }
 
           <Dados recarga={data.recarga > 0}>
-
-            <Button disabled={disabled} onClick={() => {
-              setDadoData({
-                nome: 'Teste',
-                valor: data.ataque,
-                isDano: false,
-                margemCritico: data.margemCritico
-              })
-            }} color={'purple'}><strong>Teste:</strong> {dadoDinamico(data.ataque, dc)}</Button>
-            <Button disabled={disabled} onClick={() => {
-              setDadoData({
-                nome: 'Dano',
-                valor: data.dano,
-                isDano: true
-              })
-            }} color={'crimson'}><strong>Dano:</strong> {dadoDinamico(data.dano, dc)}</Button>
+            <div className='div'>
+              <Button disabled={disabled} onClick={() => {
+                setDadoData({
+                  nome: 'Teste',
+                  valor: data.ataque,
+                  isDano: false,
+                  margemCritico: data.margemCritico
+                })
+              }} color={'purple'}><strong>Teste:</strong> {dadoDinamico(data.ataque, dc)}</Button>
+              <Button disabled={disabled} onClick={() => {
+                setDadoData({
+                  nome: 'Dano',
+                  valor: data.dano,
+                  isDano: true
+                })
+              }} color={'crimson'}><strong>Dano:</strong> {dadoDinamico(data.dano, dc)}</Button>
+            </div>
             <Button disabled={disabled} onClick={() => {
               setDadoData({
                 nome: 'Crítico',

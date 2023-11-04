@@ -165,8 +165,17 @@ export const Dados = styled('div', {
   alignItems: 'center',
   justifyContent: 'center',
 
+  '.div': {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '1rem'
+  },
+
   '@sm': {
-    flexDirection: 'column'
+    '.div': {
+      flexDirection: 'column'
+    }
   },
 
   variants: {

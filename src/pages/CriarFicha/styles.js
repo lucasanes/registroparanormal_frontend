@@ -3,7 +3,7 @@ import { styled } from '../../stitches.config';
 export const Container = styled("div", {
 
   width: "100%",
-  height: '100%',
+  height: 'calc(100vh - 72px)',
   background: "rgb(20,20,20)",
   display: 'flex',
   flexDirection: 'column',
@@ -18,24 +18,22 @@ export const Container = styled("div", {
 export const Body = styled("div", {
 
   width: '100%',
-  display: 'grid',
-  gridTemplateColumns: '1fr 1fr',
-  gridTemplateAreas:
-    `'principal atributos'
-  'footer footer'`,
-  gridTemplateRows: 'auto auto',
+  display: 'flex',
   gap: '3rem',
   padding: "2rem",
+  height: '100%',
+  flexDirection: 'column',
 
-  height: 'calc(100vh - 72px)',
+  '.row': {
+    display: 'flex',
+    flexDirection: 'row',
+    gap: '3rem',
+  },
 
   '@lg': {
-    gridTemplateColumns: '1fr',
-    gridTemplateAreas:
-      `'principal'
-  'atributos'
-  'footer'`,
-    gridTemplateRows: 'auto auto auto',
+    '.row': {
+      flexDirection: 'column'
+    }
   },
 
 });
@@ -51,7 +49,6 @@ export const Principal = styled('div', {
   borderRadius: '.5rem',
   border: '2px solid #ffffff90',
   padding: '2rem',
-  gridArea: 'principal',
   gap: '2rem',
 
   h1: {
@@ -75,7 +72,6 @@ export const Atributos = styled('div', {
   borderRadius: '.5rem',
   border: '2px solid #ffffff90',
   padding: '2rem',
-  gridArea: 'atributos',
   gap: '2rem',
 
   h1: {
@@ -103,7 +99,7 @@ export const Span = styled('span', {
 export const Footer = styled('div', {
 
   width: '100%',
-  gridArea: 'footer',
+  paddingBottom: '2rem',
 
   button: {
     width: '100%',

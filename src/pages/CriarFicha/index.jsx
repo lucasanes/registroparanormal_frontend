@@ -228,75 +228,79 @@ export function CriarFicha() {
 
         <Body>
 
-          <Principal>
+          <div className='row'>
 
-            <h1>Principal</h1>
+            <Principal>
 
-            <Input required maxLength={30} label={'Nome'} valor={nome} setValor={setNome} />
-            <Input required type='number' maxValor={99} maxLength={2} label={'Idade'} valor={idade} setValor={setIdade} />
-            <Input required maxLength={20} label={'Local de Nascimento'} valor={nacionalidade} setValor={setNacionalidade} />
-            <Input required list={'listaOrigens'} maxLength={22} label={'Origem'} valor={origem} setValor={setOrigem} />
-            <datalist id="listaOrigens"><option value="Acadêmico" /><option value="Agente de Saúde" /><option value="Amnésico" /><option value="Artista" /><option value="Atleta" /><option value="Chef" /><option value="Crimisoso" /><option value="Cultusta Arrependido" /><option value="Desgarrado" /><option value="Engenheiro" /><option value="Executivo" /><option value="Investigador" /><option value="Lutador" /><option value="Magnata" /><option value="Mercenário" /><option value="Militar" /><option value="Operário" /><option value="Policial" /><option value="Religioso" /><option value="Sevidor Público" /><option value="Teórico da Conspiração" /><option value="T.I." /><option value="Trabalhador Rural" /><option value="Trambiqueiro" /><option value="Universitário" /><option value="Vítima" />
-            </datalist>
-            <Span>Caso use o modo manual: sem automatização de perícias e habilidades.</Span>
-            <Input required type='number' maxValor={99} maxLength={2} label={'NEX'} valor={nex} setValor={setNex} />
-            <Select label={'Classe'} valor={classe} setValor={setClasse} >
-              <option value="Mundano">Mundano</option><option value="Combatente">Combatente</option><option value="Especialista">Especialista</option><option value="Ocultista">Ocultista</option>
-            </Select>
-            <Input list={'listaTrilhas'} maxLength={20} label={'Trilhas'} valor={trilha} setValor={setTrilha} />
-            <datalist id="listaTrilhas">
+              <h1>Principal</h1>
 
-              {classe == 'Combatente' &&
+              <Input required maxLength={30} label={'Nome'} valor={nome} setValor={setNome} />
+              <Input required type='number' maxValor={99} maxLength={2} label={'Idade'} valor={idade} setValor={setIdade} />
+              <Input required maxLength={20} label={'Local de Nascimento'} valor={nacionalidade} setValor={setNacionalidade} />
+              <Input required list={'listaOrigens'} maxLength={22} label={'Origem'} valor={origem} setValor={setOrigem} />
+              <datalist id="listaOrigens"><option value="Acadêmico" /><option value="Agente de Saúde" /><option value="Amnésico" /><option value="Artista" /><option value="Atleta" /><option value="Chef" /><option value="Crimisoso" /><option value="Cultusta Arrependido" /><option value="Desgarrado" /><option value="Engenheiro" /><option value="Executivo" /><option value="Investigador" /><option value="Lutador" /><option value="Magnata" /><option value="Mercenário" /><option value="Militar" /><option value="Operário" /><option value="Policial" /><option value="Religioso" /><option value="Sevidor Público" /><option value="Teórico da Conspiração" /><option value="T.I." /><option value="Trabalhador Rural" /><option value="Trambiqueiro" /><option value="Universitário" /><option value="Vítima" />
+              </datalist>
+              <Span>Caso use o modo manual: sem automatização de perícias e habilidades.</Span>
+              <Input required type='number' maxValor={99} maxLength={2} label={'NEX'} valor={nex} setValor={setNex} />
+              <Select label={'Classe'} valor={classe} setValor={setClasse} >
+                <option value="Mundano">Mundano</option><option value="Combatente">Combatente</option><option value="Especialista">Especialista</option><option value="Ocultista">Ocultista</option>
+              </Select>
+              <Input list={'listaTrilhas'} maxLength={20} label={'Trilhas'} valor={trilha} setValor={setTrilha} />
+              <datalist id="listaTrilhas">
 
-                <><option value="Aniquilador" />
-                  <option value="Comandate de campo" />
-                  <option value="Guerreiro" />
-                  <option value="Operaçaões especiais" />
-                  <option value="Tropa de choque" /></>
+                {classe == 'Combatente' &&
 
-              }
+                  <><option value="Aniquilador" />
+                    <option value="Comandate de campo" />
+                    <option value="Guerreiro" />
+                    <option value="Operaçaões especiais" />
+                    <option value="Tropa de choque" /></>
 
-              {classe == 'Especialista' &&
+                }
 
-                <><option value="Atirador de elite" />
-                  <option value="Infiltrador" />
-                  <option value="Médico de Campo" />
-                  <option value="Negociador" />
-                  <option value="Técnico" /></>
+                {classe == 'Especialista' &&
 
-              }
+                  <><option value="Atirador de elite" />
+                    <option value="Infiltrador" />
+                    <option value="Médico de Campo" />
+                    <option value="Negociador" />
+                    <option value="Técnico" /></>
 
-              {classe == 'Ocultista' &&
+                }
 
-                <><option value="Conduíte" />
-                  <option value="Flagelador" />
-                  <option value="Graduado" />
-                  <option value="Intuitivo" />
-                  <option value="Lâmina Paranormal" /></>
+                {classe == 'Ocultista' &&
 
-              }
+                  <><option value="Conduíte" />
+                    <option value="Flagelador" />
+                    <option value="Graduado" />
+                    <option value="Intuitivo" />
+                    <option value="Lâmina Paranormal" /></>
 
-            </datalist>
-            <Select label={'Patente'} valor={patente} setValor={setPatente} ><option value="Nenhuma">Nenhuma</option><option value="Recruta">Recruta</option><option value="Operador" >Operador</option><option value="Agente Especial" >Agente Especial</option><option value="Oficial de Operações" >Oficial de Operações</option><option value="Agente de Elite" >Agente de Elite</option>
-            </Select>
+                }
+
+              </datalist>
+              <Select label={'Patente'} valor={patente} setValor={setPatente} ><option value="Nenhuma">Nenhuma</option><option value="Recruta">Recruta</option><option value="Operador" >Operador</option><option value="Agente Especial" >Agente Especial</option><option value="Oficial de Operações" >Oficial de Operações</option><option value="Agente de Elite" >Agente de Elite</option>
+              </Select>
 
 
-          </Principal>
+            </Principal>
 
-          <Atributos>
+            <Atributos>
 
-            <h1>Atributos e Status</h1>
+              <h1>Atributos e Status</h1>
 
-            <AtributoInput agi={agi} setAgi={setAgi} int={int} setInt={setInt} vig={vig} setVig={setVig} pre={pre} setPre={setPre} forca={forca} setFor={setFor} />
+              <AtributoInput agi={agi} setAgi={setAgi} int={int} setInt={setInt} vig={vig} setVig={setVig} pre={pre} setPre={setPre} forca={forca} setFor={setFor} />
 
-            <Input required type='number' maxValor={99} maxLength={2} label={'Vida Máxima (PV)'} valor={pv} setValor={setPv} />
-            <Span>Deixe o valor em 1 para calcular automaticamente!</Span>
-            <Input required type='number' maxValor={99} maxLength={2} label={'Sanidade Máxima (SAN)'} valor={ps} setValor={setPs} />
-            <Span>Deixe o valor em 1 para calcular automaticamente!</Span>
-            <Input required type='number' maxValor={99} maxLength={2} label={'Pontos de Esforço (PE)'} valor={pe} setValor={setPe} />
-            <Span>Deixe o valor em 1 para calcular automaticamente!</Span>
+              <Input required type='number' maxValor={99} maxLength={2} label={'Vida Máxima (PV)'} valor={pv} setValor={setPv} />
+              <Span>Deixe o valor em 1 para calcular automaticamente!</Span>
+              <Input required type='number' maxValor={99} maxLength={2} label={'Sanidade Máxima (SAN)'} valor={ps} setValor={setPs} />
+              <Span>Deixe o valor em 1 para calcular automaticamente!</Span>
+              <Input required type='number' maxValor={99} maxLength={2} label={'Pontos de Esforço (PE)'} valor={pe} setValor={setPe} />
+              <Span>Deixe o valor em 1 para calcular automaticamente!</Span>
 
-          </Atributos>
+            </Atributos>
+
+          </div>
 
           <Footer>
             <button type='submit'>Criar Personagem</button>

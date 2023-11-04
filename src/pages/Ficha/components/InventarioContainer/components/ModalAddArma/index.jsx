@@ -14,6 +14,7 @@ export function ModalAddArma({ setModalClose, atualizar, setPesoAtual }) {
   const [alcance, setAlcance] = useState('')
   const [recarga, setRecarga] = useState(null)
   const [especial, setEspecial] = useState(null)
+  const [ataque, setAtaque] = useState('')
   const [dano, setDano] = useState('')
   const [margemCritico, setMargemCritico] = useState('')
   const [danoCritico, setDanoCritico] = useState('')
@@ -25,9 +26,27 @@ export function ModalAddArma({ setModalClose, atualizar, setPesoAtual }) {
 
   const { id } = useParams()
 
+  const patternTeste = /^(((100|\d{1,2}|\/[ABCDEFGILMNOPRSTUV]{3,4}\/)?((d)(20))))([+]((100|\d{1,2}|\/[ABCDEFGILMNOPRSTUV]{3,4}\/)?))*$/g;
+  const patternDano = /^(((100|\d{1,2}|\/[ABCDEFGILMNOPRSTUV]{3,4}\/)?((d)(100|[1-9]\d?|\/[ABCDEFGILMNOPRSTUV]{3,4}\/))?)|(\d{0,3}|1000))([+]((100|\d{1,2}|\/[ABCDEFGILMNOPRSTUV]{3,4}\/)?((d)(100|[1-9]\d?|\/[ABCDEFGILMNOPRSTUV]{3,4}\/))?)|([+]\d{0,3}|1000)?)*$/g;
+
   async function handleCreate(e) {
 
     e.preventDefault()
+
+    if (!ataque.match(patternTeste)) {
+      toast.error('Dado de Ataque inválido.')
+      return
+    }
+
+    if (!dano.match(patternDano)) {
+      toast.error('Dado de Dano inválido.')
+      return
+    }
+
+    if (!danoCritico.match(patternDano)) {
+      toast.error('Dado de Dano Crítico inválido.')
+      return
+    }
 
     try {
 
@@ -38,6 +57,7 @@ export function ModalAddArma({ setModalClose, atualizar, setPesoAtual }) {
         recarga,
         especial,
         dano,
+        ataque,
         margemCritico,
         danoCritico,
         espaco,
@@ -87,9 +107,10 @@ export function ModalAddArma({ setModalClose, atualizar, setPesoAtual }) {
             <Input required label={'Alcance'} valor={alcance} setValor={setAlcance} />
             <Input type='number' label={'Recarga'} valor={recarga} setValor={setRecarga} maxLength={2} maxValor={30} />
             <Input label={'Especial'} valor={especial} setValor={setEspecial} />
-            <Input required label={'Dano'} valor={dano} setValor={setDano} />
+            <Input required minLength={3} label={'Ataque'} valor={ataque} setValor={setAtaque} />
+            <Input required minLength={3} label={'Dano'} valor={dano} setValor={setDano} />
             <Input required label={'Margem Crítico'} valor={margemCritico} setValor={setMargemCritico} maxLength={2} maxValor={20} />
-            <Input required label={'Dano Crítico'} valor={danoCritico} setValor={setDanoCritico} />
+            <Input required minLength={3} label={'Dano Crítico'} valor={danoCritico} setValor={setDanoCritico} />
           </Main2>
 
           <hr />

@@ -190,6 +190,8 @@ export const Button = styled('button', {
   whiteSpace: 'nowrap',
   overflow: 'hidden',
   textOverflow: 'ellipsis',
+  borderRadius: '5px',
+  transition: '.2s',
 
   strong: {
     fontFamily: 'Cinzel Decorative',
@@ -204,12 +206,20 @@ export const Button = styled('button', {
 
   variants: {
     color: {
+      purple: {
+        color: '#800080',
+        border: '2px solid #800080',
+
+        '&:hover': {
+          background: '#80008050',
+        }
+      },
       crimson: {
         color: '#ff3737',
         border: '2px solid #ff3737',
 
         '&:hover': {
-          background: '#dc143c50',
+          background: '#ff373750',
         }
       },
       red: {

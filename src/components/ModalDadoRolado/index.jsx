@@ -76,7 +76,7 @@ export function ModalDadoRolado({ setModalEditIsOpenFalse, data }) {
           const menor = Math.min.apply(null, totalValores)
           contaTotal.push(menor)
 
-          if (menor == 20) {
+          if (menor >= 20) {
             setIsCritico(true)
             isCriticoA = true
           }
@@ -93,7 +93,7 @@ export function ModalDadoRolado({ setModalEditIsOpenFalse, data }) {
           const maior = Math.max.apply(null, totalValores)
           contaTotal.push(maior)
 
-          if (maior == 20) {
+          if (maior >= 20) {
             setIsCritico(true)
             isCriticoA = true
           }

@@ -153,6 +153,14 @@ export function Arma({ data, atualizar, armas, setPesoAtual }) {
 
             <Button disabled={disabled} onClick={() => {
               setDadoData({
+                nome: 'Teste',
+                valor: data.ataque,
+                isDano: false,
+                margemCritico: data.margemCritico
+              })
+            }} color={'purple'}><strong>Teste:</strong> {data.ataque}</Button>
+            <Button disabled={disabled} onClick={() => {
+              setDadoData({
                 nome: 'Dano',
                 valor: data.dano,
                 isDano: true
@@ -185,7 +193,7 @@ export function Arma({ data, atualizar, armas, setPesoAtual }) {
               <span className='infos'>Categoria: {data.categoria}</span>
             </div>
 
-            <Span>{data.descricao ? data.descricao : 'Esta arma não tem uma descrição...'}</Span>
+            <Span>{data.descricao || 'Esta arma não tem uma descrição...'}</Span>
 
           </MainTop>
 

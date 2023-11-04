@@ -12,6 +12,7 @@ export function ModalEditArma({ data, setModalClose, atualizar, armas, setPesoAt
   const [alcance, setAlcance] = useState(data.alcance)
   const [recarga, setRecarga] = useState(data.recarga)
   const [especial, setEspecial] = useState(data.especial)
+  const [ataque, setAtaque] = useState(data.ataque)
   const [dano, setDano] = useState(data.dano)
   const [margemCritico, setMargemCritico] = useState(data.margemCritico)
   const [danoCritico, setDanoCritico] = useState(data.danoCritico)
@@ -21,9 +22,28 @@ export function ModalEditArma({ data, setModalClose, atualizar, armas, setPesoAt
   const [descricao, setDescricao] = useState(data.descricao)
   const [imagem, setImagem] = useState(data.imagem)
 
+  const patternTeste = /^(((100|\d{1,2}|\/[ABCDEFGILMNOPRSTUV]{3,4}\/)?((d)(20))))([+]((100|\d{1,2}|\/[ABCDEFGILMNOPRSTUV]{3,4}\/)?))*$/g;
+  const patternDano = /^(((100|\d{1,2}|\/[ABCDEFGILMNOPRSTUV]{3,4}\/)?((d)(100|[1-9]\d?|\/[ABCDEFGILMNOPRSTUV]{3,4}\/))?)|(\d{0,3}|1000))([+]((100|\d{1,2}|\/[ABCDEFGILMNOPRSTUV]{3,4}\/)?((d)(100|[1-9]\d?|\/[ABCDEFGILMNOPRSTUV]{3,4}\/))?)|([+]\d{0,3}|1000)?)*$/g;
+
+
   async function handleEdit(e) {
 
     e.preventDefault()
+
+    if (!ataque.match(patternTeste)) {
+      toast.error('Dado de Ataque inválido.')
+      return
+    }
+
+    if (!dano.match(patternDano)) {
+      toast.error('Dado de Dano inválido.')
+      return
+    }
+
+    if (!danoCritico.match(patternDano)) {
+      toast.error('Dado de Dano Crítico inválido.')
+      return
+    }
 
     try {
 
@@ -33,6 +53,7 @@ export function ModalEditArma({ data, setModalClose, atualizar, armas, setPesoAt
         alcance,
         recarga,
         especial,
+        ataque,
         dano,
         margemCritico,
         danoCritico,
@@ -52,6 +73,7 @@ export function ModalEditArma({ data, setModalClose, atualizar, armas, setPesoAt
       arma[0].alcance = alcance
       arma[0].recarga = recarga
       arma[0].especial = especial
+      arma[0].ataque = ataque
       arma[0].dano = dano
       arma[0].margemCritico = margemCritico
       arma[0].danoCritico = danoCritico
@@ -113,9 +135,10 @@ export function ModalEditArma({ data, setModalClose, atualizar, armas, setPesoAt
             <Input required label={'Alcance'} valor={alcance} setValor={setAlcance} />
             <Input type='number' label={'Recarga'} valor={recarga} setValor={setRecarga} maxLength={2} maxValor={30} />
             <Input label={'Especial'} valor={especial} setValor={setEspecial} />
-            <Input required label={'Dano'} valor={dano} setValor={setDano} />
+            <Input required minLength={3} label={'Ataque'} valor={ataque} setValor={setAtaque} />
+            <Input required minLength={3} label={'Dano'} valor={dano} setValor={setDano} />
             <Input required label={'Margem Crítico'} valor={margemCritico} setValor={setMargemCritico} maxLength={2} maxValor={20} />
-            <Input required label={'Dano Crítico'} valor={danoCritico} setValor={setDanoCritico} />
+            <Input required minLength={3} label={'Dano Crítico'} valor={danoCritico} setValor={setDanoCritico} />
           </Main2>
 
           <hr />

@@ -34,7 +34,7 @@ export function Arma({ data, atualizar, armas, setPesoAtual }) {
   const [modalEditArmaIsOpen, setModalEditArmaIsOpen] = useState(false)
 
   const { disabled } = useDisabled()
-  const { fichas, sessaoIdFicha } = useFichas()
+  const { fichas, sessaoIdFicha, dc } = useFichas()
   const { id } = useParams()
 
   const [municaoA, setMunicaoA] = useState(data.municao)
@@ -93,6 +93,16 @@ export function Arma({ data, atualizar, armas, setPesoAtual }) {
       socket.emit("enviado.itemImg", { sessaoId: sessaoIdFicha, imagem: data.imagem });
     }
 
+  }
+
+  function dadoDinamico(dado, arr = null) {
+    if (dado.includes("/")) {
+      for (const [i, v] of Object.entries(arr)) {
+        dado = dado.replaceAll(i, v);
+      }
+      dado = dado.replaceAll("/", "");
+    }
+    return dado;
   }
 
   return (
@@ -158,21 +168,21 @@ export function Arma({ data, atualizar, armas, setPesoAtual }) {
                 isDano: false,
                 margemCritico: data.margemCritico
               })
-            }} color={'purple'}><strong>Teste:</strong> {data.ataque}</Button>
+            }} color={'purple'}><strong>Teste:</strong> {dadoDinamico(data.ataque, dc)}</Button>
             <Button disabled={disabled} onClick={() => {
               setDadoData({
                 nome: 'Dano',
                 valor: data.dano,
                 isDano: true
               })
-            }} color={'crimson'}><strong>Dano:</strong> {data.dano}</Button>
+            }} color={'crimson'}><strong>Dano:</strong> {dadoDinamico(data.dano, dc)}</Button>
             <Button disabled={disabled} onClick={() => {
               setDadoData({
                 nome: 'Crítico',
                 valor: data.danoCritico,
                 isDano: true
               })
-            }} color={'red'}><strong>Crítico:</strong> {data.margemCritico} / {data.danoCritico}</Button>
+            }} color={'red'}><strong>Crítico:</strong> {data.margemCritico} / {dadoDinamico(data.danoCritico, dc)}</Button>
 
           </Dados>
 

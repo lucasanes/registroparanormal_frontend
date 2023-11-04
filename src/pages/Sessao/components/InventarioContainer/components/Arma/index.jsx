@@ -177,7 +177,7 @@ export function Arma({ data, atualizar, armas, setPesoAtual }) {
           <MainTop>
 
             <div className='row'>
-              <span className='infos'>Espaços: {data.espaco}</span>
+              <span className='infos'>Peso: {data.espaco}</span>
               <span className='infos'>Categoria: {data.categoria}</span>
             </div>
 

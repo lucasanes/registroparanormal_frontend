@@ -101,7 +101,7 @@ export function ModalEditArma({ data, setModalClose, atualizar, armas, setPesoAt
 
           <Main1>
             <Input required maxLength='30' label={'Nome'} valor={nome} setValor={setNome} />
-            <Input required label={'Espaços'} type='number' valor={espaco} setValor={setEspaco} maxLength={1} maxValor={9} />
+            <Input required label={'Peso'} type='number' valor={espaco} setValor={setEspaco} maxLength={1} maxValor={9} />
             <Input required label={'Categoria'} type='number' valor={categoria} setValor={setCategoria} maxLength={1} maxValor={4} />
             <Input img label={'Imagem'} valor={imagem} setValor={setImagem} />
           </Main1>

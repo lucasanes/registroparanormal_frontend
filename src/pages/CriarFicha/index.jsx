@@ -213,6 +213,7 @@ export function CriarFicha() {
       }
 
       navigate(`/`)
+      toast.success('Ficha criada com sucesso!')
 
     } catch (erro) {
       toast.error(erro.response.data.msg)

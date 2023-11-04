@@ -157,7 +157,12 @@ export function InventarioContainer({ armasData, itensData }) {
       </Modal>
 
       <HeaderContainer>
-        <button className='button' onClick={() => {socket.emit("enviado.itemImg", { sessaoId: id, imagem: 'fechar' })}}> 
+        <button className='button' onClick={() => {
+            fichas.forEach(ficha => {
+              socket.emit('enviado.itemImg', {fichaId: ficha.id, imagem: 'fechar'})
+            })
+            socket.emit("enviado.itemImg", { sessaoId: id, imagem: 'fechar' })
+          }}> 
           <MdOutlineCleaningServices size={22} color={'#00b740'} /> 
         </button>
         <h1>Inventário</h1>

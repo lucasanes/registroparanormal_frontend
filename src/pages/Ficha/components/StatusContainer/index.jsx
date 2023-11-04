@@ -260,7 +260,7 @@ export function StatusContainer({ status, defesasData, portraitData, infosBarrin
 
           <AreaPortrait>
 
-            <Portrait to={`/ficha/portrait/${id}`}>
+            <Portrait target='_blank' to={`/ficha/portrait/${id}`}>
               {portraitImg ?
 
                 <Img active={inconsciente} src={portraitImg} />

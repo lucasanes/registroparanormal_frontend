@@ -104,7 +104,7 @@ export function Item({ data, atualizar, itens, setPesoAtual }) {
         <MainTop>
 
           <div className='row'>
-            <span className='infos'>Espaços: {data.espaco}</span>
+            <span className='infos'>Peso: {data.espaco}</span>
             <span className='infos'>Categoria: {data.categoria}</span>
           </div>
 

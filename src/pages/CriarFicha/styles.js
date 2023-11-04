@@ -27,6 +27,8 @@ export const Body = styled("div", {
   gap: '3rem',
   padding: "2rem",
 
+  height: 'calc(100vh - 72px)',
+
   '@lg': {
     gridTemplateColumns: '1fr',
     gridTemplateAreas:

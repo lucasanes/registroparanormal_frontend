@@ -19,7 +19,7 @@ export function Modal({ isOpen, setClose, children, padding = true }) {
   return (
     <Container open={realIsOpen} onClose={setClose}>
       <ContentContainer padding={padding.toString()}>
-        <Content animation={isOpen}>{children}</Content>
+        <Content padding={padding.toString()} animation={isOpen}>{children}</Content>
       </ContentContainer>
     </Container>
   );

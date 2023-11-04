@@ -78,7 +78,7 @@ export function DadoRolado({ data }) {
           const menor = Math.min.apply(null, totalValores)
           contaTotal.push(menor)
 
-          if (menor == data.margemCritico) {
+          if (menor >= data.margemCritico) {
             setIsCritico(true)
             isCriticoA = true
           }
@@ -95,7 +95,7 @@ export function DadoRolado({ data }) {
           const maior = Math.max.apply(null, totalValores)
           contaTotal.push(maior)
 
-          if (maior == data.margemCritico) {
+          if (maior >= data.margemCritico) {
             setIsCritico(true)
             isCriticoA = true
           }

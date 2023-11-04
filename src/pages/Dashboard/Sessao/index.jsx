@@ -4,7 +4,7 @@ import { IoTrashOutline } from 'react-icons/io5'
 import { Link } from 'react-router-dom'
 import { ModalEditSessao } from '../../../components/Modals/ModalEditSessao'
 import { Modal } from '../../../components/Modals/Modal'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useAuth } from '../../../hooks/useAuth'
 import { toast } from 'react-toastify'
 import { api } from '../../../services/api'
@@ -16,7 +16,16 @@ export function Sessao({data, sessoes, setSessoes}) {
   const [modalEditarSessaoIsOpen, setModalEditarSessaoIsOpen] = useState(false)
   const [modalDeleteIsOpen, setModalDeleteIsOpen] = useState(false)
 
+  const [participantes, setParticipantes] = useState([])
+
   const {user} = useAuth()
+
+  useEffect(() => {
+
+    const todosParticipantes = data.Participantes.map(each => each.user.nome)
+    setParticipantes(todosParticipantes)
+
+  }, [])
 
   async function handleDelete() {
 
@@ -59,7 +68,7 @@ export function Sessao({data, sessoes, setSessoes}) {
       </Desc>
       <hr />
       <Part>
-        <h2><strong>Participantes:</strong> {data.Participantes?.length > 0 ? `${user.nome}, ${data.Participantes.join(', ')}` : user.nome}</h2>
+        <h2><strong>Participantes:</strong> {user.nome + ', ' + participantes.join(', ')}</h2>
       </Part>
       <hr />
       <Footer>

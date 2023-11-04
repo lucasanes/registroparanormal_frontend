@@ -22,7 +22,6 @@ export function Convite({ data, setConvites }) {
 
   useEffect(() => {
 
-    console.log(data.sessao.Participantes)
     const listaParticipantes = data.sessao.Participantes.map(participante => participante.user.nome)
 
     if (data.sessao.Participantes.length > 0) {

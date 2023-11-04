@@ -113,7 +113,6 @@ export function Ficha() {
     fetchData();
 
     function executeItemImg({ imagem }) {
-      console.log(imagem)
       if (imagem != 'fechar') {
         setImgAberta(true)
         setImagem(imagem)

@@ -1,4 +1,4 @@
-import { styled } from "../../stitches.config";
+import { keyframes, styled } from "../../stitches.config";
 
 export const Container = styled("div", {
     width: "100%",

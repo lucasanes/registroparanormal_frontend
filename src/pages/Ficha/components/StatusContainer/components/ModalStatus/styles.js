@@ -14,6 +14,10 @@ export const Container = styled('div', {
     borderColor: '#ffffff90'
   },
 
+  form: {
+    height: '100vh',
+  },
+
   '@md': {
     width: '100vw',
     height: '100%',
@@ -70,7 +74,7 @@ export const Body = styled('div', {
 
   '@md': {
     overflowY: 'auto',
-    height: 'calc(100vh - 130px)',
+    height: 'calc(100% - 130px)',
     justifyContent: 'flex-start'
   },
 

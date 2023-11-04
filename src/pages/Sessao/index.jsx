@@ -8,6 +8,9 @@ import { useTitle } from "../../hooks/useTitle";
 import { useFichas } from "../../hooks/useFichas";
 import { useAuth } from "../../hooks/useAuth";
 import { Modal } from "../../components/Modals/Modal";
+import { io } from "socket.io-client";
+
+const socket = io(api.defaults.baseURL);
 
 export function Sessao() {
 

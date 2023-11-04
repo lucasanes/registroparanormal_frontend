@@ -65,7 +65,7 @@ const animation2 = keyframes({
 
 export const Content = styled(Dialog.Panel, {
 
-  position: 'fixed',
+  height: 'fit-content',
   display: 'flex',
   margin: 'auto',
   animation: `${animation} .3s`,
@@ -76,18 +76,6 @@ export const Content = styled(Dialog.Panel, {
         animation: `${animation2} .25s`,
         animationFillMode: 'forwards'
       }
-    },
-    padding: {
-      true: {
-        '@md': {
-          height: 'fit-content'
-        }
-      },
-      false: {
-        '@md': {
-          height: '100vh'
-        }
-      },
     }
   }
 

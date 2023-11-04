@@ -7,5 +7,7 @@ export const Container = styled('div', {
 
 export const ContentWrapper = styled('main', {
     width: '100%',
-    marginTop: '7.2rem'
+    height: '100%',
+    marginTop: '7.2rem',
+    position: 'fixed'
 })

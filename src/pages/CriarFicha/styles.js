@@ -3,7 +3,7 @@ import { styled } from '../../stitches.config';
 export const Container = styled("div", {
 
   width: "100%",
-  height: 'calc(100vh - 72px)',
+  height: 'calc(100% - 72px)',
   background: "rgb(20,20,20)",
   display: 'flex',
   flexDirection: 'column',
@@ -76,6 +76,7 @@ export const Atributos = styled('div', {
 
   h1: {
     marginBottom: '1rem',
+    textAlign: 'center',
     color: 'white',
     fontSize: '3rem',
     fontFamily: 'Special Elite',

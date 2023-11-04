@@ -112,10 +112,13 @@ export function Ficha() {
     }
     fetchData();
 
-    function executeItemImg({ fichaId, imagem }) {
-      if (fichaId == id) {
+    function executeItemImg({ imagem }) {
+      if (imagem != 'fechar') {
         setImgAberta(true)
         setImagem(imagem)
+      } else {
+        setImgAberta(false)
+        setImagem('')
       }
     }
     socket.on(`enviado.itemImg?${id}`, executeItemImg);

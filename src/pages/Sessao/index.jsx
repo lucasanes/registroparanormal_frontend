@@ -21,6 +21,7 @@ export function Sessao() {
     const [sessao, setSessao] = useState({})
     const [isLoading, setIsLoading] = useState(true)
 
+    const [imgAberta, setImgAberta] = useState(false)
     const [imagem, setImagem] = useState(false)
 
     useEffect(() => {

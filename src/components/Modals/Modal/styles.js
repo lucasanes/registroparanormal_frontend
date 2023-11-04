@@ -2,7 +2,7 @@ import { Dialog } from "@headlessui/react";
 import { keyframes, styled } from "../../../stitches.config";
 
 export const Container = styled(Dialog, {
-  position: "relative",
+  position: "fixed",
 });
 
 export const ContentContainer = styled("div", {
@@ -65,8 +65,11 @@ const animation2 = keyframes({
 
 export const Content = styled(Dialog.Panel, {
 
+  position: 'fixed',
   height: 'fit-content',
   display: 'flex',
+  top: "50%",
+  transform: 'translateY(-50%)',
   margin: 'auto',
   animation: `${animation} .3s`,
 

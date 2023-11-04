@@ -7,6 +7,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useTitle } from "../../hooks/useTitle";
 import { useFichas } from "../../hooks/useFichas";
 import { useAuth } from "../../hooks/useAuth";
+import { Modal } from "../../components/Modals/Modal";
 
 export function Sessao() {
 
@@ -20,11 +21,24 @@ export function Sessao() {
     const [sessao, setSessao] = useState({})
     const [isLoading, setIsLoading] = useState(true)
 
+    const [imagem, setImagem] = useState(false)
+
     useEffect(() => {
 
         setTitle('Carregando...')
         setSessao({})
         setFichas([])
+
+        function executeItemImg({ imagem }) {
+            if (imagem != 'fechar') {
+              setImgAberta(true)
+              setImagem(imagem)
+            } else {
+              setImgAberta(false)
+              setImagem('')
+            }
+          }
+          socket.on(`enviado.itemImg?${id}`, executeItemImg);
 
         async function fetchData() {
             try {
@@ -64,6 +78,12 @@ export function Sessao() {
 
     return (
         <Container>
+
+            <Modal isOpen={imgAberta} setClose={() => setImgAberta(false)}>
+                <ParteImgModal>
+                    <ImgModal onClick={() => setImgAberta(false)} src={imagem} />
+                </ParteImgModal>
+            </Modal>
 
             {!isLoading &&
                 <Body>

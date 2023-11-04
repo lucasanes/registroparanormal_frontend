@@ -26,6 +26,10 @@ export function UTContainer() {
 
     function updateRolagens({ fichaId, nomeNPC, valorTotal, dadosRolados, nome, isDano, isCritico, conta }) {
 
+      if (!valorTotal) {
+        return
+      }
+
       if (fichaId == id) {
 
         const horas = new Date().getHours().toString().padStart(2, '0')

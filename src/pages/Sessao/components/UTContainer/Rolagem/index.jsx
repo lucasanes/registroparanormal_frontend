@@ -10,7 +10,7 @@ export function Rolagem({ data }) {
 
       <Header>
 
-        <img src={data.portrait ? data.portrait : noportrait} />
+        <img src={data.portrait || noportrait} />
         <h1>{data.nomeFicha}</h1>
 
       </Header>

@@ -178,7 +178,7 @@ export function ModalDadoRolado({ setModalClose, data }) {
           if (soma.length > 0) {
             contaTotal.push('(' + soma.join('+') + ')')
             valorTotalMax += eval(soma.join('+'))
-            valorTotalMin += soma.length
+            valorTotalMin += eval(soma.join('+'))
           }
 
           if (valorTotalMax == eval(contaTotal.join("+"))) {

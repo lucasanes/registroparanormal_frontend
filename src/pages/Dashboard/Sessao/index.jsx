@@ -22,8 +22,20 @@ export function Sessao({data, sessoes, setSessoes}) {
 
   useEffect(() => {
 
-    const todosParticipantes = data.Participantes.map(each => each.user.nome)
-    setParticipantes(todosParticipantes)
+    let part
+
+    if (data.Participantes) {
+      const cadaParticipante = data.Participantes?.map(each => each.user.nome)
+      if (cadaParticipante.length > 0) {
+        part = user.nome + ', ' + cadaParticipante.join(', ')
+        setParticipantes(part)
+      } else {
+        setParticipantes(user.nome)
+      }
+      return
+    }
+
+    setParticipantes(user.nome)
 
   }, [])
 
@@ -68,7 +80,7 @@ export function Sessao({data, sessoes, setSessoes}) {
       </Desc>
       <hr />
       <Part>
-        <h2><strong>Participantes:</strong> {user.nome + ', ' + participantes.join(', ')}</h2>
+        <h2><strong>Participantes:</strong> {participantes}</h2>
       </Part>
       <hr />
       <Footer>

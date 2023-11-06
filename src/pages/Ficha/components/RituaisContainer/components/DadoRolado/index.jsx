@@ -125,6 +125,12 @@ export function DadoRolado({ data }) {
           isCriticoA = true
         }
 
+        valorTotalMin += qtdDado
+        if (valorTotalMin == eval(contaTotal.join("+"))) {
+          setIsCritico(true)
+          isCriticoA = true
+        }
+
         socket.emit('dado.rolado', {
           fichaId: id, nomeNPC: data.nomeNPC, nome: data.nome, isDano: true, isCritico: isCriticoA, conta: contaTotal.join("+"), valorTotal: eval(contaTotal.join("+")), dadosRolados: [{ dado: 'd' + valorMax, valores: totalValores }]
         })

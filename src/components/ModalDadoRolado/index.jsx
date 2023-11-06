@@ -103,7 +103,7 @@ export function ModalDadoRolado({ setModalClose, data }) {
             isCriticoA = true
           }
           
-          const desastre = ((qtdDado - 1) * 2) + 1
+          const desastre = ((qtdDado - 1) * 3) + 1
           if (maior <= desastre) {
             setIsCritico(true)
             isCriticoA = true

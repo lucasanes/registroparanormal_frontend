@@ -181,6 +181,8 @@ export function ModalDadoRolado({ setModalClose, data }) {
             valorTotalMin += eval(soma.join('+'))
           }
 
+          console.log(eval(contaTotal.join('+')), valorTotalMin)
+
           if (valorTotalMax == eval(contaTotal.join("+"))) {
             setIsCritico(true)
             isCriticoA = true

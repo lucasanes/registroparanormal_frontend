@@ -168,7 +168,7 @@ export function ModalDadoRolado({ setModalClose, data }) {
               todosDadosRolados.push(novoDado)
 
               valorTotalMax += qtdDado * valorMax
-              valorTotalMin += qtdDado
+              valorTotalMin += Number(qtdDado)
 
             } else {
               soma.push(splitSoma[i])

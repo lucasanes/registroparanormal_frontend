@@ -27,7 +27,26 @@ export const HeaderContainer = styled("div", {
     paddingTop: '.3rem'
   },
 
-  button: {
+  '.peso': {
+    background: 'none',
+    border: '1px solid transparent',
+    textAlign: "center",
+    color: "white",
+    fontSize: "2rem",
+    fontFamily: 'Special Elite',
+    letterSpacing: '.1rem',
+    marginLeft: '.7rem',
+    transition: '.3s',
+    padding: '.7rem .5rem .2rem .5rem',
+    marginBottom: '.2rem',
+    borderRadius: '5px'
+  },
+
+  '.peso:hover': {
+    border: '1px solid #fff'
+  },
+
+  '.edit': {
     background: "none",
     border: "none",
     color: "Green",
@@ -42,7 +61,7 @@ export const HeaderContainer = styled("div", {
     transition: "0.3s",
   },
 
-  "button:hover": {
+  ".edit:hover": {
     svg: {
       filter: "brightness(2)",
     },

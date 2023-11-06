@@ -14,6 +14,7 @@ import { ButtonAdd } from '../../../../components/ButtonAdd';
 import { io } from 'socket.io-client';
 import { toast } from 'react-toastify';
 import { useDisabled } from '../../../../hooks/useDisabled';
+import { ModalPeso } from './components/ModalPeso';
 
 const socket = io(api.defaults.baseURL);
 
@@ -24,10 +25,12 @@ export function InventarioContainer({ armasData, itensData, peso }) {
   const [armas, setArmas] = useState(armasData)
 
   const [pesoAtual, setPesoAtual] = useState(0)
+  const [pesoTotalAtual, setPesoTotalAtual] = useState(peso)
 
   const [modalAddIsOpen, setModalAddIsOpen] = useState(false)
   const [modalAddItemIsOpen, setModalAddItemIsOpen] = useState(false)
   const [modalAddArmaIsOpen, setModalAddArmaIsOpen] = useState(false)
+  const [modalPesoIsOpen, setModalPesoIsOpen] = useState(false)
 
   const [itemAEnviar, setItemAEnviar] = useState('')
   const [fichaIdAEnviar, setFichaAEnviar] = useState('')
@@ -212,9 +215,14 @@ export function InventarioContainer({ armasData, itensData, peso }) {
         <ModalAddItem setPesoAtual={setPesoAtual} atualizar={setItens} setModalClose={() => setModalAddItemIsOpen(false)} />
       </Modal>
 
+      <Modal isOpen={modalPesoIsOpen} setClose={() => setModalPesoIsOpen(false)}>
+        <ModalPeso pesoTotalAtual={pesoTotalAtual} setPesoTotalAtual={setPesoTotalAtual} setModalClose={() => setModalPesoIsOpen(false)} />
+      </Modal>
+
       <HeaderContainer>
-        <h1>Inventário | {pesoAtual}/{peso}</h1>
-        <ButtonAdd onClick={() => setModalAddIsOpen(true)} />
+        <h1>Inventário |</h1>
+        <button onClick={() => setModalPesoIsOpen(true)} className='peso'>{pesoAtual}/{pesoTotalAtual}</button>
+        <ButtonAdd className='edit' onClick={() => setModalAddIsOpen(true)} />
       </HeaderContainer>
       
       <hr />

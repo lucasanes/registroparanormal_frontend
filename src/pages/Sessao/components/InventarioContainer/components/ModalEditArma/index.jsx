@@ -141,7 +141,7 @@ export function ModalEditArma({ data, setModalClose, atualizar, armas }) {
           <hr />
 
           <Main3>
-            <TextArea label={'Descrição'} valor={descricao} setValor={setDescricao} />
+            <TextArea maxLength={300} label={'Descrição'} valor={descricao} setValor={setDescricao} />
           </Main3>
 
         </Body>

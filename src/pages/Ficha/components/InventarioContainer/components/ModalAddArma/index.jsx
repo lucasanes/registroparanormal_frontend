@@ -107,7 +107,7 @@ export function ModalAddArma({ setModalClose, atualizar, setPesoAtual }) {
             <Input required label={'Alcance'} valor={alcance} setValor={setAlcance} />
             <Input type='number' label={'Recarga'} valor={recarga} setValor={setRecarga} maxLength={2} maxValor={30} />
             <Input label={'Especial'} valor={especial} setValor={setEspecial} />
-            <Input required minLength={3} label={'Ataque'} valor={ataque} setValor={setAtaque} />
+            <Input required minLength={3} label={'Teste'} valor={ataque} setValor={setAtaque}/>
             <Input required minLength={3} label={'Dano'} valor={dano} setValor={setDano} />
             <Input required label={'Margem Crítico'} valor={margemCritico} setValor={setMargemCritico} maxLength={2} maxValor={20} />
             <Input required minLength={3} label={'Dano Crítico'} valor={danoCritico} setValor={setDanoCritico} />

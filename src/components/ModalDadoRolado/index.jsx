@@ -8,7 +8,7 @@ import {useFichas} from '../../hooks/useFichas'
 
 const socket = io(api.defaults.baseURL);
 
-export function ModalDadoRolado({ setModalEditIsOpenFalse, data }) {
+export function ModalDadoRolado({ setModalClose, data }) {
 
   const { id } = useParams()
   const {dc} = useFichas()
@@ -81,6 +81,11 @@ export function ModalDadoRolado({ setModalEditIsOpenFalse, data }) {
             isCriticoA = true
           }
 
+          if (menor == 1) {
+            setIsCritico(true)
+            isCriticoA = true
+          }
+
         } else {
 
           for (let i = 0; i < qtdDado; i++) {
@@ -92,8 +97,14 @@ export function ModalDadoRolado({ setModalEditIsOpenFalse, data }) {
 
           const maior = Math.max.apply(null, totalValores)
           contaTotal.push(maior)
-
+ 
           if (maior >= 20) {
+            setIsCritico(true)
+            isCriticoA = true
+          }
+          
+          const desastre = ((qtdDado - 1) * 2) + 1
+          if (maior <= desastre) {
             setIsCritico(true)
             isCriticoA = true
           }
@@ -127,6 +138,7 @@ export function ModalDadoRolado({ setModalEditIsOpenFalse, data }) {
         let contaTotal = [];
         let todosDadosRolados = []
         let valorTotalMax = 0
+        let valorTotalMin = 0
 
         if (valor.includes('+')) {
           const splitSoma = valor.split('+')
@@ -156,6 +168,7 @@ export function ModalDadoRolado({ setModalEditIsOpenFalse, data }) {
               todosDadosRolados.push(novoDado)
 
               valorTotalMax += qtdDado * valorMax
+              valorTotalMin += qtdDado
 
             } else {
               soma.push(splitSoma[i])
@@ -165,9 +178,15 @@ export function ModalDadoRolado({ setModalEditIsOpenFalse, data }) {
           if (soma.length > 0) {
             contaTotal.push('(' + soma.join('+') + ')')
             valorTotalMax += eval(soma.join('+'))
+            valorTotalMin += soma.length
           }
 
           if (valorTotalMax == eval(contaTotal.join("+"))) {
+            setIsCritico(true)
+            isCriticoA = true
+          }
+
+          if (valorTotalMin == eval(contaTotal.join("+"))) {
             setIsCritico(true)
             isCriticoA = true
           }
@@ -231,7 +250,7 @@ export function ModalDadoRolado({ setModalEditIsOpenFalse, data }) {
       <Header>
 
         <h1>Resultado</h1>
-        <CloseButton onClick={setModalEditIsOpenFalse}>x</CloseButton>
+        <CloseButton onClick={setModalClose}>x</CloseButton>
 
       </Header>
 

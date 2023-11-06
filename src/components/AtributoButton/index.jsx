@@ -21,7 +21,7 @@ export function AtributoButton({ agi, int, vig, pre, forca, ...rest }) {
         <Container>
 
             <Modal isOpen={modalDadoRoladoIsOpen} setClose={() => setModalDadoRoladoIsOpen(false)}>
-                <ModalDadoRolado setModalEditIsOpenFalse={() => setModalDadoRoladoIsOpen(false)} data={data} />
+                <ModalDadoRolado setModalClose={() => setModalDadoRoladoIsOpen(false)} data={data} />
             </Modal>
 
             <Top>

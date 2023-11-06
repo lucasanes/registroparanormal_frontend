@@ -165,7 +165,7 @@ export function NPCMonstro({ data, lista, atualizar }) {
     <Container>
 
       <Modal isOpen={modalDadoRoladoIsOpen} setClose={() => setModalDadoRoladoIsOpen(false)}>
-        <ModalDadoRolado setModalEditIsOpenFalse={() => setModalDadoRoladoIsOpen(false)} data={dadoData} />
+        <ModalDadoRolado setModalClose={() => setModalDadoRoladoIsOpen(false)} data={dadoData} />
       </Modal>
 
       <Modal isOpen={modalEditIsOpen} setClose={() => setModalEditIsOpen(false)}>

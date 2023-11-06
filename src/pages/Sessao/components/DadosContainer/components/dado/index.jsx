@@ -21,7 +21,7 @@ export function Dado({ data, atualizar, dados }) {
     <Container>
 
       <Modal isOpen={modalDadoRoladoIsOpen} setClose={() => setModalDadoRoladoIsOpen(false)}>
-        <ModalDadoRolado setModalEditIsOpenFalse={() => setModalDadoRoladoIsOpen(false)} data={data} />
+        <ModalDadoRolado setModalClose={() => setModalDadoRoladoIsOpen(false)} data={data} />
       </Modal>
 
       <Modal isOpen={modalDadoEditIsOpen} setClose={() => setModalDadoEditIsOpen(false)}>

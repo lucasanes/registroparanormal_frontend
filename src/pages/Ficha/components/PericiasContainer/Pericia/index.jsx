@@ -22,7 +22,7 @@ export function Pericia({ nome, valor, atributoChave }) {
     <Container>
 
       <Modal isOpen={modalDadoRoladoIsOpen} setClose={() => setModalDadoRoladoIsOpen(false)}>
-        <ModalDadoRolado setModalEditIsOpenFalse={() => setModalDadoRoladoIsOpen(false)} data={data} />
+        <ModalDadoRolado setModalClose={() => setModalDadoRoladoIsOpen(false)} data={data} />
       </Modal>
 
       <Button onClick={() => { setModalDadoRoladoIsOpen(true); setData({ nome, valor: `${atributoChave}d20+${valor}`, isDano: false }) }} disabled={disabled} level={valor > 14 && 'e' || valor > 9 && 'v' || valor > 4 && 't' || valor < 5 && 'nt'} >

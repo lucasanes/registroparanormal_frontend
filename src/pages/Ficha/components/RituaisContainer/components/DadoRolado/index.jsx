@@ -41,6 +41,7 @@ export function DadoRolado({ data }) {
       let contaTotal = [];
       let todosDadosRolados = []
       let valorTotalMax = 0
+      let valorTotalMin = 0
 
       if (valor.includes('+')) {
         const splitSoma = valor.split('+')
@@ -70,6 +71,7 @@ export function DadoRolado({ data }) {
             todosDadosRolados.push(novoDado)
 
             valorTotalMax += qtdDado * valorMax
+            valorTotalMin += qtdDado
 
           } else {
             soma.push(splitSoma[i])
@@ -79,9 +81,15 @@ export function DadoRolado({ data }) {
         if (soma.length > 0) {
           contaTotal.push('(' + soma.join('+') + ')')
           valorTotalMax += eval(soma.join('+'))
+          valorTotalMin += soma.length
         }
 
         if (valorTotalMax == eval(contaTotal.join("+"))) {
+          setIsCritico(true)
+          isCriticoA = true
+        }
+
+        if (valorTotalMin == eval(contaTotal.join("+"))) {
           setIsCritico(true)
           isCriticoA = true
         }

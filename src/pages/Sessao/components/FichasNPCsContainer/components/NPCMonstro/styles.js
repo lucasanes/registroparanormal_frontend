@@ -84,6 +84,7 @@ export const Status = styled('div', {
   color: 'white',
   padding: '.5rem 1rem',
   fontWeight: 700,
+  borderRadius: '5px',
 
   label: {
     textTransform: 'capitalize',
@@ -183,8 +184,9 @@ export const Card = styled('div', {
   alignItems: 'flex-start',
   justifyContent: 'center',
   border: '1px solid white',
-  padding: '.5rem',
+  padding: '.3rem .7rem',
   flexDirection: 'column',
+  borderRadius: '5px',
 
   label: {
     color: '#ffffff90',
@@ -210,16 +212,16 @@ export const Button = styled('button', {
   border: '2px solid transparent',
   borderRadius: '5px',
   transition: '.3s',
-  color: 'white',
+  color: '#ffffff90',
 
   '&:hover': {
-    border: '2px solid purple'
+    border: '2px solid #ffffff90'
   },
 
   variants: {
     active: {
       true: {
-        border: '2px solid purple',
+        border: '2px solid #ffffff90',
         cursor: 'default'
       }
     }
@@ -230,10 +232,13 @@ export const Button = styled('button', {
 export const TextArea = styled('textarea', {
 
   width: '100%',
-  border: '2px solid white',
+  border: '2px solid #ffffff90',
   background: 'none',
   minHeight: '7rem',
+  maxHeight: '30rem',
+  overflowY: 'auto',
   padding: '.5rem 1rem',
+  borderRadius: '5px',
   color: 'white',
   resize: 'vertical',
   fontFamily: 'El Messiri'

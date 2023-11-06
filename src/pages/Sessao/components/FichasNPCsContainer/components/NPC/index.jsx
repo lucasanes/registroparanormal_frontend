@@ -37,19 +37,19 @@ export function NPC({ data, lista, atualizar }) {
   const [res, setRes] = useState([])
   const [pericias, setPericias] = useState([])
 
+  const [changinTimer, setChanginTimer] = useState(null)
+
   async function handleDelete() {
 
-    if (window.confirm('Tem certeza que deseja excluir este NPC? Uma vez deletado jamais poderá ser recuperado!'))
+    try {
 
-      try {
+      const listaAtt = lista.filter(npc => npc.id != data.id)
 
-        const listaAtt = lista.filter(npc => npc.id != data.id)
+      atualizar(listaAtt)
 
-        atualizar(listaAtt)
+      await api.delete(`/fichas/npc/${data.id}`)
 
-        await api.delete(`/fichas/npc/${data.id}`)
-
-      } catch (e) { }
+    } catch (e) { }
 
   }
 
@@ -70,18 +70,15 @@ export function NPC({ data, lista, atualizar }) {
 
   }
 
+  function subtimer() {
+    clearTimeout(changinTimer)
+    setChanginTimer(setTimeout(handleEdit, 2000))
+  }
+
   useEffect(() => {
 
-    if (pv == data.pv && ps == data.ps && pe == data.pe && pvMax == data.pvMax && psMax == data.psMax && peMax == data.peMax) {
-
-    } else {
-
-      if (pvMax != 1 && psMax != 1 && peMax != 1) {
-
-        handleEdit()
-
-      }
-
+    if (pvMax != 0) {
+      subtimer()
     }
 
   }, [pv, pvMax, ps, psMax, pe, peMax])
@@ -166,11 +163,11 @@ export function NPC({ data, lista, atualizar }) {
     <Container>
 
       <Modal isOpen={modalDadoRoladoIsOpen} setClose={() => setModalDadoRoladoIsOpen(false)}>
-        <ModalDadoRolado setModalEditIsOpenFalse={() => setModalDadoRoladoIsOpen(false)} data={dadoData} />
+        <ModalDadoRolado setModalClose={() => setModalDadoRoladoIsOpen(false)} data={dadoData} />
       </Modal>
 
       <Modal isOpen={modalEditIsOpen} setClose={() => setModalEditIsOpen(false)}>
-        <ModalEditNPC setModalEditNPCOpenIsFalse={() => setModalEditIsOpen(false)} data={data} />
+        <ModalEditNPC setModalClose={() => setModalEditIsOpen(false)} data={data} />
       </Modal>
 
       <Header>
@@ -240,7 +237,7 @@ export function NPC({ data, lista, atualizar }) {
 
           </Card>
 
-          {(data.trilha != 'Nenhuma' || data.patente != 'Nenhuma') && <>
+          {((data.trilha != 'Nenhuma' && data.trilha != null) || (data.patente != 'Nenhuma' && data.patente != null)) && <>
 
             <Card>
 
@@ -307,11 +304,11 @@ export function NPC({ data, lista, atualizar }) {
           <h5>Atributos</h5>
 
           <FlexStatus>
-            <button onClick={() => { setModalDadoRoladoIsOpen(true); setDadoData({ nome: 'AGI', nomeNPC: data.nome, valor: `${data.agi}d20`, isDano: false }) }}>AGI: {data.agi}</button>
-            <button onClick={() => { setModalDadoRoladoIsOpen(true); setDadoData({ nome: 'INT', nomeNPC: data.nome, valor: `${data.int}d20`, isDano: false }) }}>INT: {data.int}</button>
-            <button onClick={() => { setModalDadoRoladoIsOpen(true); setDadoData({ nome: 'VIG', nomeNPC: data.nome, valor: `${data.vig}d20`, isDano: false }) }}>VIG: {data.vig}</button>
-            <button onClick={() => { setModalDadoRoladoIsOpen(true); setDadoData({ nome: 'PRE', nomeNPC: data.nome, valor: `${data.pre}d20`, isDano: false }) }}>PRE: {data.pre}</button>
-            <button onClick={() => { setModalDadoRoladoIsOpen(true); setDadoData({ nome: 'FOR', nomeNPC: data.nome, valor: `${data.for}d20`, isDano: false }) }}>FOR: {data.for}</button>
+            <button onClick={() => { setModalDadoRoladoIsOpen(true); setDadoData({ nome: 'Agilidade', nomeNPC: data.nome, valor: `${data.agi}d20`, isDano: false }) }}>AGI: {data.agi}</button>
+            <button onClick={() => { setModalDadoRoladoIsOpen(true); setDadoData({ nome: 'Intelecto', nomeNPC: data.nome, valor: `${data.int}d20`, isDano: false }) }}>INT: {data.int}</button>
+            <button onClick={() => { setModalDadoRoladoIsOpen(true); setDadoData({ nome: 'Vigor', nomeNPC: data.nome, valor: `${data.vig}d20`, isDano: false }) }}>VIG: {data.vig}</button>
+            <button onClick={() => { setModalDadoRoladoIsOpen(true); setDadoData({ nome: 'Presença', nomeNPC: data.nome, valor: `${data.pre}d20`, isDano: false }) }}>PRE: {data.pre}</button>
+            <button onClick={() => { setModalDadoRoladoIsOpen(true); setDadoData({ nome: 'Força', nomeNPC: data.nome, valor: `${data.for}d20`, isDano: false }) }}>FOR: {data.for}</button>
           </FlexStatus>
 
           {pericias.length > 0 && <>

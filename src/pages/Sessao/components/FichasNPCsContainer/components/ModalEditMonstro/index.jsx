@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { Input } from '../../../../../../components/Input';
-import { Container, Footer, Button, SelectDiv, ButtonSelect, Grid, Grid2, Normal, Hr, Body } from './styles';
+import { Container, Footer, SelectDiv, ButtonSelect, Grid, Grid2, Body,Header } from './styles';
 import { toast } from 'react-toastify'
 import { api } from '../../../../../../services/api';
 import { TextArea } from '../../../../../../components/TextArea';
 import { AtributoInput } from '../../../../../../components/AtributoInput';
 
-export function ModalEditMonstro({ setModalEditNPCOpenIsFalse, data }) {
+export function ModalEditMonstro({ setModalClose, data }) {
 
   const [body, setBody] = useState('principal')
 
@@ -73,7 +73,9 @@ export function ModalEditMonstro({ setModalEditNPCOpenIsFalse, data }) {
   const [habilidades, setHabilidades] = useState(data.habilidades)
   const [detalhes, setDetalhes] = useState(data.detalhes)
 
-  async function handleEdit() {
+  async function handleEdit(e) {
+
+    e.preventDefault()
 
     try {
 
@@ -198,11 +200,11 @@ export function ModalEditMonstro({ setModalEditNPCOpenIsFalse, data }) {
       data.habilidades = habilidades
       data.detalhes = detalhes
 
-      setModalEditNPCOpenIsFalse()
+      setModalClose()
 
     } catch (erro) {
       console.log(erro)
-      toast.error(erro.response.data.mensagem)
+      toast.error(erro.response.data.msg)
     }
 
   }
@@ -210,135 +212,141 @@ export function ModalEditMonstro({ setModalEditNPCOpenIsFalse, data }) {
   return (
     <Container>
 
-      <h1>Editar Monstro</h1>
+      <form onSubmit={handleEdit}>
 
-      <hr />
+        <Header>
+          <h1>Editar NPC</h1>
+          <button type="button" onClick={setModalClose}>x</button>
+        </Header>
 
-      <SelectDiv>
+        <hr />
 
-        <ButtonSelect active={body == 'principal'} onClick={() => setBody('principal')}>Principal</ButtonSelect>
-        <ButtonSelect active={body == 'atributos'} onClick={() => setBody('atributos')}>Atributos</ButtonSelect>
-        <ButtonSelect active={body == 'pericias'} onClick={() => setBody('pericias')}>Perícias</ButtonSelect>
-        <ButtonSelect active={body == 'defesas'} onClick={() => setBody('defesas')}>Defesas</ButtonSelect>
-        <ButtonSelect active={body == 'outros'} onClick={() => setBody('outros')}>Outros</ButtonSelect>
+        <SelectDiv>
 
-      </SelectDiv>
+          <ButtonSelect type='button' active={body == 'principal'} onClick={() => setBody('principal')}>Principal</ButtonSelect>
+          <ButtonSelect type='button' active={body == 'atributos'} onClick={() => setBody('atributos')}>Atributos</ButtonSelect>
+          <ButtonSelect type='button' active={body == 'pericias'} onClick={() => setBody('pericias')}>Perícias</ButtonSelect>
+          <ButtonSelect type='button' active={body == 'defesas'} onClick={() => setBody('defesas')}>Defesas</ButtonSelect>
+          <ButtonSelect type='button' active={body == 'outros'} onClick={() => setBody('outros')}>Outros</ButtonSelect>
 
-      <hr />
+        </SelectDiv>
 
-      <Body>
+        <hr />
 
-        {body == 'principal' && <>
+        <Body>
 
-          <Grid>
+          {body == 'principal' && <>
 
-            <Input maxLength={30} label={'Nome'} valor={nome} setValor={setNome} />
-            <Input onlyNumber maxLength={2} label={'NEX'} valor={nex} setValor={setNex} />
-            <Input onlyNumber maxLength={2} label={'Deslocamento'} valor={deslocamento} setValor={setDeslocamento} valorMax={12} />
-            <Input onlyNumber maxLength={2} label={'Vida Máxima (PV)'} valor={pv} setValor={setPv} />
+            <Grid>
 
-          </Grid>
+              <Input required maxLength={30} label={'Nome'} valor={nome} setValor={setNome} />
+              <Input required type='number' maxValor={99} maxLength={2} label={'NEX'} valor={nex} setValor={setNex} />
+              <Input required type='number' maxValor={99} maxLength={2} label={'Deslocamento'} valor={deslocamento} setValor={setDeslocamento} valorMax={12} />
+              <Input required type='number' maxValor={99} maxLength={2} label={'Vida Máxima (PV)'} valor={pv} setValor={setPv} />
 
-        </>}
+            </Grid>
 
-        {body == 'atributos' && <>
+          </>}
 
-          <AtributoInput agi={agi} setAgi={setAgi} int={int} setInt={setInt} vig={vig} setVig={setVig} pre={pre} setPre={setPre} forca={forca} setFor={setFor} />
+          {body == 'atributos' && <>
 
-        </>}
+            <AtributoInput agi={agi} setAgi={setAgi} int={int} setInt={setInt} vig={vig} setVig={setVig} pre={pre} setPre={setPre} forca={forca} setFor={setFor} />
 
-        {body == 'pericias' && <Grid2>
+          </>}
 
-          <Input maxLength={2} padding={'low'} onlyNumber label={'Acrobacia'} valor={acrobacia} setValor={setAcrobacia} />
-          <Input maxLength={2} padding={'low'} onlyNumber label={'Adestramento'} valor={adestramento} setValor={setAdestramento} />
-          <Input maxLength={2} padding={'low'} onlyNumber label={'Artes'} valor={arte} setValor={setArte} />
-          <Input maxLength={2} padding={'low'} onlyNumber label={'Atletismo'} valor={atletismo} setValor={setAtletismo} />
-          <Input maxLength={2} padding={'low'} onlyNumber label={'Atualidade'} valor={atualidade} setValor={setAtualidade} />
-          <Input maxLength={2} padding={'low'} onlyNumber label={'Ciências'} valor={ciencia} setValor={setCiencia} />
-          <Input maxLength={2} padding={'low'} onlyNumber label={'Crime'} valor={crime} setValor={setCrime} />
-          <Input maxLength={2} padding={'low'} onlyNumber label={'Diplomacia'} valor={diplomacia} setValor={setDiplomacia} />
-          <Input maxLength={2} padding={'low'} onlyNumber label={'Enganação'} valor={enganacao} setValor={setEnganacao} />
-          <Input maxLength={2} padding={'low'} onlyNumber label={'Fortitude'} valor={fortitude} setValor={setFortitude} />
-          <Input maxLength={2} padding={'low'} onlyNumber label={'Furtividade'} valor={furtividade} setValor={setFurtividade} />
-          <Input maxLength={2} padding={'low'} onlyNumber label={'Iniciativa'} valor={iniciativa} setValor={setIniciativa} />
-          <Input maxLength={2} padding={'low'} onlyNumber label={'Intimidação'} valor={intimidacao} setValor={setIntimidacao} />
-          <Input maxLength={2} padding={'low'} onlyNumber label={'Intuição'} valor={intuicao} setValor={setIntuicao} />
-          <Input maxLength={2} padding={'low'} onlyNumber label={'Investigação'} valor={investigacao} setValor={setInvestigacao} />
-          <Input maxLength={2} padding={'low'} onlyNumber label={'Luta'} valor={luta} setValor={setLuta} />
-          <Input maxLength={2} padding={'low'} onlyNumber label={'Medicina'} valor={medicina} setValor={setMedicina} />
-          <Input maxLength={2} padding={'low'} onlyNumber label={'Ocultismo'} valor={ocultismo} setValor={setOcultismo} />
-          <Input maxLength={2} padding={'low'} onlyNumber label={'Percepção'} valor={percepcao} setValor={setPercepcao} />
-          <Input maxLength={2} padding={'low'} onlyNumber label={'Pilotagem'} valor={pilotagem} setValor={setPilotagem} />
-          <Input maxLength={2} padding={'low'} onlyNumber label={'Pontaria'} valor={pontaria} setValor={setPontaria} />
-          <Input maxLength={2} padding={'low'} onlyNumber label={'Profissão'} valor={profissao} setValor={setProfissao} />
-          <Input maxLength={2} padding={'low'} onlyNumber label={'Reflexos'} valor={reflexo} setValor={setReflexo} />
-          <Input maxLength={2} padding={'low'} onlyNumber label={'Religião'} valor={religiao} setValor={setReligiao} />
-          <Input maxLength={2} padding={'low'} onlyNumber label={'Sobrevivência'} valor={sobrevivencia} setValor={setSobrevivencia} />
-          <Input maxLength={2} padding={'low'} onlyNumber label={'Tática'} valor={tatica} setValor={setTatica} />
-          <Input maxLength={2} padding={'low'} onlyNumber label={'Tecnologia'} valor={tecnologia} setValor={setTecnologia} />
-          <Input maxLength={2} padding={'low'} onlyNumber label={'Vontade'} valor={vontade} setValor={setVontade} />
+          {body == 'pericias' && <Grid2>
 
-        </Grid2>}
+            <Input maxLength={2} type='number' maxValor={99} label={'Acrobacia'} valor={acrobacia} setValor={setAcrobacia} />
+            <Input maxLength={2} type='number' maxValor={99} label={'Adestramento'} valor={adestramento} setValor={setAdestramento} />
+            <Input maxLength={2} type='number' maxValor={99} label={'Artes'} valor={arte} setValor={setArte} />
+            <Input maxLength={2} type='number' maxValor={99} label={'Atletismo'} valor={atletismo} setValor={setAtletismo} />
+            <Input maxLength={2} type='number' maxValor={99} label={'Atualidade'} valor={atualidade} setValor={setAtualidade} />
+            <Input maxLength={2} type='number' maxValor={99} label={'Ciências'} valor={ciencia} setValor={setCiencia} />
+            <Input maxLength={2} type='number' maxValor={99} label={'Crime'} valor={crime} setValor={setCrime} />
+            <Input maxLength={2} type='number' maxValor={99} label={'Diplomacia'} valor={diplomacia} setValor={setDiplomacia} />
+            <Input maxLength={2} type='number' maxValor={99} label={'Enganação'} valor={enganacao} setValor={setEnganacao} />
+            <Input maxLength={2} type='number' maxValor={99} label={'Fortitude'} valor={fortitude} setValor={setFortitude} />
+            <Input maxLength={2} type='number' maxValor={99} label={'Furtividade'} valor={furtividade} setValor={setFurtividade} />
+            <Input maxLength={2} type='number' maxValor={99} label={'Iniciativa'} valor={iniciativa} setValor={setIniciativa} />
+            <Input maxLength={2} type='number' maxValor={99} label={'Intimidação'} valor={intimidacao} setValor={setIntimidacao} />
+            <Input maxLength={2} type='number' maxValor={99} label={'Intuição'} valor={intuicao} setValor={setIntuicao} />
+            <Input maxLength={2} type='number' maxValor={99} label={'Investigação'} valor={investigacao} setValor={setInvestigacao} />
+            <Input maxLength={2} type='number' maxValor={99} label={'Luta'} valor={luta} setValor={setLuta} />
+            <Input maxLength={2} type='number' maxValor={99} label={'Medicina'} valor={medicina} setValor={setMedicina} />
+            <Input maxLength={2} type='number' maxValor={99} label={'Ocultismo'} valor={ocultismo} setValor={setOcultismo} />
+            <Input maxLength={2} type='number' maxValor={99} label={'Percepção'} valor={percepcao} setValor={setPercepcao} />
+            <Input maxLength={2} type='number' maxValor={99} label={'Pilotagem'} valor={pilotagem} setValor={setPilotagem} />
+            <Input maxLength={2} type='number' maxValor={99} label={'Pontaria'} valor={pontaria} setValor={setPontaria} />
+            <Input maxLength={2} type='number' maxValor={99} label={'Profissão'} valor={profissao} setValor={setProfissao} />
+            <Input maxLength={2} type='number' maxValor={99} label={'Reflexos'} valor={reflexo} setValor={setReflexo} />
+            <Input maxLength={2} type='number' maxValor={99} label={'Religião'} valor={religiao} setValor={setReligiao} />
+            <Input maxLength={2} type='number' maxValor={99} label={'Sobrevivência'} valor={sobrevivencia} setValor={setSobrevivencia} />
+            <Input maxLength={2} type='number' maxValor={99} label={'Tática'} valor={tatica} setValor={setTatica} />
+            <Input maxLength={2} type='number' maxValor={99} label={'Tecnologia'} valor={tecnologia} setValor={setTecnologia} />
+            <Input maxLength={2} type='number' maxValor={99} label={'Vontade'} valor={vontade} setValor={setVontade} />
 
-        {body == 'defesas' && <>
+          </Grid2>}
+
+          {body == 'defesas' && <>
 
 
-          <h2>Defesas</h2>
+            <h2>Defesas</h2>
 
-          <Grid2>
+            <Grid2>
 
-            <Input maxLength={2} padding={'low'} onlyNumber label={'Passiva'} valor={passiva} setValor={setPassiva} />
+              <Input required maxLength={2} type='number' maxValor={99} label={'Passiva'} valor={passiva} setValor={setPassiva} />
 
-          </Grid2>
+            </Grid2>
 
-          <h2>Resistências Gerais</h2>
+            <h2>Resistências Gerais</h2>
 
-          <Grid2>
+            <Grid2>
 
-            <Input maxLength={2} padding={'low'} onlyNumber label={'Física'} valor={fisica} setValor={setFisica} />
-            <Input maxLength={2} padding={'low'} onlyNumber label={'Balística'} valor={balistica} setValor={setBalistica} />
-            <Input maxLength={2} padding={'low'} onlyNumber label={'Corte'} valor={corte} setValor={setCorte} />
-            <Input maxLength={2} padding={'low'} onlyNumber label={'Impacto'} valor={impacto} setValor={setImpacto} />
-            <Input maxLength={2} padding={'low'} onlyNumber label={'Perfuração'} valor={perfuracao} setValor={setPerfuracao} />
-            <Input maxLength={2} padding={'low'} onlyNumber label={'Eletricidade'} valor={eletricidade} setValor={setEletricidade} />
-            <Input maxLength={2} padding={'low'} onlyNumber label={'Fogo'} valor={fogo} setValor={setFogo} />
-            <Input maxLength={2} padding={'low'} onlyNumber label={'Frio'} valor={frio} setValor={setFrio} />
-            <Input maxLength={2} padding={'low'} onlyNumber label={'Química'} valor={quimica} setValor={setQuimica} />
+              <Input maxLength={2} type='number' maxValor={99} label={'Física'} valor={fisica} setValor={setFisica} />
+              <Input maxLength={2} type='number' maxValor={99} label={'Balística'} valor={balistica} setValor={setBalistica} />
+              <Input maxLength={2} type='number' maxValor={99} label={'Corte'} valor={corte} setValor={setCorte} />
+              <Input maxLength={2} type='number' maxValor={99} label={'Impacto'} valor={impacto} setValor={setImpacto} />
+              <Input maxLength={2} type='number' maxValor={99} label={'Perfuração'} valor={perfuracao} setValor={setPerfuracao} />
+              <Input maxLength={2} type='number' maxValor={99} label={'Eletricidade'} valor={eletricidade} setValor={setEletricidade} />
+              <Input maxLength={2} type='number' maxValor={99} label={'Fogo'} valor={fogo} setValor={setFogo} />
+              <Input maxLength={2} type='number' maxValor={99} label={'Frio'} valor={frio} setValor={setFrio} />
+              <Input maxLength={2} type='number' maxValor={99} label={'Química'} valor={quimica} setValor={setQuimica} />
 
-          </Grid2>
+            </Grid2>
 
-          <h2>Resistências Elementares</h2>
+            <h2>Resistências Elementares</h2>
 
-          <Grid2>
+            <Grid2>
 
-            <Input maxLength={2} padding={'low'} onlyNumber label={'Mental'} valor={mental} setValor={setMental} />
-            <Input maxLength={2} padding={'low'} onlyNumber label={'Morte'} valor={morte} setValor={setMorte} />
-            <Input maxLength={2} padding={'low'} onlyNumber label={'Conhecimento'} valor={conhecimento} setValor={setConhecimento} />
-            <Input maxLength={2} padding={'low'} onlyNumber label={'Sangue'} valor={sangue} setValor={setSangue} />
-            <Input maxLength={2} padding={'low'} onlyNumber label={'Energia'} valor={energia} setValor={setEnergia} />
+              <Input maxLength={2} type='number' maxValor={99} label={'Mental'} valor={mental} setValor={setMental} />
+              <Input maxLength={2} type='number' maxValor={99} label={'Morte'} valor={morte} setValor={setMorte} />
+              <Input maxLength={2} type='number' maxValor={99} label={'Conhecimento'} valor={conhecimento} setValor={setConhecimento} />
+              <Input maxLength={2} type='number' maxValor={99} label={'Sangue'} valor={sangue} setValor={setSangue} />
+              <Input maxLength={2} type='number' maxValor={99} label={'Energia'} valor={energia} setValor={setEnergia} />
 
-          </Grid2>
+            </Grid2>
 
-        </>}
+          </>}
 
-        {body == 'outros' && <>
+          {body == 'outros' && <>
 
-          <TextArea label={'Ataques'} valor={ataques} setValor={setAtaques} />
-          <TextArea label={'Habilidades'} valor={habilidades} setValor={setHabilidades} />
-          <TextArea label={'Detalhes'} valor={detalhes} setValor={setDetalhes} />
+            <TextArea maxLength={300} label={'Ataques'} valor={ataques} setValor={setAtaques} />
+            <TextArea maxLength={300} label={'Habilidades'} valor={habilidades} setValor={setHabilidades} />
+            <TextArea maxLength={300} label={'Detalhes'} valor={detalhes} setValor={setDetalhes} />
 
-        </>}
+          </>}
 
-      </Body>
+        </Body>
 
-      <Hr />
+        <hr />
 
-      <Footer>
+        <Footer>
 
-        <Button onClick={setModalEditNPCOpenIsFalse} >Fechar</Button>
-        <Button color='purple' onClick={handleEdit}>Salvar</Button>
+          <button type="submit">Salvar</button>
 
-      </Footer>
+        </Footer>
+
+      </form>
 
     </Container>
   );

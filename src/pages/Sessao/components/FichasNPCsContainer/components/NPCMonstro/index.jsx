@@ -32,96 +32,19 @@ export function NPCMonstro({ data, lista, atualizar }) {
   const [res, setRes] = useState([])
   const [pericias, setPericias] = useState([])
 
-  async function handleDuplicate() {
-
-    try {
-
-      const response = await api.post(`/fichas/npcmonstro`, {
-
-        nome: data.nome,
-        nex: Number(data.nex),
-
-        pvMax: Number(pvMax),
-
-        agi: Number(data.agi),
-        int: Number(data.int),
-        vig: Number(data.vig),
-        pre: Number(data.pre),
-        forca: Number(data.for),
-
-        acrobacia: Number(data.acrobacia),
-        adestramento: Number(data.adestramento),
-        arte: Number(data.arte),
-        atletismo: Number(data.atletismo),
-        atualidade: Number(data.atualidade),
-        ciencia: Number(data.ciencia),
-        crime: Number(data.crime),
-        diplomacia: Number(data.diplomacia),
-        enganacao: Number(data.enganacao),
-        fortitude: Number(data.fortitude),
-        furtividade: Number(data.furtividade),
-        iniciativa: Number(data.iniciativa),
-        intimidacao: Number(data.intimidacao),
-        intuicao: Number(data.intuicao),
-        investigacao: Number(data.investigacao),
-        luta: Number(data.luta),
-        medicina: Number(data.medicina),
-        ocultismo: Number(data.ocultismo),
-        percepcao: Number(data.percepcao),
-        pilotagem: Number(data.pilotagem),
-        pontaria: Number(data.pontaria),
-        profissao: Number(data.profissao),
-        reflexo: Number(data.reflexo),
-        religiao: Number(data.religiao),
-        sobrevivencia: Number(data.sobrevivencia),
-        tatica: Number(data.tatica),
-        tecnologia: Number(data.tecnologia),
-        vontade: Number(data.vontade),
-
-        passiva: Number(data.passiva),
-        bloqueio: Number(data.bloqueio),
-        esquiva: Number(data.esquiva),
-        fisica: Number(data.fisica),
-        balistica: Number(data.balistica),
-        corte: Number(data.corte),
-        impacto: Number(data.impacto),
-        perfuracao: Number(data.perfuracao),
-        eletricidade: Number(data.eletricidade),
-        fogo: Number(data.fogo),
-        frio: Number(data.frio),
-        quimica: Number(data.quimica),
-        mental: Number(data.mental),
-        morte: Number(data.morte),
-        conhecimento: Number(data.conhecimento),
-        sangue: Number(data.sangue),
-        energia: Number(data.energia),
-
-        inventario: data.inventario,
-        habilidades: data.habilidades,
-        detalhes: data.detalhes,
-        sessaoId: data.sessaoId
-
-      })
-
-      atualizar((prev) => [...prev, response.data])
-
-    } catch (e) { console.log(e) }
-
-  }
+  const [changinTimer, setChanginTimer] = useState(null)
 
   async function handleDelete() {
 
-    if (window.confirm('Tem certeza que deseja excluir este NPC? Uma vez deletado jamais poderá ser recuperado!'))
+    try {
 
-      try {
+      const listaAtt = lista.filter(npc => npc.id != data.id)
 
-        const listaAtt = lista.filter(npc => npc.id != data.id)
+      atualizar(listaAtt)
 
-        atualizar(listaAtt)
+      await api.delete(`/fichas/npcmonstro/${data.id}`)
 
-        await api.delete(`/fichas/npcmonstro/${data.id}`)
-
-      } catch (e) { }
+    } catch (e) { }
 
   }
 
@@ -138,14 +61,15 @@ export function NPCMonstro({ data, lista, atualizar }) {
 
   }
 
+  function subtimer() {
+    clearTimeout(changinTimer)
+    setChanginTimer(setTimeout(handleEdit, 2000))
+  }
+
   useEffect(() => {
 
-    if (pv == data.pv && pvMax == data.pvMax) {
-
-    } else {
-
-      handleEdit()
-
+    if (pvMax != 0) {
+      subtimer()
     }
 
   }, [pv, pvMax])
@@ -245,12 +169,11 @@ export function NPCMonstro({ data, lista, atualizar }) {
       </Modal>
 
       <Modal isOpen={modalEditIsOpen} setClose={() => setModalEditIsOpen(false)}>
-        <ModalEditMonstro setModalEditNPCOpenIsFalse={() => setModalEditIsOpen(false)} data={data} />
+        <ModalEditMonstro setModalClose={() => setModalEditIsOpen(false)} data={data} />
       </Modal>
 
       <Header>
 
-        {/* <ButtonIcon color={'aqua'} onClick={handleDuplicate} ><FaRegCopy size={20} color={'aqua'} /></ButtonIcon> */}
         <ButtonDelete size={20} onClick={handleDelete} />
         <h1>{data.nome}</h1>
         <ButtonEdit onClick={() => setModalEditIsOpen(true)} />
@@ -324,11 +247,11 @@ export function NPCMonstro({ data, lista, atualizar }) {
           <h5>Atributos</h5>
 
           <FlexStatus>
-            <button onClick={() => { setModalDadoRoladoIsOpen(true); setDadoData({ nome: 'AGI', nomeNPC: data.nome, valor: `${data.agi}d20`, isDano: false }) }}>AGI: {data.agi}</button>
-            <button onClick={() => { setModalDadoRoladoIsOpen(true); setDadoData({ nome: 'INT', nomeNPC: data.nome, valor: `${data.int}d20`, isDano: false }) }}>INT: {data.int}</button>
-            <button onClick={() => { setModalDadoRoladoIsOpen(true); setDadoData({ nome: 'VIG', nomeNPC: data.nome, valor: `${data.vig}d20`, isDano: false }) }}>VIG: {data.vig}</button>
-            <button onClick={() => { setModalDadoRoladoIsOpen(true); setDadoData({ nome: 'PRE', nomeNPC: data.nome, valor: `${data.pre}d20`, isDano: false }) }}>PRE: {data.pre}</button>
-            <button onClick={() => { setModalDadoRoladoIsOpen(true); setDadoData({ nome: 'FOR', nomeNPC: data.nome, valor: `${data.for}d20`, isDano: false }) }}>FOR: {data.for}</button>
+            <button onClick={() => { setModalDadoRoladoIsOpen(true); setDadoData({ nome: 'Agilidade', nomeNPC: data.nome, valor: `${data.agi}d20`, isDano: false }) }}>AGI: {data.agi}</button>
+            <button onClick={() => { setModalDadoRoladoIsOpen(true); setDadoData({ nome: 'Intelecto', nomeNPC: data.nome, valor: `${data.int}d20`, isDano: false }) }}>INT: {data.int}</button>
+            <button onClick={() => { setModalDadoRoladoIsOpen(true); setDadoData({ nome: 'Vigor', nomeNPC: data.nome, valor: `${data.vig}d20`, isDano: false }) }}>VIG: {data.vig}</button>
+            <button onClick={() => { setModalDadoRoladoIsOpen(true); setDadoData({ nome: 'Presença', nomeNPC: data.nome, valor: `${data.pre}d20`, isDano: false }) }}>PRE: {data.pre}</button>
+            <button onClick={() => { setModalDadoRoladoIsOpen(true); setDadoData({ nome: 'Força', nomeNPC: data.nome, valor: `${data.for}d20`, isDano: false }) }}>FOR: {data.for}</button>
           </FlexStatus>
 
           {pericias.length > 0 && <>

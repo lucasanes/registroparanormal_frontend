@@ -1,57 +1,120 @@
-import { styled } from '../../../../../../stitches.config';
+import { styled } from "../../../../../../stitches.config";
 
 export const Container = styled('div', {
 
-  width: '65rem',
+  width: '60rem',
   borderRadius: '1.2rem',
-  backgroundColor: 'rgb(27,27,27)',
-  boxShadow: 'rgba(255, 255, 255, 0.45) 0rem 0.5rem 1.5rem',
-  padding: '3.5rem 2.5rem',
-  textAlign: 'center',
-  display: 'flex',
   position: 'relative',
+  backgroundColor: 'rgb(20,20,20)',
+  boxShadow: 'rgba(255, 255, 255, 0.75) 0rem 0rem 1rem',
+  display: 'flex',
   flexDirection: 'column',
 
-  '@sm': {
-    width: '100vw',
-    height: '100vh',
-
-    hr: {
-      margin: '0 -2.5rem'
-    }
+  hr: {
+    borderColor: '#ffffff90'
   },
+  
+  '@md': {
+    width: '100vw',
+    height: '100%',
+    borderRadius: 0
+  }
+
+})
+
+export const Header = styled('div', {
+
+  height: '62px',
+  display: 'flex',
+  alignItems: 'baseline',
+  justifyContent: 'space-between',
+  padding: '1.5rem 2.5rem',
+  color: 'white',
 
   h1: {
-    display: 'inline-block',
-    marginBottom: '3.5rem',
-    fontSize: '3rem',
-    color: '#a151b4',
-    fontFamily: 'Arvo'
+    fontSize: '2rem',
+    paddingBottom: '.3rem',
+    fontFamily: 'Special Elite'
+  },
+  
+  button: {
+    background: 'none',
+    border: "none",
+    color: '#ffffff90',
+    fontSize: '2.5rem',
+    transition: '0.2s',
+    padding: '0 10px 5px 10px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 
+  'button:hover': {
+    opacity: 0.5,
+  },
+
+});
+
+export const Body = styled('div', {
+
+  width: '100%',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  flexDirection: 'column',
+  textAlign: 'center',
+  color: '#ffffff90',
+  gap: '2rem',
+  overflow: 'hidden',
+  padding: '3rem 2rem',
+
   h2: {
+    color: '#fff',
+    fontSize: '2rem',
+    marginBottom: '1rem'
+  },
 
-    color: 'white',
-    fontSize: '2.2rem',
-    letterSpacing: '.2rem',
-    fontWeight: 100,
-    fontFamily: 'Special Elite',
-    marginTop: '3rem'
-
-  }
-
-})
-
-export const HrFooter = styled('hr', {
-
-  borderColor: 'transparent',
-  margin: '0 -2.5rem',
+  '@md': {
+    height: 'calc(100vh - 185px)',
+    overflowY: 'auto',
+    justifyContent: 'flex-start'
+  },
 
   '@sm': {
-    borderColor: 'white'
+    height: 'calc(100vh - 230px)',
+  },
+
+  hr: {
+    borderColor: '#ffffff90',
+    width: '100%',
+  },
+
+});
+
+export const Footer = styled('div', {
+
+  padding: '1.5rem',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+
+  button: {
+    background: 'none',
+    border: '2px solid #00ff88',
+    color: '#00ff88',
+    width: '90%',
+    fontFamily: 'Acme',
+    fontSize: '2rem',
+    padding: '.4rem',
+    transition: '.3s',
+    borderRadius: '5px'
+  },
+
+  'button:hover': {
+    background: '#00ff8850'
   }
 
-})
+});
 
 export const SelectDiv = styled('div', {
 
@@ -60,17 +123,21 @@ export const SelectDiv = styled('div', {
   justifyContent: 'center',
   padding: '1rem',
   gap: '1rem',
-  flexWrap: 'wrap',
+
+  '@sm': {
+    flexWrap: 'wrap'
+  }
 
 })
 
 export const Grid = styled('div', {
 
+  width: '100%',
   display: 'grid',
   gridTemplateColumns: '1fr 1fr',
-  gap: '0 2rem',
+  gap: '2rem',
 
-  '@sm2': {
+  '@md': {
     gridTemplateColumns: '1fr'
   }
 
@@ -83,7 +150,7 @@ export const Grid3 = styled('div', {
   gridTemplateColumns: '1fr 1fr',
   justifyContent: 'center',
   alignItems: 'center',
-  gap: '1rem 2rem',
+  gap: '2rem',
 
   div: {
     display: 'flex',
@@ -91,7 +158,7 @@ export const Grid3 = styled('div', {
     justifyContent: 'center',
   },
 
-  '@md2': {
+  '@md': {
     flexDirection: 'column',
     justifyContent: 'flex-start',
 
@@ -105,12 +172,11 @@ export const Grid3 = styled('div', {
 
 export const Grid2 = styled('div', {
 
-  marginTop: '1rem',
   display: 'grid',
   gridTemplateColumns: '1fr 1fr 1fr',
-  gap: '1rem 3rem',
+  gap: '2rem',
 
-  '@md2': {
+  '@md': {
     gridTemplateColumns: '1fr 1fr'
   }
 
@@ -118,102 +184,37 @@ export const Grid2 = styled('div', {
 
 export const Normal = styled('div', {
 
+  width: '100%',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: '2rem',
+  flexDirection: 'column'
 
-
-})
-
-export const Body = styled('div', {
-
-  '@sm': {
-
-    overflow: 'hidden auto',
-    maxHeight: '61rem',
-    padding: '0 2rem 3rem 1rem'
-
-  }
-
-})
-
-export const Span = styled('div', {
-  width: '95%',
-  color: '#ff000090',
-  fontSize: '1.7rem',
-  letterSpacing: '.1rem',
-  marginTop: '.5rem',
-  textAlign: 'left',
-  fontFamily: 'emoji'
 })
 
 export const ButtonSelect = styled('button', {
 
   background: 'none',
-  color: '#b65bcd',
-  border: '2px solid #490f57',
+  color: '#ffffff90',
+  border: '1px solid #ffffff90',
+  borderRadius: '5px',
   padding: '.5rem 1rem',
   fontSize: '2rem',
 
   '&:hover': {
 
-    background: '#490f5780'
+    background: '#ffffff20'
 
   },
 
   variants: {
     active: {
       true: {
-        background: '#490f5780',
+        background: '#ffffff25',
         cursor: 'default'
       }
     }
   }
 
 })
-
-export const Footer = styled('div', {
-  marginTop: '3rem',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-
-  "@sm": {
-    marginTop: '1.3rem',
-    marginBottom: '-3rem',
-  }
-})
-
-export const Button = styled('button', {
-  width: '15rem',
-  height: '4.5rem',
-  margin: '1rem',
-  border: 'none',
-  color: 'white',
-  borderRadius: '8px',
-  fontSize: '2.2rem',
-  letterSpacing: '.1rem',
-  cursor: 'pointer',
-  fontFamily: 'Crimson Text',
-
-  variants: {
-    color: {
-      red: {
-        backgroundColor: '#d41717ff',
-
-        '&:hover': {
-          backgroundColor: '#ac1414ff',
-        },
-      },
-      purple: {
-        backgroundColor: '#4f1db4',
-
-        '&:hover': {
-          backgroundColor: '#3f178f',
-        },
-      }
-    }
-  },
-
-  defaultVariants: {
-    color: 'red'
-  }
-})
-

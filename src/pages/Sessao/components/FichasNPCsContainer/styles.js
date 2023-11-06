@@ -59,21 +59,22 @@ export const Button = styled('button', {
 
   background: 'none',
   fontFamily: 'Special Elite',
-  color: '#b65bcd',
-  border: '2px solid #490f57',
-  padding: '.7rem 1rem .3rem 1rem',
+  color: '#ffffff90',
+  border: '2px solid #ffffff90',
+  padding: '.7rem 1rem 0.1rem 1rem',
   fontSize: '2.2rem',
+  borderRadius: '5px',
 
   '&:hover': {
 
-    background: '#490f5780'
+    background: '#ffffff20'
 
   },
 
   variants: {
     active: {
       true: {
-        background: '#490f5780',
+        background: '#ffffff25',
         cursor: 'default'
       }
     }
@@ -88,11 +89,11 @@ export const BodyContainer = styled("div", {
   gridColumnGap: "3rem",
   gridRowGap: "2rem",
 
-  "@lg2": {
+  "@lg": {
     gridTemplateColumns: "1fr 1fr",
   },
 
-  '@sm': {
+  '@md': {
     gridTemplateColumns: '1fr'
   },
 

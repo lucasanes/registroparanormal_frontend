@@ -29,6 +29,7 @@ export const Botoes = styled('div', {
     background: 'none',
     display: 'flex',
     justifyContent: 'center',
+    alignItems: 'center',
     whiteSpace: 'nowrap',
     gap: '.5rem',
     transition: '.3s',
@@ -44,7 +45,7 @@ export const Botoes = styled('div', {
     border: '1px solid white'
   },
 
-  '@md2': {
+  '@md': {
     padding: '0rem',
     button: {
       margin: '.5rem .2rem',
@@ -58,7 +59,9 @@ export const Esquerda = styled('div', {
   justifyContent: 'center',
 
   svg: {
-    marginLeft: '-.4rem'
+    marginLeft: '-.4rem',
+    position: 'relative',
+    bottom: 2
   }
 })
 
@@ -68,7 +71,9 @@ export const Direita = styled('div', {
   justifyContent: 'center',
 
   svg: {
-    marginRight: '-.4rem'
+    marginRight: '-.4rem',
+    position: 'relative',
+    bottom: 2
   }
 })
 
@@ -83,7 +88,7 @@ export const BarrinhaDiv = styled('div', {
 export const ProgressBar = styled('div', {
 
   width: '100%',
-  height: '2rem',
+  height: '1.5rem',
   borderRadius: '10px',
   backgroundColor: '#ffffff14',
   display: 'flex',
@@ -92,7 +97,7 @@ export const ProgressBar = styled('div', {
 
 export const Progress = styled('div', {
 
-  height: '2rem',
+  height: '1.5rem',
   borderRadius: '10px',
   display: 'flex',
   transition: '0.3s',

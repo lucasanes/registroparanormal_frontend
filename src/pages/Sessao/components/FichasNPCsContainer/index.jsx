@@ -15,19 +15,19 @@ export function FichasNPCsContainer({ npcs, npcsmonstros }) {
 
   const [modalAddIsOpen, setModalAddIsOpen] = useState(false)
 
-  const [body, setBody] = useState('npcs')
-
   const { fichasNPCSPrincipal } = useFichas()
-
+  
   const [fichasNPC, setFichasNPC] = useState(npcs)
   const [fichasNPCMonstro, setFichasNPCMonstro] = useState(npcsmonstros)
   const [fichasNPCPrincipal, setFichasNPCPrincipal] = useState(fichasNPCSPrincipal)
+  
+  const [body, setBody] = useState(npcs.length > 0 ? 'npcs' : npcsmonstros.length > 0 ? 'monstros' : fichasNPCSPrincipal.length > 0 ? 'npcsprincipais' : 'npcs')
 
   return (
     <Container>
 
-      <Modal isOpen={modalAddIsOpen} setClose={() => setModalAddIsOpen(false)}>
-        <ModalAdd setModalAddIsOpenFalse={() => setModalAddIsOpen(false)} setFichasNPC={setFichasNPC} setFichasNPCMonstro={setFichasNPCMonstro} setFichasNPCPrincipal={setFichasNPCPrincipal} />
+      <Modal padding={false} isOpen={modalAddIsOpen} setClose={() => setModalAddIsOpen(false)}>
+        <ModalAdd setModalClose={() => setModalAddIsOpen(false)} setFichasNPC={setFichasNPC} setFichasNPCMonstro={setFichasNPCMonstro} setFichasNPCPrincipal={setFichasNPCPrincipal} />
       </Modal>
 
       <HeaderContainer>
@@ -47,13 +47,15 @@ export function FichasNPCsContainer({ npcs, npcsmonstros }) {
 
       <hr />
 
-      <BodyContainer nulo={body == 'npcsprincipais' && fichasNPCPrincipal.length == 0 || body == 'npcs' && fichasNPC.length == 0 || body == 'monstros' && fichasNPCMonstro.length == 0}>
+      <BodyContainer>
 
-        {body == 'npcs' && fichasNPC && fichasNPC.map(ficha => <NPC key={ficha.id} data={ficha} lista={fichasNPC} atualizar={setFichasNPC} />)}
-
-        {body == 'monstros' && fichasNPCMonstro && fichasNPCMonstro.map(ficha => <NPCMonstro key={ficha.id} data={ficha} lista={fichasNPCMonstro} atualizar={setFichasNPCMonstro} />)}
-
-        {body == 'npcsprincipais' && fichasNPCPrincipal && fichasNPCPrincipal.map(ficha => <NPCPrincipal key={ficha.id} data={ficha} lista={fichasNPCPrincipal} atualizar={setFichasNPCPrincipal} />)}
+        {body == 'npcs' ? 
+          fichasNPC.map(ficha => <NPC key={ficha.id} data={ficha} lista={fichasNPC} atualizar={setFichasNPC} />)
+        : body == 'monstros' ? 
+          fichasNPCMonstro.map(ficha => <NPCMonstro key={ficha.id} data={ficha} lista={fichasNPCMonstro} atualizar={setFichasNPCMonstro} />)
+        : body == 'npcsprincipais' && 
+          fichasNPCPrincipal.map(ficha => <NPCPrincipal key={ficha.id} data={ficha} lista={fichasNPCPrincipal} atualizar={setFichasNPCPrincipal} />)
+        }
 
       </BodyContainer>
 

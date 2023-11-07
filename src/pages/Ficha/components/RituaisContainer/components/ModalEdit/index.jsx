@@ -25,9 +25,26 @@ export function ModalEdit({ data, setModalClose, lista, setRitualAtivo }) {
   const [descricao, setDescricao] = useState(data.descricao)
   const [imagem, setImagem] = useState(data.imagem)
 
+  const patternDano = /^(((100|\d{1,2}|\/[ABCDEFGILMNOPRSTUV]{3,4}\/)?((d)(100|[1-9]\d?|\/[ABCDEFGILMNOPRSTUV]{3,4}\/))?)|(\d{0,3}|1000))([+]((100|\d{1,2}|\/[ABCDEFGILMNOPRSTUV]{3,4}\/)?((d)(100|[1-9]\d?|\/[ABCDEFGILMNOPRSTUV]{3,4}\/))?)|([+]\d{0,3}|1000)?)*$/g;
+
   async function handleEdit(e) {
 
     e.preventDefault()
+
+    if (!normal.match(patternDano)) {
+      toast.error('Dado Normal inválido.')
+      return
+    }
+
+    if (!normal.match(patternDano)) {
+      toast.error('Dado Discente inválido.')
+      return
+    }
+
+    if (!normal.match(patternDano)) {
+      toast.error('Dado Verdadeiro inválido.')
+      return
+    }
 
     try {
 

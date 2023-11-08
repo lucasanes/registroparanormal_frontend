@@ -1,4 +1,4 @@
-import { Container, Header, Body, TopBody, BottomBody, Button, LinkButton, ButtonIcon, LinkIcon, Deferes, DivDeferes, Grid, Card } from "./styles";
+import { Container, Header, Body, TopBody, BottomBody, Button, LinkButton, ButtonIcon, LinkIcon, Deferes, DivDeferes, Grid, Card, ButtonPrivate } from "./styles";
 import { IoOpenOutline } from "react-icons/io5";
 import { FaUserCircle } from "react-icons/fa";
 import { BiUnlink } from "react-icons/bi";
@@ -12,6 +12,8 @@ import { io } from 'socket.io-client';
 import resistenciasmap from "../../../../../components/mappers/resistencias";
 import periciasmap from "../../../../../components/mappers/pericias";
 import { ButtonDelete } from '../../../../../components/ButtonDelete'
+import { toast } from "react-toastify";
+import {BsEye, BsEyeSlash} from 'react-icons/bs'
 
 const socket = io(api.defaults.baseURL);
 
@@ -34,6 +36,10 @@ export function CardFichasPersonagem({ data }) {
     const [pvMax, setPvMax] = useState(data.Status[0].pvMax)
     const [psMax, setPsMax] = useState(data.Status[0].psMax)
     const [peMax, setPeMax] = useState(data.Status[0].peMax)
+
+    const {id} = useParams()
+
+    const [isPublic, setIsPublic] = useState(data.isPublic)
 
     useEffect(() => {
 
@@ -133,6 +139,17 @@ export function CardFichasPersonagem({ data }) {
 
     }
 
+    async function handleEdit() {
+        try {
+            await api.put(`/fichas/${data.id}`, {
+                isPublic: !isPublic,
+                sessaoId: id
+            })
+            setIsPublic(!isPublic)
+            toast.success(`Esta ficha agora está ${!isPublic ? 'pública' : 'privada'}.`)
+        } catch (e) {console.log(e)}
+    }
+
     return (
         <Container>
             <Header>
@@ -146,6 +163,7 @@ export function CardFichasPersonagem({ data }) {
                     <LinkIcon to={`/ficha/portrait/${data.id}`} color={'aqua'}>
                         <FaUserCircle size={20} color="#03d9ffff" />
                     </LinkIcon>
+                    <ButtonPrivate onClick={handleEdit} color={isPublic ? 'green' : '#ff3737'}>{isPublic ? <BsEye size={20} color="#13ff72" /> : <BsEyeSlash size={20} color="crimson" />}</ButtonPrivate>
                     <ButtonDelete onClick={handleDelete}/>
                 </div>
             </Header>

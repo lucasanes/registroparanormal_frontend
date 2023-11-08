@@ -126,6 +126,35 @@ export const Card = styled('div', {
 
 })
 
+export const ButtonPrivate = styled('button', {
+
+    background: 'none',
+    textDecoration: 'none',
+    padding: '.3rem',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    border: 'solid 1px transparent',
+    transition: '0.3s',
+    borderRadius: '.5rem',
+  
+    variants: {
+      color: {
+        green: {
+          '&:hover': {
+            border: 'solid 1px #13ff72',
+          },
+        },
+        crimson: {
+          '&:hover': {
+            border: 'solid 1px #ff3737',
+          },
+        },
+      }
+    }
+  
+  })
+
 export const Button = styled("button", {
     background: "none",
     padding: "0.3rem 1rem 0.1rem 1rem",

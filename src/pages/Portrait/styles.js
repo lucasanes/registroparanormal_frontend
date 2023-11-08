@@ -23,6 +23,7 @@ export const Container = styled('div', {
 
 export const Main = styled('main', {
   position: 'relative',
+  marginTop: '3rem',
 
   h1: {
     fontSize: '15rem',

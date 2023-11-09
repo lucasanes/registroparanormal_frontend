@@ -125,7 +125,7 @@ export function Portrait() {
         return status
       })
     }
-    socket.on(`status.combate`, executeUpdateCombate);
+    socket.on(`status.combate?${id}`, executeUpdateCombate);
 
     function executeUpdateInsano({ newInsano }) {
       setStatus(rest => {
@@ -134,7 +134,7 @@ export function Portrait() {
         return status
       })
     }
-    socket.on(`status.insano`, executeUpdateInsano);
+    socket.on(`status.insano?${id}`, executeUpdateInsano);
 
     function executeUpdateMassivo({ newMassivo }) {
       setStatus(rest => {
@@ -143,7 +143,7 @@ export function Portrait() {
         return status
       })
     }
-    socket.on(`status.massivo`, executeUpdateMassivo);
+    socket.on(`status.massivo?${id}`, executeUpdateMassivo);
 
     function executeUpdateInconsciente({ newInconsciente }) {
       setStatus(rest => {
@@ -152,7 +152,7 @@ export function Portrait() {
         return status
       })
     }
-    socket.on(`status.inconsciente`, executeUpdateInconsciente);
+    socket.on(`status.inconsciente?${id}`, executeUpdateInconsciente);
 
     function executeUpdatePvAtual({ newPvAtual }) {
       setStatus(rest => {
@@ -161,7 +161,7 @@ export function Portrait() {
         return status
       })
     }
-    socket.on(`status.pvA`, executeUpdatePvAtual);
+    socket.on(`status.pvA?${id}`, executeUpdatePvAtual);
 
     function executeUpdatePvMax({ newPvMax }) {
       setStatus(rest => {
@@ -170,7 +170,7 @@ export function Portrait() {
         return status
       })
     }
-    socket.on(`status.pvMax`, executeUpdatePvMax);
+    socket.on(`status.pvMax?${id}`, executeUpdatePvMax);
 
     function executeUpdateSanAtual({ newSanAtual }) {
       setStatus(rest => {
@@ -179,7 +179,7 @@ export function Portrait() {
         return status
       })
     }
-    socket.on(`status.sanA`, executeUpdateSanAtual);
+    socket.on(`status.sanA?${id}`, executeUpdateSanAtual);
 
     function executeUpdateSanMax({ newSanMax }) {
       setStatus(rest => {
@@ -188,7 +188,7 @@ export function Portrait() {
         return status
       })
     }
-    socket.on(`status.sanMax`, executeUpdateSanMax);
+    socket.on(`status.sanMax?${id}`, executeUpdateSanMax);
 
     function executeUpdatePeAtual({ newPeAtual }) {
       setStatus(rest => {
@@ -197,7 +197,7 @@ export function Portrait() {
         return status
       })
     }
-    socket.on(`status.peA`, executeUpdatePeAtual);
+    socket.on(`status.peA?${id}`, executeUpdatePeAtual);
 
     function executeUpdateMunicao({ municao }) {
       setStatus(rest => {
@@ -211,7 +211,7 @@ export function Portrait() {
         setMunicaoActive(false)
       }, 5000)
     }
-    socket.on(`status.municao`, executeUpdateMunicao);
+    socket.on(`status.municao?${id}`, executeUpdateMunicao);
 
     function executeDado({ valorTotal, isDano, isCritico }) {
       if (valorTotal != undefined) {
@@ -221,7 +221,7 @@ export function Portrait() {
 
       }
     }
-    socket.on(`dado.rolado`, executeDado)
+    socket.on(`dado.rolado?${id}`, executeDado)
 
     function executeUpdatePortrait({ newPortrait }) {
       const portraitAtual = document.getElementById('imagem')
@@ -233,7 +233,7 @@ export function Portrait() {
         }
       }
     }
-    socket.on(`status.portrait`, executeUpdatePortrait);
+    socket.on(`status.portrait?${id}`, executeUpdatePortrait);
 
   }, [])
 

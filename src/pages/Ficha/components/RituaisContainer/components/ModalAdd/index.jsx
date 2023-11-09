@@ -126,7 +126,7 @@ export function ModalAdd({ setModalClose, atualizar }) {
 
           <Main2>
             <Input label={'Imagem'} valor={imagem} setValor={setImagem} />
-            <TextArea maxLength={300} label={'Descrição'} valor={descricao} setValor={setDescricao} />
+            <TextArea maxLength={900} label={'Descrição'} valor={descricao} setValor={setDescricao} />
           </Main2>
 
         </Body>

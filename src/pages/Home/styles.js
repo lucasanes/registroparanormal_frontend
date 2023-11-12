@@ -10,6 +10,10 @@ export const Container = styled("div", {
   backgroundSize: '2000px',
   overflowX: "hidden",
   overflowY: 'auto',
+
+  '@lg': {
+    justifyContent: 'center'
+  },
 });
 
 export const Main = styled("main", {
@@ -21,12 +25,21 @@ export const Main = styled("main", {
 
   h1: {
     fontSize: "14rem",
-    marginLeft: '3.5rem',
     fontFamily: 'Gagalin',
+    marginLeft: '1rem',
     fontWeight: 100,
     color: "#ffffff80",
     letterSpacing: "1rem",
-    textShadow: ".5rem .5rem 2rem #352eff8d, .5rem .5rem 2rem #352eff8d"
+    textShadow: ".5rem .5rem 2rem #352eff8d, .5rem .5rem 2rem #352eff8d",
+
+    '@md': {
+      fontSize: '9rem'
+    },
+
+    '@sm': {
+      fontSize: '7rem',
+      letterSpacing: "0.3rem",
+    }
   },
 
   h2: {
@@ -35,7 +48,16 @@ export const Main = styled("main", {
     letterSpacing: "0.5rem",
     marginBottom: "20rem",
     fontSize: "8rem",
-    color: "#ffffff"
+    color: "#ffffff",
+
+    '@md': {
+      fontSize: '5rem'
+    },
+
+    '@sm': {
+      fontSize: '4rem',
+      letterSpacing: "0.2rem",
+    }
   },
 });
 
@@ -51,6 +73,10 @@ export const Entrar = styled("button", {
   fontFamily: 'Cormorant Garamond',
   fontWeight: 700,
   transition: '.2s',
+
+  '@md': {
+    fontSize: '3rem'
+  },
 
   '&:hover': {
     backgroundColor: '#201c95ff'
@@ -73,6 +99,10 @@ export const Criar = styled('button', {
   fontWeight: 700,
   background: "none",
   fontSize: "2.6rem",
+
+  '@md': {
+    fontSize: '2.5rem'
+  },
 
   '&:hover': {
     textDecoration: 'underline'

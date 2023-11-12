@@ -163,7 +163,7 @@ export function CardFichasPersonagem({ data }) {
                     <LinkIcon to={`/ficha/portrait/${data.id}`} color={'aqua'}>
                         <FaUserCircle size={20} color="#03d9ffff" />
                     </LinkIcon>
-                    <ButtonPrivate onClick={handleEdit} color={isPublic ? 'green' : '#ff3737'}>{isPublic ? <BsEye size={20} color="#13ff72" /> : <BsEyeSlash size={20} color="crimson" />}</ButtonPrivate>
+                    <ButtonPrivate onClick={handleEdit} color={isPublic ? 'green' : 'crimson'}>{isPublic ? <BsEye size={20} color="#13ff72" /> : <BsEyeSlash size={20} color="crimson" />}</ButtonPrivate>
                     <ButtonDelete onClick={handleDelete}/>
                 </div>
             </Header>

@@ -39,12 +39,16 @@ export default function Dashboard() {
         setSessoes(response.data.sessao)
         const fichasPP = []
 
-        response.data.sessao.forEach(sessao => {
-          response.data.ficha.forEach(ficha => {
-            if (sessao.id != ficha.sessaoId) {
-              fichasPP.push(ficha)
-            }
-          })
+        response.data.ficha.forEach(ficha => {
+          if (ficha.sessaoId) {
+            response.data.sessao.forEach(sessao => {
+              if (sessao.id != ficha.sessaoId) {
+                fichasPP.push(ficha)
+              }
+            })
+          } else {
+            fichasPP.push(ficha)
+          }
         })
         setFichas(fichasPP)
         setConvites(response.data.convites)

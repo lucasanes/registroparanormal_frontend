@@ -14,8 +14,8 @@ export function ModalAddDado({ setModalClose, atualizar }) {
 
   const { id } = useParams()
 
-  const patternTeste = /^(((100|\d{1,2}|\/[ABCDEFGILMNOPRSTUV]{3,4}\/)?((d)(20))))([+]((100|\d{1,2}|\/[ABCDEFGILMNOPRSTUV]{3,4}\/)?))*$/g;
-  const patternDano = /^(((100|\d{1,2}|\/[ABCDEFGILMNOPRSTUV]{3,4}\/)?((d)(100|[1-9]\d?|\/[ABCDEFGILMNOPRSTUV]{3,4}\/))?)|(\d{0,3}|1000))([+]((100|\d{1,2}|\/[ABCDEFGILMNOPRSTUV]{3,4}\/)?((d)(100|[1-9]\d?|\/[ABCDEFGILMNOPRSTUV]{3,4}\/))?)|([+]\d{0,3}|1000)?)*$/g;
+  const patternTeste = /^(((100|\d{1,2})?((d)(20))))([+]((100|\d{1,2})?))*$/g;
+  const patternDano = /^(((100|\d{1,2})?((d)(100|[1-9]\d?))?)|(\d{0,3}|1000))([+]((100|\d{1,2})?((d)(100|[1-9]\d?))?)|([+]\d{0,3}|1000)?)*$/g;
 
   async function handleCreate(e) {
 

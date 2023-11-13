@@ -12,9 +12,9 @@ export const Container = styled("div", {
 });
 
 export const HeaderContainer = styled("div", {
-  padding: "1rem 0",
+  padding: "1rem 1.5rem",
   display: "flex",
-  justifyContent: "center",
+  justifyContent: "space-between",
   alignItems: "center",
   position: "relative",
 
@@ -25,14 +25,6 @@ export const HeaderContainer = styled("div", {
     fontFamily: 'Special Elite',
     letterSpacing: '.1rem',
     paddingTop: '.3rem'
-  },
-
-  '.edit': {
-    position: "absolute",
-    right: "1.5rem",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
   },
 });
 
@@ -55,3 +47,22 @@ export const Body = styled('div', {
   }
 
 })
+
+export const Button = styled('button', {
+
+  width: '26px',
+  height: '26px',
+  background: 'none',
+  border: '1px solid transparent',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  borderRadius: '5px',
+  transition: '.3s',
+
+  '&:hover': {
+    border: '1px solid #07eed7'
+  }
+
+
+});

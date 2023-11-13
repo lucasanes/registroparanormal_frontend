@@ -50,11 +50,14 @@ export function ModalDadoRolado({ setModalClose, data }) {
 
         let splitD
 
-        let soma = 0
+        let soma = []
 
         if (valor.includes('+')) {
           const splitMais = valor.split('+')
-          soma = splitMais[1]
+
+          for (let i = 1; i < splitMais.length; i++) {
+            soma.push(splitMais[i])
+          }
 
           splitD = splitMais[0].split('d')
         } else {
@@ -111,8 +114,8 @@ export function ModalDadoRolado({ setModalClose, data }) {
 
         }
 
-        if (soma > 0) {
-          contaTotal.push(soma)
+        if (soma.length > 0) {
+          contaTotal.push(`(${soma.join('+')})`)
         }
 
         socket.emit('dado.rolado', {

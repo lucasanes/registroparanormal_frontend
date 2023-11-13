@@ -11,8 +11,8 @@ export function ModalEditDado({ setModalClose, data, atualizar, dados }) {
   const [valor, setValor] = useState(data.valor)
   const [isDano, setIsDano] = useState(data.isDano)
 
-  const patternTeste = /^(((100|\d{1,2}|\/[ABCDEFGILMNOPRSTUV]{3,4}\/)?((d)(20))))([+]((100|\d{1,2}|\/[ABCDEFGILMNOPRSTUV]{3,4}\/)?))*$/g;
-  const patternDano = /^(((100|\d{1,2}|\/[ABCDEFGILMNOPRSTUV]{3,4}\/)?((d)(100|[1-9]\d?|\/[ABCDEFGILMNOPRSTUV]{3,4}\/))?)|(\d{0,3}|1000))([+]((100|\d{1,2}|\/[ABCDEFGILMNOPRSTUV]{3,4}\/)?((d)(100|[1-9]\d?|\/[ABCDEFGILMNOPRSTUV]{3,4}\/))?)|([+]\d{0,3}|1000)?)*$/g;
+  const patternTeste = /^(((100|\d{1,2})?((d)(20))))([+]((100|\d{1,2})?))*$/g;
+  const patternDano = /^(((100|\d{1,2})?((d)(100|[1-9]\d?))?)|(\d{0,3}|1000))([+]((100|\d{1,2})?((d)(100|[1-9]\d?))?)|([+]\d{0,3}|1000)?)*$/g;
 
   async function handleEdit(e) {
 

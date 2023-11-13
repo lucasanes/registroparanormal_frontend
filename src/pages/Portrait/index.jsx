@@ -63,7 +63,7 @@ export function Portrait() {
           return
         }
 
-        document.title = `Registro Paranormal - Portrait ${response.data.Principal[0].nome}`
+        document.title = `RP - Portrait ${response.data.Principal[0].nome}`
 
         const status = response.data.Status[0]
 

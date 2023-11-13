@@ -41,7 +41,7 @@ export function CriarFicha() {
   useEffect(() => {
 
     setTitle('Criar Ficha')
-    document.title = `Registro Paranormal - Criando Ficha`
+    document.title = `RP - Criando Ficha`
 
   }, [])
 

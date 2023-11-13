@@ -25,22 +25,14 @@ export function NPCPrincipal({ data, lista, atualizar }) {
     isValor: false
   })
 
-  let status
+  const [pv, setPv] = useState(data.Status[0].pv || data.status.pv)
+  const [pvMax, setPvMax] = useState(data.Status[0]?.pvMax || data.status.pvMax)
 
-  if (data.Status) {
-    status = data.Status[0]
-  } else {
-    status = data.status
-  }
+  const [ps, setPs] = useState(data.Status[0]?.ps || data.status.ps)
+  const [psMax, setPsMax] = useState(data.Status[0]?.psMax || data.status.psMax)
 
-  const [pv, setPv] = useState(status.pv)
-  const [pvMax, setPvMax] = useState(status.pvMax)
-
-  const [ps, setPs] = useState(status.ps)
-  const [psMax, setPsMax] = useState(status.psMax)
-
-  const [pe, setPe] = useState(status.pe)
-  const [peMax, setPeMax] = useState(status.peMax)
+  const [pe, setPe] = useState(data.Status[0]?.pe || data.status.pe)
+  const [peMax, setPeMax] = useState(data.Status[0]?.peMax || data.status.peMax)
 
   const [defesas, setDefesas] = useState([])
   const [res, setRes] = useState([])

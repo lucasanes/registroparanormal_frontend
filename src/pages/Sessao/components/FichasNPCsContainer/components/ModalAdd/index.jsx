@@ -294,7 +294,18 @@ export function ModalAdd({ setModalClose, setFichasNPC, setFichasNPCMonstro, set
 
         }
 
-        setFichasNPCPrincipal((prev) => [...prev, response.data])
+        const data = response.data
+
+        setFichasNPCPrincipal((prev) => [...prev, {
+          ...data.ficha,
+          Atributos: [data.atributos],
+          Defesas: [data.defesas],
+          Pericias: [data.pericias],
+          Principal: [data.principal],
+          Status: [data.status],
+          Armas: [],
+          Itens: []
+        }])
 
       }
 

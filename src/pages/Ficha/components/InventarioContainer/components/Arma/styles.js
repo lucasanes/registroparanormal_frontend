@@ -200,16 +200,13 @@ export const Button = styled('button', {
   overflow: 'hidden',
   textOverflow: 'ellipsis',
   transition: '.2s',
+  borderRadius: '5px',
 
   strong: {
     fontFamily: 'Cinzel Decorative',
     position: 'relative',
     bottom: '.1rem',
     fontSize: '1.8rem',
-  },
-
-  '@md5': {
-    width: '100%'
   },
 
   variants: {

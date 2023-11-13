@@ -37,7 +37,16 @@ export default function Dashboard() {
         const response = await api.get(`/usuarios/dashboard/${user.id}`)
 
         setSessoes(response.data.sessao)
-        setFichas(response.data.ficha)
+        const fichasPP = []
+
+        response.data.sessao.forEach(sessao => {
+          response.data.ficha.forEach(ficha => {
+            if (sessao.id != ficha.sessaoId) {
+              fichasPP.push(ficha)
+            }
+          })
+        })
+        setFichas(fichasPP)
         setConvites(response.data.convites)
 
       } catch (error) { console.log(error) }

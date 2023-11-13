@@ -22,7 +22,7 @@ export function ModalAdd({ setModalClose, setFichasNPC, setFichasNPCMonstro, set
   const [nex, setNex] = useState(0)
   const [classe, setClasse] = useState('Mundano')
   const [trilha, setTrilha] = useState(null)
-  const [patente, setPatente] = useState(null)
+  const [patente, setPatente] = useState('Nenhuma')
 
   const [pv, setPv] = useState(1)
   const [ps, setPs] = useState(1)

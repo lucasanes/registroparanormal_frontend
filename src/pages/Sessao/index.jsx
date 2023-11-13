@@ -54,7 +54,7 @@ export function Sessao() {
                     navigate('/')
                     return
                 }
-
+                
                 response.data.Fichas.sort((a, b) => a.Principal[0].nome.localeCompare(b.Principal[0].nome))
 
                 response.data.Fichas.forEach(ficha => {

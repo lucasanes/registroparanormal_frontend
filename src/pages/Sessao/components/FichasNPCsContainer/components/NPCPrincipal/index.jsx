@@ -25,14 +25,14 @@ export function NPCPrincipal({ data, lista, atualizar }) {
     isValor: false
   })
 
-  const [pv, setPv] = useState(data.Status[0].pv)
-  const [pvMax, setPvMax] = useState(data.Status[0].pvMax)
+  const [pv, setPv] = useState(data.Status[0].pv || data.status.pv)
+  const [pvMax, setPvMax] = useState(data.Status[0].pvMax || data.status.pvMax)
 
-  const [ps, setPs] = useState(data.Status[0].ps)
-  const [psMax, setPsMax] = useState(data.Status[0].psMax)
+  const [ps, setPs] = useState(data.Status[0].ps || data.status.ps)
+  const [psMax, setPsMax] = useState(data.Status[0].psMax || data.status.psMax)
 
-  const [pe, setPe] = useState(data.Status[0].pe)
-  const [peMax, setPeMax] = useState(data.Status[0].peMax)
+  const [pe, setPe] = useState(data.Status[0].pe || data.status.pe)
+  const [peMax, setPeMax] = useState(data.Status[0].peMax || data.status.peMax)
 
   const [defesas, setDefesas] = useState([])
   const [res, setRes] = useState([])
@@ -44,17 +44,15 @@ export function NPCPrincipal({ data, lista, atualizar }) {
 
   async function handleDelete() {
 
-    if (window.confirm('Tem certeza que deseja excluir este NPC? Uma vez deletado jamais poderá ser recuperado!'))
+    try {
 
-      try {
+      const listaAtt = lista.filter(npc => npc.id != data.id)
 
-        const listaAtt = lista.filter(npc => npc.id != data.id)
+      atualizar(listaAtt)
 
-        atualizar(listaAtt)
+      await api.delete(`/fichas/${data.id}`)
 
-        await api.delete(`/fichas/${data.id}`)
-
-      } catch (e) { }
+    } catch (e) { }
 
   }
 
@@ -70,8 +68,6 @@ export function NPCPrincipal({ data, lista, atualizar }) {
         psMax: Number(psMax),
         peMax: Number(peMax)
       })
-
-      console.log(response)
 
     } catch (e) { console.log(e) }
 
@@ -102,15 +98,9 @@ export function NPCPrincipal({ data, lista, atualizar }) {
 
   useEffect(() => {
 
-    if (pv == data.Status[0].pv && ps == data.Status[0].ps && pe == data.Status[0].pe && pvMax == data.Status[0].pvMax && psMax == data.Status[0].psMax && peMax == data.Status[0].peMax) {
+    if (pvMax != 1 && psMax != 1 && peMax != 1) {
 
-    } else {
-
-      if (pvMax != 1 && psMax != 1 && peMax != 1) {
-
-        handleEdit()
-
-      }
+      handleEdit()
 
     }
 
@@ -207,10 +197,6 @@ export function NPCPrincipal({ data, lista, atualizar }) {
       <Modal isOpen={modalDadoRoladoIsOpen} setClose={() => setModalDadoRoladoIsOpen(false)}>
         <ModalDadoRolado setModalClose={() => setModalDadoRoladoIsOpen(false)} data={dadoData} />
       </Modal>
-
-      {/* <Modal isOpen={modalEditIsOpen} setClose={() => setModalEditIsOpen(false)}>
-        <ModalEditNPCPrincipal setModalEditNPCOpenIsFalse={() => setModalEditIsOpen(false)} data={data} />
-      </Modal> */}
 
       <Header>
 

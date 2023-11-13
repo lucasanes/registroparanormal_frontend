@@ -10,7 +10,7 @@ export function InputStop({label, valor, ...rest }) {
       </LabelContainer>
 
       <ContainerInput>
-        <InputB value={valor} onChange={(e) => {return e}} {...rest}/>
+        <InputB value={valor} disabled={true} onChange={(e) => {return e}} {...rest}/>
       </ContainerInput>
     </Container>
   )

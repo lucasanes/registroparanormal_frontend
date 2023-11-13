@@ -334,8 +334,8 @@ export function ModalAdd({ setModalClose, setFichasNPC, setFichasNPCMonstro, set
 
           <ButtonSelect type='button' active={body == 'principal'} onClick={() => setBody('principal')}>Principal</ButtonSelect>
           <ButtonSelect type='button' active={body == 'atributos'} onClick={() => setBody('atributos')}>Atributos</ButtonSelect>
-          <ButtonSelect type='button' active={body == 'pericias'} onClick={() => setBody('pericias')}>Perícias</ButtonSelect>
-          <ButtonSelect type='button' active={body == 'defesas'} onClick={() => setBody('defesas')}>Defesas</ButtonSelect>
+          {!principal && <ButtonSelect type='button' active={body == 'pericias'} onClick={() => setBody('pericias')}>Perícias</ButtonSelect>}
+          {!principal && <ButtonSelect type='button' active={body == 'defesas'} onClick={() => setBody('defesas')}>Defesas</ButtonSelect>}
           {!principal && <ButtonSelect type='button' active={body == 'outros'} onClick={() => setBody('outros')}>Outros</ButtonSelect>}
 
         </SelectDiv>
@@ -423,7 +423,7 @@ export function ModalAdd({ setModalClose, setFichasNPC, setFichasNPCMonstro, set
 
           </>}
 
-          {body == 'pericias' && <Grid2>
+          {(body == 'pericias' && principal != true) && <Grid2>
 
             <Input maxLength={2} type='number' maxValor={99} label={'Acrobacia'} valor={acrobacia} setValor={setAcrobacia} />
             <Input maxLength={2} type='number' maxValor={99} label={'Adestramento'} valor={adestramento} setValor={setAdestramento} />
@@ -456,7 +456,7 @@ export function ModalAdd({ setModalClose, setFichasNPC, setFichasNPCMonstro, set
 
           </Grid2>}
 
-          {body == 'defesas' && <>
+          {(body == 'defesas' && principal != true) && <>
 
 
             <h2>Defesas</h2>

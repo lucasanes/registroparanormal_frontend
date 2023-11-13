@@ -30,8 +30,60 @@ export const Header = styled('div', {
   div: {
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center',
-    gap: '.5rem'
+    justifyContent: 'flex-end',
+    gap: '.5rem',
+    width: '61px'
+  }
+
+})
+
+
+export const LinkButton = styled(Link, {
+  background: 'none',
+  transition: '.3s',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  borderRadius: '.5rem',
+  border: '1px solid transparent',
+  padding: '.2rem',
+
+  '&:hover': {
+    border: '1px solid #1f55c2ff',
+    padding: '.2rem',
+  },
+})
+
+export const ButtonHeader = styled('button', {
+
+  background: 'none',
+  textDecoration: 'none',
+  padding: '.3rem',
+  display: 'flex',
+  borderRadius: '5px',
+  alignItems: 'center',
+  justifyContent: 'center',
+  border: 'solid 1px transparent',
+  transition: '0.3s',
+
+  variants: {
+    color: {
+      green: {
+        '&:hover': {
+          border: 'solid 1px #13ff72',
+        },
+      },
+      crimson: {
+        '&:hover': {
+          border: 'solid 1px crimson',
+        },
+      },
+      red: {
+        '&:hover': {
+          border: 'solid 1px red',
+        },
+      }
+    }
   }
 
 })
@@ -92,6 +144,7 @@ export const Status = styled('div', {
   color: 'white',
   padding: '.5rem 1rem',
   fontWeight: 700,
+  borderRadius: '5px',
 
   label: {
     textTransform: 'capitalize',
@@ -198,8 +251,9 @@ export const Card = styled('div', {
   alignItems: 'flex-start',
   justifyContent: 'center',
   border: '1px solid white',
-  padding: '.5rem',
+  padding: '.3rem .7rem',
   flexDirection: 'column',
+  borderRadius: '5px',
 
   label: {
     color: '#ffffff90',
@@ -225,67 +279,17 @@ export const Button = styled('button', {
   border: '2px solid transparent',
   borderRadius: '5px',
   transition: '.3s',
-  color: 'white',
+  color: '#ffffff90',
 
   '&:hover': {
-    border: '2px solid purple'
+    border: '2px solid #ffffff90'
   },
 
   variants: {
     active: {
       true: {
-        border: '2px solid purple',
+        border: '2px solid #ffffff90',
         cursor: 'default'
-      }
-    }
-  }
-
-})
-
-export const LinkButton = styled(Link, {
-  background: 'none',
-  transition: '.3s',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  borderRadius: '.5rem',
-  border: '2px solid transparent',
-  padding: '.2rem',
-
-  '&:hover': {
-    border: '2px solid #1f55c2ff',
-    padding: '.2rem',
-  },
-})
-
-export const ButtonHeader = styled('button', {
-
-  background: 'none',
-  textDecoration: 'none',
-  padding: '.3rem',
-  display: 'flex',
-  borderRadius: '5px',
-  alignItems: 'center',
-  justifyContent: 'center',
-  border: 'solid 2px transparent',
-  transition: '0.3s',
-
-  variants: {
-    color: {
-      green: {
-        '&:hover': {
-          border: 'solid 2px #13ff72',
-        },
-      },
-      crimson: {
-        '&:hover': {
-          border: 'solid 2px crimson',
-        },
-      },
-      red: {
-        '&:hover': {
-          border: 'solid 2px red',
-        },
       }
     }
   }
@@ -295,10 +299,13 @@ export const ButtonHeader = styled('button', {
 export const TextArea = styled('textarea', {
 
   width: '100%',
-  border: '2px solid white',
+  border: '2px solid #ffffff90',
   background: 'none',
   minHeight: '7rem',
+  maxHeight: '30rem',
+  overflowY: 'auto',
   padding: '.5rem 1rem',
+  borderRadius: '5px',
   color: 'white',
   resize: 'vertical',
   fontFamily: 'El Messiri'

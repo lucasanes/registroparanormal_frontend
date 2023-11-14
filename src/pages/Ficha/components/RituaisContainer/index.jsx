@@ -50,9 +50,9 @@ export function RituaisContainer({ data }) {
 
   function comparar(a, b) {
     // Primeiro, compare pelo item "círculo"
-    if (a.círculo < b.círculo) {
+    if (a.circulo < b.circulo) {
       return -1;
-    } else if (a.círculo > b.círculo) {
+    } else if (a.circulo > b.circulo) {
       return 1;
     } else {
       // Se os círculos forem iguais, compare pelo elemento

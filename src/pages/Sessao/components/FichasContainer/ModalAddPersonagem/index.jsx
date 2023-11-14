@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { Input } from '../../../../../components/Input';
 import { api } from '../../../../../services/api';
 import { Container, Header, Body, Footer } from './styles';

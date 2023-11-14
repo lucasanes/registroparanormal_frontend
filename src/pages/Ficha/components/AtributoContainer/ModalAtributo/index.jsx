@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Input } from '../../../../../components/Input';
 import { api } from '../../../../../services/api';
 import { Container, Header, Footer, Body } from './styles';
-import { toast, ToastContainer } from 'react-toastify'
+import { toast } from 'react-toastify'
 import { AtributoInput } from '../../../../../components/AtributoInput';
 import { useFichas } from '../../../../../hooks/useFichas';
 

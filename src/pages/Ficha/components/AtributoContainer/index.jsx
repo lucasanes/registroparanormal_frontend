@@ -1,7 +1,7 @@
 import { BodyContainer, Container, HeaderContainer } from './styles';
 import { useState } from 'react';
 import { Modal } from '../../../../components/Modals/Modal';
-import { ToastContainer } from 'react-toastify';
+
 import { ButtonEdit } from '../../../../components/ButtonEdit';
 import { AtributoButton } from '../../../../components/AtributoButton';
 import { ModalAtributo } from './ModalAtributo';
@@ -30,9 +30,7 @@ export function AtributoContainer({ data }) {
         <AtributoButton agi={dataA && dataA.agi} forca={dataA && dataA.for} int={dataA && dataA.int} pre={dataA && dataA.pre} vig={dataA && dataA.vig} />
 
       </BodyContainer>
-
-      <ToastContainer />
-
+      
     </Container>
   );
 }

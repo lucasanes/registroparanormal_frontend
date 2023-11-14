@@ -1,7 +1,6 @@
 import { Body, Pericias, Container, HeaderContainer, Footer, Button, ButtonIcon } from './styles';
 import { useState, useEffect, useRef } from 'react';
 import { Modal } from '../../../../components/Modals/Modal';
-import { ToastContainer } from 'react-toastify';
 import { ButtonEdit } from '../../../../components/ButtonEdit';
 import { BsEye, BsEyeSlash } from 'react-icons/bs'
 import { Pericia } from './Pericia';

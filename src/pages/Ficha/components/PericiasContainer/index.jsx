@@ -47,6 +47,7 @@ export function PericiasContainer({ data, atributos }) {
         ocultismo: atributos.int,
         profissao: atributos.int,
         sobrevivencia: atributos.int,
+        sorte: atributos.pre,
         tatica: atributos.int,
         tecnologia: atributos.int,
         fortitude: atributos.vig,

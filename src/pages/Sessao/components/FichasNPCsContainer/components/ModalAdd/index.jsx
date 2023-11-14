@@ -59,6 +59,7 @@ export function ModalAdd({ setModalClose, setFichasNPC, setFichasNPCMonstro, set
   const [reflexo, setReflexo] = useState(0)
   const [religiao, setReligiao] = useState(0)
   const [sobrevivencia, setSobrevivencia] = useState(0)
+  const [sorte, setSorte] = useState(0)
   const [tatica, setTatica] = useState(0)
   const [tecnologia, setTecnologia] = useState(0)
   const [vontade, setVontade] = useState(0)
@@ -149,6 +150,7 @@ export function ModalAdd({ setModalClose, setFichasNPC, setFichasNPCMonstro, set
           reflexo: Number(reflexo),
           religiao: Number(religiao),
           sobrevivencia: Number(sobrevivencia),
+          sorte: Number(sorte),
           tatica: Number(tatica),
           tecnologia: Number(tecnologia),
           vontade: Number(vontade),
@@ -221,6 +223,7 @@ export function ModalAdd({ setModalClose, setFichasNPC, setFichasNPCMonstro, set
           reflexo: Number(reflexo),
           religiao: Number(religiao),
           sobrevivencia: Number(sobrevivencia),
+          sorte: Number(sorte),
           tatica: Number(tatica),
           tecnologia: Number(tecnologia),
           vontade: Number(vontade),
@@ -450,6 +453,7 @@ export function ModalAdd({ setModalClose, setFichasNPC, setFichasNPCMonstro, set
             <Input maxLength={2} type='number' maxValor={99} label={'Reflexos'} valor={reflexo} setValor={setReflexo} />
             <Input maxLength={2} type='number' maxValor={99} label={'Religião'} valor={religiao} setValor={setReligiao} />
             <Input maxLength={2} type='number' maxValor={99} label={'Sobrevivência'} valor={sobrevivencia} setValor={setSobrevivencia} />
+            <Input maxLength={2} type='number' maxValor={99} label={'Sorte'} valor={sorte} setValor={setSorte} />
             <Input maxLength={2} type='number' maxValor={99} label={'Tática'} valor={tatica} setValor={setTatica} />
             <Input maxLength={2} type='number' maxValor={99} label={'Tecnologia'} valor={tecnologia} setValor={setTecnologia} />
             <Input maxLength={2} type='number' maxValor={99} label={'Vontade'} valor={vontade} setValor={setVontade} />

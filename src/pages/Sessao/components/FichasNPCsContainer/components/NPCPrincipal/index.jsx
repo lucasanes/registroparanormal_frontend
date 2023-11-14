@@ -167,6 +167,7 @@ export function NPCPrincipal({ data, lista, atualizar }) {
               ocultismo: data.Atributos[0].int,
               profissao: data.Atributos[0].int,
               sobrevivencia: data.Atributos[0].int,
+              sorte: data.Atributos[0].pre,
               tatica: data.Atributos[0].int,
               tecnologia: data.Atributos[0].int,
               fortitude: data.Atributos[0].vig,
@@ -188,7 +189,7 @@ export function NPCPrincipal({ data, lista, atualizar }) {
     setRes(varRes)
     setPericias(varPericias)
 
-  }, [data.Pericias[0].acrobacia, data.Pericias[0].adestramento, data.Pericias[0].arte, data.Pericias[0].atletismo, data.Pericias[0].atualidade, data.Pericias[0].ciencia, data.Pericias[0].crime, data.Pericias[0].diplomacia, data.Pericias[0].enganacao, data.Pericias[0].fortitude, data.Pericias[0].furtividade, data.Pericias[0].iniciativa, data.Pericias[0].intimidacao, data.Pericias[0].intuicao, data.Pericias[0].investigacao, data.Pericias[0].luta, data.Pericias[0].medicina, data.Pericias[0].ocultismo, data.Pericias[0].percepcao, data.Pericias[0].pilotagem, data.Pericias[0].pontaria, data.Pericias[0].profissao, data.Pericias[0].reflexo, data.Pericias[0].religiao, data.Pericias[0].sobrevivencia, data.Pericias[0].tatica, data.Pericias[0].tecnologia, data.Pericias[0].vontade,
+  }, [data.Pericias[0].acrobacia, data.Pericias[0].adestramento, data.Pericias[0].arte, data.Pericias[0].atletismo, data.Pericias[0].atualidade, data.Pericias[0].ciencia, data.Pericias[0].crime, data.Pericias[0].diplomacia, data.Pericias[0].enganacao, data.Pericias[0].fortitude, data.Pericias[0].furtividade, data.Pericias[0].iniciativa, data.Pericias[0].intimidacao, data.Pericias[0].intuicao, data.Pericias[0].investigacao, data.Pericias[0].luta, data.Pericias[0].medicina, data.Pericias[0].ocultismo, data.Pericias[0].percepcao, data.Pericias[0].pilotagem, data.Pericias[0].pontaria, data.Pericias[0].profissao, data.Pericias[0].reflexo, data.Pericias[0].religiao, data.Pericias[0].sobrevivencia, data.Pericias[0].sorte, data.Pericias[0].tatica, data.Pericias[0].tecnologia, data.Pericias[0].vontade,
   data.Defesas[0].passiva, data.Defesas[0].bloqueio, data.Defesas[0].esquiva, data.Defesas[0].fisica, data.Defesas[0].balistica, data.Defesas[0].corte, data.Defesas[0].impacto, data.Defesas[0].perfuracao, data.Defesas[0].eletricidade, data.Defesas[0].fogo, data.Defesas[0].frio, data.Defesas[0].quimica, data.Defesas[0].mental, data.Defesas[0].morte, data.Defesas[0].conhecimento, data.Defesas[0].sangue, data.Defesas[0].energia])
 
   return (

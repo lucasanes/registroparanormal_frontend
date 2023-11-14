@@ -24,6 +24,7 @@ export default new Map([
   ['reflexo', 'Reflexos'],
   ['religiao', 'Religião'],
   ['sobrevivencia', 'Sobrevivência'],
+  ['sorte', 'Sorte'],
   ['tatica', 'Tática'],
   ['tecnologia', 'Tecnologia'],
   ['vontade', 'Vontade'],

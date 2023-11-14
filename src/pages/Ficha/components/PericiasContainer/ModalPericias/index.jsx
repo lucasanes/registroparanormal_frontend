@@ -32,9 +32,10 @@ export function ModalPericias({ data, atualizar, setModalClose, atributos, peric
   const [reflexo, setReflexo] = useState(pericias[22].valor || '0')
   const [religiao, setReligiao] = useState(pericias[23].valor || '0')
   const [sobrevivencia, setSobrevivencia] = useState(pericias[24].valor || '0')
-  const [tatica, setTatica] = useState(pericias[25].valor || '0')
-  const [tecnologia, setTecnologia] = useState(pericias[26].valor || '0')
-  const [vontade, setVontade] = useState(pericias[27].valor || '0')
+  const [sorte, setSorte] = useState(pericias[25].valor || '0')
+  const [tatica, setTatica] = useState(pericias[26].valor || '0')
+  const [tecnologia, setTecnologia] = useState(pericias[27].valor || '0')
+  const [vontade, setVontade] = useState(pericias[28].valor || '0')
 
   const {setDc} = useFichas()
 
@@ -70,6 +71,7 @@ export function ModalPericias({ data, atualizar, setModalClose, atributos, peric
         ocultismo: Number(ocultismo),
         profissao: Number(profissao),
         sobrevivencia: Number(sobrevivencia),
+        sorte: Number(sorte),
         tatica: Number(tatica),
         tecnologia: Number(tecnologia),
         fortitude: Number(fortitude)
@@ -109,6 +111,7 @@ export function ModalPericias({ data, atualizar, setModalClose, atributos, peric
           ocultismo: atributos.int,
           profissao: atributos.int,
           sobrevivencia: atributos.int,
+          sorte: atributos.pre,
           tatica: atributos.int,
           tecnologia: atributos.int,
           fortitude: atributos.vig,
@@ -155,6 +158,7 @@ export function ModalPericias({ data, atualizar, setModalClose, atributos, peric
         "REFL": Number(reflexo),
         "RELI": Number(religiao),
         "SOBR": Number(sobrevivencia),
+        "SORT": Number(sorte),
         "TATI": Number(tatica),
         "TECN": Number(tecnologia),
         "VONT": Number(vontade),
@@ -205,6 +209,7 @@ export function ModalPericias({ data, atualizar, setModalClose, atributos, peric
           <Input maxLength={2} type='number' maxValor={99} label={'Reflexos'} valor={reflexo} setValor={setReflexo} />
           <Input maxLength={2} type='number' maxValor={99} label={'Religião'} valor={religiao} setValor={setReligiao} />
           <Input maxLength={2} type='number' maxValor={99} label={'Sobrevivência'} valor={sobrevivencia} setValor={setSobrevivencia} />
+          <Input maxLength={2} type='number' maxValor={99} label={'Sorte'} valor={sorte} setValor={setSorte} />
           <Input maxLength={2} type='number' maxValor={99} label={'Tática'} valor={tatica} setValor={setTatica} />
           <Input maxLength={2} type='number' maxValor={99} label={'Tecnologia'} valor={tecnologia} setValor={setTecnologia} />
           <Input maxLength={2} type='number' maxValor={99} label={'Vontade'} valor={vontade} setValor={setVontade} />

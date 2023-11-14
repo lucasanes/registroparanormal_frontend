@@ -110,7 +110,7 @@ export function NPCMonstro({ data, lista, atualizar }) {
           || key == 'crime' || key == 'diplomacia' || key == 'enganacao' || key == 'fortitude' || key == 'furtividade' || key == 'iniciativa'
           || key == 'intimidacao' || key == 'intuicao' || key == 'investigacao' || key == 'luta' || key == 'medicina' || key == 'ocultismo'
           || key == 'percepcao' || key == 'pilotagem' || key == 'pontaria' || key == 'profissao' || key == 'reflexo' || key == 'religiao'
-          || key == 'sobrevivencia' || key == 'tatica' || key == 'tecnologia' || key == 'vontade') {
+          || key == 'sobrevivencia' || key == 'sorte' || key == 'tatica' || key == 'tecnologia' || key == 'vontade') {
           if (value != null && value != 0) {
 
             let atributoChave = ''
@@ -140,6 +140,7 @@ export function NPCMonstro({ data, lista, atualizar }) {
               ocultismo: data.int,
               profissao: data.int,
               sobrevivencia: data.int,
+              sorte: data.pre,
               tatica: data.int,
               tecnologia: data.int,
               fortitude: data.vig,
@@ -159,7 +160,7 @@ export function NPCMonstro({ data, lista, atualizar }) {
     setRes(varRes)
     setPericias(varPericias)
 
-  }, [data.acrobacia, data.adestramento, data.arte, data.atletismo, data.atualidade, data.ciencia, data.crime, data.diplomacia, data.enganacao, data.fortitude, data.furtividade, data.iniciativa, data.intimidacao, data.intuicao, data.investigacao, data.luta, data.medicina, data.ocultismo, data.percepcao, data.pilotagem, data.pontaria, data.profissao, data.reflexo, data.religiao, data.sobrevivencia, data.tatica, data.tecnologia, data.vontade, data.passiva, data.bloqueio, data.esquiva, data.fisica, data.balistica, data.corte, data.impacto, data.perfuracao, data.eletricidade, data.fogo, data.frio, data.quimica, data.mental, data.morte, data.conhecimento, data.sangue, data.energia])
+  }, [data.acrobacia, data.adestramento, data.arte, data.atletismo, data.atualidade, data.ciencia, data.crime, data.diplomacia, data.enganacao, data.fortitude, data.furtividade, data.iniciativa, data.intimidacao, data.intuicao, data.investigacao, data.luta, data.medicina, data.ocultismo, data.percepcao, data.pilotagem, data.pontaria, data.profissao, data.reflexo, data.religiao, data.sobrevivencia, data.sorte, data.tatica, data.tecnologia, data.vontade, data.passiva, data.bloqueio, data.esquiva, data.fisica, data.balistica, data.corte, data.impacto, data.perfuracao, data.eletricidade, data.fogo, data.frio, data.quimica, data.mental, data.morte, data.conhecimento, data.sangue, data.energia])
 
   return (
     <Container>

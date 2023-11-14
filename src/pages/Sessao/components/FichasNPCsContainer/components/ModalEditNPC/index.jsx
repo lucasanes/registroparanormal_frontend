@@ -58,6 +58,7 @@ export function ModalEditNPC({ setModalClose, data }) {
   const [reflexo, setReflexo] = useState(data.reflexo)
   const [religiao, setReligiao] = useState(data.religiao)
   const [sobrevivencia, setSobrevivencia] = useState(data.sobrevivencia)
+  const [sorte, setSorte] = useState(data.sorte)
   const [tatica, setTatica] = useState(data.tatica)
   const [tecnologia, setTecnologia] = useState(data.tecnologia)
   const [vontade, setVontade] = useState(data.vontade)
@@ -143,6 +144,7 @@ export function ModalEditNPC({ setModalClose, data }) {
         reflexo: Number(reflexo),
         religiao: Number(religiao),
         sobrevivencia: Number(sobrevivencia),
+        sorte: Number(sorte),
         tatica: Number(tatica),
         tecnologia: Number(tecnologia),
         vontade: Number(vontade),
@@ -215,6 +217,7 @@ export function ModalEditNPC({ setModalClose, data }) {
       data.reflexo = reflexo
       data.religiao = religiao
       data.sobrevivencia = sobrevivencia
+      data.sorte = sorte
       data.tatica = tatica
       data.tecnologia = tecnologia
       data.vontade = vontade
@@ -363,6 +366,7 @@ export function ModalEditNPC({ setModalClose, data }) {
             <Input maxLength={2} type={'number'} maxValor={99} label={'Reflexos'} valor={reflexo} setValor={setReflexo} />
             <Input maxLength={2} type={'number'} maxValor={99} label={'Religião'} valor={religiao} setValor={setReligiao} />
             <Input maxLength={2} type={'number'} maxValor={99} label={'Sobrevivência'} valor={sobrevivencia} setValor={setSobrevivencia} />
+            <Input maxLength={2} type={'number'} maxValor={99} label={'Sorte'} valor={sorte} setValor={setSorte} />
             <Input maxLength={2} type={'number'} maxValor={99} label={'Tática'} valor={tatica} setValor={setTatica} />
             <Input maxLength={2} type={'number'} maxValor={99} label={'Tecnologia'} valor={tecnologia} setValor={setTecnologia} />
             <Input maxLength={2} type={'number'} maxValor={99} label={'Vontade'} valor={vontade} setValor={setVontade} />

@@ -102,6 +102,7 @@ export function Ficha() {
           "REFL": response.data.Pericias[0].reflexo,
           "RELI": response.data.Pericias[0].religiao,
           "SOBR": response.data.Pericias[0].sobrevivencia,
+          "SORT": response.data.Pericias[0].sorte,
           "TATI": response.data.Pericias[0].tatica,
           "TECN": response.data.Pericias[0].tecnologia,
           "VONT": response.data.Pericias[0].vontade,

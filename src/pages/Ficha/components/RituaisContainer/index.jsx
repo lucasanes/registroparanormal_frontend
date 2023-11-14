@@ -48,6 +48,24 @@ export function RituaisContainer({ data }) {
 
   }
 
+  function comparar(a, b) {
+    // Primeiro, compare pelo item "círculo"
+    if (a.círculo < b.círculo) {
+      return -1;
+    } else if (a.círculo > b.círculo) {
+      return 1;
+    } else {
+      // Se os círculos forem iguais, compare pelo elemento
+      if (a.elemento < b.elemento) {
+        return -1;
+      } else if (a.elemento > b.elemento) {
+        return 1;
+      } else {
+        return 0;
+      }
+    }
+  }
+
   return (
     <Container>
 
@@ -64,7 +82,7 @@ export function RituaisContainer({ data }) {
 
       <Select nulo={rituais.length == 0}>
 
-        {rituais.map((ritual) => 
+        {rituais.sort(comparar).map((ritual) => 
           <Button key={ritual.id} onClick={() => slide(ritual)} elemento={ritual.elemento} active={ritualEscolhido != null && aberto == true && ritualEscolhido.id == ritual.id && ritual.elemento} >{ritual.nome} - {ritual.circulo}º</Button>)
         }
       </Select>

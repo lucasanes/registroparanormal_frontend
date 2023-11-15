@@ -5,11 +5,16 @@ import { useState } from 'react';
 import { useFichas } from '../../../../hooks/useFichas';
 import { Modal } from '../../../../components/Modals/Modal';
 import { ModalAddPersonagem } from './ModalAddPersonagem';
+import { useParams } from 'react-router-dom';
+import { useAuth } from '../../../../hooks/useAuth';
 
 export function FichaContainer() {
 
   const { fichas } = useFichas()
+  const {user} = useAuth()
   const [modalAddPersoagemIsOpen, setModalAddPersoagemIsOpen] = useState(false)
+
+  console.log(fichas)
 
   return (
     <Container>
@@ -29,7 +34,9 @@ export function FichaContainer() {
 
       <BodyContainer quantidade={fichas.length}>
 
-        {fichas.map(ficha => <CardFichasPersonagem key={ficha.id} data={ficha} />)}
+        {fichas.map(ficha => 
+          ficha.userId != user.id && <CardFichasPersonagem key={ficha.id} data={ficha} />
+        )}
 
       </BodyContainer>
 

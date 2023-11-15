@@ -8,7 +8,6 @@ function FichasProvider({ children }) {
   const [fichas, setFichas] = useState([])
   const [dc, setDc] = useState([])
   const [sessaoIdFicha, setSessaoIdFicha] = useState('')
-  const [fichasNPCSPrincipal, setFichasNPCSPrincipal] = useState([])
 
   return (
     <FichasContext.Provider
@@ -19,8 +18,6 @@ function FichasProvider({ children }) {
         setDc,
         sessaoIdFicha,
         setSessaoIdFicha,
-        fichasNPCSPrincipal, 
-        setFichasNPCSPrincipal
       }}
     >
       {children}

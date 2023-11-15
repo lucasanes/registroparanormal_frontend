@@ -19,8 +19,6 @@ export function Sessao() {
     const { setTitle } = useTitle()
     const { setFichas } = useFichas()
     const navigate = useNavigate()
-
-    const { setFichasNPCSPrincipal } = useFichas()
     const [sessao, setSessao] = useState({})
     const [isLoading, setIsLoading] = useState(true)
 
@@ -58,11 +56,7 @@ export function Sessao() {
                 response.data.Fichas.sort((a, b) => a.Principal[0].nome.localeCompare(b.Principal[0].nome))
 
                 response.data.Fichas.forEach(ficha => {
-                    if (ficha.userId != user.id) {
-                        setFichas((prev) => [...prev, ficha])
-                    } else {
-                        setFichasNPCSPrincipal((prev) => [...prev, ficha])
-                    }
+                    setFichas((prev) => [...prev, ficha])
                 })
 
                 setSessao(response.data)

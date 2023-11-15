@@ -10,18 +10,20 @@ import { NPC } from './components/NPC';
 import { NPCMonstro } from './components/NPCMonstro';
 import { NPCPrincipal } from './components/NPCPrincipal';
 import { useFichas } from '../../../../hooks/useFichas';
+import { useAuth } from '../../../../hooks/useAuth';
 
 export function FichasNPCsContainer({ npcs, npcsmonstros }) {
 
   const [modalAddIsOpen, setModalAddIsOpen] = useState(false)
 
-  const { fichasNPCSPrincipal } = useFichas()
+  const { fichas } = useFichas()
+  const {user} = useAuth()
   
   const [fichasNPC, setFichasNPC] = useState(npcs)
   const [fichasNPCMonstro, setFichasNPCMonstro] = useState(npcsmonstros)
-  const [fichasNPCPrincipal, setFichasNPCPrincipal] = useState(fichasNPCSPrincipal)
+  const [fichasNPCPrincipal, setFichasNPCPrincipal] = useState(fichas)
   
-  const [body, setBody] = useState(npcs.length > 0 ? 'npcs' : npcsmonstros.length > 0 ? 'monstros' : fichasNPCSPrincipal.length > 0 ? 'npcsprincipais' : 'npcs')
+  const [body, setBody] = useState(npcs.length > 0 ? 'npcs' : npcsmonstros.length > 0 ? 'monstros' : fichas.length > 0 ? 'npcsprincipais' : 'npcs')
 
   return (
     <Container>
@@ -54,7 +56,7 @@ export function FichasNPCsContainer({ npcs, npcsmonstros }) {
         : body == 'monstros' ? 
           fichasNPCMonstro.map(ficha => <NPCMonstro key={ficha.id} data={ficha} lista={fichasNPCMonstro} atualizar={setFichasNPCMonstro} />)
         : body == 'npcsprincipais' && 
-          fichasNPCPrincipal.map(ficha => <NPCPrincipal key={ficha.id} data={ficha} lista={fichasNPCPrincipal} atualizar={setFichasNPCPrincipal} />)
+          fichasNPCPrincipal.map(ficha => ficha.userId == user.id && <NPCPrincipal key={ficha.id} data={ficha} lista={fichasNPCPrincipal} atualizar={setFichasNPCPrincipal} />)
         }
 
       </BodyContainer>

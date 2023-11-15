@@ -56,7 +56,10 @@ export function Ficha() {
         if ((user != null && response.data.sessaoId != null && response.data.sessao.userId == user.id) || (user != null && response.data.userId == user.id)) {
           setDisabled(false)
           if (response.data.sessaoId != null) {
-            setFichas(response.data.sessao.Fichas.filter(ficha => ficha.id != response.data.id && ficha.userId != response.data.sessao.userId))
+            response.data.sessao.Fichas.forEach(ficha => {
+              ficha.sessaoUserId = response.data.sessao.userId
+            })
+            setFichas(response.data.sessao.Fichas)
           }
         } else if (response.data.isPublic) {
           setDisabled(true)
@@ -158,7 +161,7 @@ export function Ficha() {
 
         </DoubleParteContainer>
 
-        <InventarioContainer armasData={ficha?.Armas} itensData={ficha?.Itens} peso={ficha?.Status[0].peso} />
+        <InventarioContainer armasData={ficha?.Armas} itensData={ficha?.Itens} peso={ficha?.Status[0].peso} userId={ficha?.userId} />
         <RituaisContainer data={ficha?.Rituais} />
 
       </Body>}

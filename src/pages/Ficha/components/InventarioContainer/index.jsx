@@ -14,11 +14,12 @@ import { ButtonAdd } from '../../../../components/ButtonAdd';
 import { io } from 'socket.io-client';
 import { toast } from 'react-toastify';
 import { useDisabled } from '../../../../hooks/useDisabled';
+import { useAuth } from '../../../../hooks/useAuth';
 import { ModalPeso } from './components/ModalPeso';
 
 const socket = io(api.defaults.baseURL);
 
-export function InventarioContainer({ armasData, itensData, peso }) {
+export function InventarioContainer({ armasData, itensData, peso, userId }) {
 
   const [itens, setItens] = useState(itensData)
 
@@ -256,7 +257,11 @@ export function InventarioContainer({ armasData, itensData, peso }) {
               <select disabled={disabled} onChange={(e) => setFichaAEnviar(e.target.value)}>
                 <Option value={null}>Nenhuma</Option>
                 <Option value={sessaoIdFicha}>Mestre</Option>
-                {fichas.map(ficha => <Option key={ficha.id} value={ficha.id}>{ficha.Principal[0].nome}</Option>)}
+                {fichas[0].sessaoUserId == userId ?
+                  fichas.map(ficha => <Option key={ficha.id} value={ficha.id}>{ficha.Principal[0].nome}</Option>)
+                :
+                  fichas.map(ficha => ficha.userId != ficha.sessaoUserId && <Option key={ficha.id} value={ficha.id}>{ficha.Principal[0].nome}</Option>)
+                }
               </select>
             </Column>
 

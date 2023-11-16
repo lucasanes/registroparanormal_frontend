@@ -46,9 +46,11 @@ export default function Dashboard() {
                 fichasPP.push(ficha)
               }
             })
-          } else {
-            fichasPP.push(ficha)
+            return
           }
+
+          fichasPP.push(ficha)
+
         })
         setFichas(fichasPP)
         setConvites(response.data.convites)

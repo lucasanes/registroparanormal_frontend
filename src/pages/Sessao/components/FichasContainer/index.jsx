@@ -14,8 +14,6 @@ export function FichaContainer() {
   const {user} = useAuth()
   const [modalAddPersoagemIsOpen, setModalAddPersoagemIsOpen] = useState(false)
 
-  console.log(fichas)
-
   return (
     <Container>
 

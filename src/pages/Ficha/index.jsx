@@ -59,7 +59,11 @@ export function Ficha() {
             response.data.sessao.Fichas.forEach(ficha => {
               ficha.sessaoUserId = response.data.sessao.userId
             })
-            setFichas(response.data.sessao.Fichas.filter(each => each.id != id))
+
+            const organizando = response.data.sessao.Fichas.sort((a, b) => a.Principal[0].nome.localeCompare(b.Principal[0].nome))
+            const filtrando = organizando.filter(each => each.id != id)
+
+            setFichas(filtrando)
           }
         } else if (response.data.isPublic) {
           setDisabled(true)

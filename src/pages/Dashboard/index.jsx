@@ -39,6 +39,20 @@ export default function Dashboard() {
         setSessoes(response.data.sessao)
         const fichasPP = []
 
+        if (response.data.sessao.length > 0) {
+          response.data.ficha.forEach(ficha => {
+            response.data.sessao.forEach(sessao => {
+              if (sessao.id != ficha.sessaoId) {
+                fichasPP.push(ficha)
+              }
+            })
+          })
+        } else {
+          response.data.ficha.forEach(ficha => {
+            fichasPP.push(ficha)
+          })
+        }
+
         response.data.ficha.forEach(ficha => {
           if (response.data.sessao.length > 0) {
             response.data.sessao.forEach(sessao => {

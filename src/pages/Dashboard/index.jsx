@@ -52,18 +52,7 @@ export default function Dashboard() {
             fichasPP.push(ficha)
           })
         }
-
-        response.data.ficha.forEach(ficha => {
-          if (response.data.sessao.length > 0) {
-            response.data.sessao.forEach(sessao => {
-              if (sessao.id != ficha.sessaoId) {
-                fichasPP.push(ficha)
-              }
-            })
-          } else {
-            fichasPP.push(ficha)
-          }
-        })
+        
         setFichas(fichasPP)
         setConvites(response.data.convites)
 

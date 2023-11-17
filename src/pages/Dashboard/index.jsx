@@ -40,8 +40,8 @@ export default function Dashboard() {
         const fichasPP = []
 
         if (response.data.sessao.length > 0) {
-          response.data.ficha.forEach(ficha => {
-            response.data.sessao.forEach(sessao => {
+          response.data.sessao.forEach(sessao => {
+            response.data.ficha.forEach(ficha => {
               if (sessao.id != ficha.sessaoId) {
                 fichasPP.push(ficha)
               }

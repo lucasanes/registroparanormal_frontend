@@ -59,7 +59,7 @@ export function Ficha() {
             response.data.sessao.Fichas.forEach(ficha => {
               ficha.sessaoUserId = response.data.sessao.userId
             })
-            setFichas(response.data.sessao.Fichas)
+            setFichas(response.data.sessao.Fichas.filter(each => each.id != id))
           }
         } else if (response.data.isPublic) {
           setDisabled(true)

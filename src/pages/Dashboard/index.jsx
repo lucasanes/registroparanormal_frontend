@@ -37,22 +37,21 @@ export default function Dashboard() {
         const response = await api.get(`/usuarios/dashboard/${user.id}`)
 
         setSessoes(response.data.sessao)
-        // const fichasPP = []
+        const fichasPP = []
 
-        // response.data.ficha.forEach(ficha => {
-        //   if (ficha.sessaoId) {
-        //     response.data.sessao.forEach(sessao => {
-        //       if (sessao.id != ficha.sessaoId) {
-        //         fichasPP.push(ficha)
-        //       }
-        //     })
-        //     return
-        //   }
-
-        //   fichasPP.push(ficha)
-
-        // })
-        setFichas(response.data.ficha)
+        response.data.ficha.forEach(ficha => {
+          if (ficha.sessaoId != null) {
+            response.data.sessao.forEach(sessao => {
+              console.log(sessao.id, ficha.sessaoId)
+              if (sessao.id != ficha.sessaoId) {
+                fichasPP.push(ficha)
+              }
+            })
+          } else {
+            fichasPP.push(ficha)
+          }
+        })
+        setFichas(fichasPP)
         setConvites(response.data.convites)
 
       } catch (error) { console.log(error) }

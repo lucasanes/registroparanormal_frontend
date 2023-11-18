@@ -33,8 +33,6 @@ export function Portrait() {
     municao: 0,
   })
 
-  const [dadoActive, setDadoActive] = useState(false)
-  const [municaoActive, setMunicaoActive] = useState(false)
   const [animation, setAnimation] = useState(false)
 
   const [dadoRolado, setDadoRolado] = useState(0)
@@ -205,11 +203,6 @@ export function Portrait() {
         status.municao = municao
         return status
       })
-      setMunicaoActive(true)
-
-      setTimeout(() => {
-        setMunicaoActive(false)
-      }, 5000)
     }
     socket.on(`status.municao?${id}`, executeUpdateMunicao);
 
@@ -260,7 +253,7 @@ export function Portrait() {
           <h3>{!semPerm && status.sanA}</h3>
         </Status4>
 
-        <Municao active={municaoActive}> 
+        <Municao active={status.municao > 0 && status.combate}> 
           <img src={municaoImg}/>
           <h5>x {status.municao}</h5>
         </Municao>
@@ -270,7 +263,7 @@ export function Portrait() {
         <img src={FundoPortrait} />
       </Main>
 
-      <Dado key={dadoRolado} style={{opacity: dadoRolado < 1 ? '0' : '1'}} id='dado' isCritico={dado.isCritico} isDano={dado.isDano}>
+      <Dado key={dadoRolado} style={{display: dadoRolado < 1 ? 'none' : 'flex'}} id='dado' isCritico={dado.isCritico} isDano={dado.isDano}>
         <span>{dado.valorTotal}</span>
         <FaDiceD20 color='#60eeff' size={200} />
       </Dado>

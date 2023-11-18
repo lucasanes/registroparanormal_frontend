@@ -97,6 +97,7 @@ export const Municao = styled('div', {
   left: '58rem',
   transform: 'rotate(-10deg)',
   zIndex: 10,
+  opacity: 0,
 
   img: {
     width: '150px',
@@ -117,11 +118,10 @@ export const Municao = styled('div', {
   variants: {
     active: {
       true: {
-        animation: `${opacityUp} .7s`,
+        animation: `${opacityUp} .7s forwards .3s`,
       },
       false: {
-        animation: `${opacityDown} 1s`,
-        opacity: 0
+        animation: `${opacityDown} .7s forwards`,
       }
     }
   }

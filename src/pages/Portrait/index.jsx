@@ -270,7 +270,7 @@ export function Portrait() {
         <img src={FundoPortrait} />
       </Main>
 
-      <Dado key={dadoRolado} id='dado' isCritico={dado.isCritico} isDano={dado.isDano}>
+      <Dado key={dadoRolado} style={{opacity: dadoRolado < 1 ? '0' : '1'}} id='dado' isCritico={dado.isCritico} isDano={dado.isDano}>
         <span>{dado.valorTotal}</span>
         <FaDiceD20 color='#60eeff' size={200} />
       </Dado>

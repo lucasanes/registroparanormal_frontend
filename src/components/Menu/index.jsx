@@ -65,7 +65,7 @@ export function Menu() {
               <ButtonLink onClick={abrirMenu} color={'purple'} to={"/"}> <BsFillDice6Fill size={25} /> Painel </ButtonLink>
             </Li>
             <Li>
-              <ButtonLink onClick={abrirMenu} color={'yellow'} to={'/conta'}> <RiUserLine size={30} /> Conta </ButtonLink>
+              <ButtonLink onClick={abrirMenu} color={'yellow'} to={'/'}> <RiUserLine size={30} /> Conta </ButtonLink>
             </Li>
             <Li>
               <Button onClick={() => { signOut(); abrirMenu() }}> <RiUserUnfollowLine size={30} /> Sair </Button>

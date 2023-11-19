@@ -18,8 +18,6 @@ export function PersonagemContainer({ data }) {
   const [personalidade, setPersonalidade] = useState(data.personalidade)
 
   const [piorPesadelo, setPiorPesadelo] = useState(data.piorpesadelo)
-  const [anotacoesPersonagem, setAnotacoesPersonagem] = useState(data.anotacoesPersonagem)
-  const [anotacoesPlayer, setAnotacoesPlayer] = useState(data.anotacoesPlayer)
 
   const { id } = useParams()
 
@@ -36,8 +34,8 @@ export function PersonagemContainer({ data }) {
         favoritos,
         personalidade,
         piorPesadelo,
-        anotacoesPersonagem,
-        anotacoesPlayer,
+        anotacoesPersonagem: data.anotacoesPersonagem,
+        anotacoesPlayer: data.anotacoesPlayer,
 
       })
 
@@ -52,7 +50,6 @@ export function PersonagemContainer({ data }) {
 
         <Button active={body == 'principal'} onClick={() => setBody('principal')}>Principal</Button>
         <Button active={body == 'detalhes'} onClick={() => setBody('detalhes')}>Detalhes</Button>
-        <Button active={body == 'outros'} onClick={() => setBody('outros')}>Outros</Button>
 
       </Select>
 
@@ -66,16 +63,17 @@ export function PersonagemContainer({ data }) {
           <span>História</span>
           <TextAreaPersonagem valor={historia} setValor={setHistoria} onBlurCapture={() => handleEdit()} />
 
+          <span>Personalidade</span>
+          <TextAreaPersonagem valor={personalidade} setValor={setPersonalidade} onBlurCapture={() => handleEdit()} />
+
           <span>Aparência</span>
           <TextAreaPersonagem valor={aparencia} setValor={setAparencia} onBlurCapture={() => handleEdit()} />
 
-          <span>Primeiro Encontro Paranormal</span>
-          <TextAreaPersonagem valor={pep} setValor={setPep} onBlurCapture={() => handleEdit()} />
+          
 
         </>}
 
         {body == 'detalhes' && <>
-
 
           <span>Doenças, Fobias e Manias</span>
           <TextAreaPersonagem valor={dfm} setValor={setDfm} onBlurCapture={() => handleEdit()} />
@@ -83,22 +81,11 @@ export function PersonagemContainer({ data }) {
           <span>Favoritos</span>
           <TextAreaPersonagem valor={favoritos} setValor={setFavoritos} onBlurCapture={() => handleEdit()} />
 
-          <span>Personalidade</span>
-          <TextAreaPersonagem valor={personalidade} setValor={setPersonalidade} onBlurCapture={() => handleEdit()} />
-
-        </>}
-
-        {body == 'outros' && <>
-
+          <span>Primeiro Encontro Paranormal</span>
+          <TextAreaPersonagem valor={pep} setValor={setPep} onBlurCapture={() => handleEdit()} />
 
           <span>Pior Pesadelo</span>
           <TextAreaPersonagem valor={piorPesadelo} setValor={setPiorPesadelo} onBlurCapture={() => handleEdit()} />
-
-          <span>Anotações Personagem</span>
-          <TextAreaPersonagem valor={anotacoesPersonagem} setValor={setAnotacoesPersonagem} onBlurCapture={() => handleEdit()} />
-
-          <span>Anotações Player</span>
-          <TextAreaPersonagem valor={anotacoesPlayer} setValor={setAnotacoesPlayer} onBlurCapture={() => handleEdit()} />
 
         </>}
 

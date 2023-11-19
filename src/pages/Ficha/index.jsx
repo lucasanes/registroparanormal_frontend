@@ -19,6 +19,7 @@ import { PersonagemContainer } from './components/PersonagemContainer';
 import { InventarioContainer } from './components/InventarioContainer';
 import { RituaisContainer } from './components/RituaisContainer';
 import { toast } from 'react-toastify';
+import { AnotacoesContainer } from './components/AnotacoesContainer';
 
 const socket = io(api.defaults.baseURL);
 
@@ -167,6 +168,7 @@ export function Ficha() {
 
         <InventarioContainer armasData={ficha?.Armas} itensData={ficha?.Itens} peso={ficha?.Status[0].peso} userId={ficha?.userId} />
         <RituaisContainer data={ficha?.Rituais} />
+        <AnotacoesContainer data={ficha?.Personagem[0]}/>
 
       </Body>}
 

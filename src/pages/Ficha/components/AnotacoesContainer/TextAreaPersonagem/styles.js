@@ -7,15 +7,14 @@ export const Container = styled('div', {
     alignItems: 'center',
     justifyContent: 'center',
     position: 'relative',
-    marginTop: '4rem',
 
 })
 
 export const InputB = styled('textarea', {
 
     width: '100%',
-    minHeight: '10rem',
-    maxHeight: '50rem',
+    minHeight: '20rem',
+    maxHeight: '80rem',
     resize: 'vertical',
     marginTop: "0px",
     fontSize: "1.8rem",

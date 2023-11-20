@@ -40,6 +40,8 @@ export function InventarioContainer({ armasData, itensData, peso, userId }) {
   const { fichas, sessaoIdFicha } = useFichas()
   const { disabled } = useDisabled()
 
+  console.log(fichas[0])
+
   useEffect(() => {
 
     setPesoAtual(0)
@@ -257,7 +259,7 @@ export function InventarioContainer({ armasData, itensData, peso, userId }) {
               <select disabled={disabled} onChange={(e) => setFichaAEnviar(e.target.value)}>
                 <Option value={null}>Nenhuma</Option>
                 <Option value={sessaoIdFicha}>Mestre</Option>
-                {fichas[0].sessaoUserId == userId ?
+                {fichas[0]?.sessaoUserId == userId ?
                   fichas.map(ficha => <Option key={ficha.id} value={ficha.id}>{ficha.Principal[0].nome}</Option>)
                 :
                   fichas.map(ficha => ficha.userId != ficha.sessaoUserId && <Option key={ficha.id} value={ficha.id}>{ficha.Principal[0].nome}</Option>)

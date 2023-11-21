@@ -123,7 +123,6 @@ export function Portrait() {
         status.combate = newCombate
         return status
       })
-      toast('aa')
     }
     socket.on(`status.combate?${id}`, executeUpdateCombate);
 
@@ -133,7 +132,6 @@ export function Portrait() {
         status.insano = newInsano
         return status
       })
-      toast('aa')
     }
     socket.on(`status.insano?${id}`, executeUpdateInsano);
 
@@ -143,7 +141,6 @@ export function Portrait() {
         status.massivo = newMassivo
         return status
       })
-      toast('aa')
     }
     socket.on(`status.massivo?${id}`, executeUpdateMassivo);
 
@@ -153,7 +150,6 @@ export function Portrait() {
         status.inconsciente = newInconsciente
         return status
       })
-      toast('aa')
     }
     socket.on(`status.inconsciente?${id}`, executeUpdateInconsciente);
 
@@ -163,7 +159,6 @@ export function Portrait() {
         status.pvA = newPvAtual
         return status
       })
-      toast('aa')
     }
     socket.on(`status.pvA?${id}`, executeUpdatePvAtual);
 
@@ -173,7 +168,6 @@ export function Portrait() {
         status.pvMax = newPvMax
         return status
       })
-      toast('aa')
     }
     socket.on(`status.pvMax?${id}`, executeUpdatePvMax);
 
@@ -183,7 +177,6 @@ export function Portrait() {
         status.sanA = newSanAtual
         return status
       })
-      toast('aa')
     }
     socket.on(`status.sanA?${id}`, executeUpdateSanAtual);
 
@@ -193,7 +186,6 @@ export function Portrait() {
         status.sanMax = newSanMax
         return status
       })
-      toast('aa')
     }
     socket.on(`status.sanMax?${id}`, executeUpdateSanMax);
 
@@ -203,7 +195,6 @@ export function Portrait() {
         status.peA = newPeAtual
         return status
       })
-      toast('aa')
     }
     socket.on(`status.peA?${id}`, executeUpdatePeAtual);
 
@@ -213,7 +204,6 @@ export function Portrait() {
         status.municao = municao
         return status
       })
-      toast('aa')
     }
     socket.on(`status.municao?${id}`, executeUpdateMunicao);
 
@@ -224,7 +214,6 @@ export function Portrait() {
         setDado({valorTotal, isDano, isCritico})
 
       }
-      toast('aa')
     }
     socket.on(`dado.rolado?${id}`, executeDado)
 
@@ -237,7 +226,6 @@ export function Portrait() {
           setTimeout(() => { setPortraitImg(newPortrait) }, 500)
         }
       }
-      toast('aa')
     }
     socket.on(`status.portrait?${id}`, executeUpdatePortrait);
 

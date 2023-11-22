@@ -62,7 +62,7 @@ export function Sessao() {
                 setSessao(response.data)
 
                 setTitle(response.data.nome)
-                document.title = `RP - ${response.data.nome}`
+                document.title = `${response.data.nome} - Registro Paranormal`
 
             } catch (erro) {
                 console.log(erro);

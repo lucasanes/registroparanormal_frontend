@@ -59,7 +59,7 @@ export default function Dashboard() {
       } catch (error) { console.log(error) }
       finally {
         setTitle('Painel')
-        document.title = `Registro Paranormal - Painel`
+        document.title = `Painel - Registro Paranormal`
       }
     }
     fetchData();

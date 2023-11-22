@@ -77,7 +77,7 @@ export function Ficha() {
         setFicha(response.data)
         setSessaoIdFicha(response.data.sessaoId)
         setTitle(response.data.Principal[0].nome)
-        document.title = `RP - ${response.data.Principal[0].nome}`
+        document.title = `${response.data.Principal[0].nome} - Registro Paranormal`
 
         setDc({
           "FOR": response.data.Atributos[0].for,

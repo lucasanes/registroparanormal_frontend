@@ -43,7 +43,7 @@ export function ModalEdit({ setModalClose, data }) {
       })
 
       setTitle(nome)
-      document.title = `RP - ${nome}`
+      document.title = `${nome} - Registro Paranormal`
 
       data.nome = nome
       data.idade = Number(idade)

@@ -7,7 +7,7 @@ export const Container = styled("div", {
   display: "flex",
   backgroundImage: `url(${BackgroundImage})`,
   backgroundRepeat: "no-repeat",
-  backgroundSize: '2000px',
+  backgroundSize: '2500px',
   overflowX: "hidden",
   overflowY: 'auto',
 

@@ -52,7 +52,7 @@ export const Main = styled('main', {
     right: '4rem',
     lineHeight: '17rem',
     textTransform: 'capitalize',
-    textShadow: '#764cff 0 0 20px',
+    textShadow: '#764cff 0 0 5px, #764cff 0 0 10px, #764cff 0 0 15px, #764cff 0 0 20px, #764cff 0 0 25px',
     zIndex: 10
   },
 

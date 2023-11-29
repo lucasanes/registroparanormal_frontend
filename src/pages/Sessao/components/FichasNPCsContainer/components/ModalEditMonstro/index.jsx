@@ -334,9 +334,9 @@ export function ModalEditMonstro({ setModalClose, data }) {
 
           {body == 'outros' && <>
 
-            <TextArea maxLength={500} label={'Ataques'} valor={ataques} setValor={setAtaques} />
-            <TextArea maxLength={500} label={'Habilidades'} valor={habilidades} setValor={setHabilidades} />
-            <TextArea maxLength={500} label={'Detalhes'} valor={detalhes} setValor={setDetalhes} />
+            <TextArea label={'Ataques'} valor={ataques} setValor={setAtaques} />
+            <TextArea label={'Habilidades'} valor={habilidades} setValor={setHabilidades} />
+            <TextArea label={'Detalhes'} valor={detalhes} setValor={setDetalhes} />
 
           </>}
 

@@ -507,10 +507,10 @@ export function ModalAdd({ setModalClose, setFichasNPC, setFichasNPCMonstro, set
 
           {(body == 'outros' && principal != true) && <>
 
-            {!monstro && <TextArea maxLength={500} label={'Inventário'} valor={inventario} setValor={setInventario} />}
-            <TextArea maxLength={2000} label={'Ataques'} valor={ataques} setValor={setAtaques} />
-            <TextArea maxLength={2000} label={'Habilidades'} valor={habilidades} setValor={setHabilidades} />
-            <TextArea maxLength={2000} label={'Detalhes'} valor={detalhes} setValor={setDetalhes} />
+            {!monstro && <TextArea label={'Inventário'} valor={inventario} setValor={setInventario} />}
+            <TextArea label={'Ataques'} valor={ataques} setValor={setAtaques} />
+            <TextArea label={'Habilidades'} valor={habilidades} setValor={setHabilidades} />
+            <TextArea label={'Detalhes'} valor={detalhes} setValor={setDetalhes} />
 
           </>}
 

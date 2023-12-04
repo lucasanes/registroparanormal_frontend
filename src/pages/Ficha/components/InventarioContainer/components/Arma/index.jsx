@@ -16,6 +16,7 @@ import { Barrinha } from './Barrinha';
 import { io } from 'socket.io-client';
 import { useDisabled } from '../../../../../../hooks/useDisabled';
 import { useFichas } from '../../../../../../hooks/useFichas';
+import {ModalDadoRolado} from '../../../../../../components/ModalDadoRolado'
 
 const socket = io(api.defaults.baseURL);
 
@@ -32,6 +33,7 @@ export function Arma({ data, atualizar, armas, setPesoAtual }) {
   })
 
   const [modalEditArmaIsOpen, setModalEditArmaIsOpen] = useState(false)
+  const [modalDadoIsOpen, setModalDadoIsOpen] = useState(false)
 
   const { disabled } = useDisabled()
   const { fichas, sessaoIdFicha, dc } = useFichas()
@@ -112,6 +114,10 @@ export function Arma({ data, atualizar, armas, setPesoAtual }) {
         <ModalEditArma setPesoAtual={setPesoAtual} armas={armas} data={data} atualizar={atualizar} setModalClose={() => setModalEditArmaIsOpen(false)} />
       </Modal>
 
+      <Modal isOpen={modalDadoIsOpen} setClose={() => setModalDadoIsOpen(false)}>
+        <ModalDadoRolado setModalClose={( ) => setModalDadoIsOpen(false)} data={dadoData}/>
+      </Modal>
+
       <Modal isOpen={imgAberta} setClose={() => setImgAberta(false)}>
         <ParteImgModal>
           <ImgModal onClick={() => setImgAberta(false)} src={data.imagem} />
@@ -186,10 +192,6 @@ export function Arma({ data, atualizar, armas, setPesoAtual }) {
             }} color={'red'}><strong>Crítico:</strong> {data.margemCritico} / {dadoDinamico(data.danoCritico, dc)}</Button>
 
           </Dados>
-
-          <ContainerDadoRolado>
-            <DadoRolado data={dadoData} />
-          </ContainerDadoRolado>
 
         </Main>
 

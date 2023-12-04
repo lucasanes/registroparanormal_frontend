@@ -3,7 +3,6 @@ import { styled, keyframes } from '../../../../../../stitches.config';
 export const Container = styled('div', {
   border: '2px solid #ff3737',
   minWidth: '4rem',
-  minHeight: '60rem',
   borderRadius: '5px'
 })
 

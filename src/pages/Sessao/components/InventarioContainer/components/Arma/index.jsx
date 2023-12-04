@@ -16,6 +16,7 @@ import { Barrinha } from './Barrinha';
 import { io } from 'socket.io-client';
 import { useDisabled } from '../../../../../../hooks/useDisabled';
 import { useFichas } from '../../../../../../hooks/useFichas';
+import { ModalDadoRolado } from '../../../../../../components/ModalDadoRolado';
 
 const socket = io(api.defaults.baseURL);
 
@@ -32,6 +33,7 @@ export function Arma({ data, atualizar, armas, setPesoAtual }) {
   })
 
   const [modalEditArmaIsOpen, setModalEditArmaIsOpen] = useState(false)
+  const [modalDadoIsOpen, setModalDadoIsOpen] = useState(false)
 
   const { disabled } = useDisabled()
   const { fichas } = useFichas()
@@ -98,6 +100,10 @@ export function Arma({ data, atualizar, armas, setPesoAtual }) {
         <ModalEditArma setPesoAtual={setPesoAtual} armas={armas} data={data} atualizar={atualizar} setModalClose={() => setModalEditArmaIsOpen(false)} />
       </Modal>
 
+      <Modal isOpen={modalEditArmaIsOpen} setClose={() => setModalEditArmaIsOpen(false)}>
+        <ModalDadoRolado data={dadoData} setModalClose={() => setModalEditArmaIsOpen(false)}/>
+      </Modal>
+
       <Modal isOpen={imgAberta} setClose={() => setImgAberta(false)}>
         <ParteImgModal>
           <ImgModal onClick={() => setImgAberta(false)} src={data.imagem} />
@@ -154,6 +160,7 @@ export function Arma({ data, atualizar, armas, setPesoAtual }) {
                   isDano: false,
                   margemCritico: data.margemCritico
                 })
+                setModalDadoIsOpen(true)
               }} color={'purple'}><strong>Teste:</strong> {data.ataque}</Button>
               <Button disabled={disabled} onClick={() => {
                 setDadoData({
@@ -161,6 +168,7 @@ export function Arma({ data, atualizar, armas, setPesoAtual }) {
                   valor: data.dano,
                   isDano: true
                 })
+                setModalDadoIsOpen(true)
               }} color={'crimson'}><strong>Dano:</strong> {data.dano}</Button>
             </div>
             <Button disabled={disabled} onClick={() => {
@@ -169,13 +177,10 @@ export function Arma({ data, atualizar, armas, setPesoAtual }) {
                 valor: data.danoCritico,
                 isDano: true
               })
+              setModalDadoIsOpen(true)
             }} color={'red'}><strong>Crítico:</strong> {data.margemCritico} / {data.danoCritico}</Button>
 
           </Dados>
-
-          <ContainerDadoRolado>
-            <DadoRolado data={dadoData} />
-          </ContainerDadoRolado>
 
         </Main>
 

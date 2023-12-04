@@ -174,6 +174,7 @@ export function Arma({ data, atualizar, armas, setPesoAtual }) {
                   isDano: false,
                   margemCritico: data.margemCritico
                 })
+                setModalDadoIsOpen(true)
               }} color={'purple'}><strong>Teste:</strong> {dadoDinamico(data.ataque, dc)}</Button>
               <Button disabled={disabled} onClick={() => {
                 setDadoData({
@@ -181,6 +182,7 @@ export function Arma({ data, atualizar, armas, setPesoAtual }) {
                   valor: data.dano,
                   isDano: true
                 })
+                setModalDadoIsOpen(true)
               }} color={'crimson'}><strong>Dano:</strong> {dadoDinamico(data.dano, dc)}</Button>
             </div>
             <Button disabled={disabled} onClick={() => {
@@ -189,6 +191,7 @@ export function Arma({ data, atualizar, armas, setPesoAtual }) {
                 valor: data.danoCritico,
                 isDano: true
               })
+              setModalDadoIsOpen(true)
             }} color={'red'}><strong>Crítico:</strong> {data.margemCritico} / {dadoDinamico(data.danoCritico, dc)}</Button>
 
           </Dados>

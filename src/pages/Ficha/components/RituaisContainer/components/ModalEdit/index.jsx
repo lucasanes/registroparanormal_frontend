@@ -140,7 +140,7 @@ export function ModalEdit({ data, setModalClose, lista, setRitualAtivo }) {
 
           <Main2>
             <Input label={'Imagem'} valor={imagem} setValor={setImagem} />
-            <TextArea maxLength={900} label={'Descrição'} valor={descricao} setValor={setDescricao} />
+            <TextArea maxLength={2000} label={'Descrição'} valor={descricao} setValor={setDescricao} />
           </Main2>
 
         </Body>

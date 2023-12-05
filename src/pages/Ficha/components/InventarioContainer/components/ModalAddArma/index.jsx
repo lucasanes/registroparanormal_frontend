@@ -116,7 +116,7 @@ export function ModalAddArma({ setModalClose, atualizar, setPesoAtual }) {
           <hr />
 
           <Main3>
-            <TextArea maxLength={500} label={'Descrição'} valor={descricao} setValor={setDescricao} />
+            <TextArea maxLength={2000} label={'Descrição'} valor={descricao} setValor={setDescricao} />
           </Main3>
 
         </Body>

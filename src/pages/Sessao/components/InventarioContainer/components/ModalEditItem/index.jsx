@@ -87,7 +87,7 @@ export function ModalEditItem({ data, setModalClose, atualizar, itens }) {
           <Input required label={'Peso'} type={'number'} valor={espaco} setValor={setEspaco} maxValor={99} maxLength={2} />
           <Input required label={'Categoria'} type='number' valor={categoria} setValor={setCategoria} maxLength={1} maxValor={4} />
           <Input img label={'Imagem'} valor={imagem} setValor={setImagem} />
-          <TextArea maxLength={500} label={'Descrição'} setValor={setDescricao} valor={descricao} />
+          <TextArea maxLength={2000} label={'Descrição'} setValor={setDescricao} valor={descricao} />
           <Toggle span={'Adicionar como munição?'} classNumber={1} defaultChecked={data.isMunicao} onClick={() => setIsMunicao(!isMunicao)} />
 
         </Body>

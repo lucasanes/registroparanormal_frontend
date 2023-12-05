@@ -56,7 +56,7 @@ export function ModalEditSessao({ data, setModalClose, sessoes, setSessoes }) {
         <Body>
 
           <Input required autoComplete="name" name="nome" label={'Nome'} valor={nome} setValor={setNome} minLength={3} maxLength={25}/>
-          <TextArea label={'Descrição'} valor={descricao} setValor={setDesc} minLength={16} maxLength={500}/>
+          <TextArea label={'Descrição'} valor={descricao} setValor={setDesc} minLength={16} maxLength={2000}/>
 
         </Body>
 

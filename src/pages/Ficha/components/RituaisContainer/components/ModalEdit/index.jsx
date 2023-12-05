@@ -31,17 +31,17 @@ export function ModalEdit({ data, setModalClose, lista, setRitualAtivo }) {
 
     e.preventDefault()
 
-    if (!normal.match(patternDano)) {
+    if (normal != null && !normal.match(patternDano)) {
       toast.error('Dado Normal inválido.')
       return
     }
 
-    if (!normal.match(patternDano)) {
+    if (discente != null && !discente.match(patternDano)) {
       toast.error('Dado Discente inválido.')
       return
     }
 
-    if (!normal.match(patternDano)) {
+    if (verdadeiro != null && !verdadeiro.match(patternDano)) {
       toast.error('Dado Verdadeiro inválido.')
       return
     }

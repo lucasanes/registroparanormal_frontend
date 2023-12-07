@@ -72,7 +72,7 @@ export function StatusContainer({ status, defesasData, portraitData, infosBarrin
       psMax: sanMax,
       pe: peA,
       peMax,
-      
+
       pv2: pvA2,
       pvMax2,
       ps2: sanA2,
@@ -185,7 +185,7 @@ export function StatusContainer({ status, defesasData, portraitData, infosBarrin
       subtimer(combate, insano, massivo, inconsciente)
     }
 
-  }, [pvA, pvMax, sanA, sanMax, peA, peMax])
+  }, [pvA, pvMax, sanA, sanMax, peA, peMax, pvA2, pvMax2, sanA2, sanMax2, peA2, peMax2])
 
   function setarCombate(newCombate) {
     socket.emit("status.combate", { fichaId: id, newCombate });

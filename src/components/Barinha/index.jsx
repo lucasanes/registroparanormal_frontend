@@ -21,7 +21,7 @@ export function Barrinha({ infos, valorA, setValorA, setValorMax, valorMax, colo
   }, [valorA, valorMax])
 
   return (
-    <Container>
+    <Container {...rest}>
       <Botoes>
 
         <Esquerda>
@@ -32,7 +32,7 @@ export function Barrinha({ infos, valorA, setValorA, setValorMax, valorMax, colo
         <InputDiv>
           <InputBarrinha right setValor={setValorA} valor={valorA} valorMax={valorMax} />
           <span>/</span>
-          <InputBarrinha setValor={setValorMax} valor={valorMax} {...rest} onBlur={() => {
+          <InputBarrinha setValor={setValorMax} valor={valorMax} onBlur={() => {
             if (valorMax == 1) {
 
               let multiplicadorNex = Math.floor((infos.nex - 5) / 5)

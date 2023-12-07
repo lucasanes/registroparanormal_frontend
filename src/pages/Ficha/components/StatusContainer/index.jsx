@@ -7,11 +7,12 @@ import { Modal } from '../../../../components/Modals/Modal';
 import { api } from '../../../../services/api';
 import { ModalPortrait } from './components/ModalPortrait'
 import noportrait from '../../../../assets/img/noportrait.png'
-import { Container, Header, Body, BottomBody, TopBody, Buttons, AreaPortrait, Portrait, Button, ContainerDeferes, Deferes, Img } from './styles';
+import { Container, Header, Body, BottomBody, TopBody, Buttons, AreaPortrait, Portrait, Button, ContainerDeferes, Deferes, Img, ButtonIcon } from './styles';
 import { io } from 'socket.io-client';
 import { useDisabled } from '../../../../hooks/useDisabled';
 import { ModalStatus } from './components/ModalStatus';
 import resistencias from '../../../../components/mappers/resistencias';
+import { BsEye, BsEyeSlash } from 'react-icons/bs';
 
 const socket = io(api.defaults.baseURL);
 
@@ -43,6 +44,18 @@ export function StatusContainer({ status, defesasData, portraitData, infosBarrin
   const [sanMax, setSanMax] = useState(status.psMax)
   const [peA, setPeA] = useState(status.pe)
   const [peMax, setPeMax] = useState(status.peMax)
+
+  const [pvO, setPvO] = useState(false)
+  const [pvA2, setPvA2] = useState(status.pvMax)
+  const [pvMax2, setPvMax2] = useState(status.pvMax)
+
+  const [sanO, setSanO] = useState(false)
+  const [sanA2, setSanA2] = useState(status.psMax)
+  const [sanMax2, setSanMax2] = useState(status.psMax)
+
+  const [peO, setPeO] = useState(false)
+  const [peA2, setPeA2] = useState(status.peMax)
+  const [peMax2, setPeMax2] = useState(status.peMax)
 
   const [changinTimer, setChanginTimer] = useState(null)
 
@@ -279,15 +292,29 @@ export function StatusContainer({ status, defesasData, portraitData, infosBarrin
 
         <BottomBody>
 
-          <h1>Vida</h1>
+          <div className='div'>
+            <h1>Vida</h1>
+            <ButtonIcon onClick={() => setPvO(!pvO)}>{pvO ? <BsEyeSlash color='#9a0000' size={23} /> : <BsEye color='#9a0000' size={23} />}</ButtonIcon>
+          </div>
 
           <Barrinha number={1} setValorA={setarPvAtual} setValorMax={setarPvMax} valorA={pvA} valorMax={pvMax} infos={infosBarrinha} color={'red'} />
+          <Barrinha style={{display: pvO ? 'flex' : 'none', marginTop: '1rem'}} number={4} setValorA={setPvA2} setValorMax={setPvMax2} valorA={pvA2} valorMax={pvMax2} infos={infosBarrinha} color={'red'} />
+          
+          <div className='div'>
+            <h1>Sanidade</h1>
+            <ButtonIcon onClick={() => setSanO(!sanO)}>{sanO ? <BsEyeSlash color='#005795' size={23} /> : <BsEye color='#005795' size={23} />}</ButtonIcon>
+          </div>
 
-          <h1>Sanidade</h1>
           <Barrinha number={2} setValorA={setarSanAtual} setValorMax={setarSanMax} valorA={sanA} valorMax={sanMax} infos={infosBarrinha} color={'aqua'} />
+          <Barrinha style={{display: sanO ? 'flex' : 'none', marginTop: '1rem'}} number={5} setValorA={setSanA2} setValorMax={setSanMax2} valorA={sanA2} valorMax={sanMax2} infos={infosBarrinha} color={'aqua'} />
 
-          <h1>Esforço</h1>
+          <div className='div'>
+            <h1>Esforço</h1>
+            <ButtonIcon onClick={() => setPeO(!peO)}>{peO ? <BsEyeSlash color='#ffbf00b5' size={23} /> : <BsEye color='#ffbf00b5' size={23} />}</ButtonIcon>
+          </div>
+
           <Barrinha number={3} setValorA={setarPeAtual} setValorMax={setarPeMax} valorA={peA} valorMax={peMax} infos={infosBarrinha} color={'yellow'} />
+          <Barrinha style={{display: peO ? 'flex' : 'none', marginTop: '1rem'}} number={6} setValorA={setPeA2} setValorMax={setPeMax2} valorA={peA2} valorMax={peMax2} infos={infosBarrinha} color={'yellow'} />
 
           {dataDefesas.length > 0 &&
 

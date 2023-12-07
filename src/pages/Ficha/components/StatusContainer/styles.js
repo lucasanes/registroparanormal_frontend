@@ -228,6 +228,43 @@ export const BottomBody = styled('div', {
     marginRight: '1rem',
     fontFamily: 'Special Elite',
     marginBottom: '1.5rem'
+  },
+
+  '.div': {
+    display: 'flex',
+    alignItems: 'flex-end',
+    justifyContent: 'center',
+    gap: '1rem'
+  }
+
+})
+
+const rotate = keyframes({
+  '0%': {
+    transform: 'rotate(0deg)'
+  },
+  '50%': {
+    transform: 'rotate(20deg)'
+  },
+  '100%': {
+    transform: 'rotate(0deg)'
+  }
+})
+
+export const ButtonIcon = styled('button', {
+
+  width: 'fit-content',
+  background: 'none',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  padding: '.2rem',
+  borderRadius: '5px',
+  border: 'none',
+  marginBottom: '.4rem',
+
+  '&:hover': {
+    animation: `${rotate} .5s`
   }
 
 })

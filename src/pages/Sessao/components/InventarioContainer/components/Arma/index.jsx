@@ -100,8 +100,8 @@ export function Arma({ data, atualizar, armas, setPesoAtual }) {
         <ModalEditArma setPesoAtual={setPesoAtual} armas={armas} data={data} atualizar={atualizar} setModalClose={() => setModalEditArmaIsOpen(false)} />
       </Modal>
 
-      <Modal isOpen={modalEditArmaIsOpen} setClose={() => setModalEditArmaIsOpen(false)}>
-        <ModalDadoRolado data={dadoData} setModalClose={() => setModalEditArmaIsOpen(false)}/>
+      <Modal isOpen={modalDadoIsOpen} setClose={() => setModalDadoIsOpen(false)}>
+        <ModalDadoRolado data={dadoData} setModalClose={() => setModalDadoIsOpen(false)}/>
       </Modal>
 
       <Modal isOpen={imgAberta} setClose={() => setImgAberta(false)}>

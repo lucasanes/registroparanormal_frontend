@@ -208,7 +208,11 @@ export function StatusContainer({ status, defesasData, portraitData, infosBarrin
   }
 
   function setarPvAtual(newPvAtual) {
-    socket.emit("status.pvA", { fichaId: id, newPvAtual });
+    if (id != '7b31f19a-d7cd-4dea-9367-5c90bff6fa72') {
+      socket.emit("status.pvA", { fichaId: id, newPvAtual: newPvAtual + pvA2 });
+    } else {
+      socket.emit("status.pvA", { fichaId: id, newPvAtual: newPvAtual });
+    }
     setPvA(newPvAtual)
   }
 
@@ -218,7 +222,11 @@ export function StatusContainer({ status, defesasData, portraitData, infosBarrin
   }
 
   function setarSanAtual(newSanAtual) {
-    socket.emit("status.sanA", { fichaId: id, newSanAtual });
+    if (id != '7b31f19a-d7cd-4dea-9367-5c90bff6fa72') {
+      socket.emit("status.sanA", { fichaId: id, newSanAtual: newSanAtual + sanA2 });
+    } else {
+      socket.emit("status.sanA", { fichaId: id, newSanAtual: newSanAtual });
+    }
     setSanA(newSanAtual)
   }
 
@@ -228,13 +236,48 @@ export function StatusContainer({ status, defesasData, portraitData, infosBarrin
   }
 
   function setarPeAtual(newPeAtual) {
-    socket.emit("status.peA", { fichaId: id, newPeAtual });
+    if (id != '7b31f19a-d7cd-4dea-9367-5c90bff6fa72') {
+      socket.emit("status.peA", { fichaId: id, newPeAtual: newPeAtual + peA2 });
+    } else {
+      socket.emit("status.peA", { fichaId: id, newPeAtual: newPeAtual });
+    }
     setPeA(newPeAtual)
   }
 
   function setarPeMax(newPeMax) {
     socket.emit("status.peMax", { fichaId: id, newPeMax });
     setPeMax(newPeMax)
+  }
+
+
+
+
+
+  function setarPvAtual2(newPvAtual) {
+    if (id != '7b31f19a-d7cd-4dea-9367-5c90bff6fa72') {
+      socket.emit("status.pvA", { fichaId: id, newPvAtual: newPvAtual + pvA });
+    } else {
+      socket.emit("status.pvA", { fichaId: id, newPvAtual: pvA });
+    }
+    setPvA2(newPvAtual)
+  }
+
+  function setarSanAtual2(newSanAtual) {
+    if (id != '7b31f19a-d7cd-4dea-9367-5c90bff6fa72') {
+      socket.emit("status.sanA", { fichaId: id, newSanAtual: newSanAtual + sanA });
+    } else {
+      socket.emit("status.sanA", { fichaId: id, newSanAtual: sanA });
+    }
+    setSanA2(newSanAtual)
+  }
+
+  function setarPeAtual2(newPeAtual) {
+    if (id != '7b31f19a-d7cd-4dea-9367-5c90bff6fa72') {
+      socket.emit("status.peA", { fichaId: id, newPeAtual: newPeAtual + peA });
+    } else {
+      socket.emit("status.peA", { fichaId: id, newPeAtual: peA });
+    }
+    setPeA2(newPeAtual)
   }
 
   function setarPortrait(newPortrait) {
@@ -305,7 +348,7 @@ export function StatusContainer({ status, defesasData, portraitData, infosBarrin
           </div>
 
           <Barrinha number={1} setValorA={setarPvAtual} setValorMax={setarPvMax} valorA={pvA} valorMax={pvMax} infos={infosBarrinha} color={'red'} />
-          <Barrinha style={{display: pvO ? 'flex' : 'none', marginTop: '1rem'}} number={4} setValorA={setPvA2} setValorMax={setPvMax2} valorA={pvA2} valorMax={pvMax2} infos={infosBarrinha} color={'red'} />
+          <Barrinha style={{display: pvO ? 'flex' : 'none', marginTop: '1rem'}} number={4} setValorA={setarPvAtual2} setValorMax={setPvMax2} valorA={pvA2} valorMax={pvMax2} infos={infosBarrinha} color={'red'} />
           
           <div className='div'>
             <h1>Sanidade</h1>
@@ -313,7 +356,7 @@ export function StatusContainer({ status, defesasData, portraitData, infosBarrin
           </div>
 
           <Barrinha number={2} setValorA={setarSanAtual} setValorMax={setarSanMax} valorA={sanA} valorMax={sanMax} infos={infosBarrinha} color={'aqua'} />
-          <Barrinha style={{display: sanO ? 'flex' : 'none', marginTop: '1rem'}} number={5} setValorA={setSanA2} setValorMax={setSanMax2} valorA={sanA2} valorMax={sanMax2} infos={infosBarrinha} color={'aqua'} />
+          <Barrinha style={{display: sanO ? 'flex' : 'none', marginTop: '1rem'}} number={5} setValorA={setarSanAtual2} setValorMax={setSanMax2} valorA={sanA2} valorMax={sanMax2} infos={infosBarrinha} color={'aqua'} />
 
           <div className='div'>
             <h1>Esforço</h1>
@@ -321,7 +364,7 @@ export function StatusContainer({ status, defesasData, portraitData, infosBarrin
           </div>
 
           <Barrinha number={3} setValorA={setarPeAtual} setValorMax={setarPeMax} valorA={peA} valorMax={peMax} infos={infosBarrinha} color={'yellow'} />
-          <Barrinha style={{display: peO ? 'flex' : 'none', marginTop: '1rem'}} number={6} setValorA={setPeA2} setValorMax={setPeMax2} valorA={peA2} valorMax={peMax2} infos={infosBarrinha} color={'yellow'} />
+          <Barrinha style={{display: peO ? 'flex' : 'none', marginTop: '1rem'}} number={6} setValorA={setarPeAtual2} setValorMax={setPeMax2} valorA={peA2} valorMax={peMax2} infos={infosBarrinha} color={'yellow'} />
 
           {dataDefesas.length > 0 &&
 

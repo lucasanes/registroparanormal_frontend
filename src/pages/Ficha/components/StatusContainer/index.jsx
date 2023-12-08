@@ -256,8 +256,6 @@ export function StatusContainer({ status, defesasData, portraitData, infosBarrin
   function setarPvAtual2(newPvAtual) {
     if (id != '7b31f19a-d7cd-4dea-9367-5c90bff6fa72') {
       socket.emit("status.pvA", { fichaId: id, newPvAtual: newPvAtual + pvA });
-    } else {
-      socket.emit("status.pvA", { fichaId: id, newPvAtual: pvA });
     }
     setPvA2(newPvAtual)
   }
@@ -265,8 +263,6 @@ export function StatusContainer({ status, defesasData, portraitData, infosBarrin
   function setarSanAtual2(newSanAtual) {
     if (id != '7b31f19a-d7cd-4dea-9367-5c90bff6fa72') {
       socket.emit("status.sanA", { fichaId: id, newSanAtual: newSanAtual + sanA });
-    } else {
-      socket.emit("status.sanA", { fichaId: id, newSanAtual: sanA });
     }
     setSanA2(newSanAtual)
   }
@@ -274,8 +270,6 @@ export function StatusContainer({ status, defesasData, portraitData, infosBarrin
   function setarPeAtual2(newPeAtual) {
     if (id != '7b31f19a-d7cd-4dea-9367-5c90bff6fa72') {
       socket.emit("status.peA", { fichaId: id, newPeAtual: newPeAtual + peA });
-    } else {
-      socket.emit("status.peA", { fichaId: id, newPeAtual: peA });
     }
     setPeA2(newPeAtual)
   }

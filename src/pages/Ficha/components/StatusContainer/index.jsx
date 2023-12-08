@@ -45,15 +45,15 @@ export function StatusContainer({ status, defesasData, portraitData, infosBarrin
   const [peA, setPeA] = useState(status.pe)
   const [peMax, setPeMax] = useState(status.peMax)
 
-  const [pvO, setPvO] = useState(false)
+  const [pvO, setPvO] = useState(status.pvMax2 > 0)
   const [pvA2, setPvA2] = useState(status.pv2)
   const [pvMax2, setPvMax2] = useState(status.pvMax2)
 
-  const [sanO, setSanO] = useState(false)
+  const [sanO, setSanO] = useState(status.psMax2 > 0)
   const [sanA2, setSanA2] = useState(status.ps2)
   const [sanMax2, setSanMax2] = useState(status.psMax2)
 
-  const [peO, setPeO] = useState(false)
+  const [peO, setPeO] = useState(status.peMax2 > 0)
   const [peA2, setPeA2] = useState(status.pe2)
   const [peMax2, setPeMax2] = useState(status.peMax2)
 

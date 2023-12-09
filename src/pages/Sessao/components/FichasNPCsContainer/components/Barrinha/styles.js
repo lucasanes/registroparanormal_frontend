@@ -146,8 +146,8 @@ export const ProgressBar = styled('div', {
 export const Progress = styled('div', {
 
   height: '1.5rem',
-  borderTopRightRadius: '10px',
-  borderBottomRightRadius: '10px',
+  borderTopLeftRadius: '10px',
+  borderBottomLeftRadius: '10px',
   display: 'flex',
   transition: '0.3s',
   position: 'relative',

@@ -1,12 +1,15 @@
 import { InputBarrinha } from './InputBarrinha';
 import { Container, BarrinhaDiv, Botoes, Progress, ProgressBar, Esquerda, Direita, InputDiv } from './styles';
 import { SlArrowLeft, SlArrowRight } from 'react-icons/sl'
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useDisabled } from '../../hooks/useDisabled';
+import { keyframes } from '@stitches/react';
 
 export function Barrinha({ infos, valorA, setValorA, setValorMax, valorMax, color, number, ...rest }) {
 
   const { disabled } = useDisabled()
+
+  const content = useRef(null)
 
   useEffect(() => {
 
@@ -109,7 +112,7 @@ export function Barrinha({ infos, valorA, setValorA, setValorMax, valorMax, colo
       <BarrinhaDiv>
 
         <ProgressBar>
-          <Progress id={`progress${number}`} color={color} />
+          <Progress ref={content} id={`progress${number}`} color={color} valorA={valorA} />
         </ProgressBar>
 
       </BarrinhaDiv>

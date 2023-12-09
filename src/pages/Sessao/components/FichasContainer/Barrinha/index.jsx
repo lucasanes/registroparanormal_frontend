@@ -27,7 +27,7 @@ export function Barrinha({ barrinhaId, nome, valorA, setValorA, setValorMax, val
       <BarrinhaDiv>
 
         <ProgressBar>
-          <Progress id={`progress${barrinhaId}${number}`} color={color} />
+          <Progress id={`progress${barrinhaId}${number}`} color={color} valorA={valorA}/>
         </ProgressBar>
 
       </BarrinhaDiv>

@@ -71,7 +71,7 @@ const fluid = keyframes({
     // borderBottomRightRadius: '0px',
     transform: 'rotate(0deg)'
   },
-  '10%': {
+  '5%': {
     right: -50,
   },
   '15%': {
@@ -90,7 +90,7 @@ const fluid = keyframes({
     // borderBottomRightRadius: '30px',
     transform: 'rotate(0deg)'
   },
-  '60%': {
+  '55%': {
     right: -5,
   },
   '65%': {
@@ -138,7 +138,7 @@ export const Progress = styled('div', {
     top: -26,
     bottom: 0,
     width: '100px',
-    animation: `${fluid} 2s linear infinite`,
+    animation: `${fluid} 1.8s linear infinite`,
   },
 
   variants: {

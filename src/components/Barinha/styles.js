@@ -126,32 +126,46 @@ export const ProgressBar = styled('div', {
 const fluid = keyframes({
   '0%': {
     right: -50,
+    // borderTopRightRadius: '30px',
+    // borderBottomRightRadius: '0px',
     transform: 'rotate(0deg)'
   },
   '5%': {
     right: -50,
   },
   '15%': {
+    // borderTopRightRadius: '0px',
+    // borderBottomRightRadius: '30px',
     transform: 'rotate(-25deg)'
   },
   '30%': {
+    // borderTopRightRadius: '0px',
+    // borderBottomRightRadius: '30px',
     transform: 'rotate(-25deg)'
   },
   '50%': {
     right: -5,
+    // borderTopRightRadius: '0px',
+    // borderBottomRightRadius: '30px',
     transform: 'rotate(0deg)'
   },
   '55%': {
     right: -5,
   },
   '65%': {
+    // borderTopRightRadius: '0px',
+    // borderBottomRightRadius: '30px',
     transform: 'rotate(27deg)'
   },
   '80%': {
+    // borderTopRightRadius: '0px',
+    // borderBottomRightRadius: '30px',
     transform: 'rotate(27deg)'
   },
   '100%': {
     right: -50,
+    // borderTopRightRadius: '30px',
+    // borderBottomRightRadius: '0px',
     transform: 'rotate(0deg)'
   },
 })
@@ -171,7 +185,6 @@ export const Progress = styled('div', {
     height: '7rem',
     top: -26,
     bottom: 0,
-    right: -15,
     width: '100px',
     animation: `${fluid} 1.8s linear infinite`,
   },

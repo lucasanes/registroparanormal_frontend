@@ -35,10 +35,16 @@ export const InputB = styled('input', {
     outline: 'none',
     color: 'transparent',
     caretColor: 'white',
+    transition: '.3s',
 
     '&:focus': {
         outline: 'solid 1px white'
     },
+
+    '&:hover': {
+        outline: 'solid 1px white'
+    },
+
 
     variants: {
         right: {

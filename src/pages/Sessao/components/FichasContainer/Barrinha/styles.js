@@ -66,13 +66,13 @@ export const BarrinhaDiv = styled('div', {
 
 const fluid = keyframes({
   '0%': {
-    right: -50,
+    right: -40,
     // borderTopRightRadius: '30px',
     // borderBottomRightRadius: '0px',
     transform: 'rotate(0deg)'
   },
   '5%': {
-    right: -50,
+    right: -40,
   },
   '15%': {
     // borderTopRightRadius: '0px',
@@ -104,7 +104,7 @@ const fluid = keyframes({
     transform: 'rotate(27deg)'
   },
   '100%': {
-    right: -50,
+    right: -40,
     // borderTopRightRadius: '30px',
     // borderBottomRightRadius: '0px',
     transform: 'rotate(0deg)'

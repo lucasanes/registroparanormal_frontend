@@ -245,7 +245,7 @@ export function ModalEditMonstro({ setModalClose, data }) {
               <Input required maxLength={30} label={'Nome'} valor={nome} setValor={setNome} />
               <Input required type='number' maxValor={99} maxLength={2} label={'NEX'} valor={nex} setValor={setNex} />
               <Input required type='number' maxValor={99} maxLength={2} label={'Deslocamento'} valor={deslocamento} setValor={setDeslocamento} valorMax={12} />
-              <Input required type='number' maxValor={99} maxLength={2} label={'Vida Máxima (PV)'} valor={pv} setValor={setPv} />
+              <Input required type='number' maxValor={999} maxLength={3} label={'Vida Máxima (PV)'} valor={pv} setValor={setPv} />
 
             </Grid>
 

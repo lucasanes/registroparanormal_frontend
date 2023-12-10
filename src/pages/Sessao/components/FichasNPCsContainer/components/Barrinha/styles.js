@@ -58,6 +58,12 @@ export const Esquerda = styled('div', {
   alignItems: 'center',
   justifyContent: 'center',
 
+  "@media (max-width: 450px)": {
+    'button:first-child': {
+      display: 'none'
+    }
+  },
+
   svg: {
     marginLeft: '-.4rem',
     position: 'relative',
@@ -69,6 +75,12 @@ export const Direita = styled('div', {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+
+  "@media (max-width: 450px)": {
+    'button:last-child': {
+      display: 'none'
+    }
+  },
 
   svg: {
     marginRight: '-.4rem',

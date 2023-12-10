@@ -89,13 +89,14 @@ export const BodyContainer = styled("div", {
   gridColumnGap: "3rem",
   gridRowGap: "2rem",
 
-  "@lg": {
+  "@media (max-width: 1400px)": {
     gridTemplateColumns: "1fr 1fr",
   },
 
-  '@md': {
+  '@lg': {
     gridTemplateColumns: '1fr'
   },
+
 
   variants: {
     nulo: {

@@ -19,7 +19,7 @@ export function InputBarrinha({ setValor, valor, valorMax, right = false, ...res
 
     return (
         <Container>
-            <InputB autoComplete="off" right={right} value={valor != null ? valor : 0} type="text" maxLength={2} {...rest}
+            <InputB autoComplete="off" right={right} value={valor != null ? valor : 0} type="text" maxLength={3} {...rest}
                 onChange={(event) => {
                     onlyNumbers(event.target.value)
                 }}

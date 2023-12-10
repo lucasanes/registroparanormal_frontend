@@ -406,7 +406,7 @@ export function ModalAdd({ setModalClose, setFichasNPC, setFichasNPCMonstro, set
 
             <Normal>
 
-              <Input required type='number' maxValor={99} maxLength={2} label={'Vida Máxima (PV)'} valor={pv} setValor={setPv} />
+              <Input required type='number' maxValor={999} maxLength={3} label={'Vida Máxima (PV)'} valor={pv} setValor={setPv} />
               {!monstro && <>
                 <Input required type='number' maxValor={99} maxLength={2} label={'Sanidade Máxima (SAN)'} valor={ps} setValor={setPs} />
                 <Input required type='number' maxValor={99} maxLength={2} label={'Pontos de Esforço (PE)'} valor={pe} setValor={setPe} />

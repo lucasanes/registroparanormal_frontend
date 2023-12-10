@@ -122,7 +122,7 @@ export function Barrinha({ barrinhaId, data, valorA, setValorA, setValorMax, val
         } />
         <Direita>
           <button disabled={disabled} onClick={() => { if (valorA != valorMax && valorA < valorMax) { setValorA(valorA + 1) } else { setValorA(valorMax) } }}>+ 1<SlArrowRight /> </button>
-          <button disabled={disabled} onClick={() => { if (valorA != valorMax && valorA < valorMax) { setValorA(valorA + 5) } else { setValorA(valorMax) } }}>+ 5<SlArrowRight /> </button>
+          <button disabled={disabled} onClick={() => { if (valorA != valorMax && valorA + 5 < valorMax) { setValorA(valorA + 5) } else { setValorA(valorMax) } }}>+ 5<SlArrowRight /> </button>
         </Direita>
 
       </Botoes>

@@ -5,6 +5,8 @@ import { api } from '../../services/api';
 import { useParams } from 'react-router-dom';
 import pericias from '../mappers/pericias';
 import {useFichas} from '../../hooks/useFichas'
+import diceSound from '../../assets/rolldice.mp3'
+import { Howl } from 'howler';
 
 const socket = io(api.defaults.baseURL);
 
@@ -12,6 +14,14 @@ export function ModalDadoRolado({ setModalClose, data }) {
 
   const { id } = useParams()
   const {dc} = useFichas()
+
+  const playRollSound = () => {
+    const sound = new Howl({
+      src: [diceSound],
+    });
+
+    sound.play()
+  }
 
   const [dados, setDados] = useState({
     valorTotal: 0,
@@ -27,6 +37,8 @@ export function ModalDadoRolado({ setModalClose, data }) {
   const [isCritico, setIsCritico] = useState(false)
 
   useEffect(() => {
+
+    playRollSound()
 
     function dadoDinamico(dado, arr = null) {
       if (dado.includes("/")) {

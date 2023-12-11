@@ -8,22 +8,12 @@ import { io } from 'socket.io-client';
 import municaoImg from '../../assets/img/municaoImg.png'
 import {useAuth} from '../../hooks/useAuth'
 import {toast} from 'react-toastify'
-import diceSound from '../../assets/rolldice.mp3'
-import { Howl } from 'howler';
 
 const socket = io(api.defaults.baseURL);
 
 export function Portrait() {
 
   const [isLoading, setIsLoading] = useState(true)
-
-  const playRollSound = () => {
-    const sound = new Howl({
-      src: [diceSound],
-    });
-
-    sound.play()
-  }
 
   const { id } = useParams()
   const {user} = useAuth()
@@ -236,7 +226,6 @@ export function Portrait() {
     function executeDado({ valorTotal, isDano, isCritico }) {
       if (valorTotal != undefined) {
 
-        playRollSound()
         setDadoRolado(rest => rest + 1)
         setDado({valorTotal, isDano, isCritico})
 

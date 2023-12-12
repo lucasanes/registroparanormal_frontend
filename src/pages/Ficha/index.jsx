@@ -66,9 +66,11 @@ export function Ficha() {
 
             setFichas(filtrando)
           }
-        } else if (response.data.isPublic) {
-          setDisabled(true)
-        } else {
+        } 
+        // else if (response.data.isPublic) {
+        //   setDisabled(true)
+        // } 
+        else {
           toast.error('Você não tem acesso a esta ficha!')
           navigate('/')
           return

@@ -208,11 +208,7 @@ export function StatusContainer({ status, defesasData, portraitData, infosBarrin
   }
 
   function setarPvAtual(newPvAtual) {
-    if (id != '7b31f19a-d7cd-4dea-9367-5c90bff6fa72') {
-      socket.emit("status.pvA", { fichaId: id, newPvAtual: newPvAtual + pvA2 });
-    } else {
-      socket.emit("status.pvA", { fichaId: id, newPvAtual: newPvAtual });
-    }
+    socket.emit("status.pvA", { fichaId: id, newPvAtual: newPvAtual + pvA2 });
     setPvA(newPvAtual)
   }
 
@@ -222,11 +218,7 @@ export function StatusContainer({ status, defesasData, portraitData, infosBarrin
   }
 
   function setarSanAtual(newSanAtual) {
-    if (id != '7b31f19a-d7cd-4dea-9367-5c90bff6fa72') {
-      socket.emit("status.sanA", { fichaId: id, newSanAtual: newSanAtual + sanA2 });
-    } else {
-      socket.emit("status.sanA", { fichaId: id, newSanAtual: newSanAtual });
-    }
+    socket.emit("status.sanA", { fichaId: id, newSanAtual: newSanAtual + sanA2 });
     setSanA(newSanAtual)
   }
 
@@ -236,11 +228,7 @@ export function StatusContainer({ status, defesasData, portraitData, infosBarrin
   }
 
   function setarPeAtual(newPeAtual) {
-    if (id != '7b31f19a-d7cd-4dea-9367-5c90bff6fa72') {
-      socket.emit("status.peA", { fichaId: id, newPeAtual: newPeAtual + peA2 });
-    } else {
-      socket.emit("status.peA", { fichaId: id, newPeAtual: newPeAtual });
-    }
+    socket.emit("status.peA", { fichaId: id, newPeAtual: newPeAtual + peA2 });
     setPeA(newPeAtual)
   }
 
@@ -254,23 +242,17 @@ export function StatusContainer({ status, defesasData, portraitData, infosBarrin
 
 
   function setarPvAtual2(newPvAtual) {
-    if (id != '7b31f19a-d7cd-4dea-9367-5c90bff6fa72') {
-      socket.emit("status.pvA", { fichaId: id, newPvAtual: newPvAtual + pvA });
-    }
+    socket.emit("status.pvA", { fichaId: id, newPvAtual: newPvAtual + pvA });
     setPvA2(newPvAtual)
   }
 
   function setarSanAtual2(newSanAtual) {
-    if (id != '7b31f19a-d7cd-4dea-9367-5c90bff6fa72') {
-      socket.emit("status.sanA", { fichaId: id, newSanAtual: newSanAtual + sanA });
-    }
+    socket.emit("status.sanA", { fichaId: id, newSanAtual: newSanAtual + sanA });
     setSanA2(newSanAtual)
   }
 
   function setarPeAtual2(newPeAtual) {
-    if (id != '7b31f19a-d7cd-4dea-9367-5c90bff6fa72') {
-      socket.emit("status.peA", { fichaId: id, newPeAtual: newPeAtual + peA });
-    }
+    socket.emit("status.peA", { fichaId: id, newPeAtual: newPeAtual + peA });
     setPeA2(newPeAtual)
   }
 

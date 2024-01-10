@@ -23,7 +23,7 @@ export function FichasNPCsContainer({ npcs, npcsmonstros }) {
   const [fichasNPCMonstro, setFichasNPCMonstro] = useState(npcsmonstros)
   const [fichasNPCPrincipal, setFichasNPCPrincipal] = useState(fichas)
   
-  const [body, setBody] = useState(npcs.length > 0 ? 'npcs' : npcsmonstros.length > 0 ? 'monstros' : fichas.length > 0 ? 'npcsprincipais' : 'npcs')
+  const [body, setBody] = useState('npcsprincipais')
 
   return (
     <Container>

@@ -4,6 +4,7 @@ export const Container = styled("div", {
   border: "2px solid #ffffff75",
   borderRadius: "0.5rem",
   width: "100%",
+  marginBottom: '2rem',
 
   hr: {
     borderColor: '#ffffff75'

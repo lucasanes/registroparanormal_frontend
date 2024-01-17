@@ -168,8 +168,8 @@ export function Ficha() {
 
         </DoubleParteContainer>
 
-        <InventarioContainer armasData={ficha?.Armas} itensData={ficha?.Itens} peso={ficha?.Status[0].peso} userId={ficha?.userId} />
         <RituaisContainer data={ficha?.Rituais} />
+        <InventarioContainer armasData={ficha?.Armas} itensData={ficha?.Itens} peso={ficha?.Status[0].peso} userId={ficha?.userId} />
         <AnotacoesContainer data={ficha?.Personagem[0]}/>
 
       </Body>}

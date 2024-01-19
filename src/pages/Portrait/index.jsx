@@ -66,19 +66,39 @@ export function Portrait() {
 
         const status = response.data.Status[0]
 
-        setStatus({
-          nome: response.data.Principal[0].nome, 
-          combate: status.combate,
-          insano: status.insano,
-          massivo: status.danoMassivo,
-          inconsciente: status.inconsciente,
-          pvA: status.pv + status.pv2,
-          pvMax: status.pvMax,
-          sanA: status.ps + status.ps2,
-          sanMax: status.psMax,
-          peA: status.pe + status.pe2,
-          municao: 0,
-        })
+        if (id != '5ae388d8-a64a-4ee5-a2da-b5dd6d13cad0') {
+
+          setStatus({
+            nome: response.data.Principal[0].nome, 
+            combate: status.combate,
+            insano: status.insano,
+            massivo: status.danoMassivo,
+            inconsciente: status.inconsciente,
+            pvA: status.pv + status.pv2,
+            pvMax: status.pvMax,
+            sanA: status.ps + status.ps2,
+            sanMax: status.psMax,
+            peA: status.pe + status.pe2,
+            municao: 0,
+          })
+
+        } else {
+
+          setStatus({
+            nome: response.data.Principal[0].nome, 
+            combate: status.combate,
+            insano: status.insano,
+            massivo: status.danoMassivo,
+            inconsciente: status.inconsciente,
+            pvA: status.pv,
+            pvMax: status.pvMax,
+            sanA: status.ps,
+            sanMax: status.psMax,
+            peA: status.pe,
+            municao: 0,
+          })
+
+        }
 
         const portrait = response.data.Portrait[0]
 

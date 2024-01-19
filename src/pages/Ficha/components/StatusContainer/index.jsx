@@ -207,8 +207,14 @@ export function StatusContainer({ status, defesasData, portraitData, infosBarrin
     setInconsciente(newInconsciente)
   }
 
+
+
   function setarPvAtual(newPvAtual) {
-    socket.emit("status.pvA", { fichaId: id, newPvAtual: newPvAtual + pvA2 });
+    if (id != '5ae388d8-a64a-4ee5-a2da-b5dd6d13cad0') {
+      socket.emit("status.pvA", { fichaId: id, newPvAtual: newPvAtual + pvA2 });
+    } else {
+      socket.emit("status.pvA", { fichaId: id, newPvAtual });
+    }
     setPvA(newPvAtual)
   }
 
@@ -218,7 +224,11 @@ export function StatusContainer({ status, defesasData, portraitData, infosBarrin
   }
 
   function setarSanAtual(newSanAtual) {
-    socket.emit("status.sanA", { fichaId: id, newSanAtual: newSanAtual + sanA2 });
+    if (id != '5ae388d8-a64a-4ee5-a2da-b5dd6d13cad0') {
+      socket.emit("status.sanA", { fichaId: id, newSanAtual: newSanAtual + sanA2 });
+    } else {
+      socket.emit("status.sanA", { fichaId: id, newSanAtual });
+    }
     setSanA(newSanAtual)
   }
 
@@ -228,7 +238,11 @@ export function StatusContainer({ status, defesasData, portraitData, infosBarrin
   }
 
   function setarPeAtual(newPeAtual) {
-    socket.emit("status.peA", { fichaId: id, newPeAtual: newPeAtual + peA2 });
+    if (id != '5ae388d8-a64a-4ee5-a2da-b5dd6d13cad0') {
+      socket.emit("status.peA", { fichaId: id, newPeAtual: newPeAtual + peA2 });
+    } else {
+      socket.emit("status.peA", { fichaId: id, newPeAtual });
+    }
     setPeA(newPeAtual)
   }
 
@@ -242,17 +256,29 @@ export function StatusContainer({ status, defesasData, portraitData, infosBarrin
 
 
   function setarPvAtual2(newPvAtual) {
-    socket.emit("status.pvA", { fichaId: id, newPvAtual: newPvAtual + pvA });
+    if (id != '5ae388d8-a64a-4ee5-a2da-b5dd6d13cad0') {
+      socket.emit("status.pvA", { fichaId: id, newPvAtual: newPvAtual + pvA });
+    } else {
+      socket.emit("status.pvA", { fichaId: id, newPvAtual: pvA });
+    }
     setPvA2(newPvAtual)
   }
 
   function setarSanAtual2(newSanAtual) {
-    socket.emit("status.sanA", { fichaId: id, newSanAtual: newSanAtual + sanA });
+    if (id != '5ae388d8-a64a-4ee5-a2da-b5dd6d13cad0') {
+      socket.emit("status.sanA", { fichaId: id, newSanAtual: newSanAtual + sanA });
+    } else {
+      socket.emit("status.sanA", { fichaId: id, newSanAtual: sanA });
+    }
     setSanA2(newSanAtual)
   }
 
   function setarPeAtual2(newPeAtual) {
-    socket.emit("status.peA", { fichaId: id, newPeAtual: newPeAtual + peA });
+    if (id != '5ae388d8-a64a-4ee5-a2da-b5dd6d13cad0') {
+      socket.emit("status.peA", { fichaId: id, newPeAtual: newPeAtual + peA });
+    } else {
+      socket.emit("status.peA", { fichaId: id, newPeAtual: peA });
+    }
     setPeA2(newPeAtual)
   }
 

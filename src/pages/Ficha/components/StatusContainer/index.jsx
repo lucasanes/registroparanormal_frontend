@@ -1,18 +1,17 @@
-import { useEffect } from 'react';
-import { useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { BsEye, BsEyeSlash } from 'react-icons/bs';
+import { useParams } from 'react-router-dom';
+import { io } from 'socket.io-client';
+import noportrait from '../../../../assets/img/noportrait.png';
 import { Barrinha } from '../../../../components/Barinha';
 import { ButtonEdit } from '../../../../components/ButtonEdit';
-import { Modal } from '../../../../components/Modals/Modal';
-import { api } from '../../../../services/api';
-import { ModalPortrait } from './components/ModalPortrait'
-import noportrait from '../../../../assets/img/noportrait.png'
-import { Container, Header, Body, BottomBody, TopBody, Buttons, AreaPortrait, Portrait, Button, ContainerDeferes, Deferes, Img, ButtonIcon } from './styles';
-import { io } from 'socket.io-client';
-import { useDisabled } from '../../../../hooks/useDisabled';
-import { ModalStatus } from './components/ModalStatus';
 import resistencias from '../../../../components/mappers/resistencias';
-import { BsEye, BsEyeSlash } from 'react-icons/bs';
+import { Modal } from '../../../../components/Modals/Modal';
+import { useDisabled } from '../../../../hooks/useDisabled';
+import { api } from '../../../../services/api';
+import { ModalPortrait } from './components/ModalPortrait';
+import { ModalStatus } from './components/ModalStatus';
+import { AreaPortrait, Body, BottomBody, Button, ButtonIcon, Buttons, Container, ContainerDeferes, Deferes, Header, Img, Portrait, TopBody } from './styles';
 
 const socket = io(api.defaults.baseURL);
 
@@ -210,11 +209,7 @@ export function StatusContainer({ status, defesasData, portraitData, infosBarrin
 
 
   function setarPvAtual(newPvAtual) {
-    if (id != '5ae388d8-a64a-4ee5-a2da-b5dd6d13cad0') {
       socket.emit("status.pvA", { fichaId: id, newPvAtual: newPvAtual + pvA2 });
-    } else {
-      socket.emit("status.pvA", { fichaId: id, newPvAtual });
-    }
     setPvA(newPvAtual)
   }
 
@@ -224,11 +219,7 @@ export function StatusContainer({ status, defesasData, portraitData, infosBarrin
   }
 
   function setarSanAtual(newSanAtual) {
-    if (id != '5ae388d8-a64a-4ee5-a2da-b5dd6d13cad0') {
       socket.emit("status.sanA", { fichaId: id, newSanAtual: newSanAtual + sanA2 });
-    } else {
-      socket.emit("status.sanA", { fichaId: id, newSanAtual });
-    }
     setSanA(newSanAtual)
   }
 
@@ -238,11 +229,7 @@ export function StatusContainer({ status, defesasData, portraitData, infosBarrin
   }
 
   function setarPeAtual(newPeAtual) {
-    if (id != '5ae388d8-a64a-4ee5-a2da-b5dd6d13cad0') {
       socket.emit("status.peA", { fichaId: id, newPeAtual: newPeAtual + peA2 });
-    } else {
-      socket.emit("status.peA", { fichaId: id, newPeAtual });
-    }
     setPeA(newPeAtual)
   }
 
@@ -256,29 +243,17 @@ export function StatusContainer({ status, defesasData, portraitData, infosBarrin
 
 
   function setarPvAtual2(newPvAtual) {
-    if (id != '5ae388d8-a64a-4ee5-a2da-b5dd6d13cad0') {
       socket.emit("status.pvA", { fichaId: id, newPvAtual: newPvAtual + pvA });
-    } else {
-      socket.emit("status.pvA", { fichaId: id, newPvAtual: pvA });
-    }
     setPvA2(newPvAtual)
   }
 
   function setarSanAtual2(newSanAtual) {
-    if (id != '5ae388d8-a64a-4ee5-a2da-b5dd6d13cad0') {
       socket.emit("status.sanA", { fichaId: id, newSanAtual: newSanAtual + sanA });
-    } else {
-      socket.emit("status.sanA", { fichaId: id, newSanAtual: sanA });
-    }
     setSanA2(newSanAtual)
   }
 
   function setarPeAtual2(newPeAtual) {
-    if (id != '5ae388d8-a64a-4ee5-a2da-b5dd6d13cad0') {
       socket.emit("status.peA", { fichaId: id, newPeAtual: newPeAtual + peA });
-    } else {
-      socket.emit("status.peA", { fichaId: id, newPeAtual: peA });
-    }
     setPeA2(newPeAtual)
   }
 

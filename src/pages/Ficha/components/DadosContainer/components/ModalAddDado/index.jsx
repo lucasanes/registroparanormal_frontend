@@ -10,7 +10,7 @@ export function ModalAddDado({ setModalClose, atualizar }) {
 
   const [nome, setNome] = useState('')
   const [valor, setValor] = useState('')
-  const [isDano, setIsDano] = useState(false)
+  const [isTest, setIsTest] = useState(false)
 
   const { id } = useParams()
 
@@ -21,12 +21,12 @@ export function ModalAddDado({ setModalClose, atualizar }) {
 
     e.preventDefault()
 
-    if (!isDano && !valor.match(patternTeste)) {
+    if (isTest && !valor.match(patternTeste)) {
       toast.error('Dado inválido.')
       return
     }
 
-    if (isDano && !valor.match(patternDano)) {
+    if (!isTest && !valor.match(patternDano)) {
       toast.error('Dado inválido.')
       return
     }
@@ -36,7 +36,7 @@ export function ModalAddDado({ setModalClose, atualizar }) {
       const data = await api.post(`/fichas/dado`, {
         nome: nome,
         valor: valor,
-        isDano: isDano,
+        isDano: !isTest,
         fichaId: id
       });
 
@@ -67,7 +67,7 @@ export function ModalAddDado({ setModalClose, atualizar }) {
 
           <Input required autoComplete="dado" name="dado" label={'Nome'} valor={nome} setValor={setNome} maxLength={30}/>
           <Input required autoComplete="valor" name="valor" label={'Valor'} valor={valor} setValor={setValor}/>
-          <Toggle span={'Rolar Como Teste? (D20)'} classNumber={'1'} onClick={() => setIsDano(isDano)} />
+          <Toggle span={'Rolar Como Teste? (D20)'} classNumber={'1'} onClick={() => setIsTest(!isTest)} />
 
         </Body>
 

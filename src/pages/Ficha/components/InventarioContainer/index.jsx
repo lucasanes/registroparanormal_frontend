@@ -193,7 +193,7 @@ export function InventarioContainer({ armasData, itensData, peso, userId }) {
 
         socket.emit("enviado.inv", { fichaId: fichaIdAEnviar });
 
-        toast.success(`Arma enviada com sucesso para a ficha de ${ficha[0].Principal[0].nome}.`)
+        toast.success(`Arma enviada com sucesso para a ficha de ${nome}.`)
 
       } catch (erro) {
         toast.error(erro.response.data.msg)

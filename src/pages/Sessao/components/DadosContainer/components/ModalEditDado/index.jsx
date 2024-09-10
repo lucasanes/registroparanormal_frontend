@@ -9,7 +9,7 @@ export function ModalEditDado({ setModalClose, data, atualizar, dados }) {
 
   const [nome, setNome] = useState(data.nome)
   const [valor, setValor] = useState(data.valor)
-  const [isTest, setIsTest] = useState(data.isDano)
+  const [isTest, setIsTest] = useState(!data.isDano)
 
   const patternTeste = /^(((100|\d{1,2})?((d)(20))))([+]((100|\d{1,2})?))*$/g;
   const patternDano = /^(((100|\d{1,2})?((d)(100|[1-9]\d?))?)|(\d{0,3}|1000))([+]((100|\d{1,2})?((d)(100|[1-9]\d?))?)|([+]\d{0,3}|1000)?)*$/g;

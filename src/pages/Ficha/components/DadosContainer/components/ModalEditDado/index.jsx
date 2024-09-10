@@ -9,7 +9,7 @@ export function ModalEditDado({ setModalClose, data, atualizar, dados }) {
 
   const [nome, setNome] = useState(data.nome)
   const [valor, setValor] = useState(data.valor)
-  const [isTest, setIsTest] = useState(data.isDano)
+  const [isTest, setIsTest] = useState(!data.isDano)
 
   const patternTeste = /^(((100|\d{1,2}|\/[ABCDEFGILMNOPRSTUV]{3,4}\/)?((d)(20))))([+]((100|\d{1,2}|\/[ABCDEFGILMNOPRSTUV]{3,4}\/)?))*$/g;
   const patternDano = /^(((100|\d{1,2}|\/[ABCDEFGILMNOPRSTUV]{3,4}\/)?((d)(100|[1-9]\d?|\/[ABCDEFGILMNOPRSTUV]{3,4}\/))?)|(\d{0,3}|1000))([+]((100|\d{1,2}|\/[ABCDEFGILMNOPRSTUV]{3,4}\/)?((d)(100|[1-9]\d?|\/[ABCDEFGILMNOPRSTUV]{3,4}\/))?)|([+]\d{0,3}|1000)?)*$/g;
@@ -33,7 +33,7 @@ export function ModalEditDado({ setModalClose, data, atualizar, dados }) {
       await api.put(`/fichas/dado/${data.id}`, {
         nome: nome,
         valor: valor,
-        isDano: isTest
+        isDano: !isTest
       });
 
       const dado = dados.filter(dado => dado.id == data.id)

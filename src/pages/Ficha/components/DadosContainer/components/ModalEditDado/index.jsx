@@ -85,7 +85,7 @@ export function ModalEditDado({ setModalClose, data, atualizar, dados }) {
 
           <Input required autoComplete="dado" name="dado" label={'Nome'} valor={nome} setValor={setNome} maxLength={30}/>
           <Input required autoComplete="valor" name="valor" label={'Valor'} valor={valor} setValor={setValor}/>
-          <Toggle span={'Rolar Como Teste? (D20)'} classNumber={'1'} onClick={() => setIsTest(!isTest)} defaultChecked={data.isTest}/>
+          <Toggle span={'Rolar Como Teste? (D20)'} classNumber={'1'} onClick={() => setIsTest(!isTest)} defaultChecked={!data.isDano}/>
 
         </Body>
 

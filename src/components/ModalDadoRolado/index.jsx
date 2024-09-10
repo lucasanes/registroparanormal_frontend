@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react';
-import { Container, Header, Main, Footer, CloseButton } from './styles';
-import { io } from 'socket.io-client';
-import { api } from '../../services/api';
-import { useParams } from 'react-router-dom';
-import pericias from '../mappers/pericias';
-import {useFichas} from '../../hooks/useFichas'
-import diceSound from '../../assets/rolldice.mp3'
 import { Howl } from 'howler';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { io } from 'socket.io-client';
+import diceSound from '../../assets/rolldice.mp3';
+import { useFichas } from '../../hooks/useFichas';
+import { api } from '../../services/api';
+import pericias from '../mappers/pericias';
+import { CloseButton, Container, Footer, Header, Main } from './styles';
 
 const socket = io(api.defaults.baseURL);
 
@@ -35,6 +35,7 @@ export function ModalDadoRolado({ setModalClose, data }) {
   });
 
   const [isCritico, setIsCritico] = useState(false)
+  const [isDesastre, setIsDesastre] = useState(false)
 
   useEffect(() => {
 
@@ -59,6 +60,7 @@ export function ModalDadoRolado({ setModalClose, data }) {
         let totalValores = [];
         let contaTotal = [];
         let isCriticoA = false
+        let isDesastreA = false
 
         let splitD
 
@@ -97,8 +99,8 @@ export function ModalDadoRolado({ setModalClose, data }) {
           }
 
           if (menor == 1) {
-            setIsCritico(true)
-            isCriticoA = true
+            setIsDesastre(true)
+            isDesastreA = true
           }
 
         } else {
@@ -120,8 +122,8 @@ export function ModalDadoRolado({ setModalClose, data }) {
           
           const desastre = ((qtdDado - 1) * 3) + 1
           if (maior <= desastre) {
-            setIsCritico(true)
-            isCriticoA = true
+            setIsDesastre(true)
+            isDesastreA = true
           }
 
         }
@@ -131,7 +133,7 @@ export function ModalDadoRolado({ setModalClose, data }) {
         }
 
         socket.emit('dado.rolado', {
-          fichaId: id, nomeNPC: data.nomeNPC, nome: data.nome, isDano: data.isDano, isCritico: isCriticoA, conta: contaTotal.join("+"), valorTotal: eval(contaTotal.join("+")),
+          fichaId: id, nomeNPC: data.nomeNPC, nome: data.nome, isDano: data.isDano, isCritico: isCriticoA, isDesastre: isDesastreA, conta: contaTotal.join("+"), valorTotal: eval(contaTotal.join("+")),
           dadosRolados: [{ dado: 'd' + valorMax, valores: totalValores }]
         })
 
@@ -149,6 +151,7 @@ export function ModalDadoRolado({ setModalClose, data }) {
       } else {
 
         let isCriticoA = false
+        let isDesastreA = false
         let soma = []
         let contaTotal = [];
         let todosDadosRolados = []
@@ -196,19 +199,17 @@ export function ModalDadoRolado({ setModalClose, data }) {
             valorTotalMin += eval(soma.join('+'))
           }
 
-          console.log(eval(contaTotal.join('+')), valorTotalMin)
-
           if (valorTotalMax == eval(contaTotal.join("+"))) {
             setIsCritico(true)
             isCriticoA = true
           }
 
           if (valorTotalMin == eval(contaTotal.join("+"))) {
-            setIsCritico(true)
-            isCriticoA = true
+            setIsDesastre(true)
+            isDesastreA = true
           }
 
-          socket.emit('dado.rolado', { fichaId: id, nomeNPC: data.nomeNPC, nome: data.nome, isDano: data.isDano, isCritico: isCriticoA, conta: contaTotal.join("+"), valorTotal: eval(contaTotal.join("+")), dadosRolados: todosDadosRolados })
+          socket.emit('dado.rolado', { fichaId: id, nomeNPC: data.nomeNPC, nome: data.nome, isDano: data.isDano, isCritico: isCriticoA, isDesastre: isDesastreA, conta: contaTotal.join("+"), valorTotal: eval(contaTotal.join("+")), dadosRolados: todosDadosRolados })
 
           setDados({
             valorTotal: eval(contaTotal.join("+")),
@@ -241,12 +242,12 @@ export function ModalDadoRolado({ setModalClose, data }) {
 
           valorTotalMin += qtdDado
           if (valorTotalMin == eval(contaTotal.join("+"))) {
-            setIsCritico(true)
-            isCriticoA = true
+            setIsDesastre(true)
+            isDesastreA = true
           }
 
           socket.emit('dado.rolado', {
-            fichaId: id, nomeNPC: data.nomeNPC, nome: data.nome, isDano: data.isDano, isCritico: isCriticoA, conta: contaTotal.join("+"), valorTotal: eval(contaTotal.join("+")), dadosRolados: [{ dado: 'd' + valorMax, valores: totalValores }]
+            fichaId: id, nomeNPC: data.nomeNPC, nome: data.nome, isDano: data.isDano, isCritico: isCriticoA, isDesastre: isDesastreA, conta: contaTotal.join("+"), valorTotal: eval(contaTotal.join("+")), dadosRolados: [{ dado: 'd' + valorMax, valores: totalValores }]
           })
 
           setDados({
@@ -277,14 +278,14 @@ export function ModalDadoRolado({ setModalClose, data }) {
 
       </Header>
 
-      <Main isCritico={isCritico} isDano={data.isDano}>
+      <Main isCritico={isCritico} isDesastre={isDesastre} isDano={data.isDano}>
         <h1>{pericias(data.nome) != null ? pericias(data.nome) : data.nome}:</h1>
         <span>
           {dados.conta} = {dados.valorTotal}
         </span>
       </Main>
 
-      <Footer isCritico={isCritico}>
+      <Footer isCritico={isCritico} isDesastre={isDesastre}>
         {dados.dadosRolados.map((dado) => (
           <span key={dado.dado}>
             {dado.dado}: {dado.valores.join(', ')}

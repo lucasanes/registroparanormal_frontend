@@ -1,4 +1,4 @@
-import { styled, keyframes } from '../../stitches.config';
+import { keyframes, styled } from '../../stitches.config';
 
 export const Container = styled('div', {
 
@@ -219,7 +219,7 @@ export const Status2 = styled('div', {
 })
 
 export const Status3 = styled('div', {
-  
+
   opacity: 0,
   zIndex: 10,
   position: 'absolute',
@@ -370,6 +370,28 @@ const shake = keyframes({
   }
 })
 
+const disasterShake = keyframes({
+  '0%': {
+    transform: 'translate(5px, 5px) rotate(0deg)',
+  },
+  '20%': {
+    transform: 'translate(-5px, -5px) rotate(72deg)',
+  },
+  '40%': {
+    transform: 'translate(-7px, 7px) rotate(144deg)',
+  },
+  '60%': {
+    transform: 'translate(7px, -7px) rotate(216deg)',
+  },
+  '80%': {
+    transform: 'translate(-10px, 10px) rotate(288deg)',
+  },
+  '100%': {
+    transform: 'translate(5px, 5px) rotate(360deg)',
+  }
+});
+
+
 export const Dado = styled('div', {
   position: 'relative',
   right: '5rem',
@@ -382,10 +404,11 @@ export const Dado = styled('div', {
 
   svg: {
     filter: 'drop-shadow(#00e5ff 0 0 10px)',
+    color: '#60eeff',
   },
 
   span: {
-    color: '#ffffff',  
+    color: '#ffffff',
     fontFamily: 'Special Elite',
     fontWeight: 700,
     fontSize: '12rem',
@@ -404,8 +427,15 @@ export const Dado = styled('div', {
       }
     },
     isCritico: {
-      true: { 
+      true: {
         animation: `${DadoAnimation} 7s, ${shake} .5s infinite`,
+      }
+    },
+    isDesastre: {
+      true: {
+        svg: {
+          animation: `${DadoAnimation} 7s, ${disasterShake} .8s linear infinite`,
+        },
       }
     }
   }

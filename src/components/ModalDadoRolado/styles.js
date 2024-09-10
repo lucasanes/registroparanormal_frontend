@@ -125,7 +125,16 @@ export const Main = styled('div', {
       }
     },
     isCritico: {
-      true: { 
+      true: {
+        animation: `${shake} .5s infinite`,
+
+        span: {
+          color: '#03fc52'
+        }
+      }
+    },
+    isDesastre: {
+      true: {
         animation: `${shake} .5s infinite`,
 
         span: {
@@ -152,6 +161,13 @@ export const Footer = styled('div', {
 
   variants: {
     isCritico: {
+      true: {
+        span: {
+          animation: `${shake} .5s infinite`
+        }
+      }
+    },
+    isDesastre: {
       true: {
         span: {
           animation: `${shake} .5s infinite`

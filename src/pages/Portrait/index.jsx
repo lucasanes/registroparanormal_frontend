@@ -207,11 +207,11 @@ export function Portrait() {
     }
     socket.on(`status.municao?${id}`, executeUpdateMunicao);
 
-    function executeDado({ valorTotal, isDano, isCritico }) {
+    function executeDado({ valorTotal, isDano, isCritico, isDesastre }) {
       if (valorTotal != undefined) {
 
         setDadoRolado(rest => rest + 1)
-        setDado({valorTotal, isDano, isCritico})
+        setDado({valorTotal, isDano, isCritico, isDesastre})
 
       }
     }
@@ -279,9 +279,9 @@ export function Portrait() {
         <img src={FundoPortrait} />
       </Main>
 
-      <Dado key={dadoRolado} style={{display: dadoRolado < 1 ? 'none' : 'flex'}} id='dado' isCritico={dado.isCritico} isDano={dado.isDano}>
+      <Dado key={dadoRolado} style={{display: dadoRolado < 1 ? 'none' : 'flex'}} id='dado' isCritico={dado.isCritico} isDesastre={dado.isDesastre} isDano={dado.isDano}>
         <span>{dado.valorTotal}</span>
-        <FaDiceD20 color='#60eeff' size={200} />
+        <FaDiceD20 color='#' size={200} />
       </Dado>
 
     </Container>

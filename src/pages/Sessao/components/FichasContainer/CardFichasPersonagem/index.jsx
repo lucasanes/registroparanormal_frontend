@@ -1,19 +1,17 @@
-import { Container, Header, Body, TopBody, BottomBody, Button, LinkButton, ButtonIcon, LinkIcon, Deferes, DivDeferes, Grid, Card, ButtonPrivate } from "./styles";
-import { IoOpenOutline } from "react-icons/io5";
+import { useEffect, useState } from "react";
+import { BsEye, BsEyeSlash } from 'react-icons/bs';
 import { FaUserCircle } from "react-icons/fa";
-import { BiUnlink } from "react-icons/bi";
-import { useState } from "react";
-import { api } from "../../../../../services/api";
-import { useFichas } from "../../../../../hooks/useFichas";
+import { IoOpenOutline } from "react-icons/io5";
 import { useParams } from "react-router-dom";
-import { Barrinha } from "../Barrinha";
-import { useEffect } from "react";
-import { io } from 'socket.io-client';
-import resistenciasmap from "../../../../../components/mappers/resistencias";
-import periciasmap from "../../../../../components/mappers/pericias";
-import { ButtonDelete } from '../../../../../components/ButtonDelete'
 import { toast } from "react-toastify";
-import {BsEye, BsEyeSlash} from 'react-icons/bs'
+import { io } from 'socket.io-client';
+import { ButtonDelete } from '../../../../../components/ButtonDelete';
+import periciasmap from "../../../../../components/mappers/pericias";
+import resistenciasmap from "../../../../../components/mappers/resistencias";
+import { useFichas } from "../../../../../hooks/useFichas";
+import { api } from "../../../../../services/api";
+import { Barrinha } from "../Barrinha";
+import { Body, BottomBody, Button, ButtonPrivate, Card, Container, Deferes, DivDeferes, Grid, Header, LinkButton, LinkIcon, TopBody } from "./styles";
 
 const socket = io(api.defaults.baseURL);
 
@@ -43,79 +41,88 @@ export function CardFichasPersonagem({ data }) {
 
     useEffect(() => {
 
-        setPesoA(0)
+      setPesoA(0)
 
-        data.Armas.forEach(element => {
-            setPesoA((prev) => prev + element.espaco)
-        });
+      data.Armas.forEach(element => {
+        setPesoA((prev) => prev + element.espaco)
+      });
 
-        data.Itens.forEach(element => {
-            setPesoA((prev) => prev + element.espaco)
-        });
+      data.Itens.forEach(element => {
+        setPesoA((prev) => prev + element.espaco)
+      });
 
-        let varPericias = []
+      let varPericias = []
 
-        for (const [key, value] of Object.entries(data.Pericias[0])) {
-            if (key != 'fichaId' && key != 'id') {
-                if (value != null && value != 0) {
-                    const novaPericia = { nome: key, valor: value }
-                    varPericias.push(novaPericia)
-                }
+      for (const [key, value] of Object.entries(data.Pericias[0])) {
+        if (key != 'fichaId' && key != 'id') {
+          if (value != null && value != 0) {
+            const novaPericia = { nome: key, valor: value }
+            varPericias.push(novaPericia)
+          }
+        }
+      }
+
+      setPericias(varPericias)
+
+      let varDefesas = []
+      let varRes = []
+
+      for (const [key, value] of Object.entries(data.Defesas[0])) {
+        if (key != 'id' && key != 'fichaId') {
+          if (key == 'passiva' || key == 'esquiva' || key == 'bloqueio') {
+            if (value != null && value != 0) {
+              const novaDefesa = { nome: key, valor: value }
+              varDefesas.push(novaDefesa)
             }
-        }
-
-        setPericias(varPericias)
-
-        let varDefesas = []
-        let varRes = []
-
-        for (const [key, value] of Object.entries(data.Defesas[0])) {
-            if (key != 'id' && key != 'fichaId') {
-                if (key == 'passiva' || key == 'esquiva' || key == 'bloqueio') {
-                    if (value != null && value != 0) {
-                        const novaDefesa = { nome: key, valor: value }
-                        varDefesas.push(novaDefesa)
-                    }
-                } else {
-                    if (value != null && value != 0) {
-                        const novaRes = { nome: key, valor: value }
-                        varRes.push(novaRes)
-                    }
-                }
+          } else {
+            if (value != null && value != 0) {
+              const novaRes = { nome: key, valor: value }
+              varRes.push(novaRes)
             }
+          }
         }
-        setDefesas(varDefesas)
-        setRes(varRes)
+      }
+      setDefesas(varDefesas)
+      setRes(varRes)
 
-        function executeUpdatePvAtual({ newPvAtual }) {
-            setPv(newPvAtual)
-        }
-        socket.on(`status.pvA?${data.id}`, executeUpdatePvAtual);
+      function executeUpdatePvAtual({ newPvAtual }) {
+        setPv(newPvAtual)
+      }
+      socket.on(`status.pvA?${data.id}`, executeUpdatePvAtual);
 
-        function executeUpdatePvMax({ newPvMax }) {
-            setPvMax(newPvMax)
-        }
-        socket.on(`status.pvMax?${data.id}`, executeUpdatePvMax);
+      function executeUpdatePvMax({ newPvMax }) {
+        setPvMax(newPvMax)
+      }
+      socket.on(`status.pvMax?${data.id}`, executeUpdatePvMax);
 
-        function executeUpdateSanAtual({ newSanAtual }) {
-            setPs(newSanAtual)
-        }
-        socket.on(`status.sanA?${data.id}`, executeUpdateSanAtual);
+      function executeUpdateSanAtual({ newSanAtual }) {
+        setPs(newSanAtual)
+      }
+      socket.on(`status.sanA?${data.id}`, executeUpdateSanAtual);
 
-        function executeUpdateSanMax({ newSanMax }) {
-            setPsMax(newSanMax)
-        }
-        socket.on(`status.sanMax?${data.id}`, executeUpdateSanMax);
+      function executeUpdateSanMax({ newSanMax }) {
+        setPsMax(newSanMax)
+      }
+      socket.on(`status.sanMax?${data.id}`, executeUpdateSanMax);
 
-        function executeUpdatePeAtual({ newPeAtual }) {
-            setPe(newPeAtual)
-        }
-        socket.on(`status.peA?${data.id}`, executeUpdatePeAtual);
+      function executeUpdatePeAtual({ newPeAtual }) {
+        setPe(newPeAtual)
+      }
+      socket.on(`status.peA?${data.id}`, executeUpdatePeAtual);
 
-        function executeUpdatePeMax({ newPeMax }) {
-            setPeMax(newPeMax)
-        }
-        socket.on(`status.peMax?${data.id}`, executeUpdatePeMax);
+      function executeUpdatePeMax({ newPeMax }) {
+        setPeMax(newPeMax)
+      }
+      socket.on(`status.peMax?${data.id}`, executeUpdatePeMax);
+
+      return () => {
+        socket.off(`status.pvA?${data.id}`, executeUpdatePvAtual);
+        socket.off(`status.pvMax?${data.id}`, executeUpdatePvMax);
+        socket.off(`status.sanA?${data.id}`, executeUpdateSanAtual);
+        socket.off(`status.sanMax?${data.id}`, executeUpdateSanMax);
+        socket.off(`status.peA?${data.id}`, executeUpdatePeAtual);
+        socket.off(`status.peMax?${data.id}`, executeUpdatePeMax);
+      }
 
     }, [])
 

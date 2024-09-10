@@ -1,21 +1,19 @@
-import { BodyContainer, Container, HeaderContainer, Footer, Row, Column, Button, Option, Main } from './styles';
-import { MdOutlineAddBox } from "react-icons/md";
 import { useEffect, useState } from 'react';
-import { Item } from './components/Item';
-import { Arma } from './components/Arma';
-import { useFichas } from '../../../../hooks/useFichas';
+import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { io } from 'socket.io-client';
+import { ButtonAdd } from '../../../../components/ButtonAdd';
 import { Modal } from '../../../../components/Modals/Modal';
+import { useDisabled } from '../../../../hooks/useDisabled';
+import { useFichas } from '../../../../hooks/useFichas';
+import { api } from '../../../../services/api';
+import { Arma } from './components/Arma';
+import { Item } from './components/Item';
 import { ModalAdd } from './components/ModalAdd';
 import { ModalAddArma } from './components/ModalAddArma';
 import { ModalAddItem } from './components/ModalAddItem';
-import { useParams } from 'react-router-dom';
-import { api } from '../../../../services/api';
-import { ButtonAdd } from '../../../../components/ButtonAdd';
-import { io } from 'socket.io-client';
-import { toast } from 'react-toastify';
-import { useDisabled } from '../../../../hooks/useDisabled';
-import { useAuth } from '../../../../hooks/useAuth';
 import { ModalPeso } from './components/ModalPeso';
+import { BodyContainer, Button, Column, Container, Footer, HeaderContainer, Main, Option, Row } from './styles';
 
 const socket = io(api.defaults.baseURL);
 
@@ -70,6 +68,10 @@ export function InventarioContainer({ armasData, itensData, peso, userId }) {
       fetchData()
     }
     socket.on(`enviado.inv?${id}`, atualizarInv)
+
+    return () => {
+      socket.off(`enviado.inv?${id}`, atualizarInv)
+    }
 
   }, [])
 

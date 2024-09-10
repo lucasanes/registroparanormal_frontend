@@ -1,14 +1,13 @@
-import { BodyContainer, Container, HeaderContainer, ButtonIcon } from './styles';
-import { MdOutlineCleaningServices } from "react-icons/md";
-import { useState } from 'react';
-import { api } from '../../../../services/api';
-import { io } from 'socket.io-client';
-import { useFichas } from '../../../../hooks/useFichas';
-import { useParams } from 'react-router-dom';
-import { useEffect } from 'react';
-import { Rolagem } from './Rolagem';
-import noportrait from '../../../../assets/img/noportrait.png'
+import { useEffect, useState } from 'react';
 import { BsArrowDownUp } from 'react-icons/bs';
+import { MdOutlineCleaningServices } from "react-icons/md";
+import { useParams } from 'react-router-dom';
+import { io } from 'socket.io-client';
+import noportrait from '../../../../assets/img/noportrait.png';
+import { useFichas } from '../../../../hooks/useFichas';
+import { api } from '../../../../services/api';
+import { Rolagem } from './Rolagem';
+import { BodyContainer, ButtonIcon, Container, HeaderContainer } from './styles';
 
 const socket = io(api.defaults.baseURL);
 
@@ -67,6 +66,10 @@ export function UTContainer() {
     }
 
     socket.on(`dado.rolado`, updateRolagens);
+
+    return () => {
+      socket.off(`dado.rolado`, updateRolagens);
+    }
 
   }, [])
 

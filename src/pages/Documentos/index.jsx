@@ -1,9 +1,8 @@
-import { Container } from './styles';
-import { io } from 'socket.io-client';
-import { useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
+import { io } from 'socket.io-client';
 import { api } from '../../services/api';
-import { useEffect } from 'react';
+import { Container } from './styles';
 
 const socket = io(api.defaults.baseURL);
 
@@ -54,6 +53,10 @@ export function Documentos() {
       
     }
     socket.on(`enviado.itemImg?${id}`, executeItemImg);
+
+    return () => {
+      socket.off(`enviado.itemImg?${id}`, executeItemImg);
+    }
 
   }, [])
 

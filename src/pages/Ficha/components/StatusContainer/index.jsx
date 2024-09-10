@@ -118,6 +118,11 @@ export function StatusContainer({ status, defesasData, portraitData, infosBarrin
 
     return () => {
       handleEdit(false, false, false, false)
+
+      socket.off(`status.combate?${id}`, executeUpdateCombate);
+      socket.off(`status.insano?${id}`, executeUpdateInsano);
+      socket.off(`status.massivo?${id}`, executeUpdateMassivo);
+      socket.off(`status.inconsciente?${id}`, executeUpdateInconsciente);
     }
   }, [])
 

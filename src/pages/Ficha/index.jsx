@@ -1,25 +1,24 @@
-import { ParteImgModal, ImgModal, Container, DoubleParteContainer, Body, DoubleParteColumnContainer } from './styles';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useEffect } from 'react';
-import { api } from '../../services/api';
-import { useDisabled } from '../../hooks/useDisabled';
-import { useTitle } from '../../hooks/useTitle';
-import { Modal } from '../../components/Modals/Modal';
+import { toast } from 'react-toastify';
 import { io } from 'socket.io-client';
-import { useFichas } from '../../hooks/useFichas';
+import { Modal } from '../../components/Modals/Modal';
 import { useAuth } from '../../hooks/useAuth';
-import { PrincipalContainer } from './components/PrincipalContainer';
-import { StatusContainer } from './components/StatusContainer';
+import { useDisabled } from '../../hooks/useDisabled';
+import { useFichas } from '../../hooks/useFichas';
+import { useTitle } from '../../hooks/useTitle';
+import { api } from '../../services/api';
+import { AnotacoesContainer } from './components/AnotacoesContainer';
 import { AtributoContainer } from './components/AtributoContainer';
-import { PericiasContainer } from './components/PericiasContainer';
 import { DadosContainer } from './components/DadosContainer';
 import { HabilidadesContainer } from './components/HabilidadesContainer';
-import { PersonagemContainer } from './components/PersonagemContainer';
 import { InventarioContainer } from './components/InventarioContainer';
+import { PericiasContainer } from './components/PericiasContainer';
+import { PersonagemContainer } from './components/PersonagemContainer';
+import { PrincipalContainer } from './components/PrincipalContainer';
 import { RituaisContainer } from './components/RituaisContainer';
-import { toast } from 'react-toastify';
-import { AnotacoesContainer } from './components/AnotacoesContainer';
+import { StatusContainer } from './components/StatusContainer';
+import { Body, Container, DoubleParteColumnContainer, DoubleParteContainer, ImgModal, ParteImgModal } from './styles';
 
 const socket = io(api.defaults.baseURL);
 
@@ -133,6 +132,10 @@ export function Ficha() {
       }
     }
     socket.on(`enviado.itemImg?${id}`, executeItemImg);
+
+    return () => {
+      socket.off(`enviado.itemImg?${id}`, executeItemImg);
+    }
 
   }, []);
 

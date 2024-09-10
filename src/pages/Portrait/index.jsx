@@ -229,6 +229,21 @@ export function Portrait() {
     }
     socket.on(`status.portrait?${id}`, executeUpdatePortrait);
 
+    return () => {
+      socket.off(`status.combate?${id}`, executeUpdateCombate);
+      socket.off(`status.insano?${id}`, executeUpdateInsano);
+      socket.off(`status.massivo?${id}`, executeUpdateMassivo);
+      socket.off(`status.inconsciente?${id}`, executeUpdateInconsciente);
+      socket.off(`status.pvA?${id}`, executeUpdatePvAtual);
+      socket.off(`status.pvMax?${id}`, executeUpdatePvMax);
+      socket.off(`status.sanA?${id}`, executeUpdateSanAtual);
+      socket.off(`status.sanMax?${id}`, executeUpdateSanMax);
+      socket.off(`status.peA?${id}`, executeUpdatePeAtual);
+      socket.off(`status.municao?${id}`, executeUpdateMunicao);
+      socket.off(`dado.rolado?${id}`, executeDado);
+      socket.off(`status.portrait?${id}`, executeUpdatePortrait);
+    }
+
   }, [])
 
 

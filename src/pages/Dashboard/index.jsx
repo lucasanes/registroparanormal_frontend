@@ -1,17 +1,17 @@
-import { io } from 'socket.io-client';
-import * as S from './styles'
-import React, { useState, useEffect } from "react";
-import { Modal } from "../../components/Modals/Modal";
-import { api } from "../../services/api";
-import {useAuth} from '../../hooks/useAuth'
-import {useTitle} from '../../hooks/useTitle'
+import React, { useEffect, useState } from "react";
 import { toast } from 'react-toastify';
-import { AddSessao } from './AddSessao';
-import { AddFicha } from './AddFicha';
+import { io } from 'socket.io-client';
+import { Modal } from "../../components/Modals/Modal";
 import { ModalAddSessao } from '../../components/Modals/ModalAddSessao';
-import { Sessao } from './Sessao';
-import { Ficha } from './Ficha';
+import { useAuth } from '../../hooks/useAuth';
+import { useTitle } from '../../hooks/useTitle';
+import { api } from "../../services/api";
+import { AddFicha } from './AddFicha';
+import { AddSessao } from './AddSessao';
 import { Convite } from './Convite';
+import { Ficha } from './Ficha';
+import { Sessao } from './Sessao';
+import * as S from './styles';
 
 const socket = io(api.defaults.baseURL);
 
@@ -72,6 +72,10 @@ export default function Dashboard() {
   
     }
     socket.on(`enviado.convite?${user.email}`, atualizarConvites)
+
+    return () => {
+      socket.off(`enviado.convite?${user.email}`, atualizarConvites)
+    }
 
   }, []);
 

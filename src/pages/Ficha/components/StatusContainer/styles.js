@@ -1,5 +1,5 @@
-import { styled, keyframes } from '../../../../stitches.config';
 import { Link } from 'react-router-dom';
+import { keyframes, styled } from '../../../../stitches.config';
 
 export const Container = styled("div", {
   border: "2px solid #ffffff75",
@@ -117,13 +117,13 @@ export const AreaPortrait = styled('div', {
     }
   }
 
-  
+
 
 })
 
 export const Portrait = styled(Link, {
 
-  border: '2px solid transparent',
+  border: '2px solid #fff',
   zIndex: 1,
   marginLeft: '4rem',
   borderRadius: '20rem',
@@ -142,7 +142,6 @@ export const Portrait = styled(Link, {
 
 export const Img = styled('img', {
 
-  border: '2px solid white',
   objectFit: 'cover',
   cursor: 'pointer',
   zIndex: 0,

@@ -78,8 +78,8 @@ export const Button = styled('button', {
 
     active: {
       true: {
-        border: '2px solid #fff',
         cursor: 'default',
+        background: '#ffffff20',
 
         '&:hover': {
           border: '2px solid #fff'

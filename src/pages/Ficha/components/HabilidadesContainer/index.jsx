@@ -1,17 +1,17 @@
-import { BodyContainer, Container, HeaderContainer, Button } from './styles';
-import { useState, useEffect } from 'react';
-import { Modal } from '../../../../components/Modals/Modal';
+import { useState } from 'react';
 import { ButtonAdd } from '../../../../components/ButtonAdd';
-import { ModalHabilidade } from './ModalHabilidade';
+import { Modal } from '../../../../components/Modals/Modal';
 import { Habilidade } from './Habilidade';
-import { Poder } from './Poder';
-import { Proficiencia } from './Proficiencia';
+import { ModalHabilidade } from './ModalHabilidade';
 import { ModalPoder } from './ModalPoder';
 import { ModalProficiencia } from './ModalProficiencia';
+import { Poder } from './Poder';
+import { Proficiencia } from './Proficiencia';
+import { BodyContainer, Button, Container, HeaderContainer } from './styles';
 
 export function HabilidadesContainer({ habilidadesData, poderesData, proficienciasData }) {
 
-  const [body, setBody] = useState(habilidadesData.length > 0 ? 'hab' : poderesData.length > 0 ? 'pod' : proficienciasData.length > 0 ? 'prof' : 'hab')
+  const [body, setBody] = useState('none')
 
   const [habilidades, setHabilidades] = useState(habilidadesData)
   const [poderes, setPoderes] = useState(poderesData)
@@ -26,7 +26,7 @@ export function HabilidadesContainer({ habilidadesData, poderesData, proficienci
       setModalHabilidadeIsOpen(true)
     } else if (body == 'pod') {
       setModalPoderIsOpen(true)
-    } else {
+    } else if (body == 'prof') {
       setModalProficienciaIsOpen(true)
     }
   }
@@ -47,9 +47,9 @@ export function HabilidadesContainer({ habilidadesData, poderesData, proficienci
       </Modal>
 
       <HeaderContainer>
-        <Button active={body == 'hab'} onClick={() => { setBody('hab') }}>Habilidades</Button>
-        <Button active={body == 'pod'} onClick={() => { setBody('pod') }}>Poderes </Button>
-        <Button active={body == 'prof'} onClick={() => { setBody('prof') }}>Proficiências</Button>
+        <Button active={body == 'hab'} onClick={() => { body != 'hab' ? setBody('hab') : setBody('none')}}>Habilidades</Button>
+        <Button active={body == 'pod'} onClick={() => { body != 'pod' ? setBody('pod') : setBody('none')}}>Poderes </Button>
+        <Button active={body == 'prof'} onClick={() => {body != 'prof' ? setBody('prof') : setBody('none')}}>Proficiências</Button>
         <ButtonAdd className='add' onClick={openModal} />
       </HeaderContainer>
 

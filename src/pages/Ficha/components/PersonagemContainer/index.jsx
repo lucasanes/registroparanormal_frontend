@@ -1,13 +1,12 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useDisabled } from '../../../../hooks/useDisabled';
 import { api } from '../../../../services/api';
-import { Container, Select, Main, Button } from './styles';
+import { Button, Container, Main, Select } from './styles';
 import { TextAreaPersonagem } from './TextAreaPersonagem';
 
 export function PersonagemContainer({ data }) {
 
-  const [body, setBody] = useState('principal')
+  const [body, setBody] = useState('none')
 
   const [historia, setHistoria] = useState(data.historia)
   const [aparencia, setAparencia] = useState(data.aparencia)
@@ -48,8 +47,8 @@ export function PersonagemContainer({ data }) {
 
       <Select>
 
-        <Button active={body == 'principal'} onClick={() => setBody('principal')}>Principal</Button>
-        <Button active={body == 'detalhes'} onClick={() => setBody('detalhes')}>Detalhes</Button>
+        <Button active={body == 'principal'} onClick={() => {body != 'principal' ? setBody('principal') : setBody('none')}}>Principal</Button>
+        <Button active={body == 'detalhes'} onClick={() => {body != 'detalhes' ? setBody('detalhes') : setBody('none')}}>Detalhes</Button>
 
       </Select>
 

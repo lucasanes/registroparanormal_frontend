@@ -62,7 +62,7 @@ export const TopBody = styled('div', {
 
 export const Button = styled('button', {
 
-  border: '1px solid #fff',
+  border: '1px solid transparent',
   padding: '.5rem 1rem',
   background: 'none',
   color: '#fff',
@@ -74,7 +74,7 @@ export const Button = styled('button', {
   fontSize: '1.8rem',
 
   '&:hover': {
-    background: '#ffffff40'
+    border: '1px solid #fff',
   },
 
   variants: {

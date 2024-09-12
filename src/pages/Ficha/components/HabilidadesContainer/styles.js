@@ -21,7 +21,7 @@ export const HeaderContainer = styled("div", {
   gap: '1rem',
   alignItems: "center",
   position: "relative",
-  flexWrap: 'wrap', 
+  flexWrap: 'wrap',
 
   '.add': {
     position: "absolute",
@@ -53,8 +53,8 @@ export const Button = styled('button', {
   variants: {
     active: {
       true: {
-        border: '2px solid #fff',
         cursor: 'default',
+        background: '#ffffff20',
 
         '&:hover': {
           border: '2px solid #fff'

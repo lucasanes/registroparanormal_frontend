@@ -1,4 +1,4 @@
-import { styled, keyframes } from '../../../../../../stitches.config';
+import { styled } from '../../../../../../stitches.config';
 
 export const Container = styled('div', {
 
@@ -66,18 +66,16 @@ export const Header = styled('div', {
 
   h1: {
     fontSize: '2.5rem',
-    textTransform: 'capitalize'
+    textTransform: 'capitalize',
   },
 
   variants: {
-
     elemento: {
       Conhecimento: {
         color: '#ffd700'
       },
       Morte: {
-        color: '#000000ff',
-        textShadow: '0px 0px 10px #00000070',
+        color: '#fff',
       },
       Medo: {
         color: '#fff'
@@ -132,13 +130,13 @@ export const Botoes = styled('div', {
     fontFamily: 'El Messiri',
     fontSize: '2rem',
     background: 'none',
-    border: '2px solid #ffffff90',
-    color: 'white',
+    border: '2px solid $orange',
+    color: '$orange',
     transition: 'background .3s'
   },
 
   'button:hover': {
-    background: '#ffffff20'
+    background: '$orangeHover'
   },
 
 })
@@ -149,7 +147,7 @@ export const Img = styled('div', {
   alignItems: 'center',
   justifyContent: 'center',
   margin: '0 3rem'
-  
+
 })
 
 export const Main = styled('div', {

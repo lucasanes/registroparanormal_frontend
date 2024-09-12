@@ -26,7 +26,7 @@ export const Header = styled('div', {
   padding: '1rem 2rem',
 
   h1: {
-    color: 'purple',
+    color: '#fff',
     fontSize: '2.2rem',
     fontFamily: 'Arvo'
   },
@@ -96,7 +96,8 @@ export const Main = styled('div', {
     textAlign: 'left',
     width: 'min-content',
     marginRight: '1rem',
-    fontFamily: 'Rye'
+    fontFamily: 'Rye',
+    color: '$orange'
   },
 
   span: {
@@ -104,46 +105,6 @@ export const Main = styled('div', {
     wordBreak: 'break-all',
     fontFamily: 'Special Elite'
   },
-
-  variants: {
-    elemento: {
-      Conhecimento: {
-        h1: {
-          color: 'Gold'
-        }
-      },
-      Morte: {
-        h1: {
-          color: 'black',
-        },
-      },
-      Medo: {
-        h1: {
-          color: 'white'
-        },
-      },
-      Sangue: {
-        h1: {
-          color: 'Red'
-        },
-      },
-      Energia: {
-        h1: {
-          color: 'Purple'
-        }
-      }
-
-    },
-    isCritico: {
-      true: { 
-        animation: `${shake} .5s infinite`,
-
-        span: {
-          color: '#ff3737'
-        }
-      }
-    }
-  }
 
 })
 
@@ -162,6 +123,13 @@ export const Footer = styled('div', {
 
   variants: {
     isCritico: {
+      true: {
+        span: {
+          animation: `${shake} .5s infinite`
+        }
+      }
+    },
+    isDesastre: {
       true: {
         span: {
           animation: `${shake} .5s infinite`

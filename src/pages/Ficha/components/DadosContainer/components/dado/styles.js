@@ -1,4 +1,4 @@
-import { styled } from '../../../../../../stitches.config';
+import { styled, theme } from '../../../../../../stitches.config';
 
 export const Container = styled('div', {
   display: 'flex',
@@ -44,25 +44,25 @@ export const Button = styled('button', {
   variants: {
     isDano: {
       true: {
-        color: '#ff3737',
+        color: '$orange',
 
         h1: {
-          textShadow: '2px 2px 2px #ff3737'
+          textShadow: `2px 2px 2px ${theme.colors.orange}`
         },
 
         '&:hover': {
-          border: '2px solid #ff3737',
+          border: `2px solid ${theme.colors.orange}`,
         },
       },
       false: {
-        color: '#800080',
+        color: '$cyan',
 
         h1: {
-          textShadow: '2px 2px 1px #800080'
+          textShadow: `2px 2px 1px ${theme.colors.cyan}`
         },
 
         '&:hover': {
-          border: '2px solid #800080',
+          border: `2px solid ${theme.colors.cyan}`,
         },
       }
     }

@@ -1,7 +1,7 @@
-import { styled, keyframes } from '../../../../../../stitches.config';
+import { keyframes, styled } from '../../../../../../stitches.config';
 
 export const Container = styled('div', {
-  border: '2px solid #800080',
+  border: `2px solid #800080`,
   borderRadius: '5px',
   display: 'flex',
   flexDirection: 'column'
@@ -62,7 +62,7 @@ export const MainTop = styled('div', {
     width: '100%',
     display: 'flex',
     gap: '2rem',
-  },  
+  },
 
   '.infos': {
     width: '100%',

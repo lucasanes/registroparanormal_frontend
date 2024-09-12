@@ -1,4 +1,4 @@
-import { keyframes, styled } from '../../stitches.config';
+import { keyframes, styled, theme } from '../../stitches.config';
 
 export const Container = styled('div', {
 
@@ -318,23 +318,23 @@ export const PortraitImg = styled('img', {
 
 })
 
-const DadoAnimation = keyframes({
-  '0%': {
-    top: '60rem',
+const textAnimation = keyframes({
+  '37%': {
+    scale: 0,
   },
-  '10%': {
-    top: '28rem',
+  '40%': {
+    scale: 1,
   },
-  '70%': {
-    top: '28rem',
+  '90%': {
+    scale: 1,
   },
   '100%': {
-    top: '60rem',
+    scale: 0,
   },
 });
 
 
-const shake = keyframes({
+const CriticAnimation = keyframes({
   '0%': {
     transform: 'translate(2px, 2px) rotate(0deg)'
   },
@@ -370,72 +370,81 @@ const shake = keyframes({
   }
 })
 
-const disasterShake = keyframes({
-  '0%': {
-    transform: 'translate(5px, 5px) rotate(0deg)',
-  },
-  '20%': {
-    transform: 'translate(-5px, -5px) rotate(72deg)',
+const disasterAnimation = keyframes({
+  '37%': {
+    scale: 0,
   },
   '40%': {
-    transform: 'translate(-7px, 7px) rotate(144deg)',
+    scale: 1,
   },
-  '60%': {
-    transform: 'translate(7px, -7px) rotate(216deg)',
+  '72%': {
+    transform: 'rotate(0deg)',
   },
-  '80%': {
-    transform: 'translate(-10px, 10px) rotate(288deg)',
+  '77%': {
+    transform: 'translate(5px, 5px) rotate(45deg)',
+  },
+  '85%': {
+    transform: 'translate(5px, 5px) rotate(45deg)',
+    opacity: 1
+  },
+  '97%': {
+    transform: 'translate(200px, 600px) rotate(300deg)',
+    opacity: 0,
   },
   '100%': {
-    transform: 'translate(5px, 5px) rotate(360deg)',
+    opacity: 0,
+    scale: 1,
   }
 });
 
 
 export const Dado = styled('div', {
-  position: 'relative',
-  right: '5rem',
+  position: 'absolute',
+  right: '18.8rem',
   zIndex: 12,
-  top: '60rem',
+  bottom: '23rem',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  animation: `${DadoAnimation} 7s`,
 
   svg: {
-    filter: 'drop-shadow(#00e5ff 0 0 10px)',
-    color: '#60eeff',
+    filter: 'drop-shadow(#343434 0 0 10px)',
+    color: '#343434',
   },
 
   span: {
     color: '#ffffff',
     fontFamily: 'Special Elite',
     fontWeight: 700,
-    fontSize: '12rem',
-    top: '6.5rem',
+    fontSize: '20rem',
     position: 'absolute',
-    zIndex: 3
+    top: '13rem',
+    zIndex: 3,
+    scale: 0,
+    animation: `${textAnimation} ease-in-out 8s`,
   },
 
   variants: {
     isDano: {
       true: {
-        textShadow: '#ff3737 0 0 20px, #ff3737 0 0 30px',
+        textShadow: `${theme.colors.orange} 0 0 20px, ${theme.colors.orange} 0 0 30px`,
       },
       false: {
-        textShadow: '#854cff 0 0 20px, #854cff 0 0 20px, #854cff 0 0 30px',
+        textShadow: `${theme.colors.cyan} 0 0 20px, ${theme.colors.cyan} 0 0 20px, ${theme.colors.cyan} 0 0 30px`,
       }
     },
     isCritico: {
       true: {
-        animation: `${DadoAnimation} 7s, ${shake} .5s infinite`,
+        span: {
+          animation: `${textAnimation} ease-in-out 8s, ${CriticAnimation} .5s linear infinite`,
+        }
       }
     },
     isDesastre: {
       true: {
-        svg: {
-          animation: `${DadoAnimation} 7s, ${disasterShake} .8s linear infinite`,
-        },
+        span: {
+          animation: `${disasterAnimation} ease-in-out 8s`,
+        }
       }
     }
   }

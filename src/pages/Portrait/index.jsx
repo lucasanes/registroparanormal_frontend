@@ -274,15 +274,15 @@ export function Portrait() {
           <h5>x {status.municao}</h5>
         </Municao>
 
+        <Dado key={dadoRolado} style={{display: dadoRolado < 1 ? 'none' : 'flex'}} id='dado' isCritico={dado.isCritico} isDesastre={dado.isDesastre} isDano={dado.isDano}>
+          <span>{dado.valorTotal}</span>
+          <FaDiceD20 size={400} />
+        </Dado>
+
         {semPerm && <h6>Portrait Privado</h6>}
         <PortraitImg id='imagem' animation={animation} inconsciente={status.inconsciente} semPerm={semPerm} src={portraitImg} />
         <img src={FundoPortrait} />
       </Main>
-
-      <Dado key={dadoRolado} style={{display: dadoRolado < 1 ? 'none' : 'flex'}} id='dado' isCritico={dado.isCritico} isDesastre={dado.isDesastre} isDano={dado.isDano}>
-        <span>{dado.valorTotal}</span>
-        <FaDiceD20 color='#' size={200} />
-      </Dado>
 
     </Container>
   );

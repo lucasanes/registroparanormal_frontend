@@ -1,4 +1,4 @@
-import { styled, keyframes } from '../../../../stitches.config';
+import { styled } from '../../../../stitches.config';
 
 export const Container = styled("div", {
   border: "2px solid #ffffff75",
@@ -87,6 +87,7 @@ export const Button = styled('button', {
   padding: '.7rem 1.5rem',
   background: 'none',
   borderRadius: '5px',
+  fontFamily: 'El Messiri',
 
   variants: {
 
@@ -102,12 +103,12 @@ export const Button = styled('button', {
 
       },
       Morte: {
-        color: '#000000ff',
-        border: '1px solid #000000ff',
-        boxShadow: '0px 0px 10px #00000050',
+        color: '#fff',
+        border: '2px solid #000000ff',
+        boxShadow: '0px 0px 10px #00000090, 0px 0px 10px #00000090',
 
         '&:hover': {
-          background: '#00000020'
+          background: '#00000050'
         }
 
       },
@@ -148,7 +149,7 @@ export const Button = styled('button', {
         background: '#ffd70050'
       },
       Morte: {
-        background: '#00000020',
+        background: '#00000050',
       },
       Medo: {
         background: '#ffffff50'

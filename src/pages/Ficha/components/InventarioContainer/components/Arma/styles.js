@@ -1,4 +1,4 @@
-import { styled, keyframes } from '../../../../../../stitches.config';
+import { keyframes, styled } from '../../../../../../stitches.config';
 
 export const Container = styled('div', {
   border: '2px solid #ff3737',
@@ -56,7 +56,7 @@ export const MainTop = styled('div', {
     width: '100%',
     display: 'flex',
     gap: '2rem',
-  },  
+  },
 
   '.infos': {
     width: '100%',
@@ -207,27 +207,27 @@ export const Button = styled('button', {
   variants: {
     color: {
       purple: {
-        color: '#800080',
-        border: '2px solid #800080',
+        color: '$cyan',
+        border: `2px solid $cyan`,
 
         '&:hover': {
-          background: '#80008050',
+          background: '$cyanHover',
         }
       },
       crimson: {
-        color: '#ff0000',
-        border: '2px solid #ff0000',
+        color: '$orange',
+        border: '2px solid $orange',
 
         '&:hover': {
-          background: '#ff000050',
+          background: '$orangeHover',
         }
       },
       red: {
-        color: '#ff4242',
-        border: '2px solid #ff4242',
+        color: '$orange',
+        border: '2px solid $orange',
 
         '&:hover': {
-          background: '#ff424250',
+          background: '$orangeHover',
         }
       }
     }

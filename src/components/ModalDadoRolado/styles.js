@@ -1,4 +1,4 @@
-import { keyframes, styled } from '../../stitches.config';
+import { keyframes, styled, theme } from '../../stitches.config';
 
 export const Container = styled('div', {
 
@@ -118,10 +118,10 @@ export const Main = styled('div', {
   variants: {
     isDano: {
       true: {
-        h1: { color: '#ff3737' }
+        h1: { color: theme.colors.orange }
       },
       false: {
-        h1: { color: '#800080' }
+        h1: { color: theme.colors.cyan }
       }
     },
     isCritico: {
@@ -129,7 +129,7 @@ export const Main = styled('div', {
         animation: `${shake} .5s infinite`,
 
         span: {
-          color: '#03fc52'
+          color: theme.colors.isCritic
         }
       }
     },
@@ -138,7 +138,7 @@ export const Main = styled('div', {
         animation: `${shake} .5s infinite`,
 
         span: {
-          color: '#ff3737'
+          color: theme.colors.isDisaster
         }
       }
     }

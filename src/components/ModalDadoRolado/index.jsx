@@ -37,9 +37,13 @@ export function ModalDadoRolado({ setModalClose, data }) {
   const [isCritico, setIsCritico] = useState(false)
   const [isDesastre, setIsDesastre] = useState(false)
 
-  const [canShow, setCanShow] = useState(false)
+  const [canShow, setCanShow] = useState(true)
 
   useEffect(() => {
+
+    if (location.href.includes('ficha')) {
+      setCanShow(false)
+    }
 
     playRollSound()
 
@@ -269,9 +273,11 @@ export function ModalDadoRolado({ setModalClose, data }) {
 
     rolarDado(dadoDinamico(data.valor, dc));
 
-    setTimeout(() => {
-      setCanShow(true)
-    }, 3300);
+    if (location.href.includes('ficha')) {
+      setTimeout(() => {
+        setCanShow(true)
+      }, 3300);
+    }
   }, []);
 
   return (

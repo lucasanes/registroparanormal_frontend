@@ -274,7 +274,7 @@ export const Status4 = styled("div", {
   },
 });
 
-export const PortraitImg = styled("img", {
+export const PortraitImg = styled("video", {
   position: "absolute",
   width: "790px",
   height: "790px",
@@ -432,21 +432,21 @@ export const Dado = styled("div", {
     isDano: {
       true: {
         span: {
-          '-webkit-text-stroke': `1px ${theme.colors.orange}`,
+          "-webkit-text-stroke": `1px ${theme.colors.orange}`,
           textShadow: `
             ${theme.colors.orange} 0 0 20px, 
             #000000 0px 0px 5px
           `,
-        }
+        },
       },
       false: {
         span: {
-          '-webkit-text-stroke': `2px ${theme.colors.cyan}`,
+          "-webkit-text-stroke": `2px ${theme.colors.cyan}`,
           textShadow: `
             ${theme.colors.cyan} 0 0 20px, 
             #000000 0px 0px 5px
           `,
-        }
+        },
       },
     },
     isCritico: {

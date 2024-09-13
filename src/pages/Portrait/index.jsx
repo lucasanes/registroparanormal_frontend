@@ -285,7 +285,7 @@ export function Portrait() {
         </Dado>
 
         {semPerm && <h6>Portrait Privado</h6>}
-        <PortraitImg id='imagem' animation={animation} inconsciente={status.inconsciente} semPerm={semPerm} src={portraitImg} />
+        <PortraitImg id='imagem' animation={animation} inconsciente={status.inconsciente} semPerm={semPerm} src={portraitImg} autoPlay loop muted/>
         <img src={FundoPortrait} />
       </Main>
 

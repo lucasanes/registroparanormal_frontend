@@ -12,7 +12,7 @@ import { api } from '../../../../services/api';
 import { theme } from '../../../../stitches.config';
 import { ModalPortrait } from './components/ModalPortrait';
 import { ModalStatus } from './components/ModalStatus';
-import { AreaPortrait, Body, BottomBody, Button, ButtonIcon, Buttons, Container, ContainerDeferes, Deferes, Header, Img, Portrait, TopBody } from './styles';
+import { AreaPortrait, Body, BottomBody, Button, ButtonIcon, Buttons, Container, ContainerDeferes, Deferes, Header, Img, Portrait, TopBody, Video } from './styles';
 
 const socket = io(api.defaults.baseURL);
 
@@ -244,10 +244,6 @@ export function StatusContainer({ status, defesasData, portraitData, infosBarrin
     setPeMax(newPeMax)
   }
 
-
-
-
-
   function setarPvAtual2(newPvAtual) {
       socket.emit("status.pvA", { fichaId: id, newPvAtual: newPvAtual + pvA });
     setPvA2(newPvAtual)
@@ -267,7 +263,6 @@ export function StatusContainer({ status, defesasData, portraitData, infosBarrin
     socket.emit("status.portrait", { fichaId: id, newPortrait });
     setPortraitImg(newPortrait)
   }
-
 
   return (
     <Container>
@@ -308,16 +303,14 @@ export function StatusContainer({ status, defesasData, portraitData, infosBarrin
 
             <Portrait target='_blank' to={`/ficha/portrait/${id}`}>
               {portraitImg ?
-
-                <Img active={inconsciente} src={portraitImg} />
+                <Video active={inconsciente} src={portraitImg} autoPlay loop muted/>
                 :
                 <Img src={noportrait} />
-
               }
 
             </Portrait>
 
-            <ButtonEdit className='edit' style={{position: 'relative', bottom: 100, right: 20}} size={25} onClick={() => setModalPortraitIsOpen(true)} />
+            <ButtonEdit className='edit' style={{position: 'relative', bottom: 100, right: 20, zIndex: 10}} size={25} onClick={() => setModalPortraitIsOpen(true)} />
 
           </AreaPortrait>
 

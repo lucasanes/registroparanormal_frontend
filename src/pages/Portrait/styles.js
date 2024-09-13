@@ -325,12 +325,16 @@ const textAnimation = keyframes({
   '40%': {
     scale: 1,
   },
-  '90%': {
-    scale: 1,
+  '80%': {
+    opacity: 1,
+  },
+  '85%': {
+    opacity: 0,
   },
   '100%': {
-    scale: 0,
-  },
+    opacity: 0,
+    scale: 1,
+  }
 });
 
 
@@ -377,17 +381,20 @@ const disasterAnimation = keyframes({
   '40%': {
     scale: 1,
   },
-  '72%': {
+  '50%': {
     transform: 'rotate(0deg)',
   },
-  '77%': {
+  '55%': {
     transform: 'translate(5px, 5px) rotate(45deg)',
   },
-  '85%': {
+  '75%': {
+    transform: 'translate(5px, 5px) rotate(45deg)',
+  },
+  '80%': {
     transform: 'translate(5px, 5px) rotate(45deg)',
     opacity: 1
   },
-  '97%': {
+  '92%': {
     transform: 'translate(200px, 600px) rotate(300deg)',
     opacity: 0,
   },
@@ -397,15 +404,28 @@ const disasterAnimation = keyframes({
   }
 });
 
+const dadoAnimation = keyframes({
+  '0%': {
+    opacity: 1,
+  },
+  '99%': {
+    opacity: 1,
+  },
+  '100%': {
+    opacity: 0,
+  }
+})
+
 
 export const Dado = styled('div', {
   position: 'absolute',
-  right: '18.8rem',
+  right: '4rem',
   zIndex: 12,
-  bottom: '23rem',
+  bottom: '10rem',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+  animation: `${dadoAnimation} 8s forwards`,
 
   svg: {
     filter: 'drop-shadow(#343434 0 0 10px)',
@@ -416,9 +436,9 @@ export const Dado = styled('div', {
     color: '#ffffff',
     fontFamily: 'Special Elite',
     fontWeight: 700,
-    fontSize: '20rem',
+    fontSize: '18rem',
     position: 'absolute',
-    top: '13rem',
+    top: '32.5rem',
     zIndex: 3,
     scale: 0,
     animation: `${textAnimation} ease-in-out 8s`,

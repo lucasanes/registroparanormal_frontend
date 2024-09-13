@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { FaDiceD20 } from 'react-icons/fa';
 import { useParams } from 'react-router-dom';
 import { io } from 'socket.io-client';
+import dadoVideo from '../../assets/img/0001-0192.mp4';
 import FundoPortrait from '../../assets/img/FundoPortrait.png';
 import municaoImg from '../../assets/img/municaoImg.png';
 import { useAuth } from '../../hooks/useAuth';
@@ -276,7 +276,10 @@ export function Portrait() {
 
         <Dado key={dadoRolado} style={{display: dadoRolado < 1 ? 'none' : 'flex'}} id='dado' isCritico={dado.isCritico} isDesastre={dado.isDesastre} isDano={dado.isDano}>
           <span>{dado.valorTotal}</span>
-          <FaDiceD20 size={400} />
+          <video width={700} height={700} autoPlay loop muted >
+            <source src={dadoVideo}/>
+          </video>
+          {/* <FaDiceD20 size={400} /> */}
         </Dado>
 
         {semPerm && <h6>Portrait Privado</h6>}

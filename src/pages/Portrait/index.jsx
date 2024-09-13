@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { io } from 'socket.io-client';
-import dadoVideo from '../../assets/img/0001-0192.mp4';
+import disasterDice from '../../assets/img/disasterDice.webm';
 import FundoPortrait from '../../assets/img/FundoPortrait.png';
 import municaoImg from '../../assets/img/municaoImg.png';
+import normalDice from '../../assets/img/normalDice.webm';
 import { useAuth } from '../../hooks/useAuth';
 import { api } from '../../services/api';
 import { Container, Dado, Main, Municao, PortraitImg, Status1, Status2, Status3, Status4 } from './styles';
@@ -276,10 +277,11 @@ export function Portrait() {
 
         <Dado key={dadoRolado} style={{display: dadoRolado < 1 ? 'none' : 'flex'}} id='dado' isCritico={dado.isCritico} isDesastre={dado.isDesastre} isDano={dado.isDano}>
           <span>{dado.valorTotal}</span>
-          <video width={700} height={700} autoPlay loop muted >
-            <source src={dadoVideo}/>
+          <video width={700} height={700} autoPlay loop muted>
+            {dado.isCritico && <source src={normalDice} type="video/webm"/>}
+            {dado.isDesastre && <source src={disasterDice} type="video/webm"/>}
+            {!dado.isCritico && !dado.isDesastre && <source src={normalDice} type="video/webm"/>}
           </video>
-          {/* <FaDiceD20 size={400} /> */}
         </Dado>
 
         {semPerm && <h6>Portrait Privado</h6>}

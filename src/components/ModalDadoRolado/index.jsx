@@ -37,6 +37,8 @@ export function ModalDadoRolado({ setModalClose, data }) {
   const [isCritico, setIsCritico] = useState(false)
   const [isDesastre, setIsDesastre] = useState(false)
 
+  const [canShow, setCanShow] = useState(false)
+
   useEffect(() => {
 
     playRollSound()
@@ -262,14 +264,18 @@ export function ModalDadoRolado({ setModalClose, data }) {
           });
         }
 
-      };
+      }
     }
 
     rolarDado(dadoDinamico(data.valor, dc));
+
+    setTimeout(() => {
+      setCanShow(true)
+    }, 3300);
   }, []);
 
   return (
-    <Container>
+    <Container isDano={data.isDano}>
 
       <Header>
 
@@ -278,20 +284,26 @@ export function ModalDadoRolado({ setModalClose, data }) {
 
       </Header>
 
-      <Main isCritico={isCritico} isDesastre={isDesastre} isDano={data.isDano}>
-        <h1>{pericias(data.nome) != null ? pericias(data.nome) : data.nome}:</h1>
-        <span>
-          {dados.conta} = {dados.valorTotal}
-        </span>
-      </Main>
+      {canShow ? <>
 
-      <Footer isCritico={isCritico} isDesastre={isDesastre}>
-        {dados.dadosRolados.map((dado) => (
-          <span key={dado.dado}>
-            {dado.dado}: {dado.valores.join(', ')}
+        <Main isCritico={isCritico} isDesastre={isDesastre} isDano={data.isDano}>
+          <h1>{pericias(data.nome) != null ? pericias(data.nome) : data.nome}:</h1>
+          <span>
+            {dados.conta} = {dados.valorTotal}
           </span>
-        ))}
-      </Footer>
+        </Main>
+
+        <Footer isCritico={isCritico} isDesastre={isDesastre}>
+          {dados.dadosRolados.map((dado) => (
+            <span key={dado.dado}>
+              {dado.dado}: {dado.valores.join(', ')}
+            </span>
+          ))}
+        </Footer>
+        
+      </>
+      
+      : <span className='rolando'>Rolando...</span>}
 
     </Container>
   );

@@ -81,7 +81,6 @@ export const Button = styled('button', {
     active: {
       true: {
         background: '$white50',
-        cursor: 'default',
       }
     }
   }

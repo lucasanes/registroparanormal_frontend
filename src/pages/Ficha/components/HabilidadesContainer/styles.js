@@ -52,7 +52,6 @@ export const Button = styled('button', {
   variants: {
     active: {
       true: {
-        cursor: 'default',
         background: '$white25',
 
         '&:hover': {

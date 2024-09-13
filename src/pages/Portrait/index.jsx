@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { io } from 'socket.io-client';
-import disasterDice from '../../assets/img/disasterDice.webm';
 import FundoPortrait from '../../assets/img/FundoPortrait.png';
 import municaoImg from '../../assets/img/municaoImg.png';
-import normalDice from '../../assets/img/normalDice.webm';
+import disasterDice from '../../assets/video/disasterDice.webm';
+import normalDice from '../../assets/video/normalDice.webm';
 import { useAuth } from '../../hooks/useAuth';
 import { api } from '../../services/api';
 import { Container, Dado, Main, Municao, PortraitImg, Status1, Status2, Status3, Status4 } from './styles';

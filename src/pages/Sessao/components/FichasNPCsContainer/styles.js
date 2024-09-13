@@ -60,22 +60,19 @@ export const Button = styled('button', {
   background: 'none',
   fontFamily: 'Special Elite',
   color: '$white90',
-  border: '2px solid $white90',
+  border: '2px solid transparent',
   padding: '.7rem 1rem 0.1rem 1rem',
   fontSize: '2.2rem',
   borderRadius: '5px',
 
   '&:hover': {
-
-    background: '$white25'
-
+    border: '2px solid $white90',
   },
 
   variants: {
     active: {
       true: {
         background: '$white25',
-        cursor: 'default'
       }
     }
   }

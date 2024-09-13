@@ -41,7 +41,7 @@ export function ModalDadoRolado({ setModalClose, data }) {
 
   useEffect(() => {
 
-    if (location.href.includes('ficha')) {
+    if (location.href.includes('ficha') && import.meta.env.VITE_NODE_ENV == 'prod') {
       setCanShow(false)
     }
 

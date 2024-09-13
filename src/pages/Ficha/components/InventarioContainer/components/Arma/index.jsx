@@ -1,22 +1,20 @@
 import { useEffect, useState } from 'react';
-import { Container, Header, Main, MainTop, Span, Infos, DivInfos, ParteImg, ParteImgModal, ButtonIcon, ImgModal, Icon, Dados, Button, ContainerDadoRolado } from './styles';
-import { BiInfoCircle } from 'react-icons/bi'
-import { MdOutlineSendToMobile } from 'react-icons/md'
-import { IoIosStarOutline } from 'react-icons/io'
-import { GiPistolGun } from 'react-icons/gi'
-import { IoIosShuffle } from 'react-icons/io'
-import { IoLocateSharp } from 'react-icons/io5'
-import { Modal } from '../../../../../../components/Modals/Modal';
-import { DadoRolado } from '../DadoRolado';
-import { ModalEditArma } from '../ModalEditArma';
-import { ButtonEdit } from '../../../../../../components/ButtonEdit';
+import { BiInfoCircle } from 'react-icons/bi';
+import { GiPistolGun } from 'react-icons/gi';
+import { IoIosShuffle, IoIosStarOutline } from 'react-icons/io';
+import { IoLocateSharp } from 'react-icons/io5';
+import { MdOutlineSendToMobile } from 'react-icons/md';
 import { useParams } from 'react-router-dom';
-import { api } from '../../../../../../services/api';
-import { Barrinha } from './Barrinha';
 import { io } from 'socket.io-client';
+import { ButtonEdit } from '../../../../../../components/ButtonEdit';
+import { ModalDadoRolado } from '../../../../../../components/ModalDadoRolado';
+import { Modal } from '../../../../../../components/Modals/Modal';
 import { useDisabled } from '../../../../../../hooks/useDisabled';
 import { useFichas } from '../../../../../../hooks/useFichas';
-import {ModalDadoRolado} from '../../../../../../components/ModalDadoRolado'
+import { api } from '../../../../../../services/api';
+import { ModalEditArma } from '../ModalEditArma';
+import { Barrinha } from './Barrinha';
+import { Button, ButtonIcon, Container, Dados, DivInfos, Header, Icon, ImgModal, Infos, Main, MainTop, ParteImg, ParteImgModal, Span } from './styles';
 
 const socket = io(api.defaults.baseURL);
 

@@ -312,20 +312,19 @@ export const PortraitImg = styled("img", {
 
 const textAnimation = keyframes({
   "37%": {
-    scale: 0,
+    opacity: 0,
   },
   "40%": {
-    scale: 1,
+    opacity: 1,
   },
   "80%": {
     opacity: 1,
   },
-  "85%": {
+  "83%": {
     opacity: 0,
   },
   "100%": {
     opacity: 0,
-    scale: 1,
   },
 });
 
@@ -367,10 +366,10 @@ const CriticAnimation = keyframes({
 
 const disasterAnimation = keyframes({
   "37%": {
-    scale: 0,
+    opacity: 0,
   },
   "40%": {
-    scale: 1,
+    opacity: 1,
   },
   "50%": {
     transform: "rotate(0deg)",
@@ -380,18 +379,14 @@ const disasterAnimation = keyframes({
   },
   "75%": {
     transform: "translate(5px, 5px) rotate(45deg)",
-  },
-  "80%": {
-    transform: "translate(5px, 5px) rotate(45deg)",
     opacity: 1,
   },
-  "92%": {
+  "87%": {
     transform: "translate(200px, 600px) rotate(300deg)",
     opacity: 0,
   },
   "100%": {
     opacity: 0,
-    scale: 1,
   },
 });
 
@@ -423,24 +418,35 @@ export const Dado = styled("div", {
   },
 
   span: {
-    color: "#bbbbbb",
+    color: "transparent",
     fontFamily: "Special Elite",
-    fontWeight: 700,
-    fontSize: "18rem",
+    fontSize: "10rem",
     position: "absolute",
-    top: "32.5rem",
+    top: "33rem",
     zIndex: 3,
-    scale: 0,
+    opacity: 0,
     animation: `${textAnimation} ease-in-out 8s`,
   },
 
   variants: {
     isDano: {
       true: {
-        textShadow: `${theme.colors.orange} 0 0 20px, ${theme.colors.orange} 0 0 30px`,
+        span: {
+          '-webkit-text-stroke': `1px ${theme.colors.orange}`,
+          textShadow: `
+            ${theme.colors.orange} 0 0 20px, 
+            #000000 0px 0px 5px
+          `,
+        }
       },
       false: {
-        textShadow: `${theme.colors.cyan} 0 0 20px, ${theme.colors.cyan} 0 0 20px, ${theme.colors.cyan} 0 0 30px`,
+        span: {
+          '-webkit-text-stroke': `2px ${theme.colors.cyan}`,
+          textShadow: `
+            ${theme.colors.cyan} 0 0 20px, 
+            #000000 0px 0px 5px
+          `,
+        }
       },
     },
     isCritico: {

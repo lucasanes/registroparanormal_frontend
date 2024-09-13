@@ -75,19 +75,10 @@ export function InventarioContainer({ armasData, itensData }) {
 
       try {
 
-        await api.post(`/fichas/item`, {
-          nome: item[0].nome,
-          espaco: item[0].espaco,
-          categoria: item[0].categoria,
-          descricao: item[0].descricao,
-          imagem: item[0].imagem,
-          isMunicao: item[0].isMunicao,
-          municao: item[0].municao,
-          municaoMax: item[0].municaoMax,
+        await api.post(`/fichas/item/enviar`, {
+          id: itemAEnviar,
           fichaId: fichaIdAEnviar
         });
-
-        await api.delete(`/sessoes/item/${itemAEnviar}`)
 
         const listaAtualizada = itens.filter(item => item.id != itemAEnviar)
         setItens(listaAtualizada)
@@ -109,24 +100,10 @@ export function InventarioContainer({ armasData, itensData }) {
 
       try {
 
-        await api.post(`/fichas/arma`, {
-          nome: arma[0].nome,
-          tipo: arma[0].tipo,
-          alcance: arma[0].alcance,
-          recarga: arma[0].recarga,
-          especial: arma[0].especial,
-          ataque: arma[0].ataque,
-          dano: arma[0].dano,
-          margemCritico: arma[0].margemCritico,
-          danoCritico: arma[0].danoCritico,
-          espaco: arma[0].espaco,
-          categoria: arma[0].categoria,
-          descricao: arma[0].descricao,
-          imagem: arma[0].imagem,
+        await api.post(`/fichas/arma/enviar`, {
+          id: itemAEnviar,
           fichaId: fichaIdAEnviar
         });
-
-        await api.delete(`/sessoes/arma/${itemAEnviar}`)
 
         const listaAtualizada = armas.filter(arma => arma.id != itemAEnviar)
         setArmas(listaAtualizada)

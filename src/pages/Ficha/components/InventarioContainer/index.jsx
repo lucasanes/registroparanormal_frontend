@@ -102,33 +102,17 @@ export function InventarioContainer({ armasData, itensData, peso, userId }) {
 
         if (ficha.length > 0) {
 
-          await api.post(`/fichas/item`, {
-            nome: item[0].nome,
-            espaco: item[0].espaco,
-            categoria: item[0].categoria,
-            descricao: item[0].descricao,
-            imagem: item[0].imagem,
-            isMunicao: item[0].isMunicao,
-            municao: item[0].municao,
-            municaoMax: item[0].municaoMax,
+          await api.post(`/fichas/item/enviar`, {
+            id: itemAEnviar,
             fichaId: fichaIdAEnviar,
           });
 
         } else {
-          await api.post(`/sessoes/item`, {
-            nome: item[0].nome,
-            espaco: item[0].espaco,
-            categoria: item[0].categoria,
-            descricao: item[0].descricao,
-            imagem: item[0].imagem,
-            isMunicao: item[0].isMunicao,
-            municao: item[0].municao,
-            municaoMax: item[0].municaoMax,
+          await api.post(`/fichas/item/enviar`, {
+            id: itemAEnviar,
             sessaoId: fichaIdAEnviar
           });
         }
-
-        await api.delete(`/fichas/item/${itemAEnviar}`)
 
         const listaAtualizada = itens.filter(item => item.id != itemAEnviar)
         setItens(listaAtualizada)
@@ -148,43 +132,16 @@ export function InventarioContainer({ armasData, itensData, peso, userId }) {
       try {
 
         if (ficha.length > 0) {
-          await api.post(`/fichas/arma`, {
-            nome: arma[0].nome,
-            tipo: arma[0].tipo,
-            alcance: arma[0].alcance,
-            recarga: arma[0].recarga,
-            especial: arma[0].especial,
-            ataque: arma[0].ataque,
-            dano: arma[0].dano,
-            margemCritico: arma[0].margemCritico,
-            danoCritico: arma[0].danoCritico,
-            espaco: arma[0].espaco,
-            categoria: arma[0].categoria,
-            descricao: arma[0].descricao,
-            imagem: arma[0].imagem,
+          await api.post(`/fichas/arma/enviar`, {
+            id: itemAEnviar,
             fichaId: fichaIdAEnviar,
           });
         } else {
-          await api.post(`/sessoes/arma`, {
-            nome: arma[0].nome,
-            tipo: arma[0].tipo,
-            alcance: arma[0].alcance,
-            recarga: arma[0].recarga,
-            especial: arma[0].especial,
-            ataque: arma[0].ataque,
-            dano: arma[0].dano,
-            margemCritico: arma[0].margemCritico,
-            danoCritico: arma[0].danoCritico,
-            espaco: arma[0].espaco,
-            categoria: arma[0].categoria,
-            descricao: arma[0].descricao,
-            imagem: arma[0].imagem,
+          await api.post(`/fichas/arma/enviar`, {
+            id: itemAEnviar,
             sessaoId: fichaIdAEnviar
           });
         }
-
-
-        await api.delete(`/fichas/arma/${itemAEnviar}`)
 
         const listaAtualizada = armas.filter(arma => arma.id != itemAEnviar)
         setArmas(listaAtualizada)

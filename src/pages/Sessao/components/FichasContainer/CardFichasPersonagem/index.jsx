@@ -10,6 +10,7 @@ import periciasmap from "../../../../../components/mappers/pericias";
 import resistenciasmap from "../../../../../components/mappers/resistencias";
 import { useFichas } from "../../../../../hooks/useFichas";
 import { api } from "../../../../../services/api";
+import { theme } from "../../../../../stitches.config";
 import { Barrinha } from "../Barrinha";
 import { Body, BottomBody, Button, ButtonPrivate, Card, Container, Deferes, DivDeferes, Grid, Header, LinkButton, LinkIcon, TopBody } from "./styles";
 
@@ -168,7 +169,7 @@ export function CardFichasPersonagem({ data }) {
                 </div>
                 <div>
                     <LinkIcon to={`/ficha/portrait/${data.id}`} color={'aqua'}>
-                        <FaUserCircle size={20} color="#03d9ffff" />
+                        <FaUserCircle size={20} color={theme.colors.cyan} />
                     </LinkIcon>
                     <ButtonPrivate onClick={handleEdit} color={isPublic ? 'green' : 'crimson'}>{isPublic ? <BsEye size={20} color="#13ff72" /> : <BsEyeSlash size={20} color="crimson" />}</ButtonPrivate>
                     <ButtonDelete onClick={handleDelete}/>

@@ -116,7 +116,7 @@ export const ProgressBar = styled('div', {
   width: '100%',
   height: '2rem',
   borderRadius: '10px',
-  backgroundColor: '#ffffff14',
+  backgroundColor: '$bar',
   display: 'flex',
   overflow: 'hidden'
 
@@ -144,24 +144,24 @@ export const Progress = styled('div', {
   variants: {
     color: {
       red: {
-        backgroundColor: '#9a0000',
+        backgroundColor: '$pv',
 
         '&::before': {
-          backgroundColor: '#9a0000',  
+          backgroundColor: '$pv',
         },
       },
       yellow: {
-        backgroundColor: '#dea600ff',
+        backgroundColor: '$pe',
 
         '&::before': {
-          backgroundColor: '#dea600ff',  
+          backgroundColor: '$pe',
         },
       },
       aqua: {
-        backgroundColor: '#005795',
+        backgroundColor: '$ps',
 
         '&::before': {
-          backgroundColor: '#005795',  
+          backgroundColor: '$ps',
         },
       }
     },

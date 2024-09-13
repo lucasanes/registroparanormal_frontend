@@ -38,7 +38,7 @@ export const Botoes = styled('div', {
     whiteSpace: 'nowrap',
     gap: '.5rem',
     transition: '.3s',
-    color: '#fff',
+    color: '$white',
     border: '1px solid transparent',
     fontSize: '2rem',
     borderRadius: '7px',
@@ -48,7 +48,7 @@ export const Botoes = styled('div', {
   'button:hover': {
     border: '1px solid white'
   },
-})  
+})
 
 export const InputDiv = styled('div', {
   width: '33%',
@@ -117,7 +117,7 @@ export const ProgressBar = styled('div', {
   width: '100%',
   height: '2rem',
   borderRadius: '10px',
-  backgroundColor: '#ffffff14',
+  backgroundColor: '$bar',
   display: 'flex',
   overflow: 'hidden'
 
@@ -192,24 +192,24 @@ export const Progress = styled('div', {
   variants: {
     color: {
       red: {
-        backgroundColor: '#9a0000',
+        backgroundColor: '$pv',
 
         '&::before': {
-          backgroundColor: '#9a0000',  
+          backgroundColor: '$pv',
         },
       },
       yellow: {
-        backgroundColor: '#dea600ff',
+        backgroundColor: '$pe',
 
         '&::before': {
-          backgroundColor: '#dea600ff',  
+          backgroundColor: '$pe',
         },
       },
       aqua: {
-        backgroundColor: '#005795',
+        backgroundColor: '$ps',
 
         '&::before': {
-          backgroundColor: '#005795',  
+          backgroundColor: '$ps',
         },
       }
     },

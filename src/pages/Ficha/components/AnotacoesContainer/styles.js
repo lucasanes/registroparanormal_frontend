@@ -3,12 +3,12 @@ import { styled } from '../../../../stitches.config';
 export const Container = styled('div', {
 
   width: '100%',
-  border: "2px solid #ffffff75",
+  border: "2px solid $white75",
   borderRadius: "0.5rem",
   marginTop: '2rem',
 
   hr: {
-    borderColor: '#ffffff75'
+    borderColor: '$white75'
   }
 
 })
@@ -36,14 +36,14 @@ export const Main = styled('div', {
   '@lg': {
     flexDirection: 'column'
   },
-  
+
   div: {
     width: '100%'
   },
 
   span: {
     fontSize: '2.3rem',
-    color: '#fff',
+    color: '$white',
     fontFamily: 'El Messiri'
   },
 

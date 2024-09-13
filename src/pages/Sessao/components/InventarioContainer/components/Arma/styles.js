@@ -1,4 +1,4 @@
-import { styled, keyframes } from '../../../../../../stitches.config';
+import { keyframes, styled } from '../../../../../../stitches.config';
 
 export const Container = styled('div', {
   border: '2px solid #ff3737',
@@ -17,7 +17,7 @@ export const Header = styled('div', {
     width: '100%',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
-    color: '#ff3737',
+    color: '$isDisaster',
     fontSize: '3rem',
     padding: '0 1rem',
     textAlign: 'center',
@@ -56,14 +56,14 @@ export const MainTop = styled('div', {
     width: '100%',
     display: 'flex',
     gap: '2rem',
-  },  
+  },
 
   '.infos': {
     width: '100%',
     color: 'white',
     textAlign: 'center',
     padding: '.2rem 0.5rem 0rem 0.5rem',
-    border: '1px solid #ffffff90',
+    border: '1px solid $white90',
     fontFamily: 'El Messiri'
   }
 
@@ -77,7 +77,7 @@ export const Span = styled('span', {
   width: '100%',
   background: 'none',
   border: 'none',
-  outline: '1px solid #ffffff90',
+  outline: '1px solid $white90',
   color: 'white',
   fontFamily: 'El Messiri',
   padding: '.5rem 1rem',
@@ -130,7 +130,7 @@ export const Infos = styled('div', {
   span: {
     marginLeft: '1rem',
     fontSize: '2rem',
-    color: '#fff',
+    color: '$white',
     textTransform: 'capitalize',
     fontFamily: 'Markazi Text'
   },
@@ -153,7 +153,7 @@ export const Icon = styled('div', {
   alignItems: 'center',
   justifyContent: 'center',
   padding: '.5rem',
-  borderRight: '2px solid #ffffff90'
+  borderRight: '2px solid $white90'
 })
 
 export const Dados = styled('div', {
@@ -211,7 +211,7 @@ export const Button = styled('button', {
   variants: {
     color: {
       purple: {
-        color: '#800080',
+        color: '$purple',
         border: '2px solid #800080',
 
         '&:hover': {
@@ -219,7 +219,7 @@ export const Button = styled('button', {
         }
       },
       crimson: {
-        color: '#ff3737',
+        color: '$isDisaster',
         border: '2px solid #ff3737',
 
         '&:hover': {

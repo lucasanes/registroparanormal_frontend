@@ -28,7 +28,7 @@ export const Main = styled("main", {
     fontFamily: 'Gagalin',
     marginLeft: '1rem',
     fontWeight: 100,
-    color: "#ffffff80",
+    color: "$white75",
     letterSpacing: "1rem",
     textShadow: ".5rem .5rem 2rem #352eff8d, .5rem .5rem 2rem #352eff8d",
 
@@ -48,7 +48,7 @@ export const Main = styled("main", {
     letterSpacing: "0.5rem",
     marginBottom: "20rem",
     fontSize: "8rem",
-    color: "#ffffff",
+    color: "$white",
 
     '@md': {
       fontSize: '5rem'
@@ -69,7 +69,7 @@ export const Entrar = styled("button", {
   backgroundColor: "#352effff",
   cursor: 'pointer',
   fontSize: "4rem",
-  color: "#ffffff",
+  color: "$white",
   fontFamily: 'Cormorant Garamond',
   fontWeight: 700,
   transition: '.2s',
@@ -88,7 +88,7 @@ export const Criar = styled('button', {
 
   fontSize: "3.5rem",
   width: 'fit-content',
-  color: "#ffffff",
+  color: "$white",
   border: "none",
   borderRadius: "2rem",
   display: 'flex',
@@ -98,7 +98,6 @@ export const Criar = styled('button', {
   fontFamily: 'Cormorant Garamond',
   fontWeight: 700,
   background: "none",
-  fontSize: "2.6rem",
 
   '@md': {
     fontSize: '2.5rem'

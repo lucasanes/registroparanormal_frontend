@@ -36,7 +36,7 @@ export const Botoes = styled('div', {
     justifyContent: 'center',
     gap: '.5rem',
     transition: '.3s',
-    color: '#fff',
+    color: '$white',
     border: '1px solid transparent',
     fontSize: '1.8rem',
     borderRadius: '7px',
@@ -88,7 +88,7 @@ export const ProgressBar = styled('div', {
   width: '95%',
   height: '1.5rem',
   borderRadius: '10px',
-  backgroundColor: '#ffffff14',
+  backgroundColor: '$bar',
   display: 'flex',
 
 })

@@ -6,7 +6,7 @@ export const Container = styled('tr', {
 
   td: {
 
-    borderBottom: '1px solid #ffffff90',
+    borderBottom: '1px solid $white90',
     paddingBottom: '1rem',
 
     '&:last-child': {
@@ -21,7 +21,7 @@ export const Container = styled('tr', {
     background: 'none',
     padding: '.3rem',
     border: 'none',
-    outline: '1px solid #ffffff90',
+    outline: '1px solid $white90',
     color: 'White'
   },
 

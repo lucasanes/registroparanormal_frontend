@@ -14,7 +14,7 @@ export const Container = styled('div', {
 
   hr: {
     margin: '0rem -1rem',
-    borderColor: '#ffffff75'
+    borderColor: '$white75'
   },
 })
 
@@ -173,7 +173,7 @@ export const ParteGrade = styled('div', {
   justifyContent: 'center',
   flexDirection: 'column',
   color: 'white',
-  border: '1px solid #ffffff90',
+  border: '1px solid $white90',
 
   span: {
     fontSize: '1.8rem',

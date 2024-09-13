@@ -10,7 +10,7 @@ export const Input = styled('input', {
   fontSize: "4rem",
   padding: '1.2rem 0rem 0rem .8rem',
   background: "none",
-  border: '1px solid #fff',
+  border: '1px solid $white',
   outline: 'none',
   borderRadius: '5px',
   color: 'white',

@@ -44,7 +44,7 @@ export const Main = styled("main", {
   h4: {
     fontSize: "18rem",
     fontFamily: "IM Fell English SC",
-    color: "#ffffff",
+    color: "$white",
     fontWeight: 100,
     position: "relative",
     right: "4rem",

@@ -1,6 +1,5 @@
-import {styled} from '../../stitches.config';
 import BackgroundImage from "../../assets/img/bg.webp";
-import Loading from "../../assets/img/Loading2.gif";
+import { styled } from '../../stitches.config';
 
 export const Container = styled('div', {
   width: "100%",
@@ -20,12 +19,12 @@ export const Container = styled('div', {
 export const ContainerDiv = styled('div', {
 
   width: '100%',
-  border: '2px solid #fff',
+  border: '2px solid $white',
   padding: '2rem',
   borderRadius: '1rem',
 
   h1: {
-    color: '#fff',
+    color: '$white',
     fontFamily: 'Special Elite',
     fontSize: '2.6rem',
     width: '100%',
@@ -34,7 +33,7 @@ export const ContainerDiv = styled('div', {
 
   hr: {
     margin: '1.5rem -2rem',
-    color: "#fff"
+    color: "$white"
   },
 
 });

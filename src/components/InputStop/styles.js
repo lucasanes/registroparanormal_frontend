@@ -13,7 +13,7 @@ export const Container = styled('div', {
 export const ContainerInput = styled('div', {
   width: '100%',
   overflow: 'hidden',
-  border: "2px solid #ffffff90",
+  border: "2px solid $white90",
   borderRadius: '1rem',
   display: 'block',
   background: 'transparent',
@@ -58,13 +58,13 @@ export const LabelContainer = styled('label', {
   fontFamily: 'arial',
   backgroundColor: 'rgb(20, 20, 20)',
   fontFamily: 'Cormorant Garamond',
-  color: '#ffffff90',
+  color: '$white90',
   transition: '0.3s',
 
   variants: {
     hover: {
       true: {
-        
+
       },
     },
   },

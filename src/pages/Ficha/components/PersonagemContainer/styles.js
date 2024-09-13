@@ -4,12 +4,12 @@ export const Container = styled('div', {
 
   width: '100%',
   height: '100%',
-  border: "2px solid #ffffff75",
+  border: "2px solid $white75",
   borderRadius: "0.5rem",
   marginBottom: '2rem',
 
   hr: {
-    borderColor: '#ffffff75'
+    borderColor: '$white75'
   }
 
 })
@@ -39,7 +39,7 @@ export const Main = styled('div', {
   span: {
     marginBottom: '-3.5rem',
     fontSize: '2.3rem',
-    color: '#fff',
+    color: '$white',
     fontFamily: 'El Messiri'
   },
 
@@ -62,7 +62,7 @@ export const Button = styled('button', {
   fontSize: '1.8rem',
   background: 'none',
   border: '2px solid transparent',
-  color: '#fff',
+  color: '$white',
   padding: '.7rem 1rem .4rem 1rem',
   letterSpacing: '1px',
   fontFamily: 'Special Elite',
@@ -71,7 +71,7 @@ export const Button = styled('button', {
   transition: '.3s',
 
   '&:hover': {
-    border: '2px solid #fff'
+    border: '2px solid $white'
   },
 
   variants: {
@@ -79,10 +79,10 @@ export const Button = styled('button', {
     active: {
       true: {
         cursor: 'default',
-        background: '#ffffff20',
+        background: '$white25',
 
         '&:hover': {
-          border: '2px solid #fff'
+          border: '2px solid $white'
         },
       }
     }

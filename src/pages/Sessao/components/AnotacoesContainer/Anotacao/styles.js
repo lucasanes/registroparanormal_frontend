@@ -20,7 +20,7 @@ export const Container = styled('div', {
     color: 'white',
     width: '100%',
     border: 'none',
-    outline: '2px solid #ffffff90',
+    outline: '2px solid $white90',
     borderRadius: '5px',
     padding: '.5rem'
   },
@@ -33,7 +33,7 @@ export const Container = styled('div', {
     minHeight: '25rem',
     border: 'none',
     borderRadius: '5px',
-    outline: '2px solid #ffffff90',
+    outline: '2px solid $white90',
     padding: '.5rem',
     color: 'white',
     fontFamily: 'arial'

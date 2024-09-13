@@ -27,7 +27,7 @@ export const Container = styled('div', {
 })
 
 export const SpanContainer = styled('span', {
-  color: '#ffffff90',
+  color: '$white90',
   position: 'relative',
   top: '-0.5px',
   fontFamily: "'Arial', sans-serif",
@@ -75,39 +75,39 @@ export const Input = styled('input', {
   },
 
   '&.toggle2 + .toggleLabel2': {
-      width: '3.8rem',
-      height: '2.0rem',
-      background: 'lightgrey',
-      display: 'block',
-      position: 'relative',
-      borderRadius: '2rem',
-      transition: 'ease 0.5s',
-      cursor: 'pointer',
+    width: '3.8rem',
+    height: '2.0rem',
+    background: 'lightgrey',
+    display: 'block',
+    position: 'relative',
+    borderRadius: '2rem',
+    transition: 'ease 0.5s',
+    cursor: 'pointer',
   },
 
   '&.toggle2 + .toggleLabel2:before': {
-      content: "",
-      position: 'absolute',
-      width: '2rem',
-      height: '2rem',
-      background: 'white',
-      display: 'block',
-      borderRadius: '50%',
-      right: 'unset',
-      transition: 'ease 0.3s'
+    content: "",
+    position: 'absolute',
+    width: '2rem',
+    height: '2rem',
+    background: 'white',
+    display: 'block',
+    borderRadius: '50%',
+    right: 'unset',
+    transition: 'ease 0.3s'
   },
 
   '&.toggle2:checked + .toggleLabel2': {
-      background: '#0f67ff',
+    background: '#0f67ff',
   },
 
   '&.toggle2:checked + .toggleLabel2:before': {
-      content: "",
-      transform: 'translateX(1.8rem)',
-      boxShadow: '0 0.4rem 0.4rem rgb(0 0 0 / 10%)',
+    content: "",
+    transform: 'translateX(1.8rem)',
+    boxShadow: '0 0.4rem 0.4rem rgb(0 0 0 / 10%)',
   },
 
-  
+
 
 
 
@@ -125,9 +125,9 @@ export const Input = styled('input', {
     borderRadius: '2rem',
     transition: 'ease 0.5s',
     cursor: 'pointer',
-},
+  },
 
-'&.toggle3 + .toggleLabel3:before': {
+  '&.toggle3 + .toggleLabel3:before': {
     content: "",
     position: 'absolute',
     width: '2rem',
@@ -137,15 +137,15 @@ export const Input = styled('input', {
     borderRadius: '50%',
     right: 'unset',
     transition: 'ease 0.3s'
-},
+  },
 
-'&.toggle3:checked + .toggleLabel3': {
+  '&.toggle3:checked + .toggleLabel3': {
     background: '#0f67ff',
-},
+  },
 
-'&.toggle3:checked + .toggleLabel3:before': {
+  '&.toggle3:checked + .toggleLabel3:before': {
     content: "",
     transform: 'translateX(1.8rem)',
     boxShadow: '0 0.4rem 0.4rem rgb(0 0 0 / 10%)',
-}
+  }
 })

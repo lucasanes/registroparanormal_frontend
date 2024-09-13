@@ -9,6 +9,7 @@ import resistencias from '../../../../components/mappers/resistencias';
 import { Modal } from '../../../../components/Modals/Modal';
 import { useDisabled } from '../../../../hooks/useDisabled';
 import { api } from '../../../../services/api';
+import { theme } from '../../../../stitches.config';
 import { ModalPortrait } from './components/ModalPortrait';
 import { ModalStatus } from './components/ModalStatus';
 import { AreaPortrait, Body, BottomBody, Button, ButtonIcon, Buttons, Container, ContainerDeferes, Deferes, Header, Img, Portrait, TopBody } from './styles';
@@ -326,7 +327,7 @@ export function StatusContainer({ status, defesasData, portraitData, infosBarrin
 
           <div className='div'>
             <h1>Vida</h1>
-            <ButtonIcon onClick={() => setPvO(!pvO)}>{pvO ? <BsEyeSlash color='#9a0000' size={23} /> : <BsEye color='#9a0000' size={23} />}</ButtonIcon>
+            <ButtonIcon onClick={() => setPvO(!pvO)}>{pvO ? <BsEyeSlash color={theme.colors.pv} size={23} /> : <BsEye color={theme.colors.pv} size={23} />}</ButtonIcon>
           </div>
 
           <Barrinha number={1} setValorA={setarPvAtual} setValorMax={setarPvMax} valorA={pvA} valorMax={pvMax} infos={infosBarrinha} color={'red'} />
@@ -334,7 +335,7 @@ export function StatusContainer({ status, defesasData, portraitData, infosBarrin
           
           <div className='div'>
             <h1>Sanidade</h1>
-            <ButtonIcon onClick={() => setSanO(!sanO)}>{sanO ? <BsEyeSlash color='#005795' size={23} /> : <BsEye color='#005795' size={23} />}</ButtonIcon>
+            <ButtonIcon onClick={() => setSanO(!sanO)}>{sanO ? <BsEyeSlash color={theme.colors.ps} size={23} /> : <BsEye color={theme.colors.ps} size={23} />}</ButtonIcon>
           </div>
 
           <Barrinha number={2} setValorA={setarSanAtual} setValorMax={setarSanMax} valorA={sanA} valorMax={sanMax} infos={infosBarrinha} color={'aqua'} />
@@ -342,7 +343,7 @@ export function StatusContainer({ status, defesasData, portraitData, infosBarrin
 
           <div className='div'>
             <h1>Esforço</h1>
-            <ButtonIcon onClick={() => setPeO(!peO)}>{peO ? <BsEyeSlash color='#ffbf00b5' size={23} /> : <BsEye color='#ffbf00b5' size={23} />}</ButtonIcon>
+            <ButtonIcon onClick={() => setPeO(!peO)}>{peO ? <BsEyeSlash color={theme.colors.pe} size={23} /> : <BsEye color={theme.colors.pe} size={23} />}</ButtonIcon>
           </div>
 
           <Barrinha number={3} setValorA={setarPeAtual} setValorMax={setarPeMax} valorA={peA} valorMax={peMax} infos={infosBarrinha} color={'yellow'} />

@@ -4,7 +4,7 @@ export const Container = styled('div', {
 
   width: '100%',
   overflow: 'hidden',
-  border: "2px solid #ffffff90",
+  border: "2px solid $white90",
   borderRadius: '1rem',
   display: 'flex',
   alignItems: 'center',
@@ -22,11 +22,11 @@ export const InputB = styled('select', {
   background: "transparent",
   border: 'none',
   outline: 'none',
-  color: '#fff',
+  color: '$white',
 
   option: {
     background: 'rgb(20,20,20)',
-    color: '#fff',
+    color: '$white',
   }
 })
 
@@ -38,6 +38,6 @@ export const LabelContainer = styled('label', {
   fontWeight: 100,
   backgroundColor: 'rgb(20, 20, 20)',
   fontFamily: 'Cormorant Garamond',
-  color: '#ffffff90',
+  color: '$white90',
 
 })

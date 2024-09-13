@@ -22,7 +22,7 @@ export const Img = styled('div', {
   gap: '1rem',
 
   span: {
-    color: '#fff',
+    color: '$white',
     position: 'relative',
     fontSize: '1.8rem',
     fontFamily: 'El Messiri',
@@ -51,7 +51,7 @@ export const Button = styled('button', {
 export const ContainerInput = styled('div', {
   width: '100%',
   overflow: 'hidden',
-  border: "2px solid #ffffff90",
+  border: "2px solid $white90",
   borderRadius: '1rem',
   display: 'block',
   background: 'transparent',
@@ -97,7 +97,7 @@ export const LabelContainer = styled('label', {
   fontFamily: 'arial',
   backgroundColor: 'rgb(20, 20, 20)',
   fontFamily: 'Cormorant Garamond',
-  color: '#ffffff90',
+  color: '$white90',
   transition: '0.2s',
 
   variants: {

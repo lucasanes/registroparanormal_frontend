@@ -23,7 +23,7 @@ export const Header = styled('div', {
     width: '100%',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
-    color: '#800080',
+    color: '$purple',
     wordBreak: 'break-word',
     padding: '0 1rem',
     fontSize: '3rem',
@@ -69,7 +69,7 @@ export const MainTop = styled('div', {
     color: 'white',
     textAlign: 'center',
     padding: '.2rem 0.5rem 0rem 0.5rem',
-    border: '1px solid #ffffff90',
+    border: '1px solid $white90',
     fontFamily: 'El Messiri'
   }
 
@@ -84,7 +84,7 @@ export const Span = styled('span', {
   width: '100%',
   background: 'none',
   border: 'none',
-  outline: '1px solid #ffffff90',
+  outline: '1px solid $white90',
   color: 'white',
   fontFamily: 'arial',
   padding: '0.5rem 1rem',

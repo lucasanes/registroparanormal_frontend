@@ -13,7 +13,7 @@ export const Container = styled('div', {
 
   hr: {
     margin: '0rem -1rem',
-    borderColor: '#ffffff75'
+    borderColor: '$white75'
   },
 })
 

@@ -1,13 +1,13 @@
 import { styled } from '../../../../stitches.config';
 
 export const Container = styled("div", {
-  border: "2px solid #ffffff75",
+  border: "2px solid $white75",
   borderRadius: "0.5rem",
   width: "100%",
   marginBottom: '2rem',
 
   hr: {
-    borderColor: '#ffffff75'
+    borderColor: '$white75'
   }
 });
 
@@ -103,7 +103,7 @@ export const Button = styled('button', {
 
       },
       Morte: {
-        color: '#fff',
+        color: '$white',
         border: '2px solid #000000ff',
         boxShadow: '0px 0px 10px #00000090, 0px 0px 10px #00000090',
 
@@ -113,12 +113,12 @@ export const Button = styled('button', {
 
       },
       Medo: {
-        color: '#fff',
-        boxShadow: '0px 0px 10px #ffffff50',
-        border: '1px solid #fff',
+        color: '$white',
+        boxShadow: '0px 0px 10px $white50',
+        border: '1px solid $white',
 
         '&:hover': {
-          background: '#ffffff50'
+          background: '$white50'
         }
 
       },
@@ -133,7 +133,7 @@ export const Button = styled('button', {
 
       },
       Energia: {
-        color: '#800080',
+        color: '$purple',
         boxShadow: '0px 0px 10px #80008050',
         border: '1px solid #800080',
 
@@ -152,7 +152,7 @@ export const Button = styled('button', {
         background: '#00000050',
       },
       Medo: {
-        background: '#ffffff50'
+        background: '$white50'
       },
       Sangue: {
         background: '#ff000050'

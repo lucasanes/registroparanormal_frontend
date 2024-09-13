@@ -27,11 +27,11 @@ export const Container = styled('div', {
         },
       },
       Medo: {
-        boxShadow: '0px 0px 10px #fff',
-        border: '2px solid #fff',
+        boxShadow: '0px 0px 10px $white',
+        border: '2px solid $white',
         '.hr': {
-          boxShadow: '0px 0px 10px #fff',
-          borderColor: '#fff'
+          boxShadow: '0px 0px 10px $white',
+          borderColor: '$white'
         },
       },
       Sangue: {
@@ -47,7 +47,7 @@ export const Container = styled('div', {
         border: '2px solid #800080',
         '.hr': {
           boxShadow: '0px 0px 10px #800080',
-          borderColor: '#800080'
+          borderColor: '$purple'
         },
       }
     }
@@ -75,16 +75,16 @@ export const Header = styled('div', {
         color: '#ffd700'
       },
       Morte: {
-        color: '#fff',
+        color: '$white',
       },
       Medo: {
-        color: '#fff'
+        color: '$white'
       },
       Sangue: {
         color: '#ff0000'
       },
       Energia: {
-        color: '#800080'
+        color: '$purple'
       }
     }
 
@@ -174,7 +174,7 @@ export const Card = styled('div', {
   border: '2px solid white',
   height: '8rem',
   minWidth: '5rem',
-  color: '#ffffff',
+  color: '$white',
   borderRadius: '5px',
   overflow: 'hidden',
   textOverflow: 'ellipsis',
@@ -228,7 +228,7 @@ export const Desc = styled('span', {
   overflowY: 'auto',
   padding: '1rem 2rem',
   width: '60%',
-  color: '#ffffff',
+  color: '$white',
 
   '@lg': {
     width: '100%'

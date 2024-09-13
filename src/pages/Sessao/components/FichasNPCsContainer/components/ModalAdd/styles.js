@@ -11,9 +11,9 @@ export const Container = styled('div', {
   flexDirection: 'column',
 
   hr: {
-    borderColor: '#ffffff90'
+    borderColor: '$white90'
   },
-  
+
   '@md': {
     width: '100vw',
     height: '100%',
@@ -36,11 +36,11 @@ export const Header = styled('div', {
     paddingBottom: '.3rem',
     fontFamily: 'Special Elite'
   },
-  
+
   button: {
     background: 'none',
     border: "none",
-    color: '#ffffff90',
+    color: '$white90',
     fontSize: '2.5rem',
     transition: '0.2s',
     padding: '0 10px 5px 10px',
@@ -63,13 +63,13 @@ export const Body = styled('div', {
   justifyContent: 'center',
   flexDirection: 'column',
   textAlign: 'center',
-  color: '#ffffff90',
+  color: '$white90',
   gap: '2rem',
   overflow: 'hidden',
   padding: '3rem 2rem',
 
   h2: {
-    color: '#fff',
+    color: '$white',
     fontSize: '2rem',
     marginBottom: '1rem'
   },
@@ -85,7 +85,7 @@ export const Body = styled('div', {
   },
 
   hr: {
-    borderColor: '#ffffff90',
+    borderColor: '$white90',
     width: '100%',
   },
 
@@ -196,22 +196,22 @@ export const Normal = styled('div', {
 export const ButtonSelect = styled('button', {
 
   background: 'none',
-  color: '#ffffff90',
-  border: '1px solid #ffffff90',
+  color: '$white90',
+  border: '1px solid $white90',
   borderRadius: '5px',
   padding: '.5rem 1rem',
   fontSize: '2rem',
 
   '&:hover': {
 
-    background: '#ffffff20'
+    background: '$white25'
 
   },
 
   variants: {
     active: {
       true: {
-        background: '#ffffff25',
+        background: '$white25',
         cursor: 'default'
       }
     }

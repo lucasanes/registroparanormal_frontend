@@ -11,7 +11,7 @@ export const Container = styled('div', {
   flexDirection: 'column',
 
   hr: {
-    borderColor: '#ffffff90'
+    borderColor: '$white90'
   },
 
   h2: {
@@ -40,11 +40,11 @@ export const Header = styled('div', {
     paddingBottom: '.3rem',
     fontFamily: 'Special Elite'
   },
-  
+
   button: {
     background: 'none',
     border: "none",
-    color: '#ffffff90',
+    color: '$white90',
     fontSize: '2.5rem',
     transition: '0.2s',
     padding: '0 10px 5px 10px',
@@ -57,7 +57,7 @@ export const Header = styled('div', {
     opacity: 0.5,
   },
 
-   
+
 
 });
 
@@ -97,7 +97,7 @@ export const Body = styled('div', {
   justifyContent: 'center',
   flexDirection: 'column',
   textAlign: 'center',
-  color: '#ffffff90',
+  color: '$white90',
   padding: '1rem 2rem',
   gap: '2rem',
 
@@ -119,11 +119,11 @@ export const Body = styled('div', {
       borderRadius: '.5rem',
       transition: '.3s',
     },
-  
+
     'button:hover': {
-  
+
       background: '#00fff750',
-  
+
     }
   },
 
@@ -136,6 +136,6 @@ export const Footer = styled('div', {
   alignItems: 'center',
   justifyContent: 'center',
   gap: '2rem'
-  
+
 
 });

@@ -2,13 +2,13 @@ import { Link } from 'react-router-dom';
 import { keyframes, styled } from '../../../../stitches.config';
 
 export const Container = styled("div", {
-  border: "2px solid #ffffff75",
+  border: "2px solid $white75",
   marginBottom: "2rem",
   borderRadius: "0.5rem",
   width: "100%",
 
   hr: {
-    borderColor: '#ffffff75'
+    borderColor: '$white75'
   }
 });
 
@@ -81,7 +81,7 @@ export const Buttons = styled('div', {
   width: '100%',
   alignItems: 'center',
   justifyContent: 'center',
-  border: '2px solid #ffffff90',
+  border: '2px solid $white90',
   borderRadius: '.5rem',
   flexDirection: 'column',
   padding: '2rem 0',
@@ -123,7 +123,7 @@ export const AreaPortrait = styled('div', {
 
 export const Portrait = styled(Link, {
 
-  border: '2px solid #fff',
+  border: '2px solid $white',
   zIndex: 1,
   marginLeft: '4rem',
   borderRadius: '20rem',

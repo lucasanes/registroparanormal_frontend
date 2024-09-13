@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react';
-import { Container, Header, Body, Button, ButtonLink, Li, Line1, Line2, Line3 } from './styles';
-import { RiUserLine, RiUserUnfollowLine } from 'react-icons/ri'
-import { BsFillDice6Fill } from 'react-icons/bs'
+import { useState } from 'react';
+import { AiFillHome } from 'react-icons/ai';
+import { BsFillDice6Fill } from 'react-icons/bs';
+import { RiUserLine, RiUserUnfollowLine } from 'react-icons/ri';
+import { Link } from 'react-router-dom';
+import icon from '../../assets/img/Calamidade.png';
 import { useAuth } from "../../hooks/useAuth";
 import { useTitle } from '../../hooks/useTitle';
-import { Link } from 'react-router-dom';
-import {AiFillHome} from 'react-icons/ai'
-import icon from '../../assets/img/Calamidade.png'
+import { Body, Button, ButtonLink, Container, Header, Li, Line1, Line2, Line3 } from './styles';
 
 export function Menu() {
 

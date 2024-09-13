@@ -47,7 +47,7 @@ export const Principal = styled('div', {
   justifyContent: 'top',
   flexDirection: 'column',
   borderRadius: '.5rem',
-  border: '2px solid #ffffff90',
+  border: '2px solid $white90',
   padding: '2rem',
   gap: '2rem',
 
@@ -70,7 +70,7 @@ export const Atributos = styled('div', {
   justifyContent: 'top',
   flexDirection: 'column',
   borderRadius: '.5rem',
-  border: '2px solid #ffffff90',
+  border: '2px solid $white90',
   padding: '2rem',
   gap: '2rem',
 

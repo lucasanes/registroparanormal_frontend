@@ -1,7 +1,7 @@
 import { styled } from '../../../../stitches.config';
 
 export const Container = styled("div", {
-  border: "2px solid #ffffff75",
+  border: "2px solid $white75",
   marginBottom: "2rem",
   borderRadius: "0.5rem",
   width: "100%",

@@ -41,7 +41,7 @@ export const Header = styled("div", {
   padding: "0 2rem",
 
   h1: {
-    color: "#fff",
+    color: "$white",
     fontSize: "2.2rem",
     fontWeight: 100,
     marginTop: ".7rem",
@@ -53,7 +53,7 @@ export const Header = styled("div", {
 export const CloseButton = styled("button", {
   background: "none",
   border: "none",
-  color: "#ffffff90",
+  color: "$white90",
   fontSize: "2.5rem",
   transition: "0.2s",
   padding: "0 10px 5px 10px",

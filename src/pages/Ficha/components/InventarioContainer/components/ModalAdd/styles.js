@@ -11,7 +11,7 @@ export const Container = styled('div', {
   flexDirection: 'column',
 
   hr: {
-    borderColor: '#ffffff90'
+    borderColor: '$white90'
   },
 
 })
@@ -29,11 +29,11 @@ export const Header = styled('div', {
     fontSize: '2rem',
     fontFamily: 'Special Elite'
   },
-  
+
   button: {
     background: 'none',
     border: "none",
-    color: '#ffffff90',
+    color: '$white90',
     fontSize: '2.5rem',
     transition: '0.2s',
     padding: '0 10px 5px 10px',
@@ -46,7 +46,7 @@ export const Header = styled('div', {
     opacity: 0.5,
   },
 
-   
+
 
 });
 
@@ -56,7 +56,7 @@ export const Body = styled('div', {
   alignItems: 'center',
   justifyContent: 'center',
   textAlign: 'center',
-  color: '#ffffff90',
+  color: '$white90',
   padding: '2rem',
   gap: '5rem',
 
@@ -64,7 +64,7 @@ export const Body = styled('div', {
 
 export const Button = styled('button', {
 
-  color: '#800080',
+  color: '$purple',
   fontSize: '1.8rem',
   background: 'none',
   border: '2px solid #800080',
@@ -79,7 +79,7 @@ export const Button = styled('button', {
   variants: {
     color: {
       red: {
-        color: '#ff3737',
+        color: '$isDisaster',
         border: '2px solid #ff3737',
 
         '&:hover': {

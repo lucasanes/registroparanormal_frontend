@@ -16,7 +16,7 @@ export const Container = styled('div', {
   hr: {
     width: '100%',
     margin: 0,
-    borderColor: '#ffffff75'
+    borderColor: '$white75'
   },
 
 })
@@ -77,7 +77,7 @@ export const Footer = styled('div', {
     transition: 'ease 0.3s',
     borderStyle: 'dotted',
   },
-  
+
   'a:hover': {
     backgroundColor: 'rgb(47,47,47,0.5)'
   }

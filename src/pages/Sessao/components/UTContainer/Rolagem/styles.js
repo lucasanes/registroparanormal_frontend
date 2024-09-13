@@ -4,7 +4,7 @@ export const Container = styled('div', {
 
   minWidth: '2rem',
   borderRadius: '1.2rem',
-  border: '2px solid #ffffff90',
+  border: '2px solid $white90',
   textAlign: 'center',
   display: 'flex',
   flexDirection: 'column',
@@ -25,7 +25,7 @@ export const Header = styled('div', {
   gap: '1rem',
 
   h1: {
-    color: '#ffffff90',
+    color: '$white90',
     width: 'min-content',
     fontSize: '2rem',
     fontWeight: 100,
@@ -129,11 +129,11 @@ export const Body = styled('div', {
       }
     },
     isCritico: {
-      true: { 
+      true: {
         animation: `${shake} .5s infinite`,
 
         span: {
-          color: '#ff3737'
+          color: '$isDisaster'
         }
       }
     }

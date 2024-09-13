@@ -1,14 +1,14 @@
 import { styled } from '../../../../stitches.config';
 
 export const Container = styled("div", {
-  border: "2px solid #ffffff75",
+  border: "2px solid $white75",
   marginBottom: "2rem",
   borderRadius: "0.5rem",
   width: "100%",
   height: 'max-content',
 
   hr: {
-    borderColor: '#ffffff75'
+    borderColor: '$white75'
   }
 });
 
@@ -20,7 +20,6 @@ export const HeaderContainer = styled("div", {
   justifyContent: "center",
   gap: '1rem',
   alignItems: "center",
-  position: "relative",
   flexWrap: 'wrap',
 
   '.add': {
@@ -39,7 +38,7 @@ export const Button = styled('button', {
   padding: '.7rem 1rem .4rem 1rem',
   fontWeight: 700,
   textAlign: "center",
-  color: "#fff",
+  color: "$white",
   fontSize: "2rem",
   fontFamily: 'Special Elite',
   letterSpacing: '.1rem',
@@ -47,17 +46,17 @@ export const Button = styled('button', {
   borderRadius: '5px',
 
   '&:hover': {
-    border: '2px solid #fff'
+    border: '2px solid $white'
   },
 
   variants: {
     active: {
       true: {
         cursor: 'default',
-        background: '#ffffff20',
+        background: '$white25',
 
         '&:hover': {
-          border: '2px solid #fff'
+          border: '2px solid $white'
         }
       },
     }

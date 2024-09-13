@@ -15,48 +15,48 @@ export const Body = styled("div", {
   padding: "3rem 2rem 1rem 2rem",
 
   hr: {
-      borderColor: "#ffffff75",
+    borderColor: "$white75",
   },
 });
 
 export const DoubleParteContainer = styled("div", {
-    display: "flex",
-    flexDirection: 'row',
-    gridColumnGap: "2rem",
-    width: '100%',
+  display: "flex",
+  flexDirection: 'row',
+  gridColumnGap: "2rem",
+  width: '100%',
 
-    "@lg": {
-        flexDirection: "column",
-    },
+  "@lg": {
+    flexDirection: "column",
+  },
 });
 
 export const ParteImgModal = styled('div', {
-    height: '95vh',
+  height: '95vh',
+  width: '100%',
+  display: 'flex',
+  justifyContent: 'center',
+  overflow: 'hidden',
+
+  img: {
+    objectFit: 'contain'
+  }
+})
+
+const scaleUpImgModal = keyframes({
+  '0%': {
+    width: '20%',
+    opacity: 0
+  },
+
+  '100%': {
     width: '100%',
-    display: 'flex',
-    justifyContent: 'center',
-    overflow: 'hidden',
-  
-    img: {
-      objectFit: 'contain'
-    }
-  })
-  
-  const scaleUpImgModal = keyframes({
-    '0%': {
-      width: '20%',
-      opacity: 0
-    },
-  
-    '100%': {
-      width: '100%',
-      opacity: 1
-    },
-  });
-  
-  export const ImgModal = styled('img', {
-  
-    animation: `${scaleUpImgModal} 300ms`,
-    width: '100%'
-  
-  })
+    opacity: 1
+  },
+});
+
+export const ImgModal = styled('img', {
+
+  animation: `${scaleUpImgModal} 300ms`,
+  width: '100%'
+
+})

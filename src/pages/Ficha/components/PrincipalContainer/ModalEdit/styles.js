@@ -17,9 +17,9 @@ export const Container = styled('div', {
   },
 
   hr: {
-    borderColor: '#ffffff90'
+    borderColor: '$white90'
   },
-  
+
   h2: {
     fontSize: '3rem',
     textAlign: 'center',
@@ -47,11 +47,11 @@ export const Header = styled('div', {
     paddingBottom: '.3rem',
     fontFamily: 'Special Elite'
   },
-  
+
   button: {
     background: 'none',
     border: "none",
-    color: '#ffffff90',
+    color: '$white90',
     fontSize: '2.5rem',
     transition: '0.2s',
     padding: '0 10px 5px 10px',
@@ -64,7 +64,7 @@ export const Header = styled('div', {
     opacity: 0.5,
   },
 
-   
+
 
 });
 
@@ -75,7 +75,7 @@ export const Body = styled('div', {
   justifyContent: 'center',
   flexDirection: 'column',
   textAlign: 'center',
-  color: '#ffffff90',
+  color: '$white90',
   padding: '3rem 2rem',
   gap: '2rem',
 

@@ -1,13 +1,13 @@
 import { styled } from '../../../../stitches.config';
 
 export const Container = styled("div", {
-  border: "2px solid #ffffff75",
+  border: "2px solid $white75",
   borderRadius: "0.5rem",
   width: "100%",
   marginBottom: '2rem',
 
   hr: {
-    borderColor: '#ffffff75'
+    borderColor: '$white75'
   }
 });
 
@@ -145,9 +145,9 @@ export const Button = styled('button', {
   transition: '.3s',
   background: 'none',
   borderRadius: '5px',
-  color: '#ffffff',
+  color: '$white',
   fontSize: '2.2rem',
-  border: '2px solid #ffffff75',
+  border: '2px solid $white75',
   fontFamily: 'Crimson Text',
   marginTop: '1rem',
 
@@ -156,6 +156,6 @@ export const Button = styled('button', {
   },
 
   '&:hover': {
-    background: '#ffffff25',
+    background: '$white25',
   }
 })

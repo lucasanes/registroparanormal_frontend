@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { styled } from "../../../stitches.config";
 
 export const Container = styled('div', {
@@ -14,7 +13,7 @@ export const Container = styled('div', {
 
   hr: {
     margin: '0rem -1rem',
-    borderColor: '#ffffff75'
+    borderColor: '$white75'
   },
 })
 

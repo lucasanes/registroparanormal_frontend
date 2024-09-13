@@ -3,7 +3,7 @@ import { styled } from '../../../../../../stitches.config';
 
 export const Container = styled('div', {
 
-  border: '2px solid #ffffff90',
+  border: '2px solid $white90',
   borderRadius: '7px',
   minHeight: '55rem',
   fontFamily: 'El Messiri',
@@ -123,7 +123,7 @@ export const FlexStatus = styled('div', {
 
     background: 'none',
     borderRadius: '5px',
-    border: '1px solid #ffffff90',
+    border: '1px solid $white90',
     color: 'white',
     fontWeight: 700,
     fontFamily: 'El Messiri',
@@ -133,7 +133,7 @@ export const FlexStatus = styled('div', {
   },
 
   'button:hover': {
-    background: '#ffffff20'
+    background: '$white25'
   }
 
 })
@@ -210,7 +210,7 @@ export const BodyContainerOutros = styled('div', {
   },
 
   h3: {
-    color: '#ffffff90',
+    color: '$white90',
     fontSize: '1.8rem',
     marginBottom: '.4rem',
     marginTop: '.2rem'
@@ -256,7 +256,7 @@ export const Card = styled('div', {
   borderRadius: '5px',
 
   label: {
-    color: '#ffffff90',
+    color: '$white90',
     paddingLeft: '.5rem',
     fontSize: '1.8rem'
   },
@@ -279,16 +279,16 @@ export const Button = styled('button', {
   border: '2px solid transparent',
   borderRadius: '5px',
   transition: '.3s',
-  color: '#ffffff90',
+  color: '$white90',
 
   '&:hover': {
-    border: '2px solid #ffffff90'
+    border: '2px solid $white90'
   },
 
   variants: {
     active: {
       true: {
-        border: '2px solid #ffffff90',
+        border: '2px solid $white90',
         cursor: 'default'
       }
     }
@@ -299,7 +299,7 @@ export const Button = styled('button', {
 export const TextArea = styled('textarea', {
 
   width: '100%',
-  border: '2px solid #ffffff90',
+  border: '2px solid $white90',
   background: 'none',
   minHeight: '10rem',
   maxHeight: '40rem',

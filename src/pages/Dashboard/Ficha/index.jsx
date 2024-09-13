@@ -1,14 +1,14 @@
-import { Container, Header, Desc, Footer, Botoes, Button, Grade, ParteGrade, LinkButton } from './styles'
-import { FaUserCircle } from 'react-icons/fa'
+import { useState } from 'react'
 import { BiTrashAlt } from 'react-icons/bi'
 import { BsEye, BsEyeSlash } from 'react-icons/bs'
+import { FaUserCircle } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
-import { api } from '../../../services/api'
-import { useState } from 'react'
 import { toast } from 'react-toastify'
 import noportrait from '../../../assets/img/noportrait.png'
 import { Modal } from '../../../components/Modals/Modal'
 import { ModalDeleteConfirm } from '../../../components/Modals/ModalDeleteConfirm'
+import { api } from '../../../services/api'
+import { Botoes, Button, Container, Desc, Footer, Grade, Header, LinkButton, ParteGrade } from './styles'
 
 export function Ficha({ data, fichas, setFichas }) {
 
@@ -50,8 +50,8 @@ export function Ficha({ data, fichas, setFichas }) {
       <Header>
         <h2>{infos.nome} {data.sessaoId && ' - ' + data.sessao.nome}</h2>
         <Botoes>
-          <LinkButton color={'aqua'} to={`/ficha/portrait/${data.id}`}><FaUserCircle size={20} color="#03d9ffff" /></LinkButton>
-          <Button onClick={handleEdit} color={isPublic ? 'green' : '#ff3737'}>{isPublic ? <BsEye size={20} color="#13ff72" /> : <BsEyeSlash size={20} color="crimson" />}</Button>
+          <LinkButton color={'aqua'} to={`/ficha/portrait/${data.id}`}><FaUserCircle size={20} color="$cyan" /></LinkButton>
+          <Button onClick={handleEdit} color={isPublic ? 'green' : '$isDisaster'}>{isPublic ? <BsEye size={20} color="#13ff72" /> : <BsEyeSlash size={20} color="crimson" />}</Button>
           <Button onClick={() => setModalDeleteIsOpen(true)} color={'red'}><BiTrashAlt size={20} color='red' /></Button>
         </Botoes>
       </Header>

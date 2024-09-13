@@ -8,7 +8,7 @@ export const Container = styled('div', {
   minHeight: '15rem',
   borderRadius: '1.2rem',
   backgroundColor: 'rgb(27,27,27)',
-  border: '2px solid #ffffff90',
+  border: '2px solid $white90',
   textAlign: 'center',
   display: 'flex',
   flexDirection: 'column',
@@ -28,7 +28,7 @@ export const Header = styled('div', {
   padding: '0 2rem',
 
   h1: {
-    color: '#fff',
+    color: '$white',
     fontSize: '2.2rem',
     fontFamily: 'Arvo'
   },
@@ -109,18 +109,18 @@ export const Main = styled('div', {
   variants: {
     isDano: {
       true: {
-        h1: { color: '#ff3737' }
+        h1: { color: '$isDisaster' }
       },
       false: {
-        h1: { color: '#800080' }
+        h1: { color: '$purple' }
       }
     },
     isCritico: {
-      true: { 
+      true: {
         animation: `${shake} .5s infinite`,
 
         span: {
-          color: '#ff3737'
+          color: '$isDisaster'
         }
       }
     }

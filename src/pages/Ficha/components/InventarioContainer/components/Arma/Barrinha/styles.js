@@ -84,7 +84,7 @@ export const ProgressBar = styled('div', {
   width: '95%',
   height: '2rem',
   borderRadius: '10px',
-  backgroundColor: '#ffffff14',
+  backgroundColor: '$bar',
   display: 'flex',
 
 })

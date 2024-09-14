@@ -212,21 +212,67 @@ export function StatusContainer({ status, defesasData, portraitData, infosBarrin
     setInconsciente(newInconsciente)
   }
 
-
+  const fakePlayers = import.meta.env.VITE_FAKE_PLAYERS
 
   function setarPvAtual(newPvAtual) {
-      socket.emit("status.pvA", { fichaId: id, newPvAtual: newPvAtual + pvA2 });
+    if (!fakePlayers.includes(id)) {
+      socket.emit("status.pvA", { fichaId: id, newPvAtual: newPvAtual + pvA2 })
+    } else {
+      socket.emit("status.pvA", { fichaId: id, newPvAtual: newPvAtual})
+    }
     setPvA(newPvAtual)
   }
+  
+  function setarSanAtual(newSanAtual) {
+    if (!fakePlayers.includes(id)) {
+      socket.emit("status.sanA", { fichaId: id, newSanAtual: newSanAtual + sanA2 })
+    } else {
+      socket.emit("status.sanA", { fichaId: id, newSanAtual: newSanAtual})
+    }
+    setSanA(newSanAtual)
+  }
+
+  function setarPeAtual(newPeAtual) {
+    if (!fakePlayers.includes(id)) {
+      socket.emit("status.peA", { fichaId: id, newPeAtual: newPeAtual + peA2 })
+    } else {
+      socket.emit("status.peA", { fichaId: id, newPeAtual: newPeAtual})
+    }
+    setPeA(newPeAtual)
+  }
+
+  function setarPvAtual2(newPvAtual) {
+    if (!fakePlayers.includes(id)) {
+      socket.emit("status.pvA", { fichaId: id, newPvAtual: newPvAtual + pvA })
+    } else {
+      socket.emit("status.pvA", { fichaId: id, newPvAtual: pvA})
+    }
+    setPvA2(newPvAtual)
+  }
+
+  function setarSanAtual2(newSanAtual) {
+    if (!fakePlayers.includes(id)) {
+      socket.emit("status.sanA", { fichaId: id, newSanAtual: newSanAtual + sanA })
+    } else {
+      socket.emit("status.sanA", { fichaId: id, newSanAtual: sanA})
+    }
+    setSanA2(newSanAtual)
+  }
+
+  function setarPeAtual2(newPeAtual) {
+    if (!fakePlayers.includes(id)) {
+      socket.emit("status.peA", { fichaId: id, newPeAtual: newPeAtual + peA })
+    } else {
+      socket.emit("status.peA", { fichaId: id, newPeAtual: peA})
+    }
+    setPeA2(newPeAtual)
+  }
+
+
 
   function setarPvMax(newPvMax) {
     socket.emit("status.pvMax", { fichaId: id, newPvMax });
     setPvMax(newPvMax)
-  }
-
-  function setarSanAtual(newSanAtual) {
-      socket.emit("status.sanA", { fichaId: id, newSanAtual: newSanAtual + sanA2 });
-    setSanA(newSanAtual)
   }
 
   function setarSanMax(newSanMax) {
@@ -234,30 +280,12 @@ export function StatusContainer({ status, defesasData, portraitData, infosBarrin
     setSanMax(newSanMax)
   }
 
-  function setarPeAtual(newPeAtual) {
-      socket.emit("status.peA", { fichaId: id, newPeAtual: newPeAtual + peA2 });
-    setPeA(newPeAtual)
-  }
-
   function setarPeMax(newPeMax) {
     socket.emit("status.peMax", { fichaId: id, newPeMax });
     setPeMax(newPeMax)
   }
 
-  function setarPvAtual2(newPvAtual) {
-      socket.emit("status.pvA", { fichaId: id, newPvAtual: newPvAtual + pvA });
-    setPvA2(newPvAtual)
-  }
-
-  function setarSanAtual2(newSanAtual) {
-      socket.emit("status.sanA", { fichaId: id, newSanAtual: newSanAtual + sanA });
-    setSanA2(newSanAtual)
-  }
-
-  function setarPeAtual2(newPeAtual) {
-      socket.emit("status.peA", { fichaId: id, newPeAtual: newPeAtual + peA });
-    setPeA2(newPeAtual)
-  }
+  
 
   function setarPortrait(newPortrait) {
     socket.emit("status.portrait", { fichaId: id, newPortrait });

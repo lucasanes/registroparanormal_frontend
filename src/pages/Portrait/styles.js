@@ -419,10 +419,10 @@ export const Dado = styled("div", {
 
   span: {
     color: "$white",
-    fontFamily: "Merienda, cursive",
-    fontSize: "20rem",
+    fontFamily: "Brooklyn",
+    fontSize: "18rem",
     position: "absolute",
-    top: "17rem",
+    top: "22rem",
     zIndex: 3,
     opacity: 0,
     animation: `${textAnimation} ease-in-out 10s`,
@@ -434,7 +434,7 @@ export const Dado = styled("div", {
         span: {
           "-webkit-text-stroke": `2px ${theme.colors.orange}`,
           textShadow: `
-            ${theme.colors.orange} 0 0 20px, 
+            ${theme.colors.orange} 0 0 30px, 
             #000000 5px 5px 5px,
             #000000 5px 5px 10px,
             #000000 5px 5px 15px,
@@ -458,7 +458,7 @@ export const Dado = styled("div", {
     isCritico: {
       true: {
         span: {
-          animation: `${textAnimation} ease-in-out 8s, ${CriticAnimation} .5s linear infinite`,
+          animation: `${textAnimation} 10s, ${CriticAnimation} .5s linear infinite`,
         },
       },
     },

@@ -317,10 +317,10 @@ const textAnimation = keyframes({
   "33%": {
     opacity: 1,
   },
-  "75%": {
+  "78%": {
     opacity: 1,
   },
-  "78%": {
+  "81%": {
     opacity: 0,
   },
   "100%": {
@@ -328,7 +328,25 @@ const textAnimation = keyframes({
   },
 });
 
-const CriticAnimation = keyframes({
+const textCriticAnimation = keyframes({
+  "45%": {
+    opacity: 0,
+  },
+  "48%": {
+    opacity: 1,
+  },
+  "78%": {
+    opacity: 1,
+  },
+  "81%": {
+    opacity: 0,
+  },
+  "100%": {
+    opacity: 0,
+  },
+});
+
+const criticAnimation = keyframes({
   "0%": {
     transform: "translate(2px, 2px) rotate(0deg)",
   },
@@ -458,14 +476,14 @@ export const Dado = styled("div", {
     isCritico: {
       true: {
         span: {
-          animation: `${textAnimation} 10s, ${CriticAnimation} .5s linear infinite`,
+          animation: `${textCriticAnimation} ease-in-out 10s, ${criticAnimation} .5s linear infinite`,
         },
       },
     },
     isDesastre: {
       true: {
         span: {
-          animation: `${disasterAnimation} 10s`,
+          animation: `${disasterAnimation} ease-in-out 10s`,
         },
       },
     },

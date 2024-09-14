@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { io } from 'socket.io-client';
 import FundoPortrait from '../../assets/img/FundoPortrait.png';
 import municaoImg from '../../assets/img/municaoImg.png';
+import criticDice from '../../assets/video/criticDice.webm';
 import disasterDice from '../../assets/video/disasterDice.webm';
 import normalDice from '../../assets/video/normalDice.webm';
 import { useAuth } from '../../hooks/useAuth';
@@ -295,7 +296,7 @@ export function Portrait() {
         <Dado key={dadoRolado} style={{display: dadoRolado < 1 ? 'none' : 'flex'}} id='dado' isCritico={dado.isCritico} isDesastre={dado.isDesastre} isDano={dado.isDano}>
           <span>{dado.valorTotal}</span>
           <video width={700} height={700} autoPlay loop muted>
-            {dado.isCritico && <source src={normalDice} type="video/webm"/>}
+            {dado.isCritico && <source src={criticDice} type="video/webm"/>}
             {dado.isDesastre && <source src={disasterDice} type="video/webm"/>}
             {!dado.isCritico && !dado.isDesastre && <source src={normalDice} type="video/webm"/>}
           </video>

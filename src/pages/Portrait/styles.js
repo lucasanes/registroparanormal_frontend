@@ -311,16 +311,16 @@ export const PortraitImg = styled("video", {
 });
 
 const textAnimation = keyframes({
-  "37%": {
+  "30%": {
     opacity: 0,
   },
-  "40%": {
+  "33%": {
     opacity: 1,
   },
-  "80%": {
+  "75%": {
     opacity: 1,
   },
-  "83%": {
+  "78%": {
     opacity: 0,
   },
   "100%": {
@@ -365,20 +365,20 @@ const CriticAnimation = keyframes({
 });
 
 const disasterAnimation = keyframes({
-  "37%": {
+  "30%": {
     opacity: 0,
   },
-  "40%": {
+  "33%": {
     opacity: 1,
   },
-  "50%": {
+  "43%": {
     transform: "rotate(0deg)",
   },
-  "55%": {
-    transform: "translate(5px, 5px) rotate(45deg)",
+  "48%": {
+    transform: "translate(5px, 50px) rotate(35deg)",
   },
   "75%": {
-    transform: "translate(5px, 5px) rotate(45deg)",
+    transform: "translate(5px, 50px) rotate(35deg)",
     opacity: 1,
   },
   "87%": {
@@ -410,7 +410,7 @@ export const Dado = styled("div", {
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  animation: `${dadoAnimation} 8s forwards`,
+  animation: `${dadoAnimation} 10s forwards`,
 
   svg: {
     filter: "drop-shadow(#343434 0 0 10px)",
@@ -418,24 +418,27 @@ export const Dado = styled("div", {
   },
 
   span: {
-    color: "transparent",
-    fontFamily: "Special Elite",
-    fontSize: "10rem",
+    color: "$white",
+    fontFamily: "Merienda, cursive",
+    fontSize: "20rem",
     position: "absolute",
-    top: "33rem",
+    top: "17rem",
     zIndex: 3,
     opacity: 0,
-    animation: `${textAnimation} ease-in-out 8s`,
+    animation: `${textAnimation} ease-in-out 10s`,
   },
 
   variants: {
     isDano: {
       true: {
         span: {
-          "-webkit-text-stroke": `1px ${theme.colors.orange}`,
+          "-webkit-text-stroke": `2px ${theme.colors.orange}`,
           textShadow: `
             ${theme.colors.orange} 0 0 20px, 
-            #000000 0px 0px 5px
+            #000000 5px 5px 5px,
+            #000000 5px 5px 10px,
+            #000000 5px 5px 15px,
+            #000000 5px 5px 20px
           `,
         },
       },
@@ -443,8 +446,11 @@ export const Dado = styled("div", {
         span: {
           "-webkit-text-stroke": `2px ${theme.colors.cyan}`,
           textShadow: `
-            ${theme.colors.cyan} 0 0 20px, 
-            #000000 0px 0px 5px
+            ${theme.colors.cyan} 0 0 30px, 
+            #000000 5px 5px 5px,
+            #000000 5px 5px 10px,
+            #000000 5px 5px 15px,
+            #000000 5px 5px 20px
           `,
         },
       },
@@ -459,7 +465,7 @@ export const Dado = styled("div", {
     isDesastre: {
       true: {
         span: {
-          animation: `${disasterAnimation} ease-in-out 8s`,
+          animation: `${disasterAnimation} 10s`,
         },
       },
     },

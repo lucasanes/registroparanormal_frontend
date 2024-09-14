@@ -3,14 +3,8 @@ import { globalCss } from "@stitches/react";
 export const GlobalStyles = globalCss({
   "@font-face": [
     {
-      fontFamily: "France",
-      src: 'url("/src/assets/France.ttf") format("truetype")',
-      fontWeight: "normal",
-      fontStyle: "normal",
-    },
-    {
       fontFamily: "Brooklyn",
-      src: 'url("/src/assets/BrooklynChillOut.ttf") format("truetype")',
+      src: 'url("/fonts/BrooklynChillOut.ttf") format("truetype")',
       fontWeight: "normal",
       fontStyle: "normal",
     },

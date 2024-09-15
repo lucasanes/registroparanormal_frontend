@@ -1,4 +1,4 @@
-import { React, createContext, useContext, useState, useEffect } from "react";
+import { React, createContext, useContext, useEffect, useState } from "react";
 import { toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { api } from "../services/api";
@@ -85,4 +85,5 @@ function useAuth() {
   return context;
 }
 
-export { AuthProvider, useAuth, AuthContext };
+export { AuthContext, AuthProvider, useAuth };
+

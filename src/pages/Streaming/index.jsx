@@ -13,7 +13,11 @@ export default function Streaming() {
 
   const usersAdmin = import.meta.env.VITE_ADMIN_USERS
 
-  const userIsAdmin = usersAdmin.includes(user.id)
+  let userIsAdmin = false
+
+  if (user) {
+    userIsAdmin = usersAdmin.includes(user.id)
+  }
 
   const [isSharingScreen, setIsSharingScreen] = useState(false);
   const videoRef = useRef(null);

@@ -1,9 +1,11 @@
-import { Routes, Route } from "react-router-dom";
-import {AppLayout} from '../Layout/AppLayout'
+import { Route, Routes } from "react-router-dom";
+import { AppLayout } from '../Layout/AppLayout';
+import { Documentos } from '../pages/Documentos';
+import { Ficha } from '../pages/Ficha';
 import { Home } from "../pages/Home";
-import {Portrait} from '../pages/Portrait'
-import {Documentos} from '../pages/Documentos'
-import {Ficha} from '../pages/Ficha'
+import { Portrait } from '../pages/Portrait';
+import Streaming from "../pages/Streaming";
+import WebCam from "../pages/Webcam";
 
 export function AuthRoutes() {
   return (
@@ -12,6 +14,9 @@ export function AuthRoutes() {
       
       <Route path="/ficha/portrait/:id" element={<Portrait />} />
       <Route path="/sessao/documentos/:id" element={<Documentos />} />
+
+      <Route path="/streaming/:id" element={<Streaming />} />
+      <Route path="/webcam/:id" element={<WebCam />} />
 
       <Route path="/" element={<AppLayout />}>
         <Route path="/sessao/ficha/:id" element={<Ficha />} />

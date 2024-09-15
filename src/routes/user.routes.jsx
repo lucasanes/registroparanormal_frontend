@@ -7,6 +7,7 @@ import { Ficha } from "../pages/Ficha";
 import { Portrait } from '../pages/Portrait';
 import { Sessao } from "../pages/Sessao";
 import Streaming from "../pages/Streaming";
+import WebCam from "../pages/Webcam";
 
 export function UserRoutes() {
 
@@ -24,7 +25,9 @@ export function UserRoutes() {
       </Route>
       <Route path="/ficha/portrait/:id" element={<Portrait />} />
       <Route path="/sessao/documentos/:id" element={<Documentos />} />
+
       <Route path="/streaming/:id" element={<Streaming />} />
+      <Route path="/webcam/:id" element={<WebCam />} />
     </Routes>
   );
 }

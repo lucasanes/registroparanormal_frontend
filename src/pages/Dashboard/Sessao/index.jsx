@@ -1,15 +1,15 @@
-import { Container, Header, Desc, Part, Footer, Button } from './styles'
-import { BsGear } from 'react-icons/bs'
-import { IoTrashOutline } from 'react-icons/io5'
-import { Link } from 'react-router-dom'
-import { ModalEditSessao } from '../../../components/Modals/ModalEditSessao'
-import { Modal } from '../../../components/Modals/Modal'
-import { useEffect, useState } from 'react'
-import { useAuth } from '../../../hooks/useAuth'
-import { toast } from 'react-toastify'
-import { api } from '../../../services/api'
-import { BiTrashAlt } from 'react-icons/bi'
-import { ModalDeleteConfirm } from '../../../components/Modals/ModalDeleteConfirm'
+import { useEffect, useState } from 'react';
+import { BiTrashAlt } from 'react-icons/bi';
+import { BsGear } from 'react-icons/bs';
+import { MdOutlinePlayCircle } from "react-icons/md";
+import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { Modal } from '../../../components/Modals/Modal';
+import { ModalDeleteConfirm } from '../../../components/Modals/ModalDeleteConfirm';
+import { ModalEditSessao } from '../../../components/Modals/ModalEditSessao';
+import { useAuth } from '../../../hooks/useAuth';
+import { api } from '../../../services/api';
+import { Button, Container, Desc, Footer, Header, Part } from './styles';
 
 export function Sessao({data, sessoes, setSessoes}) {
 
@@ -70,6 +70,7 @@ export function Sessao({data, sessoes, setSessoes}) {
       <Header>
         <h2>{data.nome}</h2>
         <div>
+          <Link color={'blue'} to={`/streaming/${data.id}`} target='_blank'><MdOutlinePlayCircle size={20} /></Link>
           <Button color={'blue'} onClick={() => setModalEditarSessaoIsOpen(true)}><BsGear size={18} /></Button>
           <Button onClick={() => setModalDeleteIsOpen(true)}><BiTrashAlt size={20} /></Button>
         </div>

@@ -1,21 +1,17 @@
 import { useEffect, useRef, useState } from 'react';
-import { LuScreenShare, LuScreenShareOff } from "react-icons/lu";
+import { BsCameraVideo, BsCameraVideoOff } from 'react-icons/bs';
+import { useParams } from 'react-router-dom';
 import io from 'socket.io-client';
-import { useAuth } from '../../hooks/useAuth';
 import { api } from '../../services/api';
 import { Buttons, Container } from './styles';
 
 const socket = io(api.defaults.baseURL);
 
-export default function Streaming() {
+export default function WebCam() {
 
-  const {user} = useAuth()
+  const {id} = useParams()
 
-  const usersAdmin = import.meta.env.VITE_ADMIN_USERS
-
-  const userIsAdmin = usersAdmin.includes(user.id)
-
-  const [isSharingScreen, setIsSharingScreen] = useState(false);
+  const [isSharingWebcam, setIsSharingWebcam] = useState(false);
   const videoRef = useRef(null);
   const peerConnection = useRef(null);
   
@@ -26,67 +22,56 @@ export default function Streaming() {
   useEffect(() => {
     peerConnection.current = new RTCPeerConnection(configuration);
 
-    socket.emit('new-user-joined')
+    socket.emit('webcam/new-user-joined')
 
-    // Quando recebemos um candidato ICE
     peerConnection.current.onicecandidate = (event) => {
       if (event.candidate) {
-        console.log('Candidato ICE gerado');
-        socket.emit('ice-candidate', event.candidate);
+        socket.emit('webcam/ice-candidate', event.candidate);
       }
     };
 
-    // Quando recebemos um stream remoto
     peerConnection.current.ontrack = (event) => {
-      console.log('Stream remoto recebido', event);
       videoRef.current.srcObject = event.streams[0];
     };
 
-    // Receber oferta de outro usuário
-    socket.on('offer', async (offer) => {
-      console.log('Oferta recebida');
+    socket.on('webcam/offer', async (offer) => {
       await peerConnection.current.setRemoteDescription(new RTCSessionDescription(offer));
       const answer = await peerConnection.current.createAnswer();
       await peerConnection.current.setLocalDescription(answer);
-      socket.emit('answer', answer);
-      console.log('Resposta enviada');
+      socket.emit('webcam/answer', answer);
     });
 
-    // Receber resposta (answer) de outro usuário
-    socket.on('answer', async (answer) => {
-      console.log('Resposta recebida');
+    socket.on('webcam/answer', async (answer) => {
       await peerConnection.current.setRemoteDescription(new RTCSessionDescription(answer));
     });
 
     const pendingCandidates = [];
 
-    socket.on('offer', async (offer) => {
+    socket.on('webcam/offer', async (offer) => {
       await peerConnection.current.setRemoteDescription(new RTCSessionDescription(offer));
       
-      // Adicione qualquer candidato ICE pendente após a configuração da descrição remota
       pendingCandidates.forEach(async candidate => {
         await peerConnection.current.addIceCandidate(new RTCIceCandidate(candidate));
       });
 
-      pendingCandidates.length = 0; // Limpa os candidatos pendentes
+      pendingCandidates.length = 0;
     });
 
-    socket.on('ice-candidate', async (candidate) => {
+    socket.on('webcam/ice-candidate', async (candidate) => {
       if (peerConnection.current.remoteDescription) {
         await peerConnection.current.addIceCandidate(new RTCIceCandidate(candidate));
       } else {
-        // Armazena os candidatos até que a descrição remota seja configurada
         pendingCandidates.push(candidate);
       }
     });
 
-    socket.on('request-screen-share', async (newUserId) => {
+    socket.on('webcam/request-screen-share', async (newUserId) => {
       const offer = await peerConnection.current.createOffer();
       await peerConnection.current.setLocalDescription(offer);
-      socket.emit('offer', offer, newUserId); // Enviar a oferta ao novo usuário
+      socket.emit('webcam/offer', offer, newUserId);
     });
 
-    socket.on('stop-screen-share', async () => {
+    socket.on('webcam/stop-screen-share', async () => {
       const tracks = videoRef.current.srcObject.getTracks();
 
       tracks.forEach(track => {
@@ -101,32 +86,29 @@ export default function Streaming() {
     };
   }, []);
 
-  const startScreenShare = async () => {
+  const startWebcamShare = async () => {
     try {
-      const displayStream = await navigator.mediaDevices.getDisplayMedia({ video: true });
+      const webcamStream = await navigator.mediaDevices.getUserMedia({ video: true });
 
       // Adicionar tracks da tela no peerConnection
-      displayStream.getTracks().forEach(track => {
-        peerConnection.current.addTrack(track, displayStream);
+      webcamStream.getTracks().forEach(track => {
+        peerConnection.current.addTrack(track, webcamStream);
       });
 
-      console.log(displayStream)
+      videoRef.current.srcObject = webcamStream;
 
-      videoRef.current.srcObject = displayStream;
-
-      setIsSharingScreen(true);
+      setIsSharingWebcam(true);
 
       const offer = await peerConnection.current.createOffer();
       await peerConnection.current.setLocalDescription(offer);
-      socket.emit('offer', offer);
-      socket.emit('start-screen-share');
-      console.log('Oferta enviada');
+      socket.emit('webcam/offer', offer);
+      socket.emit('webcam/start-screen-share');
     } catch (error) {
       console.error('Erro ao compartilhar tela:', error);
     }
   };
 
-  const stopScreenShare = () => {
+  const stopWebcamShare = () => {
     const tracks = videoRef.current.srcObject.getTracks();
 
     tracks.forEach(track => {
@@ -135,25 +117,25 @@ export default function Streaming() {
 
     videoRef.current.srcObject = null;
 
-    setIsSharingScreen(false);
+    setIsSharingWebcam(false);
 
-    socket.emit('stop-screen-share');
+    socket.emit('webcam/stop-screen-share');
   }
 
   return (
     <Container>
-      {userIsAdmin && <Buttons active={isSharingScreen.toString()}>
-        {!isSharingScreen ?
-          <button onClick={startScreenShare}>
-            <LuScreenShare size={20}/> 
+      <Buttons active={isSharingWebcam.toString()}>
+        {!isSharingWebcam ?
+          <button onClick={startWebcamShare}>
+            <BsCameraVideo size={20}/> 
           </button>
         :
-          <button onClick={stopScreenShare}>
-            <LuScreenShareOff size={20}/>
+          <button onClick={stopWebcamShare}>
+            <BsCameraVideoOff size={20}/>
           </button>
         }
-      </Buttons>}
-      <video ref={videoRef} autoPlay playsInline muted style={{ width: '100%', height: '100%' }}></video>
+      </Buttons>
+      <video ref={videoRef} autoPlay playsInline muted></video>
     </Container>
   );
 }

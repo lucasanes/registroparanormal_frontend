@@ -54,7 +54,7 @@ export function PersonagemContainer({ data }) {
 
       <hr />
 
-      <Main>
+      <Main nulo={body == 'none'}>
 
         {body == 'principal' && <>
 

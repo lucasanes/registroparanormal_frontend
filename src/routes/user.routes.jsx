@@ -1,11 +1,12 @@
-import { Routes, Route } from "react-router-dom";
-import {AppLayout} from '../Layout/AppLayout'
-import { Portrait } from '../pages/Portrait'
-import { Documentos } from '../pages/Documentos'
-import Dashboard from "../pages/Dashboard";
+import { Route, Routes } from "react-router-dom";
+import { AppLayout } from '../Layout/AppLayout';
 import { CriarFicha } from "../pages/CriarFicha";
+import Dashboard from "../pages/Dashboard";
+import { Documentos } from '../pages/Documentos';
 import { Ficha } from "../pages/Ficha";
+import { Portrait } from '../pages/Portrait';
 import { Sessao } from "../pages/Sessao";
+import Streaming from "../pages/Streaming";
 
 export function UserRoutes() {
 
@@ -23,6 +24,7 @@ export function UserRoutes() {
       </Route>
       <Route path="/ficha/portrait/:id" element={<Portrait />} />
       <Route path="/sessao/documentos/:id" element={<Documentos />} />
+      <Route path="/streaming/:id" element={<Streaming />} />
     </Routes>
   );
 }

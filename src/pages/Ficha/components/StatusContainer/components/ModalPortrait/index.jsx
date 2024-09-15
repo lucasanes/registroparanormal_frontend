@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import * as S from './styles'
-import {api} from '../../../../../../services/api'
-import {Input} from '../../../../../../components/Input'
 import { toast } from 'react-toastify'
+import { Input } from '../../../../../../components/Input'
+import { api } from '../../../../../../services/api'
+import * as S from './styles'
 
 export function ModalPortrait({ data, atualizar, setModalClose }) {
 
@@ -54,12 +54,12 @@ export function ModalPortrait({ data, atualizar, setModalClose }) {
 
         <S.Body>
 
-          <Input img label={'Normal'} valor={normal} setValor={setNormal} />
-          <Input img label={'Ferido'} valor={ferido} setValor={setFerido} />
-          <Input img label={'Morrendo'} valor={morrendo} setValor={setMorrendo} />
-          <Input img label={'Insano'} valor={insano} setValor={setInsano} />
-          <Input img label={'Insano e Ferido'} valor={insanoeferido} setValor={setInsanoeferido} />
-          <Input img label={'Insano e Morrendo'} valor={insanoemorrendo} setValor={setInsanoemorrendo} />
+          <Input video label={'Normal'} valor={normal} setValor={setNormal} />
+          <Input video label={'Ferido'} valor={ferido} setValor={setFerido} />
+          <Input video label={'Morrendo'} valor={morrendo} setValor={setMorrendo} />
+          <Input video label={'Insano'} valor={insano} setValor={setInsano} />
+          <Input video label={'Insano e Ferido'} valor={insanoeferido} setValor={setInsanoeferido} />
+          <Input video label={'Insano e Morrendo'} valor={insanoemorrendo} setValor={setInsanoemorrendo} />
 
         </S.Body>
 

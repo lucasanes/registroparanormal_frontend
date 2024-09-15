@@ -125,42 +125,6 @@ export const Municao = styled("div", {
   },
 });
 
-const opacityUp1 = keyframes({
-  "0%": {
-    opacity: 0,
-  },
-  "100%": {
-    opacity: 1,
-  },
-});
-
-const opacityDown1 = keyframes({
-  "0%": {
-    opacity: 1,
-  },
-  "100%": {
-    opacity: 0,
-  },
-});
-
-const opacityUp2 = keyframes({
-  "0%": {
-    opacity: 0,
-  },
-  "100%": {
-    opacity: 1,
-  },
-});
-
-const opacityDown2 = keyframes({
-  "0%": {
-    opacity: 1,
-  },
-  "100%": {
-    opacity: 0,
-  },
-});
-
 export const Status1 = styled("div", {
   position: "absolute",
   display: "flex",
@@ -177,12 +141,12 @@ export const Status1 = styled("div", {
   variants: {
     combate: {
       true: {
-        animation: `${opacityUp1} 1s`,
+        animation: `${opacityUp} 1s`,
         animationDelay: ".3s",
         animationFillMode: "forwards",
       },
       false: {
-        animation: `${opacityDown1} .4s`,
+        animation: `${opacityDown} .4s`,
       },
     },
   },
@@ -203,10 +167,10 @@ export const Status2 = styled("div", {
   variants: {
     combate: {
       true: {
-        animation: `${opacityDown2} .4s`,
+        animation: `${opacityDown} .4s`,
       },
       false: {
-        animation: `${opacityUp2} 1s`,
+        animation: `${opacityUp} 1s`,
         animationDelay: ".3s",
         animationFillMode: "forwards",
       },
@@ -233,12 +197,12 @@ export const Status3 = styled("div", {
   variants: {
     combate: {
       true: {
-        animation: `${opacityUp1} 1s`,
+        animation: `${opacityUp} 1s`,
         animationDelay: ".3s",
         animationFillMode: "forwards",
       },
       false: {
-        animation: `${opacityDown1} .4s`,
+        animation: `${opacityDown} .4s`,
       },
     },
   },
@@ -263,10 +227,10 @@ export const Status4 = styled("div", {
   variants: {
     combate: {
       true: {
-        animation: `${opacityDown2} .4s`,
+        animation: `${opacityDown} .4s`,
       },
       false: {
-        animation: `${opacityUp2} 1s`,
+        animation: `${opacityUp} 1s`,
         animationDelay: ".3s",
         animationFillMode: "forwards",
       },
@@ -294,11 +258,11 @@ export const PortraitImg = styled("video", {
 
     animation: {
       true: {
-        animation: `${opacityDown} .2s`,
+        animation: `${opacityDown} .5s`,
         opacity: 0,
       },
       false: {
-        animation: `${opacityUp} .3s`,
+        animation: `${opacityUp} .5s`,
         opacity: 1,
       },
     },

@@ -13,6 +13,7 @@
     "@headlessui/react": "^1.7.17",
     "@stitches/react": "^1.2.8",
     "axios": "^1.5.1",
+    "firebase": "^10.13.1",
     "howler": "^2.2.4",
     "projetorpg-frontend2": "file:",
     "react": "^18.2.0",

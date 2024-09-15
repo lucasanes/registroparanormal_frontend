@@ -1,13 +1,18 @@
-import { useEffect, useRef, useState } from "react"
-import { Button, Container, ContainerInput, Img, InputB, LabelContainer} from "./styles"
-import {AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
+import { useEffect, useState } from "react"
+import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
+import { ImageUploader } from "../ImageUploader"
+import { Button, Container, ContainerInput, Img, InputB, LabelContainer } from "./styles"
 
-export function Input({label, type, isDado = false, maxValor = null, setValor, valor, opcional = false, img = false, ...rest }) {
+export function Input({label, type, isDado = false, maxValor = null, setValor, valor, opcional = false, img = false, video = false, ...rest }) {
 
   const [hover, setHover] = useState(false)
   const [isSenhaVisible, setIsSenhaVisible] = useState(false)
   const [imgIsLoaded, setImgIsLoaded] = useState(false)
   const [key, setKey] = useState(0)
+
+  const handleImageUpload = (url) => {
+    setValor(url);
+  };
 
   useEffect(() => {
     
@@ -23,13 +28,17 @@ export function Input({label, type, isDado = false, maxValor = null, setValor, v
       setKey(prev => prev + 1)
       setImgIsLoaded(false)
     }
+
+    if (video) {
+      setKey(prev => prev + 1)
+    }
     
   }, [valor])
 
   return (
     <Container>
       
-      <LabelContainer img={img.toString()} hover={hover.toString()}>
+      <LabelContainer img={img.toString()} video={video.toString()} hover={hover.toString()}>
         {label}
       </LabelContainer>
 
@@ -53,6 +62,7 @@ export function Input({label, type, isDado = false, maxValor = null, setValor, v
             }
           }}
         />
+        {(img || video) && <ImageUploader onImageUpload={handleImageUpload}/>}
       </ContainerInput>
       {type == 'password' &&
       <Button type='button' onClick={() => setIsSenhaVisible(!isSenhaVisible)}>{isSenhaVisible ? <AiOutlineEyeInvisible color="cyan"/> : <AiOutlineEye color="cyan"/>}</Button>} 
@@ -60,6 +70,14 @@ export function Input({label, type, isDado = false, maxValor = null, setValor, v
         <Img key={key}>
           <span>Preview: </span> 
           <img onLoad={() => setImgIsLoaded(true)} src={valor} style={{display: imgIsLoaded ? 'block' : 'none'}}/>
+        </Img>
+      </>}
+      {video && <>
+        <Img key={key}>
+          <span>Preview: </span> 
+          <video style={{display: 'block'}} autoPlay loop muted>
+            <source src={valor}/>
+          </video>
         </Img>
       </>}
     </Container>

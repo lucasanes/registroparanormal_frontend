@@ -241,8 +241,8 @@ export function Portrait() {
       if (portraitAtual != undefined && portraitAtual != null) {
         if (portraitAtual.src != newPortrait) {
           setAnimation(true)
-          setTimeout(() => { setAnimation(false) }, 500)
-          setTimeout(() => { setPortraitImg(newPortrait) }, 500)
+          setTimeout(() => { setAnimation(false) }, 1000)
+          setTimeout(() => { setPortraitImg(newPortrait) }, 1000)
         }
       }
     }

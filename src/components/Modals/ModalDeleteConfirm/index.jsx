@@ -26,7 +26,10 @@ export function ModalDeleteConfirm({handleExecute, setModalClose}) {
       <Footer>
 
         <Button color={'red'} onClick={setModalClose} type="button">Cancelar</Button>
-        <Button onClick={handleExecute} type="button">Confirmar</Button>
+        <Button onClick={() => {
+          handleExecute() 
+          setModalClose()
+        }} type="button">Confirmar</Button>
 
       </Footer>
 

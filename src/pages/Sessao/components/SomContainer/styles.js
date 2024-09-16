@@ -32,6 +32,7 @@ export const HeaderContainer = styled("div", {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    wordWrap: "break-word",
   },
 
   svg: {
@@ -46,19 +47,20 @@ export const HeaderContainer = styled("div", {
 });
 
 export const BodyContainer = styled("div", {
-  position: "relative",
-  padding: "1rem",
-  paddingTop: "4rem",
   display: "flex",
-  gap: "3rem",
-  overflow: "hidden",
+  flexDirection: "column",
+  padding: "1rem",
+
+  div: {
+    display: "flex",
+    gap: "3rem",
+    flexWrap: "wrap",
+  },
 
   h1: {
-    position: "absolute",
     textTransform: "capitalize",
     color: "$white",
-    top: 15,
-    left: 20,
+    marginBottom: "1rem",
   },
 
   audio: {
@@ -80,8 +82,42 @@ export const Folder = styled("button", {
   transition: "0.3s",
   cursor: "pointer",
   textTransform: "capitalize",
+  gap: "0.5rem",
 
   "&:hover": {
+    background: "$white25",
+  },
+});
+
+export const Item = styled("div", {
+  position: "relative",
+  display: "flex",
+
+  ".button": {
+    minWidth: "8rem",
+    background: "none",
+    border: "none",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: "1rem",
+    borderRadius: "0.5rem",
+    color: "white",
+    transition: "0.3s",
+    cursor: "pointer",
+    textTransform: "capitalize",
+    gap: "0.5rem",
+  },
+
+  ".delete": {
+    position: "absolute",
+    right: 0,
+    top: "0",
+    zIndex: 3,
+  },
+
+  ".button:hover": {
     background: "$white25",
   },
 });

@@ -1,14 +1,14 @@
-import { getDownloadURL, listAll, ref } from 'firebase/storage';
+import { deleteObject, getDownloadURL, listAll, ref } from 'firebase/storage';
 import { useEffect, useState } from 'react';
 import { FcOpenedFolder } from 'react-icons/fc';
-import { FiMusic } from 'react-icons/fi';
 import { MdOutlineAddBox } from "react-icons/md";
+import { TbPlayerPlay } from "react-icons/tb";
+import { ButtonDelete } from '../../../../components/ButtonDelete';
 import { Modal } from '../../../../components/Modals/Modal';
-import { storage } from '../../../../firebase.config';
-
 import { MusicControl } from '../../../../components/MusicControl';
+import { storage } from '../../../../firebase.config';
 import { ModalAddSom } from './ModalAddSom';
-import { BodyContainer, Container, Folder, HeaderContainer } from './styles';
+import { BodyContainer, Container, Folder, HeaderContainer, Item } from './styles';
 
 export function SomContainer() {
 
@@ -22,6 +22,13 @@ export function SomContainer() {
   const [modalAddSomIsOpen, setModalAddSomIsOpen] = useState(false)
 
   useEffect(() => {
+
+    setPath('sound')
+    setOpenedIndex(0)
+    setPrevFolder([])
+    setItemOpened(null)
+    setAudioUrl(null)
+
     async function fetchData() {
       const getFoldersRef = ref(storage, 'sound/');
       const response = await fetchFoldersAndFiles(getFoldersRef);
@@ -78,6 +85,21 @@ export function SomContainer() {
 
   }
 
+  const deleteFile = async (item) => {
+    const fileRef = ref(storage, item.fullPath);
+
+    folderOpened.items.filter(file => file.name !== item.name)
+    folderOpened.items.map(file => file)
+    setFolderOpened(folderOpened)
+  
+    try {
+      await deleteObject(fileRef);
+      console.log('Arquivo deletado com sucesso');
+    } catch (error) {
+      console.error('Erro ao deletar o arquivo:', error);
+    }
+  };
+
   return (
     <Container>
 
@@ -100,37 +122,43 @@ export function SomContainer() {
 
         <h1>{path}</h1>
 
-        {(folderOpened && folderOpened.name != 'sound') && 
-          <Folder onClick={() => handleOpenFolder('prev', folderOpened)}>
-            <FcOpenedFolder size={50} />
-            <p>Voltar</p>
-          </Folder>
-        }
+        <div>
 
-        {!itemOpened && <>
-          { 
-            folderOpened?.prefixes && folderOpened.prefixes.map((folder, i) => (
-              <Folder key={i} onClick={() => handleOpenFolder('next', folder)}>
-                <FcOpenedFolder size={50} />
-                <p>{folder.name}</p>
-              </Folder>
-            ))
+          {(folderOpened && folderOpened.name != 'sound') && 
+            <Folder onClick={() => handleOpenFolder('prev', folderOpened)}>
+              <FcOpenedFolder size={50} />
+              <p>Voltar</p>
+            </Folder>
           }
-          
-          { 
-            folderOpened?.items && folderOpened.items.map((item, i) => (
-              <Folder key={i} onClick={() => handleOpenItem(item)}>
-                <FiMusic size={50} />
-                <p>{item.name}</p>
-              </Folder>
-            ))
+
+          {!itemOpened && <>
+            { 
+              folderOpened?.prefixes && folderOpened.prefixes.map((folder, i) => (
+                <Folder key={i} onClick={() => handleOpenFolder('next', folder)}>
+                  <FcOpenedFolder size={50} />
+                  <p>{folder.name}</p>
+                </Folder>
+              ))
+            }
+            
+            { 
+              folderOpened?.items && folderOpened.items.map((item, i) => (
+                <Item key={i}>
+                  <ButtonDelete size={20} className='delete' onClick={() => deleteFile(item)}/>
+                  <button className='button' onClick={() => handleOpenItem(item)}>
+                    <TbPlayerPlay size={40}/>
+                    <p style={{position: 'relative', top: 5}}>{item.name}</p>
+                  </button>
+                </Item>
+              ))
+            }
+          </>}
+
+          {(itemOpened && audioUrl) &&
+            <MusicControl audioUrl={audioUrl}/>
           }
-        </>}
 
-        {(itemOpened && audioUrl) &&
-          <MusicControl audioUrl={audioUrl}/>
-        }
-
+        </div>
       </BodyContainer>
 
     </Container>

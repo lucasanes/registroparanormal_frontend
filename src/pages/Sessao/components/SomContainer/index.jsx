@@ -88,13 +88,24 @@ export function SomContainer() {
   const deleteFile = async (item) => {
     const fileRef = ref(storage, item.fullPath);
 
-    folderOpened.items.filter(file => file.name !== item.name)
-    folderOpened.items.map(file => file)
-    setFolderOpened(folderOpened)
-  
     try {
       await deleteObject(fileRef);
-      console.log('Arquivo deletado com sucesso');
+
+      const getFoldersRef = ref(storage, 'sound/');
+      const response = await fetchFoldersAndFiles(getFoldersRef);
+      
+      let folderOpened
+      const folderPath = path.split(' > ').pop()
+
+      folderOpened = response.prefixes.find(folder => folder.name === folderPath)
+
+      if (!folderOpened) {
+        response.prefixes.forEach(folder => {
+          folderOpened = folder.prefixes.find(folder => folder.name === folderPath)
+        })
+      }
+
+      setFolderOpened(folderOpened)
     } catch (error) {
       console.error('Erro ao deletar o arquivo:', error);
     }

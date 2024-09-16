@@ -12,12 +12,8 @@ export function MusicPlayer({streaming = false, ...rest}) {
   const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
-    // socket.on('audio-duration', (data) => {
-    //   audioRef.current.currentTime = data.currentTime; 
-    // });
-
+    if (isPlaying) {
     socket.on('audio-play', (data) => {
-      console.log('recebendo play');
       setAudioUrl(data.audioUrl);
       audioRef.current.currentTime = data.currentTime;
       if (isPlaying) {
@@ -28,18 +24,16 @@ export function MusicPlayer({streaming = false, ...rest}) {
     });
 
     socket.on('audio-pause', (data) => {
-      console.log('recebendo pause');
       audioRef.current.currentTime = data.currentTime;
       audioRef.current.pause();
     });
 
     socket.on('audio-volume', (data) => {
-      console.log('recebendo volume');
       audioRef.current.volume = data.volume; // Sincroniza o volume
     });
+  }
 
     return () => {
-      socket.off('audio-duration');
       socket.off('audio-play');
       socket.off('audio-pause');
       socket.off('audio-volume');

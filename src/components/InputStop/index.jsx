@@ -1,4 +1,4 @@
-import { Container, ContainerInput, InputB, LabelContainer} from "./styles"
+import { Container, ContainerInput, InputB, LabelContainer } from "./styles"
 
 export function InputStop({label, valor, ...rest }) {
 
@@ -10,7 +10,7 @@ export function InputStop({label, valor, ...rest }) {
       </LabelContainer>
 
       <ContainerInput>
-        <InputB value={valor} disabled={true} onChange={(e) => {return e}} {...rest}/>
+        <InputB spellCheck="false" value={valor} disabled={true} onChange={(e) => {return e}} {...rest}/>
       </ContainerInput>
     </Container>
   )

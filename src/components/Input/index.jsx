@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react"
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
 import { ImageUploader } from "../ImageUploader"
+import { SoundUploader } from "../SoundUploader"
 import { Button, Container, ContainerInput, Img, InputB, LabelContainer } from "./styles"
 
-export function Input({label, type, isDado = false, maxValor = null, setValor, valor, opcional = false, img = false, video = false, ...rest }) {
+export function Input({label, type, isDado = false, maxValor = null, setValor, valor, opcional = false, img = false, video = false, sound = false, soundName = '', pathName = '', ...rest }) {
 
   const [hover, setHover] = useState(false)
   const [isSenhaVisible, setIsSenhaVisible] = useState(false)
@@ -11,6 +12,10 @@ export function Input({label, type, isDado = false, maxValor = null, setValor, v
   const [key, setKey] = useState(0)
 
   const handleImageUpload = (url) => {
+    setValor(url);
+  };
+
+  const handleSoundUpload = (url) => {
     setValor(url);
   };
 
@@ -43,7 +48,7 @@ export function Input({label, type, isDado = false, maxValor = null, setValor, v
       </LabelContainer>
 
       <ContainerInput>
-        <InputB value={valor} type={type == 'password' && isSenhaVisible ? 'text' : type} {...rest}
+        <InputB spellCheck="false" value={valor} type={type == 'password' && isSenhaVisible ? 'text' : type} {...rest}
           onChange={(event) => {
             if (maxValor != null) {
               if (maxValor >= event.target.value) {
@@ -63,6 +68,7 @@ export function Input({label, type, isDado = false, maxValor = null, setValor, v
           }}
         />
         {(img || video) && <ImageUploader onImageUpload={handleImageUpload}/>}
+        {(sound) && <SoundUploader onSoundUpload={handleSoundUpload} name={soundName} path={pathName}/>}
       </ContainerInput>
       {type == 'password' &&
       <Button type='button' onClick={() => setIsSenhaVisible(!isSenhaVisible)}>{isSenhaVisible ? <AiOutlineEyeInvisible color="cyan"/> : <AiOutlineEye color="cyan"/>}</Button>} 

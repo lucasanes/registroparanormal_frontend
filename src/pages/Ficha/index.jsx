@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { io } from 'socket.io-client';
 import { Modal } from '../../components/Modals/Modal';
+import { MusicPlayer } from '../../components/MusicPlayer';
 import { useAuth } from '../../hooks/useAuth';
 import { useDisabled } from '../../hooks/useDisabled';
 import { useFichas } from '../../hooks/useFichas';
@@ -37,7 +38,7 @@ export function Ficha() {
   const [imagem, setImagem] = useState('')
 
   const [isLoading, setIsLoading] = useState(true)
- 
+
   useEffect(() => {
 
     async function fetchData() {
@@ -132,7 +133,7 @@ export function Ficha() {
       }
     }
     socket.on(`enviado.itemImg?${id}`, executeItemImg);
-
+    
     return () => {
       socket.off(`enviado.itemImg?${id}`, executeItemImg);
     }
@@ -176,6 +177,8 @@ export function Ficha() {
         <AnotacoesContainer data={ficha?.Personagem[0]}/>
 
       </Body>}
+
+      <MusicPlayer style={{display: 'none'}}/>
 
     </Container>
   );

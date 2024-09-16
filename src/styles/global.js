@@ -60,4 +60,8 @@ export const GlobalStyles = globalCss({
     "-moz-appearance": "textfield",
     appearance: "textfield",
   },
+  "input:invalid": {
+    "-webkit-text-fill-color": "white !important",
+    color: "white",
+  },
 });

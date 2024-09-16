@@ -1,22 +1,16 @@
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { useRef, useState } from 'react';
-import { useParams } from "react-router-dom";
 import { storage } from '../../firebase.config';
-import { useAuth } from '../../hooks/useAuth';
 import { InputB, Progress, ProgressBar, SpanMsg } from "./styles";
 
-export function ImageUploader({ onSoundUpload }) {
-
-  const {id} = useParams()
+export function SoundUploader({ onSoundUpload, path, name }) {
 
   const [file, setFile] = useState(undefined);
-  const [msg, setMsg] = useState('Enviar Foto')
-
-  const {user} = useAuth()
+  const [msg, setMsg] = useState('Enviar Som')
 
   const progress = useRef(null)
 
-  const handleImageUpload = async (e) => {
+  const handleSoundUpload = async (e) => {
 
     setFile(undefined);
 
@@ -25,7 +19,7 @@ export function ImageUploader({ onSoundUpload }) {
 
     setFile(file);
 
-    const storageRef = ref(storage, `site/${user.username}/${id}/${file.name}`);
+    const storageRef = ref(storage, `sound/${path}/${name}`);
     const uploadTask = uploadBytesResumable(storageRef, file);
 
     uploadTask.on(
@@ -42,7 +36,7 @@ export function ImageUploader({ onSoundUpload }) {
       async () => {
         try {
           const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
-          onImageUpload(downloadURL);
+          onSoundUpload(downloadURL);
         } catch (err) {
           progress.current.style.width = '0%'
           setMsg('Erro ao adquirir link do arquivo!')
@@ -60,7 +54,7 @@ export function ImageUploader({ onSoundUpload }) {
       <ProgressBar progresso={!file && 'ni'}>
         <Progress ref={progress} progresso={msg == 'Enviado!' ? 'f' : 'i'}/>
       </ProgressBar>
-      <input type="file" style={{display: 'none'}} accept="image/*,video/*" onChange={handleImageUpload} />
+      <input type="file" style={{display: 'none'}} accept="audio/mpeg" onChange={handleSoundUpload} />
     </InputB>
   );
 }

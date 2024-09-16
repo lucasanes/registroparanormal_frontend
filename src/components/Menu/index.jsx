@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import icon from '../../assets/img/Calamidade.png';
 import { useAuth } from "../../hooks/useAuth";
 import { useTitle } from '../../hooks/useTitle';
+import { MusicPlayer } from '../MusicPlayer';
 import { Body, Button, ButtonLink, Container, Header, Li, Line1, Line2, Line3 } from './styles';
 
 export function Menu() {
@@ -65,6 +66,9 @@ export function Menu() {
               <ButtonLink onClick={abrirMenu} color={'purple'} to={"/"}> <BsFillDice6Fill size={25} /> Painel </ButtonLink>
             </Li>
             <Li>
+              <MusicPlayer/>     
+            </Li>
+            <Li>
               <ButtonLink onClick={abrirMenu} color={'yellow'} to={'/'}> <RiUserLine size={30} /> Conta </ButtonLink>
             </Li>
             <Li>
@@ -72,11 +76,9 @@ export function Menu() {
             </Li>
 
           </>:
-
             <Li>
               <ButtonLink onClick={abrirMenu} color={'purple'} to={"/"}> <AiFillHome size={25} /> Home </ButtonLink>
             </Li>
-
           }
 
         </ul>

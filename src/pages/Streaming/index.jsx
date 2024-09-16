@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { LuScreenShare, LuScreenShareOff } from "react-icons/lu";
 import { toast } from 'react-toastify';
 import io from 'socket.io-client';
+import { MusicPlayer } from '../../components/MusicPlayer';
 import { useAuth } from '../../hooks/useAuth';
 import { api } from '../../services/api';
 import { Buttons, Container } from './styles';
@@ -157,6 +158,7 @@ export default function Streaming() {
           </button>
         }
       </Buttons>}
+      <MusicPlayer streaming className='player'/>
       <video ref={videoRef} autoPlay playsInline muted></video>
     </Container>
   );

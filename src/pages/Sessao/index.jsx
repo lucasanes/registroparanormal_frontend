@@ -3,7 +3,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { io } from "socket.io-client";
 import { Modal } from "../../components/Modals/Modal";
-import { MusicPlayer } from "../../components/MusicPlayer";
 import { useAuth } from "../../hooks/useAuth";
 import { useFichas } from "../../hooks/useFichas";
 import { useTitle } from "../../hooks/useTitle";
@@ -112,8 +111,6 @@ export function Sessao() {
 
         </Body>
       }
-
-      <MusicPlayer style={{display: 'none'}}/>
     </Container>
   );
 }

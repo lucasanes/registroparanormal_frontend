@@ -89,6 +89,7 @@ export const Body = styled("div", {
   width: '0px',
   transition: '.4s',
   overflow: 'hidden',
+  paddingTop: '2rem',
 
   ul: {
     display: 'flex',
@@ -208,7 +209,7 @@ export const Line3 = styled('div', {
 
 export const Li = styled('li', {
 
-  margin: "5rem auto",
+  margin: "3rem auto",
   display: "flex",
   justifyContent: "left",
   alignItems: "center",

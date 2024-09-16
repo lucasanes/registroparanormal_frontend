@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
+import { GoMute, GoUnmute } from "react-icons/go";
 import { io } from 'socket.io-client';
 import { api } from '../../services/api';
+import { Button } from './styles';
 
 const socket = io(api.defaults.baseURL);
 
-export function MusicPlayer() {
+export function MusicPlayer({streaming = false, ...rest}) {
   const audioRef = useRef(null);
   const [audioUrl, setAudioUrl] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -44,7 +46,7 @@ export function MusicPlayer() {
     };
   }, [isPlaying]);
 
-  const handlePlayButtonClick = () => {
+  const handleActive = () => {
     setIsPlaying(true);
     if (audioRef.current) {
       audioRef.current.play().catch(error => {
@@ -56,12 +58,23 @@ export function MusicPlayer() {
     }
   };
 
+  const handleDesactive = () => {
+    setIsPlaying(false);
+    if (audioRef.current) {
+      audioRef.current.pause().catch(error => {
+        console.error('Erro ao tentar pausar o áudio:', error);
+      });
+    }
+  }
+
   return (
-    <div>
-      <audio ref={audioRef} src={audioUrl} />
-      {!isPlaying && (
-        <button onClick={handlePlayButtonClick}>Ativar Soundpad</button>
-      )}
+    <div {...rest}>
+      {isPlaying && <audio ref={audioRef} src={audioUrl} />}
+      {!isPlaying ? 
+        <Button streaming={streaming.toString()} onClick={handleActive}><GoMute size={streaming ? 20 : 25}/> Sons</Button>
+      :
+        <Button streaming={streaming.toString()} onClick={handleDesactive}><GoUnmute size={streaming ? 20 : 25}/> Sons</Button>
+      }
     </div>
   );
 }

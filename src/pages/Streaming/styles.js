@@ -8,6 +8,13 @@ export const Container = styled("div", {
     width: "100%",
     maxHeight: "100vh",
   },
+
+  '.player': {
+    position: "fixed",
+    top: '1rem',
+    left: '7rem',
+    zIndex: 2,
+  }
 });
 
 export const Buttons = styled("div", {

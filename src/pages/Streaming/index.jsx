@@ -6,135 +6,104 @@ import io from 'socket.io-client';
 import { MusicPlayer } from '../../components/MusicPlayer';
 import { useAuth } from '../../hooks/useAuth';
 import { api } from '../../services/api';
+import { createAnswer } from './createAnswer';
+import { prepareToRecieveOffers } from './prepareToRecieveOffers';
+import { shareScreen } from './shareScreen';
 import { Buttons, Container } from './styles';
 
 const socket = io(api.defaults.baseURL);
 
 export default function Streaming() {
-
-  const {user} = useAuth()
-  const {id} = useParams()
-
+  const { user } = useAuth()
+  const { id } = useParams()
   let userIsAdmin = false
 
   if (user) {
     userIsAdmin = user.role == 'ADMIN'
   }
 
-  let peer = useRef(null)
-  const [isSharingScreen, setIsSharingScreen] = useState(false);
+  const peer = useRef(new Peer())
+  const screen = useRef(null);
   const videoRef = useRef(null);
-  const [peerConnections, setPeerConnections] = useState([]);
-  
-  const configuration = {
-    iceServers: [{ urls: 'stun:stun.l.google.com:19302' },],
-  };
+  const peerConnections = useRef({});
+  const [isSharingScreen, setIsSharingScreen] = useState(false);
 
   useEffect(() => {
+    createAnswer(peer, videoRef, peerConnections)
+    prepareToRecieveOffers(peer, videoRef, peerConnections, socket, screen)
 
-    peer = new Peer(undefined)
-
-    peer.on('open', peerId =>
+    peer.current.on("open", id => {
       socket.emit('enter-room', {
-        peerId: peerId,
+        id: id,
         roomId: id
-      }),
-    )
+      });
+    })
 
-    socket.on(
-      'leave-room',
-      ({ id }) => peerConnections[id] && peerConnections[id].close(),
-    )
+    socket.on('leave-room', ({ id }) => {
+      if (peerConnections.current[id]) {
+        delete peerConnections.current[id]
+      }
+    })
 
-    createAnswer()
-    prepareToRecieveOffers()
-    
+    socket.on('stop-share', ({ roomId }) => {
+      videoRef.current.srcObject = null
+    })
+
+    window.addEventListener('beforeunload', () => {
+      socket.emit('leave-room', {
+        id: peer.current.id,
+        roomId: id
+      });
+    })
+
     return () => {
-      socket.off('enter-room')
-
-      Object.keys(peer.connections).forEach(connId => {
-        const connection = peer.connections[connId][0]
-        if (connection) {
-          connection.close()
-          socket.emit('leave-room', { peerId: connection.connectionId, roomId: id})
-        }
-      })
-
-      setPeerConnections([])
-      peer.destroy()
-
+      socket.emit('leave-room', {
+        id: peer.current.id,
+        roomId: id
+      });
+      peer.current.destroy()
+      peerConnections.current = {}
       socket.disconnect()
     };
   }, []);
 
-  async function createAnswer() {
-    peer.on('call', function (call) {
-  
-      call.answer(videoRef.current.srcObject)
-
-      call.on('stream', function (remoteStream) {
-        videoRef.current.srcObject = createVideoElement(remoteStream, call.metadata)
-      })
-  
-      connections[call.connectionId] = call
-      call.on('close', () => videoRef.current.srcObject = null)
-    })
-  }
-
-  function prepareToRecieveOffers() {
-    socket.on('enter-room', function (user) {
-
-      const call = peer.call(user.id)
-
-      call.on('stream', userVideoStream => {
-        videoRef.current.srcObject = userVideoStream
-      })
-
-      call.on('close', () => videoRef.current.srcObject = null)
-      connections[call.connectionId] = call
-    
-      if (videoRef.current.srcObject) {
-        const shareConn = peer.call(user.id, videoRef.current.srcObject)
-        videoRef.current.srcObject.getVideoTracks()[0].addEventListener('ended', () => {
-          shareConn.close()
-          socket.emit('leave-room', { peerId: shareConn.connectionId, roomId: id })
-        })
+  function startShareScreen() {
+    shareScreen(peer, socket, id, peerConnections).then(media => {
+      if (media) {
+        videoRef.current.srcObject = media
+        screen.current = media
+        setIsSharingScreen(true)
       }
-      
-    })
+    });
   }
 
-  const startScreenShare = async () => {
-    navigator.mediaDevices.getDisplayMedia({ video: true, audio: false }).then(media => {
-      videoRef.current.srcObject = media
-      Object.keys(peer.connections).forEach(conn => {
-        const shareConn = peer.call(conn, media, { metadata: { name: getUserName() } })
-
-        media.getVideoTracks()[0].addEventListener('ended', () => {
-          videoRef.current.srcObject = null
-          shareConn.close()
-          socket.emit('leave-room', { peerId: shareConn.connectionId, roomId: id })
-          setIsSharingScreen(false)
-        })
-      })
-      setIsSharingScreen(true)
-    })
-  };
+  function stopScreenShare() {
+    socket.emit('stop-share', {
+      id: peer.current.id,
+      roomId: id
+    });
+    if (screen.current) {
+      screen.current.getTracks().forEach(track => track.stop());
+      screen.current = null;
+    }
+    videoRef.current.srcObject = null
+    setIsSharingScreen(false)
+  }
 
   return (
     <Container>
       {userIsAdmin && <Buttons active={isSharingScreen.toString()}>
         {!isSharingScreen ?
-          <button onClick={startScreenShare}>
-            <LuScreenShare size={20}/> 
+          <button onClick={startShareScreen}>
+            <LuScreenShare size={20} />
           </button>
-        :
+          :
           <button onClick={stopScreenShare}>
-            <LuScreenShareOff size={20}/>
+            <LuScreenShareOff size={20} />
           </button>
         }
       </Buttons>}
-      <MusicPlayer streaming className='player'/>
+      <MusicPlayer streaming className='player' />
       <video ref={videoRef} autoPlay playsInline muted></video>
     </Container>
   );

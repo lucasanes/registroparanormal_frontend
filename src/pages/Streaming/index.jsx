@@ -1,6 +1,7 @@
+import Peer from 'peerjs';
 import { useEffect, useRef, useState } from 'react';
 import { LuScreenShare, LuScreenShareOff } from "react-icons/lu";
-import { toast } from 'react-toastify';
+import { useParams } from 'react-router-dom';
 import io from 'socket.io-client';
 import { MusicPlayer } from '../../components/MusicPlayer';
 import { useAuth } from '../../hooks/useAuth';
@@ -12,6 +13,7 @@ const socket = io(api.defaults.baseURL);
 export default function Streaming() {
 
   const {user} = useAuth()
+  const {id} = useParams()
 
   let userIsAdmin = false
 
@@ -19,131 +21,105 @@ export default function Streaming() {
     userIsAdmin = user.role == 'ADMIN'
   }
 
+  let peer = useRef(null)
   const [isSharingScreen, setIsSharingScreen] = useState(false);
   const videoRef = useRef(null);
-  const peerConnections = useRef({});
+  const [peerConnections, setPeerConnections] = useState([]);
   
   const configuration = {
     iceServers: [{ urls: 'stun:stun.l.google.com:19302' },],
   };
 
   useEffect(() => {
-    peerConnections.current[socket.id] = new RTCPeerConnection(configuration);
 
-    const peerConnection = peerConnections.current[socket.id];
-  
-    socket.emit('streaming/new-user-joined')
+    peer = new Peer(undefined)
 
-    peerConnection.onicecandidate = (event) => {
-      if (event.candidate) {
-        console.log('Candidato ICE gerado');
-        socket.emit('streaming/ice-candidate', event.candidate);
-      }
-    };
+    peer.on('open', peerId =>
+      socket.emit('enter-room', {
+        peerId: peerId,
+        roomId: id
+      }),
+    )
 
-    peerConnection.ontrack = (event) => {
-      console.log('Stream remoto recebido', event);
-      videoRef.current.srcObject = event.streams[0];
-    };
+    socket.on(
+      'leave-room',
+      ({ id }) => peerConnections[id] && peerConnections[id].close(),
+    )
 
-    socket.on('streaming/offer', async (offer) => {
-      console.log('Oferta recebida');
-      await peerConnection.setRemoteDescription(new RTCSessionDescription(offer));
-      const answer = await peerConnection.createAnswer();
-      await peerConnection.setLocalDescription(answer);
-      socket.emit('streaming/answer', answer);
-      console.log('Resposta enviada');
-    });
-
-    socket.on('streaming/answer', async (answer) => {
-      console.log('Resposta recebida');
-      await peerConnection.setRemoteDescription(new RTCSessionDescription(answer));
-    });
-
-    const pendingCandidates = [];
-
-    socket.on('streaming/offer', async (offer) => {
-      await peerConnection.setRemoteDescription(new RTCSessionDescription(offer));
-      
-      pendingCandidates.forEach(async candidate => {
-        await peerConnection.addIceCandidate(new RTCIceCandidate(candidate));
-      });
-
-      pendingCandidates.length = 0; // Limpa os candidatos pendentes
-    });
-
-    socket.on('streaming/ice-candidate', async (candidate) => {
-      if (peerConnection.remoteDescription) {
-        await peerConnection.addIceCandidate(new RTCIceCandidate(candidate));
-      } else {
-        pendingCandidates.push(candidate);
-      }
-    });
-
-    socket.on('streaming/request-share', async (newUserId) => {
-      const offer = await peerConnection.createOffer();
-      await peerConnection.setLocalDescription(offer);
-      socket.emit('streaming/offer', offer, newUserId); // Enviar a oferta ao novo usuário
-    });
-
-    socket.on('streaming/stop-share', async () => {
-      const tracks = videoRef.current.srcObject.getTracks();
-
-      tracks.forEach(track => {
-        track.stop();
-      });
-
-      videoRef.current.srcObject = null;
-    });
-
+    createAnswer()
+    prepareToRecieveOffers()
+    
     return () => {
-      socket.disconnect();
+      socket.off('enter-room')
+
+      Object.keys(peer.connections).forEach(connId => {
+        const connection = peer.connections[connId][0]
+        if (connection) {
+          connection.close()
+          socket.emit('leave-room', { peerId: connection.connectionId, roomId: id})
+        }
+      })
+
+      setPeerConnections([])
+      peer.destroy()
+
+      socket.disconnect()
     };
   }, []);
 
-  const startScreenShare = async () => {
-    try {
-      const displayStream = await navigator.mediaDevices.getDisplayMedia({ video: true });
+  async function createAnswer() {
+    peer.on('call', function (call) {
+  
+      call.answer(videoRef.current.srcObject)
 
-      const peerConnection = peerConnections.current[socket.id];
-
-      displayStream.getTracks().forEach(track => {
-        peerConnection.addTrack(track, displayStream);
-      });
-
-      videoRef.current.srcObject = displayStream;
-
-      setIsSharingScreen(true);
-
-      const offer = await peerConnection.createOffer();
-      await peerConnection.setLocalDescription(offer);
-      socket.emit('streaming/offer', offer);
-      socket.emit('streaming/start-share');
-    } catch (error) {
-      toast.error('Erro ao compartilhar tela');
-      console.error('Erro ao compartilhar tela:', error);
-    }
-  };
-
-  const stopScreenShare = () => {
-    try {
-
-      const tracks = videoRef.current.srcObject.getTracks();
-      
-      tracks.forEach(track => {
-        track.stop();
-      });
-      
-      videoRef.current.srcObject = null;
-      
-      setIsSharingScreen(false);
-      
-      socket.emit('streaming/stop-share');
-    } catch (error) {
-      toast.error('Erro ao parar de compartilhar tela');
-      console.error('Erro ao parar de compartilhar tela:', error);
-    }
+      call.on('stream', function (remoteStream) {
+        videoRef.current.srcObject = createVideoElement(remoteStream, call.metadata)
+      })
+  
+      connections[call.connectionId] = call
+      call.on('close', () => videoRef.current.srcObject = null)
+    })
   }
+
+  function prepareToRecieveOffers() {
+    socket.on('enter-room', function (user) {
+
+      const call = peer.call(user.id)
+
+      call.on('stream', userVideoStream => {
+        videoRef.current.srcObject = userVideoStream
+      })
+
+      call.on('close', () => videoRef.current.srcObject = null)
+      connections[call.connectionId] = call
+    
+      if (videoRef.current.srcObject) {
+        const shareConn = peer.call(user.id, videoRef.current.srcObject)
+        videoRef.current.srcObject.getVideoTracks()[0].addEventListener('ended', () => {
+          shareConn.close()
+          socket.emit('leave-room', { peerId: shareConn.connectionId, roomId: id })
+        })
+      }
+      
+    })
+  }
+
+  const startScreenShare = async () => {
+    navigator.mediaDevices.getDisplayMedia({ video: true, audio: false }).then(media => {
+      videoRef.current.srcObject = media
+      Object.keys(peer.connections).forEach(conn => {
+        const shareConn = peer.call(conn, media, { metadata: { name: getUserName() } })
+
+        media.getVideoTracks()[0].addEventListener('ended', () => {
+          videoRef.current.srcObject = null
+          shareConn.close()
+          socket.emit('leave-room', { peerId: shareConn.connectionId, roomId: id })
+          setIsSharingScreen(false)
+        })
+      })
+      setIsSharingScreen(true)
+    })
+  };
 
   return (
     <Container>

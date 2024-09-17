@@ -1,156 +1,111 @@
+import Peer from 'peerjs';
 import { useEffect, useRef, useState } from 'react';
-import { BsCameraVideo, BsCameraVideoOff } from 'react-icons/bs';
+import { BsCameraVideo, BsCameraVideoOff } from "react-icons/bs";
 import { useParams } from 'react-router-dom';
 import io from 'socket.io-client';
+import { MusicPlayer } from '../../components/MusicPlayer';
 import { useAuth } from '../../hooks/useAuth';
 import { api } from '../../services/api';
+import { createAnswer } from './createAnswer';
+import { prepareToRecieveOffers } from './prepareToRecieveOffers';
+import { shareWebcam } from './shareWebcam';
+import { stopShare } from './stopShare';
 import { Buttons, Container } from './styles';
 
 const socket = io(api.defaults.baseURL);
 
-export default function WebCam() {
+export default function Webcam() {
+  const { user } = useAuth()
+  const { roomId } = useParams()
 
-  const {id} = useParams()
-
-  const {user} = useAuth()
-
-  const [isSharingWebcam, setIsSharingWebcam] = useState(false);
+  const peer = useRef(new Peer(undefined, {
+    debug: 5
+  }))
+  const webcam = useRef(null);
   const videoRef = useRef(null);
   const peerConnections = useRef({});
-  
-  const configuration = {
-    iceServers: [{ urls: 'stun:stun.l.google.com:19302' }],
-  };
+  const [isSharingWebcam, setIsSharingWebcam] = useState(false);
 
   useEffect(() => {
-    if (!peerConnections.current[socket.id]) {
-      peerConnections.current[socket.id] = new RTCPeerConnection(configuration);
-    }
 
-    console.log('socket', socket.id
-    )
-
-    console.log('peerConnections', peerConnections)
-  
-    const peerConnection = peerConnections.current[socket.id];
-
-    console.log('conexao', peerConnection)
-
-    socket.emit('webcam/new-user-joined')
-
-    peerConnection.onicecandidate = (event) => {
-      if (event.candidate) {
-        socket.emit('webcam/ice-candidate', event.candidate);
-      }
-    };
-
-    peerConnection.ontrack = (event) => {
-      videoRef.current.srcObject = event.streams[0];
-    };
-
-    socket.on('webcam/offer', async (offer) => {
-      await peerConnection.setRemoteDescription(new RTCSessionDescription(offer));
-      const answer = await peerConnection.createAnswer();
-      await peerConnection.setLocalDescription(answer);
-      socket.emit('webcam/answer', answer);
-    });
-
-    socket.on('webcam/answer', async (answer) => {
-      await peerConnection.setRemoteDescription(new RTCSessionDescription(answer));
-    });
-
-    const pendingCandidates = [];
-
-    socket.on('webcam/offer', async (offer) => {
-      await peerConnection.setRemoteDescription(new RTCSessionDescription(offer));
-      
-      pendingCandidates.forEach(async candidate => {
-        await peerConnection.addIceCandidate(new RTCIceCandidate(candidate));
+    peer.current.on("open", id => {
+      socket.emit('enter-room', {
+        peerId: id,
+        socketId: socket.id,
+        roomId
       });
+    })
 
-      pendingCandidates.length = 0;
-    });
-
-    socket.on('webcam/ice-candidate', async (candidate) => {
-      if (peerConnection.remoteDescription) {
-        await peerConnection.addIceCandidate(new RTCIceCandidate(candidate));
-      } else {
-        pendingCandidates.push(candidate);
+    socket.on('leave-room', ({ id }) => {
+      if (peerConnections.current[id]) {
+        delete peerConnections.current[id]
       }
-    });
+    })
+    
+    socket.on('stop-share', (peer) => {
+      console.log(peer)
+      videoRef.current.srcObject = null
+    })
 
-    socket.on('webcam/request-screen-share', async (newUserId) => {
-      const offer = await peerConnection.createOffer();
-      await peerConnection.setLocalDescription(offer);
-      socket.emit('webcam/offer', offer, newUserId);
-    });
+    createAnswer(peer, videoRef, peerConnections, webcam, setIsSharingWebcam)
+    prepareToRecieveOffers(peer, videoRef, peerConnections, socket, webcam, roomId)
 
-    socket.on('webcam/stop-screen-share', async () => {
-      const tracks = videoRef.current.srcObject.getTracks();
-
-      tracks.forEach(track => {
-        track.stop();
+    window.addEventListener('beforeunload', () => {
+      stopShare(peer, socket, roomId, webcam).then(() => {
+        videoRef.current.srcObject = null
+      })
+      socket.emit('leave-room', {
+        peerId: peer.current.id,
+        socketId: socket.id,
+        roomId
       });
-
-      videoRef.current.srcObject = null;
-    });
+    })
 
     return () => {
-      socket.disconnect();
+      if (peer.current) {
+        socket.emit('leave-room', {
+          peerId: peer.current.id,
+          socketId: socket.id,
+          roomId
+        });
+        peer.current.destroy()
+        peerConnections.current = {}
+        socket.disconnect()
+      }
     };
-  }, []);
+  }, [roomId]);
 
-  const startWebcamShare = async () => {
-    try {
-      const webcamStream = await navigator.mediaDevices.getUserMedia({ video: true });
-
-      const peerConnection = peerConnections.current[socket.id];
-
-      // Adicionar tracks da tela no peerConnection
-      webcamStream.getTracks().forEach(track => {
-        peerConnection.addTrack(track, webcamStream);
-      });
-
-      videoRef.current.srcObject = webcamStream;
-
-      setIsSharingWebcam(true);
-
-      const offer = await peerConnection.createOffer();
-      await peerConnection.setLocalDescription(offer);
-      socket.emit('webcam/offer', offer);
-      socket.emit('webcam/start-screen-share');
-    } catch (error) {
-      console.error('Erro ao compartilhar WebCam:', error);
-    }
-  };
-
-  const stopWebcamShare = () => {
-    const tracks = videoRef.current.srcObject.getTracks();
-
-    tracks.forEach(track => {
-      track.stop();
+  function startShareWebcam() {
+    shareWebcam(peer, socket, roomId, peerConnections).then(media => {
+      if (media) {
+        videoRef.current.srcObject = media
+        webcam.current = media
+        setIsSharingWebcam(true)
+      }
     });
+  }
 
-    videoRef.current.srcObject = null;
-
-    setIsSharingWebcam(false);
-
-    socket.emit('webcam/stop-screen-share');
+  function stopShareWebcam() {
+    stopShare(peer, socket, roomId, webcam).then(() => {
+      videoRef.current.srcObject = null
+      setIsSharingWebcam(false)
+    });
   }
 
   return (
     <Container>
       {user && <Buttons active={isSharingWebcam.toString()}>
         {!isSharingWebcam ?
-          <button onClick={startWebcamShare}>
-            <BsCameraVideo size={20}/> 
+          <button onClick={startShareWebcam}>
+            <BsCameraVideo size={20} />
           </button>
-        :
-          <button onClick={stopWebcamShare}>
-            <BsCameraVideoOff size={20}/>
+          :
+          <button onClick={stopShareWebcam}>
+            <BsCameraVideoOff size={20} />
           </button>
         }
       </Buttons>}
+      <MusicPlayer streaming className='player' />
       <video ref={videoRef} autoPlay playsInline muted></video>
     </Container>
   );

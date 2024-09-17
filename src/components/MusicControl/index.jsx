@@ -16,7 +16,6 @@ export function MusicControl({ audioUrl, ...rest }) {
   };
 
   const handleVolumeChange = () => {
-    console.log('emitindo volume', audioRef.current.volume)
     socket.emit('audio-volume', { audioUrl, volume: audioRef.current.volume });
   };
 

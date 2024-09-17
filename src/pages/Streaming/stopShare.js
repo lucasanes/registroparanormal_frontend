@@ -1,4 +1,4 @@
-export async function stopScreen(peer, socket, roomId, screen) {
+export async function stopShare(peer, socket, roomId, screen) {
   socket.emit('stop-share', {
     peerId: peer.current.id,
     socketId: socket.id,

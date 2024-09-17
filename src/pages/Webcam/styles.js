@@ -2,12 +2,24 @@ import { styled } from "../../stitches.config";
 
 export const Container = styled("div", {
   width: "100%",
-  height: "100%",
+  height: "100vh",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
 
   video: {
     width: "100%",
+    maxWidth: "100vw",
     maxHeight: "100vh",
+    aspectRatio: "16/9"
   },
+
+  ".player": {
+    position: "fixed",
+    top: "1rem",
+    left: "7rem",
+    zIndex: 2
+  }
 });
 
 export const Buttons = styled("div", {
@@ -30,8 +42,8 @@ export const Buttons = styled("div", {
     transition: "0.2s",
 
     "&:hover": {
-      backgroundColor: "$white50",
-    },
+      backgroundColor: "$white50"
+    }
   },
 
   variants: {
@@ -42,10 +54,10 @@ export const Buttons = styled("div", {
           color: "$white",
 
           "&:hover": {
-            backgroundColor: "#34db66",
-          },
-        },
-      },
-    },
-  },
+            backgroundColor: "#34db66"
+          }
+        }
+      }
+    }
+  }
 });

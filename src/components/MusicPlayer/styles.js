@@ -37,6 +37,16 @@ export const Button = styled("button", {
           backgroundColor: "$white50",
         },
       },
+    },
+    active: {
+      true: {
+        backgroundColor: "#28af51",
+        color: "$white",
+
+        "&:hover": {
+          backgroundColor: "#34db66"
+        }
+      }
     }
   },
 });

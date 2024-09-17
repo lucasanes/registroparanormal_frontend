@@ -65,9 +65,9 @@ export function MusicPlayer({streaming = false, ...rest}) {
     <div {...rest}>
       {isPlaying && <audio ref={audioRef} src={audioUrl} />}
       {!isPlaying ? 
-        <Button streaming={streaming.toString()} onClick={handleActive}><GoMute size={streaming ? 20 : 25}/> Sons</Button>
+        <Button active={false} streaming={streaming.toString()} onClick={handleActive}><GoMute size={streaming ? 20 : 25}/> Sons</Button>
       :
-        <Button streaming={streaming.toString()} onClick={handleDesactive}><GoUnmute size={streaming ? 20 : 25}/> Sons</Button>
+        <Button active={streaming.toString()} streaming={streaming.toString()} onClick={handleDesactive}><GoUnmute size={streaming ? 20 : 25}/> Sons</Button>
       }
     </div>
   );

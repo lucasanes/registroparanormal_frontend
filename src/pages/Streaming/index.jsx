@@ -9,7 +9,7 @@ import { api } from '../../services/api';
 import { createAnswer } from './createAnswer';
 import { prepareToRecieveOffers } from './prepareToRecieveOffers';
 import { shareScreen } from './shareScreen';
-import { stopScreen } from './stopScreen';
+import { stopShare } from './stopShare';
 import { Buttons, Container } from './styles';
 
 const socket = io(api.defaults.baseURL);
@@ -34,24 +34,11 @@ export default function Streaming() {
   useEffect(() => {
 
     peer.current.on("open", id => {
-      console.log(id)
       socket.emit('enter-room', {
         peerId: id,
         socketId: socket.id,
         roomId
       });
-    })
-
-    peer.current.on('disconnected'  , () => {
-      console.log('disconnected')
-    })
-
-    peer.current.on('error', (error) => {
-      console.log(error)
-    })
-
-    peer.current.on('close', () => { 
-      console.log('close')
     })
 
     socket.on('leave-room', ({ id }) => {
@@ -69,6 +56,9 @@ export default function Streaming() {
     prepareToRecieveOffers(peer, videoRef, peerConnections, socket, screen, roomId)
 
     window.addEventListener('beforeunload', () => {
+      stopShare(peer, socket, roomId, screen).then(() => {
+        videoRef.current.srcObject = null
+      })
       socket.emit('leave-room', {
         peerId: peer.current.id,
         socketId: socket.id,
@@ -101,7 +91,7 @@ export default function Streaming() {
   }
 
   function stopScreenShare() {
-    stopScreen(peer, socket, roomId, screen).then(() => {
+    stopShare(peer, socket, roomId, screen).then(() => {
       videoRef.current.srcObject = null
       setIsSharingScreen(false)
     });

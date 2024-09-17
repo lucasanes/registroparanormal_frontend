@@ -9,6 +9,8 @@ export const Container = styled("div", {
 
   video: {
     width: "100%",
+    maxWidth: "100vw",
+    maxHeight: "100vh",
     aspectRatio: "16/9"
   },
 

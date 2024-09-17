@@ -4,7 +4,7 @@ export function prepareToRecieveOffers(
   videoRef,
   peerConnections,
   socket,
-  screen,
+  webcam,
   roomId
 ) {
   socket.on("enter-room", function (user) {
@@ -20,13 +20,13 @@ export function prepareToRecieveOffers(
       roomId
     });
 
-    const call = peer.current.call(user.peerId, screen.current);
+    const call = peer.current.call(user.peerId, webcam.current);
 
     if (call) {
       call.peerConnection.addEventListener("connectionstatechange", () => {
         peerConnections.current[call.connectionId] = call;
 
-        if (screen.current) {
+        if (webcam.current) {
           peer.current.call(user.peerId, videoRef.current.srcObject);
         }
 
@@ -41,13 +41,13 @@ export function prepareToRecieveOffers(
 
     peerConnections.current[user.peerId] = user;
 
-    const call = peer.current.call(user.peerId, screen.current);
+    const call = peer.current.call(user.peerId, webcam.current);
 
     if (call) {
       call.peerConnection.addEventListener("connectionstatechange", () => {
         peerConnections.current[call.connectionId] = call;
 
-        if (screen.current) {
+        if (webcam.current) {
           peer.current.call(user.peerId, videoRef.current.srcObject);
         }
 

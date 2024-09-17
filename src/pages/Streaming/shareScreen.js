@@ -9,9 +9,9 @@ export async function shareScreen(peer, socket, roomId, peerConnections) {
     Object.keys(peerConnections.current).forEach((conn) => {
       const shareConn = peer.current.call(conn, media, {});
 
-      media.getVideoTracks()[0].addEventListener("ended", () => {
+      media.getTracks()[0].addEventListener("ended", () => {
         shareConn.close();
-        socket.emit("leave-room", {
+        socket.emit("screen/leave-room", {
           peerId: shareConn.connectionId,
           socketId: socket.id,
           roomId: roomId

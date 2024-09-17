@@ -29,20 +29,20 @@ export default function Webcam() {
   useEffect(() => {
 
     peer.current.on("open", id => {
-      socket.emit('enter-room', {
+      socket.emit('webcam/enter-room', {
         peerId: id,
         socketId: socket.id,
         roomId
       });
     })
 
-    socket.on('leave-room', ({ id }) => {
+    socket.on('webcam/leave-room', ({ id }) => {
       if (peerConnections.current[id]) {
         delete peerConnections.current[id]
       }
     })
     
-    socket.on('stop-share', (peer) => {
+    socket.on('webcam/stop-share', (peer) => {
       console.log(peer)
       videoRef.current.srcObject = null
     })
@@ -50,20 +50,9 @@ export default function Webcam() {
     createAnswer(peer, videoRef, peerConnections, webcam, setIsSharingWebcam)
     prepareToRecieveOffers(peer, videoRef, peerConnections, socket, webcam, roomId)
 
-    window.addEventListener('beforeunload', () => {
-      stopShare(peer, socket, roomId, webcam).then(() => {
-        videoRef.current.srcObject = null
-      })
-      socket.emit('leave-room', {
-        peerId: peer.current.id,
-        socketId: socket.id,
-        roomId
-      });
-    })
-
     return () => {
       if (peer.current) {
-        socket.emit('leave-room', {
+        socket.emit('webcam/leave-room', {
           peerId: peer.current.id,
           socketId: socket.id,
           roomId
@@ -74,6 +63,17 @@ export default function Webcam() {
       }
     };
   }, [roomId]);
+
+  window.addEventListener('beforeunload', () => {
+    stopShare(peer, socket, roomId, webcam, isSharingWebcam).then(() => {
+      videoRef.current.srcObject = null
+    })
+    socket.emit('webcam/leave-room', {
+      peerId: peer.current.id,
+      socketId: socket.id,
+      roomId
+    });
+  })
 
   function startShareWebcam() {
     shareWebcam(peer, socket, roomId, peerConnections).then(media => {
@@ -86,7 +86,7 @@ export default function Webcam() {
   }
 
   function stopShareWebcam() {
-    stopShare(peer, socket, roomId, webcam).then(() => {
+    stopShare(peer, socket, roomId, webcam, isSharingWebcam).then(() => {
       videoRef.current.srcObject = null
       setIsSharingWebcam(false)
     });

@@ -7,14 +7,14 @@ export function prepareToRecieveOffers(
   screen,
   roomId
 ) {
-  socket.on("enter-room", function (user) {
+  socket.on("screen/enter-room", function (user) {
 
     const isSameUser = user.peerId == peer.current.id;
     if (isSameUser) return;
 
     peerConnections.current[user.peerId] = user;
 
-    socket.emit("connect-with-me", {
+    socket.emit("screen/connect-with-me", {
       peerId: peer.current.id,
       socketId: user.socketId,
       roomId
@@ -35,7 +35,7 @@ export function prepareToRecieveOffers(
     }
   });
 
-  socket.on("connect-with-me", function (user) {
+  socket.on("screen/connect-with-me", function (user) {
     const isSameUser = user.peerId == peer.current.id;
     if (isSameUser) return;
 

@@ -1,5 +1,8 @@
-export async function stopShare(peer, socket, roomId, webcam) {
-  socket.emit('stop-share', {
+export async function stopShare(peer, socket, roomId, webcam, isSharingWebcam) {
+  if (!isSharingWebcam) {
+    return;
+  }
+  socket.emit('webcam/stop-share', {
     peerId: peer.current.id,
     socketId: socket.id,
     roomId

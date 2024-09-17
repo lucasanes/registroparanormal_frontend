@@ -34,20 +34,20 @@ export default function Streaming() {
   useEffect(() => {
 
     peer.current.on("open", id => {
-      socket.emit('enter-room', {
+      socket.emit('screen/enter-room', {
         peerId: id,
         socketId: socket.id,
         roomId
       });
     })
 
-    socket.on('leave-room', ({ id }) => {
+    socket.on('screen/leave-room', ({ id }) => {
       if (peerConnections.current[id]) {
         delete peerConnections.current[id]
       }
     })
     
-    socket.on('stop-share', (peer) => {
+    socket.on('screen/stop-share', (peer) => {
       console.log(peer)
       videoRef.current.srcObject = null
     })
@@ -55,20 +55,9 @@ export default function Streaming() {
     createAnswer(peer, videoRef, peerConnections, screen, setIsSharingScreen)
     prepareToRecieveOffers(peer, videoRef, peerConnections, socket, screen, roomId)
 
-    window.addEventListener('beforeunload', () => {
-      stopShare(peer, socket, roomId, screen).then(() => {
-        videoRef.current.srcObject = null
-      })
-      socket.emit('leave-room', {
-        peerId: peer.current.id,
-        socketId: socket.id,
-        roomId
-      });
-    })
-
     return () => {
       if (peer.current) {
-        socket.emit('leave-room', {
+        socket.emit('screen/leave-room', {
           peerId: peer.current.id,
           socketId: socket.id,
           roomId
@@ -79,6 +68,17 @@ export default function Streaming() {
       }
     };
   }, [roomId]);
+
+  window.addEventListener('beforeunload', () => {
+    stopShare(peer, socket, roomId, screen, isSharingScreen).then(() => {
+      videoRef.current.srcObject = null
+    })
+    socket.emit('screen/leave-room', {
+      peerId: peer.current.id,
+      socketId: socket.id,
+      roomId
+    });
+  })
 
   function startShareScreen() {
     shareScreen(peer, socket, roomId, peerConnections).then(media => {
@@ -91,7 +91,7 @@ export default function Streaming() {
   }
 
   function stopScreenShare() {
-    stopShare(peer, socket, roomId, screen).then(() => {
+    stopShare(peer, socket, roomId, screen, isSharingScreen).then(() => {
       videoRef.current.srcObject = null
       setIsSharingScreen(false)
     });

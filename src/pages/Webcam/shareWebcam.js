@@ -16,7 +16,7 @@ export async function shareWebcam(peer, socket, roomId, peerConnections) {
 
       media.getTracks()[0].addEventListener("ended", () => {
         shareConn.close();
-        socket.emit("leave-room", {
+        socket.emit("webcam/leave-room", {
           peerId: shareConn.connectionId,
           socketId: socket.id,
           roomId: roomId

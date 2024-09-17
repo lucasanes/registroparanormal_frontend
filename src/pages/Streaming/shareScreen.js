@@ -17,6 +17,7 @@ export async function shareScreen(peer, socket, roomId, peerConnections) {
         shareConn.close();
         socket.emit("leave-room", {
           peerId: shareConn.connectionId,
+          socketId: socket.id,
           roomId: roomId
         });
       });

@@ -15,7 +15,7 @@ export function AuthRoutes() {
       <Route path="/ficha/portrait/:id" element={<Portrait />} />
       <Route path="/sessao/documentos/:id" element={<Documentos />} />
 
-      <Route path="/streaming/:id" element={<Streaming />} />
+      <Route path="/streaming/:roomId" element={<Streaming />} />
       <Route path="/webcam/:id" element={<WebCam />} />
 
       <Route path="/" element={<AppLayout />}>

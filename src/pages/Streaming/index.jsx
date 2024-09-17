@@ -9,34 +9,49 @@ import { api } from '../../services/api';
 import { createAnswer } from './createAnswer';
 import { prepareToRecieveOffers } from './prepareToRecieveOffers';
 import { shareScreen } from './shareScreen';
+import { stopScreen } from './stopScreen';
 import { Buttons, Container } from './styles';
 
 const socket = io(api.defaults.baseURL);
 
 export default function Streaming() {
   const { user } = useAuth()
-  const { id } = useParams()
+  const { roomId } = useParams()
   let userIsAdmin = false
 
   if (user) {
     userIsAdmin = user.role == 'ADMIN'
   }
 
-  const peer = useRef(new Peer())
+  const peer = useRef(new Peer(undefined, {
+    debug: 5
+  }))
   const screen = useRef(null);
   const videoRef = useRef(null);
   const peerConnections = useRef({});
   const [isSharingScreen, setIsSharingScreen] = useState(false);
 
   useEffect(() => {
-    createAnswer(peer, videoRef, peerConnections)
-    prepareToRecieveOffers(peer, videoRef, peerConnections, socket, screen)
 
     peer.current.on("open", id => {
+      console.log(id)
       socket.emit('enter-room', {
-        id: id,
-        roomId: id
+        peerId: id,
+        socketId: socket.id,
+        roomId
       });
+    })
+
+    peer.current.on('disconnected'  , () => {
+      console.log('disconnected')
+    })
+
+    peer.current.on('error', (error) => {
+      console.log(error)
+    })
+
+    peer.current.on('close', () => { 
+      console.log('close')
     })
 
     socket.on('leave-room', ({ id }) => {
@@ -44,31 +59,39 @@ export default function Streaming() {
         delete peerConnections.current[id]
       }
     })
-
-    socket.on('stop-share', ({ roomId }) => {
+    
+    socket.on('stop-share', (peer) => {
+      console.log(peer)
       videoRef.current.srcObject = null
     })
 
+    createAnswer(peer, videoRef, peerConnections, screen, setIsSharingScreen)
+    prepareToRecieveOffers(peer, videoRef, peerConnections, socket, screen, roomId)
+
     window.addEventListener('beforeunload', () => {
       socket.emit('leave-room', {
-        id: peer.current.id,
-        roomId: id
+        peerId: peer.current.id,
+        socketId: socket.id,
+        roomId
       });
     })
 
     return () => {
-      socket.emit('leave-room', {
-        id: peer.current.id,
-        roomId: id
-      });
-      peer.current.destroy()
-      peerConnections.current = {}
-      socket.disconnect()
+      if (peer.current) {
+        socket.emit('leave-room', {
+          peerId: peer.current.id,
+          socketId: socket.id,
+          roomId
+        });
+        peer.current.destroy()
+        peerConnections.current = {}
+        socket.disconnect()
+      }
     };
-  }, []);
+  }, [roomId]);
 
   function startShareScreen() {
-    shareScreen(peer, socket, id, peerConnections).then(media => {
+    shareScreen(peer, socket, roomId, peerConnections).then(media => {
       if (media) {
         videoRef.current.srcObject = media
         screen.current = media
@@ -78,16 +101,10 @@ export default function Streaming() {
   }
 
   function stopScreenShare() {
-    socket.emit('stop-share', {
-      id: peer.current.id,
-      roomId: id
+    stopScreen(peer, socket, roomId, screen).then(() => {
+      videoRef.current.srcObject = null
+      setIsSharingScreen(false)
     });
-    if (screen.current) {
-      screen.current.getTracks().forEach(track => track.stop());
-      screen.current = null;
-    }
-    videoRef.current.srcObject = null
-    setIsSharingScreen(false)
   }
 
   return (

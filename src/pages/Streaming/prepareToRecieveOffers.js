@@ -7,7 +7,7 @@ export function prepareToRecieveOffers(
   screen,
   roomId
 ) {
-  socket.on("screen/enter-room", function (user) {
+  socket.on(`screen/enter-room?${roomId}`, function (user) {
 
     const isSameUser = user.peerId == peer.current.id;
     if (isSameUser) return;
@@ -35,7 +35,7 @@ export function prepareToRecieveOffers(
     }
   });
 
-  socket.on("screen/connect-with-me", function (user) {
+  socket.on(`screen/connect-with-me?${roomId}`, function (user) {
     const isSameUser = user.peerId == peer.current.id;
     if (isSameUser) return;
 

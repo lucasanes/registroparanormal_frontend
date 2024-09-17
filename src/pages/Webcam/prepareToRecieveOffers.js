@@ -7,7 +7,7 @@ export function prepareToRecieveOffers(
   webcam,
   roomId
 ) {
-  socket.on("webcam/enter-room", function (user) {
+  socket.on(`webcam/enter-room?${roomId}`, function (user) {
 
     const isSameUser = user.peerId == peer.current.id;
     if (isSameUser) return;
@@ -30,12 +30,12 @@ export function prepareToRecieveOffers(
           peer.current.call(user.peerId, videoRef.current.srcObject);
         }
 
-        call.on("close", () => (videoRef.current.srcObject = null));
+        // call.on("close", () => (videoRef.current.srcObject = null));
       });
     }
   });
 
-  socket.on("webcam/connect-with-me", function (user) {
+  socket.on(`webcam/connect-with-me?${roomId}`, function (user) {
     const isSameUser = user.peerId == peer.current.id;
     if (isSameUser) return;
 
@@ -51,7 +51,7 @@ export function prepareToRecieveOffers(
           peer.current.call(user.peerId, videoRef.current.srcObject);
         }
 
-        call.on("close", () => (videoRef.current.srcObject = null));
+        // call.on("close", () => (videoRef.current.srcObject = null));
       });
     }
   });

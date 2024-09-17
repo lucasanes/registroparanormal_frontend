@@ -3,7 +3,6 @@ import { useEffect, useRef, useState } from 'react';
 import { BsCameraVideo, BsCameraVideoOff } from "react-icons/bs";
 import { useParams } from 'react-router-dom';
 import io from 'socket.io-client';
-import { MusicPlayer } from '../../components/MusicPlayer';
 import { useAuth } from '../../hooks/useAuth';
 import { api } from '../../services/api';
 import { createAnswer } from './createAnswer';
@@ -36,32 +35,19 @@ export default function Webcam() {
       });
     })
 
-    socket.on('webcam/leave-room', ({ id }) => {
+    socket.on(`webcam/leave-room?${roomId}`, ({ id }) => {
       if (peerConnections.current[id]) {
         delete peerConnections.current[id]
       }
     })
     
-    socket.on('webcam/stop-share', (peer) => {
+    socket.on(`webcam/stop-share?${roomId}`, (peer) => {
       console.log(peer)
       videoRef.current.srcObject = null
     })
 
     createAnswer(peer, videoRef, peerConnections, webcam, setIsSharingWebcam)
     prepareToRecieveOffers(peer, videoRef, peerConnections, socket, webcam, roomId)
-
-    return () => {
-      if (peer.current) {
-        socket.emit('webcam/leave-room', {
-          peerId: peer.current.id,
-          socketId: socket.id,
-          roomId
-        });
-        peer.current.destroy()
-        peerConnections.current = {}
-        socket.disconnect()
-      }
-    };
   }, [roomId]);
 
   window.addEventListener('beforeunload', () => {
@@ -97,15 +83,14 @@ export default function Webcam() {
       {user && <Buttons active={isSharingWebcam.toString()}>
         {!isSharingWebcam ?
           <button onClick={startShareWebcam}>
-            <BsCameraVideo size={20} />
+            <BsCameraVideoOff size={20} />
           </button>
           :
           <button onClick={stopShareWebcam}>
-            <BsCameraVideoOff size={20} />
+            <BsCameraVideo size={20} />
           </button>
         }
       </Buttons>}
-      <MusicPlayer streaming className='player' />
       <video ref={videoRef} autoPlay playsInline muted></video>
     </Container>
   );

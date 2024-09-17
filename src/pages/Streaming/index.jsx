@@ -41,32 +41,19 @@ export default function Streaming() {
       });
     })
 
-    socket.on('screen/leave-room', ({ id }) => {
+    socket.on(`screen/leave-room?${roomId}`, ({ id }) => {
       if (peerConnections.current[id]) {
         delete peerConnections.current[id]
       }
     })
     
-    socket.on('screen/stop-share', (peer) => {
+    socket.on(`screen/stop-share?${roomId}`, (peer) => {
       console.log(peer)
       videoRef.current.srcObject = null
     })
 
     createAnswer(peer, videoRef, peerConnections, screen, setIsSharingScreen)
     prepareToRecieveOffers(peer, videoRef, peerConnections, socket, screen, roomId)
-
-    return () => {
-      if (peer.current) {
-        socket.emit('screen/leave-room', {
-          peerId: peer.current.id,
-          socketId: socket.id,
-          roomId
-        });
-        peer.current.destroy()
-        peerConnections.current = {}
-        socket.disconnect()
-      }
-    };
   }, [roomId]);
 
   window.addEventListener('beforeunload', () => {

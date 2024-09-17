@@ -1,7 +1,12 @@
 export async function shareScreen(peer, socket, roomId, peerConnections) {
 
   const media = await navigator.mediaDevices.getDisplayMedia({
-    video: true,
+    video: {
+      aspectRatio: 16 / 9,
+      frameRate: { ideal: 144 },
+      width: { ideal: 1920 },
+      height: { ideal: 1080 }
+    },
     audio: false
   });
 

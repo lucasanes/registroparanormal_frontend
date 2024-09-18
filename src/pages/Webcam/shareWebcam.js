@@ -5,10 +5,10 @@ export async function shareWebcam(peer, socket, roomId, peerConnections) {
   const media = await navigator.mediaDevices.getUserMedia({
     video: {
       // deviceId: cameraId ? { exact: cameraId } : undefined,
-      aspectRatio: 16 / 9,
-      width: { min: 1280, ideal: 1920, max: 1920 },
-      height: { min: 720, ideal: 1080, max: 1080 },
-      frameRate: { min: 30, ideal: 30, max: 60 }
+      aspectRatio: { ideal: 1.7777777778 },
+      width: { ideal: 1920 },
+      height: { ideal: 1080 },
+      frameRate: { ideal: 60 }
     },
     audio: false
   });

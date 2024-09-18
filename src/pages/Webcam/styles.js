@@ -28,15 +28,15 @@ export const Buttons = styled("div", {
   top: "10px",
   left: "10px",
   display: "flex",
-  gap: "10px",
 
-  button: {
+  'button:first-child': {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     padding: "10px",
     border: "none",
-    borderRadius: "5px",
+    borderBottomLeftRadius: "5px",
+    borderTopLeftRadius: "5px",
     backgroundColor: "$white25",
     color: "$white",
     transition: "0.2s",
@@ -46,10 +46,28 @@ export const Buttons = styled("div", {
     }
   },
 
+  'button:last-child': {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: "0px",
+    border: "none",
+    borderLeft: "1px solid $white",
+    backgroundColor: "$white25",
+    color: "$white",
+    transition: "0.2s",
+    borderBottomRightRadius: "5px",
+    borderTopRightRadius: "5px",
+
+    "&:hover": {
+      backgroundColor: "$white50"
+    }
+  },
+
   variants: {
     active: {
       true: {
-        button: {
+        'button:first-child': {
           backgroundColor: "#28af51",
           color: "$white",
 

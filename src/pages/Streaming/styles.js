@@ -17,7 +17,7 @@ export const Container = styled("div", {
   ".player": {
     position: "fixed",
     top: "1rem",
-    left: "7rem",
+    left: "1rem",
     zIndex: 2
   }
 });
@@ -25,8 +25,8 @@ export const Container = styled("div", {
 export const Buttons = styled("div", {
   zIndex: 2,
   position: "fixed",
-  top: "10px",
-  left: "10px",
+  top: "1rem",
+  left: "11rem",
   display: "flex",
   gap: "10px",
 

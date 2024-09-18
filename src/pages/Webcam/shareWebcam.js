@@ -1,10 +1,10 @@
 export async function shareWebcam(peer, socket, roomId, peerConnections) {
 
-  // const cameraId = window.localStorage.getItem("@registroparanormal:camera");
+  const cameraId = localStorage.getItem("@registroparanormal:camera");
 
   const media = await navigator.mediaDevices.getUserMedia({
     video: {
-      // deviceId: cameraId ? { exact: cameraId } : undefined,
+      deviceId: cameraId ? { exact: cameraId } : undefined,
       aspectRatio: { ideal: 1.7777777778 },
       width: { ideal: 1920 },
       height: { ideal: 1080 },

@@ -1,10 +1,13 @@
 import Peer from 'peerjs';
 import { useEffect, useRef, useState } from 'react';
 import { BsCameraVideo, BsCameraVideoOff } from "react-icons/bs";
+import { MdArrowDropDown } from 'react-icons/md';
 import { useParams } from 'react-router-dom';
 import io from 'socket.io-client';
+import { Modal } from '../../components/Modals/Modal';
 import { useAuth } from '../../hooks/useAuth';
 import { api } from '../../services/api';
+import { ModalWebcam } from './components/ModalWebcam';
 import { createAnswer } from './createAnswer';
 import { prepareToRecieveOffers } from './prepareToRecieveOffers';
 import { shareWebcam } from './shareWebcam';
@@ -16,6 +19,7 @@ const socket = io(api.defaults.baseURL);
 export default function Webcam() {
   const { user } = useAuth()
   const { roomId } = useParams()
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const peer = useRef(new Peer(undefined, {
     debug: 5,
@@ -92,17 +96,30 @@ export default function Webcam() {
 
   return (
     <Container>
-      {user && <Buttons active={isSharingWebcam.toString()}>
-        {!isSharingWebcam ?
+      <Modal isOpen={modalIsOpen} setClose={() => setModalIsOpen(false)}>
+        <ModalWebcam setModalClose={() => setModalIsOpen(false)}/>
+      </Modal>
+
+      {user && !isSharingWebcam &&
+        <Buttons active={false}>
           <button onClick={startShareWebcam}>
             <BsCameraVideoOff size={20} />
           </button>
-          :
+          <button onClick={() => setModalIsOpen(true)}>
+            <MdArrowDropDown size={20}/>
+          </button>
+        </Buttons>
+      }
+      {user && isSharingWebcam &&
+        <Buttons active={true}>
           <button onClick={stopShareWebcam}>
             <BsCameraVideo size={20} />
           </button>
-        }
-      </Buttons>}
+          <button onClick={() => setModalIsOpen(true)}>
+            <MdArrowDropDown size={20}/>  
+          </button>  
+        </Buttons>
+      }
       <video ref={videoRef} autoPlay playsInline muted></video>
     </Container>
   );

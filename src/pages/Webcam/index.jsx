@@ -18,7 +18,17 @@ export default function Webcam() {
   const { roomId } = useParams()
 
   const peer = useRef(new Peer(undefined, {
-    debug: 5
+    debug: 5,
+    config: {
+      iceServers: [
+        { urls: 'stun:195.7.4.140:3478' },
+        {
+          urls: 'turn:195.7.4.140:3478',
+          username: 'lightz',
+          credential: '1227'
+        }
+      ],
+    },
   }))
   const webcam = useRef(null);
   const videoRef = useRef(null);

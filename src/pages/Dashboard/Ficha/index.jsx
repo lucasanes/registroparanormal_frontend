@@ -54,9 +54,9 @@ export function Ficha({ data, fichas, setFichas }) {
       <Header>
         <h2>{infos.nome} {data.sessaoId && ' - ' + data.sessao.nome}</h2>
         <Botoes>
-          {data.sessaoId && <LinkButton color={'purple'} to={`/streaming/${data.sessaoId}`}><MdOutlinePlayCircle size={20} color={theme.colors.purple} /></LinkButton>}
-          <LinkButton color={'purple'} to={`/webcam/${data.id}`}><BsCameraVideo size={20} color={theme.colors.purple} /></LinkButton>
-          <LinkButton color={'aqua'} to={`/ficha/portrait/${data.id}`}><FaUserCircle size={20} color={theme.colors.cyan} /></LinkButton>
+          {data.sessaoId && <LinkButton color={'purple'} to={`/streaming/${data.sessaoId}`} target='_blank'><MdOutlinePlayCircle size={20} color={theme.colors.purple} /></LinkButton>}
+          <LinkButton color={'purple'} to={`/webcam/${data.id}`} target='_blank'><BsCameraVideo size={20} color={theme.colors.purple} /></LinkButton>
+          <LinkButton color={'aqua'} to={`/ficha/portrait/${data.id}`} target='_blank'><FaUserCircle size={20} color={theme.colors.cyan} /></LinkButton>
           <Button onClick={handleEdit} color={isPublic ? 'green' : 'crimson'}>{isPublic ? <BsEye size={20} color="#13ff72" /> : <BsEyeSlash size={20} color="crimson" />}</Button>
           <Button onClick={() => setModalDeleteIsOpen(true)} color={'red'}><BiTrashAlt size={20} color='red' /></Button>
         </Botoes>

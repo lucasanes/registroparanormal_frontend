@@ -226,6 +226,12 @@ export const LinkIcon = styled(Link, {
         '&:hover': {
           border: '1px solid $cyan',
         }
+      },
+      purple: {
+        border: '1px solid transparent',
+        '&:hover': {
+          border: '1px solid $purple',
+        }
       }
     }
   },

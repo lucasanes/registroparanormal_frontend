@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { BsEye, BsEyeSlash } from 'react-icons/bs';
+import { BsCameraVideo, BsEye, BsEyeSlash } from 'react-icons/bs';
 import { FaUserCircle } from "react-icons/fa";
 import { IoOpenOutline } from "react-icons/io5";
 import { useParams } from "react-router-dom";
@@ -168,7 +168,10 @@ export function CardFichasPersonagem({ data }) {
                     </LinkButton>
                 </div>
                 <div>
-                    <LinkIcon to={`/ficha/portrait/${data.id}`} color={'aqua'}>
+                    <LinkIcon to={`/webcam/${data.id}`} color={'purple'} target="_blank">
+                      <BsCameraVideo size={20} color={theme.colors.purple} />
+                    </LinkIcon>
+                    <LinkIcon to={`/ficha/portrait/${data.id}`} color={'aqua'} target="_blank">
                         <FaUserCircle size={20} color={theme.colors.cyan} />
                     </LinkIcon>
                     <ButtonPrivate onClick={handleEdit} color={isPublic ? 'green' : 'crimson'}>{isPublic ? <BsEye size={20} color="#13ff72" /> : <BsEyeSlash size={20} color="crimson" />}</ButtonPrivate>

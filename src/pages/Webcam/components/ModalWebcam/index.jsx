@@ -9,15 +9,16 @@ export function ModalWebcam({ setModalClose }) {
 
   useEffect(() => {
     navigator.mediaDevices.getUserMedia({ video: true })
-      .then(() => {
+      .then((media) => {
         navigator.mediaDevices.enumerateDevices().then(devices => {
           const webcams = devices.filter(device => device.kind === 'videoinput');
           setWebcams(webcams);
         });
+        media.getTracks().forEach(track => track.stop());
       })
       .catch(() => {
         setPermissionDenied(true);
-      });
+    });
   }, []);
 
   async function handleCreate(deviceId) {

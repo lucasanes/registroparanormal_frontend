@@ -14,6 +14,5 @@ export async function createAnswer(peer, videoRef, peerConnections, screen, setI
     });
 
     peerConnections.current[call.connectionId] = call;
-    call.on("close", () => (videoRef.current.srcObject = null));
   });
 }

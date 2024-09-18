@@ -30,7 +30,6 @@ export function prepareToRecieveOffers(
           peer.current.call(user.peerId, videoRef.current.srcObject);
         }
 
-        // call.on("close", () => (videoRef.current.srcObject = null));
       });
     }
   });
@@ -51,7 +50,6 @@ export function prepareToRecieveOffers(
           peer.current.call(user.peerId, videoRef.current.srcObject);
         }
 
-        // call.on("close", () => (videoRef.current.srcObject = null));
       });
     }
   });

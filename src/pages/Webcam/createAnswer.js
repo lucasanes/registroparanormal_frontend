@@ -4,6 +4,8 @@ export async function createAnswer(peer, videoRef, peerConnections, webcam, setI
 
     call.on("stream", function (remoteStream) {
 
+      console.log('remoteStream', remoteStream);
+
       if (webcam.current) {
         webcam.current.getTracks().forEach(track => track.stop());
         webcam.current = null;
@@ -14,6 +16,5 @@ export async function createAnswer(peer, videoRef, peerConnections, webcam, setI
     });
 
     peerConnections.current[call.connectionId] = call;
-    call.on("close", () => (videoRef.current.srcObject = null));
   });
 }

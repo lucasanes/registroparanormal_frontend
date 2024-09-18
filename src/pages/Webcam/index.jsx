@@ -35,14 +35,13 @@ export default function Webcam() {
       });
     })
 
-    socket.on(`webcam/leave-room?${roomId}`, ({ id }) => {
-      if (peerConnections.current[id]) {
-        delete peerConnections.current[id]
+    socket.on(`webcam/leave-room?${roomId}`, ({ peerId }) => {
+      if (peerConnections.current[peerId]) {
+        delete peerConnections.current[peerId]
       }
     })
     
-    socket.on(`webcam/stop-share?${roomId}`, (peer) => {
-      console.log(peer)
+    socket.on(`webcam/stop-share?${roomId}`, () => {
       videoRef.current.srcObject = null
     })
 
@@ -62,6 +61,9 @@ export default function Webcam() {
   })
 
   function startShareWebcam() {
+    // selectCamera().then(() => {
+    //   setSelectedCameraId()
+    // })
     shareWebcam(peer, socket, roomId, peerConnections).then(media => {
       if (media) {
         videoRef.current.srcObject = media

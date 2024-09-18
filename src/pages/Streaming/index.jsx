@@ -47,8 +47,7 @@ export default function Streaming() {
       }
     })
     
-    socket.on(`screen/stop-share?${roomId}`, (peer) => {
-      console.log(peer)
+    socket.on(`screen/stop-share?${roomId}`, () => {
       videoRef.current.srcObject = null
     })
 

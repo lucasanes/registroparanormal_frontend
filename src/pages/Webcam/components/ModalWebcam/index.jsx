@@ -44,7 +44,7 @@ export function ModalWebcam({ setModalClose }) {
               <>
                 {
                   webcams.map(webcam => (
-                    deviceId === webcam.deviceId ? (
+                    deviceId === webcam.deviceId && (
                       <Button 
                         key={webcam.deviceId} 
                         active={true} 
@@ -52,7 +52,13 @@ export function ModalWebcam({ setModalClose }) {
                         disabled={true}>
                           {webcam.label}
                       </Button>
-                    ) : (
+                    )
+                  ))
+                }
+
+                {
+                  webcams.map(webcam => (
+                    deviceId !== webcam.deviceId && (
                       <Button 
                         key={webcam.deviceId} 
                         active={false} 

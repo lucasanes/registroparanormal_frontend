@@ -25,11 +25,9 @@ export default function Webcam() {
     debug: 5,
     config: {
       iceServers: [
-        { urls: 'stun:195.7.4.140:3478' },
+        { urls: "stun:stun.l.google.com:19302" },
         {
-          urls: 'turn:195.7.4.140:3478',
-          username: 'lightz',
-          credential: '1227'
+          urls: "turn:0.peerjs.com:3478", username: "peerjs", credential: "peerjsp"
         }
       ],
     },

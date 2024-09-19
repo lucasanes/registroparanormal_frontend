@@ -3,12 +3,16 @@ import { useEffect, useState } from 'react';
 import { FcOpenedFolder } from 'react-icons/fc';
 import { MdOutlineAddBox } from "react-icons/md";
 import { TbPlayerPlay } from "react-icons/tb";
+import { io } from 'socket.io-client';
 import { ButtonDelete } from '../../../../components/ButtonDelete';
 import { Modal } from '../../../../components/Modals/Modal';
 import { MusicControl } from '../../../../components/MusicControl';
 import { storage } from '../../../../firebase.config';
+import { api } from '../../../../services/api';
 import { ModalAddSom } from './ModalAddSom';
 import { BodyContainer, Container, Folder, HeaderContainer, Item } from './styles';
+
+const socket = io(api.defaults.baseURL);
 
 export function SomContainer() {
 
@@ -21,20 +25,29 @@ export function SomContainer() {
 
   const [modalAddSomIsOpen, setModalAddSomIsOpen] = useState(false)
 
-  useEffect(() => {
+  const [loading, setLoading] = useState(false)
 
+  async function fetchData() {
+    
+    setLoading(true)
     setPath('sound')
     setOpenedIndex(0)
     setPrevFolder([])
     setItemOpened(null)
     setAudioUrl(null)
 
-    async function fetchData() {
+    try {
       const getFoldersRef = ref(storage, 'sound/');
       const response = await fetchFoldersAndFiles(getFoldersRef);
       setFolderOpened(response)
+    } catch (e) {
+      console.error('Erro ao buscar os arquivos:', e);
+    } finally {
+      setLoading(false)
     }
+  }
 
+  useEffect(() => {
     fetchData();
   }, []);
 
@@ -61,8 +74,6 @@ export function SomContainer() {
       setPath(path.split(' > ').slice(0, -1).join(' > '))
       setFolderOpened(prevFolder[openedIndex - 1])
       setPrevFolder(prev => prev.slice(0, -1))
-      setAudioUrl(null)
-      setItemOpened(null)
     }
 
     if (to === 'next') {
@@ -76,13 +87,20 @@ export function SomContainer() {
 
   const handleOpenItem = async (item) => {
 
-    setOpenedIndex(openedIndex + 1)
-    setPath(`${path} > ${item.name}`)
-    setPrevFolder(prev => [...prev, folderOpened])
+    if (itemOpened && itemOpened.name === item.name) {
+      setItemOpened(null)
+      setAudioUrl(null)
+      socket.emit('audio-pause', { audioUrl, currentTime: 0 });
+      return
+    }
+
     setItemOpened(item)
     const url = await getDownloadURL(ref(storage, item.fullPath))
     setAudioUrl(url)
 
+    if (itemOpened && itemOpened.name !== item.name) {
+      socket.emit('audio-play', { audioUrl: url, currentTime: 0 });
+    }
   }
 
   const deleteFile = async (item) => {
@@ -90,22 +108,7 @@ export function SomContainer() {
 
     try {
       await deleteObject(fileRef);
-
-      const getFoldersRef = ref(storage, 'sound/');
-      const response = await fetchFoldersAndFiles(getFoldersRef);
-      
-      let folderOpened
-      const folderPath = path.split(' > ').pop()
-
-      folderOpened = response.prefixes.find(folder => folder.name === folderPath)
-
-      if (!folderOpened) {
-        response.prefixes.forEach(folder => {
-          folderOpened = folder.prefixes.find(folder => folder.name === folderPath)
-        })
-      }
-
-      setFolderOpened(folderOpened)
+      fetchData();
     } catch (error) {
       console.error('Erro ao deletar o arquivo:', error);
     }
@@ -115,7 +118,7 @@ export function SomContainer() {
     <Container>
 
       <Modal isOpen={modalAddSomIsOpen} setClose={() => setModalAddSomIsOpen(false)}>
-        <ModalAddSom setFolderOpened={setFolderOpened} setModalClose={() => setModalAddSomIsOpen(false)} currentPath={() => {
+        <ModalAddSom fetchData={fetchData} setModalClose={() => setModalAddSomIsOpen(false)} currentPath={() => {
           return path.split(' > ').slice(1).join('/')
         }}/>
       </Modal>
@@ -129,9 +132,11 @@ export function SomContainer() {
 
       <hr />
 
-      <BodyContainer>
+      {!loading && <BodyContainer>
 
-        <h1>{path}</h1>
+        {(itemOpened && audioUrl) && <MusicControl key={audioUrl} audioUrl={audioUrl}/>}
+        
+        <h1>{path} {itemOpened ? ` > ${itemOpened.name}.mp3` : null}</h1>
 
         <div>
 
@@ -142,35 +147,29 @@ export function SomContainer() {
             </Folder>
           }
 
-          {!itemOpened && <>
-            { 
-              folderOpened?.prefixes && folderOpened.prefixes.map((folder, i) => (
-                <Folder key={i} onClick={() => handleOpenFolder('next', folder)}>
-                  <FcOpenedFolder size={50} />
-                  <p>{folder.name}</p>
-                </Folder>
-              ))
-            }
-            
-            { 
-              folderOpened?.items && folderOpened.items.map((item, i) => (
-                <Item key={i}>
-                  <ButtonDelete size={20} className='delete' onClick={() => deleteFile(item)}/>
-                  <button className='button' onClick={() => handleOpenItem(item)}>
-                    <TbPlayerPlay size={40}/>
-                    <p style={{position: 'relative', top: 5}}>{item.name}</p>
-                  </button>
-                </Item>
-              ))
-            }
-          </>}
-
-          {(itemOpened && audioUrl) &&
-            <MusicControl audioUrl={audioUrl}/>
+          { 
+            folderOpened?.prefixes && folderOpened.prefixes.map((folder, i) => (
+              <Folder key={i} onClick={() => handleOpenFolder('next', folder)}>
+                <FcOpenedFolder size={50} />
+                <p>{folder.name}</p>
+              </Folder>
+            ))
+          }
+          
+          { 
+            folderOpened?.items && folderOpened.items.map((item, i) => (
+              <Item key={i}>
+                <ButtonDelete size={20} className='delete' onClick={() => deleteFile(item)}/>
+                <button className='button' onClick={() => handleOpenItem(item)}>
+                  <TbPlayerPlay size={40}/>
+                  <p style={{position: 'relative', top: 5}}>{item.name}</p>
+                </button>
+              </Item>
+            ))
           }
 
         </div>
-      </BodyContainer>
+      </BodyContainer>}
 
     </Container>
   );

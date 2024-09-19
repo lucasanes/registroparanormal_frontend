@@ -61,6 +61,7 @@ export const BodyContainer = styled("div", {
     textTransform: "capitalize",
     color: "$white",
     marginBottom: "1rem",
+    marginTop: "4rem",
   },
 
   audio: {

@@ -24,6 +24,12 @@ export default function Streaming() {
   }
 
   const peer = useRef(new Peer(undefined, {
+    iceServers: [
+      { urls: "stun:stun.l.google.com:19302" },
+      {
+        urls: "turn:0.peerjs.com:3478", username: "peerjs", credential: "peerjsp"
+      }
+    ],
     debug: 5
   }))
   const screen = useRef(null);

@@ -164,14 +164,14 @@ export function CardFichasPersonagem({ data }) {
                 <div>
                     <h1>{data.Principal[0].nome}</h1>
                     <LinkButton to={`/sessao/ficha/${data.id}`}>
-                        <IoOpenOutline size={22} color="#1f55c2ff" />
+                        <IoOpenOutline size={22}  />
                     </LinkButton>
                 </div>
                 <div>
-                    <LinkIcon to={`/webcam/${data.id}`} color={'purple'} target="_blank">
-                      <BsCameraVideo size={20} color={theme.colors.purple} />
+                    <LinkIcon to={`/webcam/${data.id}`} target="_blank">
+                      <BsCameraVideo size={20} color={theme.colors.cyan} />
                     </LinkIcon>
-                    <LinkIcon to={`/ficha/portrait/${data.id}`} color={'aqua'} target="_blank">
+                    <LinkIcon to={`/ficha/portrait/${data.id}`} target="_blank">
                         <FaUserCircle size={20} color={theme.colors.cyan} />
                     </LinkIcon>
                     <ButtonPrivate onClick={handleEdit} color={isPublic ? 'green' : 'crimson'}>{isPublic ? <BsEye size={20} color="#13ff72" /> : <BsEyeSlash size={20} color="crimson" />}</ButtonPrivate>

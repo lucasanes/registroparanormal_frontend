@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { AiFillHome } from 'react-icons/ai';
 import { BsFillDice6Fill } from 'react-icons/bs';
-import { RiUserLine, RiUserUnfollowLine } from 'react-icons/ri';
+import { RiUserUnfollowLine } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
 import icon from '../../assets/img/Calamidade.png';
 import { useAuth } from "../../hooks/useAuth";
@@ -67,9 +67,6 @@ export function Menu() {
             </Li>
             <Li>
               <MusicPlayer/>     
-            </Li>
-            <Li>
-              <ButtonLink onClick={abrirMenu} color={'yellow'} to={'/'}> <RiUserLine size={30} /> Conta </ButtonLink>
             </Li>
             <Li>
               <Button onClick={() => { signOut(); abrirMenu() }}> <RiUserUnfollowLine size={30} /> Sair </Button>

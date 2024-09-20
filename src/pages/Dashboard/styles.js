@@ -1,4 +1,3 @@
-import BackgroundImage from "../../assets/img/bg.webp";
 import { styled } from '../../stitches.config';
 
 export const Container = styled('div', {
@@ -6,7 +5,7 @@ export const Container = styled('div', {
   height: 'calc(100% - 72px)',
   position: 'fixed',
   display: "flex",
-  backgroundImage: `url(${BackgroundImage})`,
+  // backgroundImage: `url(${BackgroundImage})`,
   backgroundRepeat: "no-repeat",
   backgroundSize: '2500px',
   overflowX: "hidden",

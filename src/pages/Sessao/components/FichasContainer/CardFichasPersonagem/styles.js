@@ -190,6 +190,7 @@ export const LinkButton = styled(Link, {
   justifyContent: 'center',
   alignItems: 'center',
   marginLeft: '1rem',
+  color: '$cyan',
 
   svg: {
     transition: '0.2s',
@@ -204,7 +205,6 @@ export const LinkButton = styled(Link, {
 
 export const LinkIcon = styled(Link, {
   background: "none",
-  border: "none",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
@@ -212,29 +212,11 @@ export const LinkIcon = styled(Link, {
   padding: '.2rem',
   marginLeft: '1rem',
   borderRadius: '5px',
+  border: '1px solid transparent',
+  '&:hover': {
+    border: '1px solid $cyan',
+  }
 
-  variants: {
-    color: {
-      red: {
-        border: '1px solid transparent',
-        '&:hover': {
-          border: '1px solid #ae0808ff',
-        }
-      },
-      aqua: {
-        border: '1px solid transparent',
-        '&:hover': {
-          border: '1px solid $cyan',
-        }
-      },
-      purple: {
-        border: '1px solid transparent',
-        '&:hover': {
-          border: '1px solid $purple',
-        }
-      }
-    }
-  },
 })
 
 export const ButtonIcon = styled('button', {

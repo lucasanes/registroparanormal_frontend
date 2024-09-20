@@ -53,11 +53,11 @@ export const Header = styled("div", {
     border: "solid 1px transparent",
     transition: "0.3s",
     borderRadius: ".5rem",
-    color: "$purple",
+    color: "$cyan",
   },
 
   "a:hover": {
-    border: "solid 1px $purple",
+    border: "solid 1px $cyan",
   },
 });
 
@@ -82,9 +82,9 @@ export const Button = styled("button", {
   variants: {
     color: {
       blue: {
-        color: "#00fff7",
+        color: "$cyan",
         "&:hover": {
-          border: "solid 1px #00fff7",
+          border: "solid 1px $cyan",
         },
       },
     },

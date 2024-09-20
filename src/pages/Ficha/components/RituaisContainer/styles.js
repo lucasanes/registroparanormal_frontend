@@ -59,6 +59,14 @@ export const BodyContainer = styled("div", {
   gap: '2rem',
   overflow: 'hidden',
 
+  variants: {
+    show: {
+      true: {
+        height: 'auto'
+      }
+    }
+  }
+
 });
 
 export const Select = styled('div', {

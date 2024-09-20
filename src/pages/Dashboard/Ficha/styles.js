@@ -56,6 +56,10 @@ export const LinkButton = styled(Link, {
   border: "solid 1px transparent",
   borderRadius: ".5rem",
 
+  '&:hover': {
+    border: "solid 1px $cyan",
+  },
+
   variants: {
     color: {
       aqua: {

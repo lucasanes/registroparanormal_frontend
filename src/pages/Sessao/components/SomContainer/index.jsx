@@ -134,7 +134,7 @@ export function SomContainer() {
 
       {!loading && <BodyContainer>
 
-        {(itemOpened && audioUrl) && <MusicControl key={audioUrl} audioUrl={audioUrl}/>}
+        <MusicControl key={audioUrl} audioUrl={audioUrl}/>
         
         <h1>{path} {itemOpened ? ` > ${itemOpened.name}.mp3` : null}</h1>
 

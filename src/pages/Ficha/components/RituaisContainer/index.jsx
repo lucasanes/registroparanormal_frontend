@@ -1,48 +1,31 @@
-import { BodyContainer, Container, HeaderContainer, Select, Button } from './styles';
-import { useState, useRef } from 'react';
-import { Modal } from '../../../../components/Modals/Modal';
+import { useState } from 'react';
 import { ButtonAdd } from '../../../../components/ButtonAdd';
+import { Modal } from '../../../../components/Modals/Modal';
 import { ModalAdd } from './components/ModalAdd';
 import { Ritual } from './components/Ritual';
+import { BodyContainer, Button, Container, HeaderContainer, Select } from './styles';
 
 export function RituaisContainer({ data }) {
 
   const [rituais, setRituais] = useState(data)
   const [modalAddIsOpen, setModalAddIsOpen] = useState(false)
 
-  const contentRef = useRef(null)
   const [aberto, setAberto] = useState(false)
   const [ritualEscolhido, setRitual] = useState(rituais.length > 0 && rituais[0])
 
   function slide(ritual) {
 
-    const content = contentRef.current
-
     if (aberto == true && ritual.id == ritualEscolhido?.id) {
 
-      content.style.transition = '0.5s'
-      content.style.height = '0'
       setAberto(false)
       
     } else if (aberto == true && ritual.id != ritualEscolhido?.id) {
 
-      content.style.transition = '0.5s'
-      content.style.height = `0`;
-      setAberto(false)
-
-      setTimeout(() => {
-
-        content.style.transition = '0.5s'
-        content.style.height = `${content.scrollHeight}px`;
-        setAberto(true)
-        setRitual(ritual)
-
-      }, 500)
+      setAberto(true)
+      setRitual(ritual)
 
     } else {
       setRitual(ritual)
-      content.style.transition = '0.5s'
-      content.style.height = `${content.scrollHeight}px`;
       setAberto(true)
     }
 
@@ -89,7 +72,7 @@ export function RituaisContainer({ data }) {
 
       <hr />
 
-      <BodyContainer ref={contentRef}>
+      <BodyContainer show={aberto.toString()}>
 
         {ritualEscolhido &&
           <Ritual data={ritualEscolhido} atualizar={setRituais} rituais={rituais} setRitualAtivo={setRitual} />

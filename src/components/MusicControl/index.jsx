@@ -21,6 +21,7 @@ export function MusicControl({ audioUrl, ...rest }) {
 
   return (
     <audio
+      style={{marginBottom: '4rem'}}
       ref={audioRef}
       onPlay={handlePlayAudio}
       onPause={handlePauseAudio}

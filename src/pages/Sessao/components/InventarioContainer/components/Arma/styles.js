@@ -211,27 +211,27 @@ export const Button = styled('button', {
   variants: {
     color: {
       purple: {
-        color: '$purple',
-        border: '2px solid #800080',
+        color: '$cyan',
+        border: '2px solid $cyan',
 
         '&:hover': {
-          background: '#80008050',
+          background: '$cyanHover',
         }
       },
       crimson: {
-        color: '$isDisaster',
-        border: '2px solid #ff3737',
+        color: '$orange',
+        border: '2px solid $orange',
 
         '&:hover': {
-          background: '#ff373750',
+          background: '$orangeHover',
         }
       },
       red: {
-        color: '#ff0033',
-        border: '2px solid #ff0033',
+        color: '$orange',
+        border: '2px solid $orange',
 
         '&:hover': {
-          background: '#ff003350',
+          background: '$orangeHover',
         }
       }
     }

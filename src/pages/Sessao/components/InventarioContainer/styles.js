@@ -125,6 +125,7 @@ export const Column = styled('div', {
     width: '15rem',
     padding: '.5rem',
     background: 'none',
+    border: '2px solid $white75',
     borderRadius: '5px',
     color: 'white',
     fontWeight: 100,

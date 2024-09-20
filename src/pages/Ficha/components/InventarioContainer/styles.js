@@ -146,6 +146,7 @@ export const Column = styled('div', {
     padding: '.5rem',
     background: 'none',
     borderRadius: '5px',
+    border: '2px solid $white75',
     color: 'white',
     fontWeight: 100,
     textTransform: 'capitalize'

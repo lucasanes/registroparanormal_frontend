@@ -1,9 +1,9 @@
-import { styled, keyframes } from "../../stitches.config";
+import { keyframes, styled } from "../../stitches.config";
 
 export const Container = styled("div", {
   width: "100%",
   height: 'calc(100% - 72px)',
-  background: "rgb(20,20,20)",
+  background: "#141414",
   display: 'flex',
   flexDirection: 'column',
   overflowX: 'hidden',

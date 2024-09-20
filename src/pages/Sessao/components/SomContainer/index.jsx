@@ -132,11 +132,15 @@ export function SomContainer() {
 
       <hr />
 
-      {!loading && <BodyContainer>
+      <BodyContainer>
 
-        <MusicControl key={audioUrl} audioUrl={audioUrl}/>
+        {loading ? 'Carregando...' : <>
         
-        <h1>{path} {itemOpened ? ` > ${itemOpened.name}.mp3` : null}</h1>
+          <MusicControl key={audioUrl} audioUrl={audioUrl}/>
+          
+          <h1>{path} {itemOpened ? ` > ${itemOpened.name}.mp3` : null}</h1>
+
+        </>}
 
         <div>
 
@@ -169,7 +173,7 @@ export function SomContainer() {
           }
 
         </div>
-      </BodyContainer>}
+      </BodyContainer>
 
     </Container>
   );

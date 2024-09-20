@@ -50,6 +50,7 @@ export const BodyContainer = styled("div", {
   display: "flex",
   flexDirection: "column",
   padding: "1rem",
+  color: "$white",
 
   div: {
     display: "flex",

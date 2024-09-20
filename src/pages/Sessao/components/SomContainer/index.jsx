@@ -97,6 +97,7 @@ export function SomContainer() {
     setItemOpened(item)
     const url = await getDownloadURL(ref(storage, item.fullPath))
     setAudioUrl(url)
+    socket.emit('audio-play', { audioUrl: url, currentTime: 0 });
 
     if (itemOpened && itemOpened.name !== item.name) {
       socket.emit('audio-play', { audioUrl: url, currentTime: 0 });

@@ -5,7 +5,7 @@ import { storage } from '../../firebase.config';
 import { useAuth } from '../../hooks/useAuth';
 import { InputB, Progress, ProgressBar, SpanMsg } from "./styles";
 
-export function ImageUploader({ onSoundUpload }) {
+export function ImageUploader({ onImageUpload }) {
 
   const {id} = useParams()
 

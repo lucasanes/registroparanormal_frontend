@@ -61,8 +61,6 @@ export function SomContainer() {
 
     const pathArray = path.split(' > ').slice(1)
 
-    console.log(prevFolder)
-
     if (pathArray.length === 1) {
       setPrevFolder([response])
       return response.prefixes.find(folder => folder.name === pathArray[0])
@@ -151,7 +149,11 @@ export function SomContainer() {
       <HeaderContainer>
         <h1>Soundpad</h1>
         <button>
-          <MdOutlineAddBox onClick={() => setModalAddSomIsOpen(true)} size={25} />
+          <MdOutlineAddBox onClick={() => {
+            if (path != 'sound') {
+              setModalAddSomIsOpen(true)
+            }
+          }} size={25} />
         </button>
       </HeaderContainer>
 

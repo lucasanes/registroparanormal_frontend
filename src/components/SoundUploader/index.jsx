@@ -54,7 +54,7 @@ export function SoundUploader({ onSoundUpload, path, name }) {
       <ProgressBar progresso={!file && 'ni'}>
         <Progress ref={progress} progresso={msg == 'Enviado!' ? 'f' : 'i'}/>
       </ProgressBar>
-      <input type="file" style={{display: 'none'}} accept="audio/mpeg" onChange={handleSoundUpload} />
+      <input type="file" style={{display: 'none'}} accept="audio/mpeg, audio/x-m4a" onChange={handleSoundUpload} />
     </InputB>
   );
 }

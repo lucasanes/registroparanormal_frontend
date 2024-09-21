@@ -30,16 +30,22 @@ export function SomContainer() {
   async function fetchData() {
     
     setLoading(true)
-    setPath('sound')
-    setOpenedIndex(0)
-    setPrevFolder([])
+    
     setItemOpened(null)
     setAudioUrl(null)
 
     try {
       const getFoldersRef = ref(storage, 'sound/');
       const response = await fetchFoldersAndFiles(getFoldersRef);
-      setFolderOpened(response)
+
+      if (path != 'sound') {
+        const currentFolder = currentFolderOpened(response)
+
+        setFolderOpened(currentFolder)
+      } else {
+        setFolderOpened(response)
+      }
+
     } catch (e) {
       console.error('Erro ao buscar os arquivos:', e);
     } finally {
@@ -50,6 +56,24 @@ export function SomContainer() {
   useEffect(() => {
     fetchData();
   }, []);
+
+  const currentFolderOpened = (response) => {
+
+    const pathArray = path.split(' > ').slice(1)
+
+    console.log(prevFolder)
+
+    if (pathArray.length === 1) {
+      setPrevFolder([response])
+      return response.prefixes.find(folder => folder.name === pathArray[0])
+    }
+
+    const firstFolderData = response.prefixes.find(folder => folder.name === pathArray[0])
+    setPrevFolder([response, firstFolderData])
+
+    return firstFolderData.prefixes[0]
+
+  };
 
   const fetchFoldersAndFiles = async (folderRef) => {
     const response = await listAll(folderRef);
@@ -119,9 +143,9 @@ export function SomContainer() {
     <Container>
 
       <Modal isOpen={modalAddSomIsOpen} setClose={() => setModalAddSomIsOpen(false)}>
-        <ModalAddSom fetchData={fetchData} setModalClose={() => setModalAddSomIsOpen(false)} currentPath={() => {
-          return path.split(' > ').slice(1).join('/')
-        }}/>
+        <ModalAddSom fetchData={fetchData} setModalClose={() => setModalAddSomIsOpen(false)} currentPath={
+          path.split(' > ').slice(1).join('/').toString()
+        }/>
       </Modal>
 
       <HeaderContainer>

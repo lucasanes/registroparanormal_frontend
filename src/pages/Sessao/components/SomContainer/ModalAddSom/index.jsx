@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Input } from '../../../../../components/Input';
+import { InputStop } from '../../../../../components/InputStop';
 import { Body, Container, Header } from './styles';
 
 export function ModalAddSom({ fetchData, setModalClose, currentPath }) {
 
-  const [path, setPath] = useState(currentPath)
   const [name, setName] = useState('')
   const [sound, setSound] = useState('')
   useEffect(() => {
@@ -30,9 +30,9 @@ export function ModalAddSom({ fetchData, setModalClose, currentPath }) {
 
         <Body>
 
-          <Input required label={'Pasta'} setValor={setPath} valor={path} />
+          <InputStop required label={'Pasta'} valor={currentPath} />
           <Input required label={'Nome'} valor={name} setValor={setName} />
-          {(path && name) && <Input sound required label={'Som'} soundName={name} pathName={path} valor={sound} setValor={setSound}/>}
+          {(currentPath && name) && <Input sound required label={'Som'} soundName={name} pathName={currentPath} valor={sound} setValor={setSound}/>}
 
         </Body>
 

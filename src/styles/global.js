@@ -31,6 +31,10 @@ export const GlobalStyles = globalCss({
     },
   },
 
+  svg: {
+    maxWidth: "100% !important",
+  },
+
   body: {
     width: "100vw",
     minHeight: "100vh",

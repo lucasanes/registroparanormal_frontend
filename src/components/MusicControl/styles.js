@@ -6,18 +6,11 @@ export const Container = styled("div", {
   justifyContent: "left",
   marginBottom: "4rem",
 
-  input: {
-    marginBottom: ".3rem",
-  },
 
   button: {
-    marginLeft: ".5rem",
+    width: "5rem",
+    height: "5rem",
     backgroundColor: "transparent",
-    border: "none",
-    cursor: "pointer",
     color: "#0084ff",
-    position: "relative",
-    top: ".3rem",
-    right: "2rem",
   },
 });

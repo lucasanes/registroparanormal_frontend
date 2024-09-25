@@ -1,3 +1,4 @@
+import { Spinner } from '@nextui-org/react';
 import { deleteObject, getDownloadURL, listAll, ref } from 'firebase/storage';
 import { useEffect, useState } from 'react';
 import { FcOpenedFolder } from 'react-icons/fc';
@@ -161,7 +162,7 @@ export function SomContainer() {
 
       <BodyContainer>
 
-        {loading ? 'Carregando...' : <>
+        {loading ? <Spinner style={{margin: '3rem'}} size='lg' color='secondary'/> : <>
         
           <MusicControl key={audioUrl} audioUrl={audioUrl}/>
           
@@ -169,7 +170,7 @@ export function SomContainer() {
 
         </>}
 
-        <div>
+        <div className='div'>
 
           {(folderOpened && folderOpened.name != 'sound') && 
             <Folder onClick={() => handleOpenFolder('prev', folderOpened)}>

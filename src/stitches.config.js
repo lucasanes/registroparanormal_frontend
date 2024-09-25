@@ -11,6 +11,8 @@ export const { styled, css, keyframes, theme } = createStitches({
       white25: "#ffffff25",
       bar: "#ffffff14",
       purple: "#800080",
+      primary: "#006fee",
+      secondary: "#9453d3",
       cyan: "#00b4dc",
       cyanHover: "#00b4dc50",
       orange: "#ff6200",

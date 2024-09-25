@@ -1,3 +1,4 @@
+import { Spinner } from '@nextui-org/react';
 import { useState } from 'react';
 import { AiFillHome } from 'react-icons/ai';
 import { BsFillDice6Fill } from 'react-icons/bs';
@@ -49,7 +50,7 @@ export function Menu() {
         </button>
 
         <div>
-          <h1>{title}</h1>
+          <h1>{title == 'Carregando...' ? <Spinner size='lg' color='secondary'/> : title}</h1>
         </div>
 
         <Link to={'/'} ><img src={icon} width={'60px'} /></Link>

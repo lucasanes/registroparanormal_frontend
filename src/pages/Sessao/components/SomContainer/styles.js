@@ -52,7 +52,7 @@ export const BodyContainer = styled("div", {
   padding: "1rem",
   color: "$white",
 
-  div: {
+  '.div': {
     display: "flex",
     gap: "3rem",
     flexWrap: "wrap",

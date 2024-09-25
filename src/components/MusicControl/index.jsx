@@ -1,10 +1,9 @@
-import { Button, Slider } from '@nextui-org/react';
 import { useRef, useState } from 'react';
 import { GoMute, GoUnmute } from 'react-icons/go';
 import { IoPauseCircleOutline, IoPlayCircleOutline } from 'react-icons/io5';
 import { io } from 'socket.io-client';
 import { api } from '../../services/api';
-import { Container } from './styles';
+import * as S from './styles';
 
 const socket = io(api.defaults.baseURL);
 
@@ -74,7 +73,7 @@ export function MusicControl({ audioUrl, ...rest }) {
   }
 
   return (
-    <Container>
+    <S.Container>
       <audio
         ref={audioRef}
         onLoadedMetadata={handleLoadedMetadata}
@@ -86,28 +85,40 @@ export function MusicControl({ audioUrl, ...rest }) {
         <source src={audioUrl} type="audio/mpeg"/>
       </audio>
 
-      <Button
-        onPress={() => {
-          if (paused) {
-            audioRef.current.play();
-          } else {
-            audioRef.current.pause();
+      <S.Top>
+        <S.Play
+          color='secondary'
+          onPress={() => {
+            if (paused) {
+              audioRef.current.play();
+            } else {
+              audioRef.current.pause();
+            }
           }
-        }
-      }>{paused ? <IoPlayCircleOutline size={30}/> : <IoPauseCircleOutline size={30}/>}</Button>
-      <div style={{display: 'flex'}}>
-        <span>{formatTime(currentTime)}</span>
-        <Slider color='foreground' size='md' minValue={0} value={currentTime} maxValue={duration} step={1} defaultValue={0} onChange={(value) => handleTimeChange(value)}/>
-        <span>{formatTime(duration)}</span>
-      </div>
-      <Slider size='lg' style={{height: 100}} orientation='vertical' minValue={0} maxValue={1} step={0.01} defaultValue={1} onChange={(value) => handleVolumeChange(value)}/>
-      <Button onPress={handleMute}>
-        {muted ? 
-          <GoMute size={22}/> 
-          :
-          <GoUnmute size={22}/>
-        }
-      </Button>
-    </Container>
+        }>{paused ? <IoPlayCircleOutline size={25}/> : <IoPauseCircleOutline size={25}/>}</S.Play>
+
+        <S.Volume>
+          <S.Mute onPress={handleMute}>
+            {muted ? 
+              <GoMute size={25}/> 
+              :
+              <GoUnmute size={25}/>
+            }
+          </S.Mute>
+          <S.VolumeSlider color='secondary' size='sm' minValue={0} maxValue={1} step={0.01} defaultValue={1} onChange={(value) => handleVolumeChange(value)}/>
+        </S.Volume>
+
+      </S.Top>
+
+      <S.Bottom>
+        <S.Time>
+          <S.TimeText>{formatTime(currentTime)}</S.TimeText>
+          <S.TimeSlider color='secondary' size='md' minValue={0} value={currentTime} maxValue={duration} step={1} defaultValue={0} onChange={(value) => handleTimeChange(value)}/>
+          <S.TimeText>{formatTime(duration)}</S.TimeText>
+        </S.Time>
+      </S.Bottom>
+
+     
+    </S.Container>
   );
 }

@@ -100,12 +100,12 @@ export const LabelContainer = styled("label", {
   variants: {
     img: {
       true: {
-        bottom: "57%",
+        bottom: "52%",
       },
     },
     video: {
       true: {
-        bottom: "57%",
+        bottom: "52%",
       },
     },
     hover: {

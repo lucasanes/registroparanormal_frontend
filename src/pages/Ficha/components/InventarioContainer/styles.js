@@ -12,9 +12,9 @@ export const Container = styled("div", {
 });
 
 export const HeaderContainer = styled("div", {
-  padding: "1rem 0",
+  padding: "1rem 2rem",
   display: "flex",
-  justifyContent: "center",
+  justifyContent: "space-between",
   alignItems: "center",
   position: "relative",
 
@@ -25,6 +25,11 @@ export const HeaderContainer = styled("div", {
     fontFamily: 'Special Elite',
     letterSpacing: '.1rem',
     paddingTop: '.3rem'
+  },
+
+  div: {
+    display: 'flex',
+    alignItems: 'center',
   },
 
   '.peso': {
@@ -50,11 +55,27 @@ export const HeaderContainer = styled("div", {
     background: "none",
     border: "none",
     color: "Green",
-    position: "absolute",
-    right: "1.5rem",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+  },
+
+  '.button': {
+    background: "none",
+    color: "#00b740",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    width: '26px',
+    height: '26px',
+    transition: '.2s',
+    border: '1px solid transparent',
+    borderRadius: '.5rem',
+    padding: '.2rem',
+  },
+
+  ".button:hover": {
+    border: '1px solid #00b740',
   },
 
   svg: {

@@ -18,7 +18,6 @@ export const Container = styled('div', {
 
 export const Header = styled('div', {
 
-  height: '62px',
   display: 'flex',
   alignItems: 'flex-start',
   justifyContent: 'space-between',

@@ -112,7 +112,7 @@ export function MusicControl({ audioUrl, ...rest }) {
               <GoUnmute size={25}/>
             }
           </S.Mute>
-          {showVolume && <S.VolumeSlider color='secondary' size='md' minValue={0} maxValue={1} step={0.01} defaultValue={1} onChange={(value) => handleVolumeChange(value)}/>}
+          {(showVolume && audioUrl) && <S.VolumeSlider color='secondary' size='md' minValue={0} maxValue={1} step={0.01} defaultValue={1} onChange={(value) => handleVolumeChange(value)}/>}
         </S.Volume>
 
       </S.Top>

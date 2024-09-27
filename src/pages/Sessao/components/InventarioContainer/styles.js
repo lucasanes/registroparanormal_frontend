@@ -29,14 +29,12 @@ export const HeaderContainer = styled("div", {
 
   '.button': {
     background: "none",
-    border: "none",
     color: "#00b740",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     width: '26px',
     height: '26px',
-    background: 'none',
     transition: '.2s',
     border: '1px solid transparent',
     borderRadius: '.5rem',

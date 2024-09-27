@@ -1,10 +1,11 @@
+/* eslint-disable react/prop-types */
 import { useState } from 'react'
-import {Input} from '../../../../../components/Input'
-import {Select} from '../../../../../components/Select'
-import * as S from './styles'
-import { api } from '../../../../../services/api'
 import { toast } from 'react-toastify'
-import {useTitle} from '../../../../../hooks/useTitle'
+import { Input } from '../../../../../components/Input'
+import { Select } from '../../../../../components/Select'
+import { useTitle } from '../../../../../hooks/useTitle'
+import { api } from '../../../../../services/api'
+import * as S from './styles'
 
 export function ModalEdit({ setModalClose, data }) {
 

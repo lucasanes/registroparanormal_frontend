@@ -28,7 +28,7 @@ export const InputB = styled("label", {
     progresso: {
       ni: {
         ".msg": {
-          top: 14,
+          top: 12,
         },
       },
     },

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { MdOutlineCleaningServices } from 'react-icons/md';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { io } from 'socket.io-client';
@@ -38,7 +39,6 @@ export function InventarioContainer({ armasData, itensData, peso, userId }) {
   const { fichas, sessaoIdFicha } = useFichas()
   const { disabled } = useDisabled()
 
-  console.log(fichas[0])
 
   useEffect(() => {
 
@@ -182,8 +182,18 @@ export function InventarioContainer({ armasData, itensData, peso, userId }) {
       </Modal>
 
       <HeaderContainer>
-        <h1>Inventário |</h1>
-        <button onClick={() => setModalPesoIsOpen(true)} className='peso'>{pesoAtual}/{pesoTotalAtual}</button>
+        <button className='button' onClick={() => {
+            fichas.forEach(ficha => {
+              socket.emit('enviado.itemImg', {fichaId: ficha.id, imagem: 'fechar'})
+            })
+            socket.emit("enviado.itemImg", { sessaoId: sessaoIdFicha, imagem: 'fechar' })
+          }}> 
+          <MdOutlineCleaningServices size={22} color={'#00b740'} /> 
+        </button>
+        <div>
+          <h1>Inventário |</h1>
+          <button onClick={() => setModalPesoIsOpen(true)} className='peso'>{pesoAtual}/{pesoTotalAtual}</button>
+        </div>
         <ButtonAdd className='edit' onClick={() => setModalAddIsOpen(true)} />
       </HeaderContainer>
       

@@ -2,11 +2,14 @@ import { Spinner } from '@nextui-org/react';
 import { useState } from 'react';
 import { AiFillHome } from 'react-icons/ai';
 import { BsFillDice6Fill } from 'react-icons/bs';
+import { GrVolumeControl } from 'react-icons/gr';
 import { RiUserUnfollowLine } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
 import icon from '../../assets/img/Calamidade.png';
 import { useAuth } from "../../hooks/useAuth";
 import { useTitle } from '../../hooks/useTitle';
+import { Modal } from '../Modals/Modal';
+import { ModalSom } from '../Modals/ModalSom';
 import { MusicPlayer } from '../MusicPlayer';
 import { Body, Button, ButtonLink, Container, Header, Li, Line1, Line2, Line3 } from './styles';
 
@@ -16,6 +19,8 @@ export function Menu() {
   const { signOut } = useAuth();
   const { title } = useTitle()
   const {user} = useAuth()
+
+  const [modalVolumeIsOpen, setModalVolumeIsOpen] = useState(false)
 
   function abrirMenu() {
 
@@ -40,6 +45,10 @@ export function Menu() {
 
   return (
     <Container active={active} >
+
+      <Modal isOpen={modalVolumeIsOpen} setClose={() => setModalVolumeIsOpen(false)}>
+        <ModalSom setModalClose={() => setModalVolumeIsOpen(false)} />
+      </Modal>
 
       <Header>
 
@@ -68,6 +77,9 @@ export function Menu() {
             </Li>
             <Li>
               <MusicPlayer/>     
+            </Li>
+            <Li>
+              <Button onClick={() => setModalVolumeIsOpen(true)} color='white'> <GrVolumeControl size={25} /> Volume </Button>
             </Li>
             <Li>
               <Button onClick={() => { signOut(); abrirMenu() }}> <RiUserUnfollowLine size={30} /> Sair </Button>

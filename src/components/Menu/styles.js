@@ -154,12 +154,27 @@ export const Button = styled('button', {
   color: "red",
   border: "none",
   display: "flex",
-  alignItems: "flex-end",
+  alignItems: "center",
   justifyContent: "center",
   fontSize: "2.3rem",
   gap: "1rem",
   fontFamily: 'Special Elite',
   transition: '.3s',
+
+  svg: {
+    marginBottom: '.5rem'
+  },
+
+  variants: {
+    color: {
+      purple: {
+        color: '$purple',
+      },
+      white: {
+        color: '$white',
+      }
+    }
+  }
 
 });
 

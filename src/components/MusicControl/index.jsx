@@ -13,8 +13,11 @@ export function MusicControl({ audioUrl, ...rest }) {
   const [paused, setPaused] = useState(true);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
+  const [showVolume, setShowVolume] = useState(false);
 
-  const musicPercentage = 20
+  const musicPercentageLocalStorage = localStorage.getItem('@registroparanormal:musicPercentage');
+
+  const musicPercentage = musicPercentageLocalStorage ? musicPercentageLocalStorage : 10;
 
   const formatTime = (time) => {
     const minutes = Math.floor(time / 60);
@@ -88,7 +91,8 @@ export function MusicControl({ audioUrl, ...rest }) {
       <S.Top>
         <S.Play
           color='secondary'
-          onPress={() => {
+          disabled={!audioUrl}
+          onClick={() => {
             if (paused) {
               audioRef.current.play();
             } else {
@@ -97,15 +101,18 @@ export function MusicControl({ audioUrl, ...rest }) {
           }
         }>{paused ? <IoPlayCircleOutline size={25}/> : <IoPauseCircleOutline size={25}/>}</S.Play>
 
-        <S.Volume>
-          <S.Mute onPress={handleMute}>
+        <S.Volume onMouseEnter={() => setShowVolume(true)} onMouseLeave={() => setShowVolume(false)}>
+          <S.Mute
+            disabled={!audioUrl} 
+            onClick={handleMute}
+          >
             {muted ? 
               <GoMute size={25}/> 
               :
               <GoUnmute size={25}/>
             }
           </S.Mute>
-          <S.VolumeSlider color='secondary' size='sm' minValue={0} maxValue={1} step={0.01} defaultValue={1} onChange={(value) => handleVolumeChange(value)}/>
+          {showVolume && <S.VolumeSlider color='secondary' size='md' minValue={0} maxValue={1} step={0.01} defaultValue={1} onChange={(value) => handleVolumeChange(value)}/>}
         </S.Volume>
 
       </S.Top>

@@ -45,7 +45,6 @@ export const Time = styled("div", {
 });
 
 export const TimeSlider = styled(Slider, {
-  width: "50%",
   height: "3rem",
   backgroundColor: "transparent",
   color: "$secondary",
@@ -61,10 +60,11 @@ export const Volume = styled("div", {
   alignItems: "center",
   justifyContent: "center",
   gap: "1rem",
+  padding: "1rem 3rem 1rem 0",
 });
 
 export const VolumeSlider = styled(Slider, {
-  width: "10rem",
+  width: "18rem",
   backgroundColor: "transparent",
   color: "$secondary",
 });

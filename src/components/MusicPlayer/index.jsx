@@ -11,27 +11,31 @@ export function MusicPlayer({streaming = false, ...rest}) {
   const [audioUrl, setAudioUrl] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
+  const musicPercentageLocalStorage = localStorage.getItem('@registroparanormal:musicPercentage');
+
+  const musicPercentage = musicPercentageLocalStorage ? musicPercentageLocalStorage : 1;
+
   useEffect(() => {
     if (isPlaying) {
-    socket.on('audio-play', (data) => {
-      setAudioUrl(data.audioUrl);
-      audioRef.current.currentTime = data.currentTime;
-      if (isPlaying) {
-        audioRef.current.play().catch(error => {
-          console.error('Erro ao tentar reproduzir o áudio:', error);
-        });
-      }
-    });
+      socket.on('audio-play', (data) => {
+        setAudioUrl(data.audioUrl);
+        audioRef.current.currentTime = data.currentTime;
+        if (isPlaying) {
+          audioRef.current.play().catch(error => {
+            console.error('Erro ao tentar reproduzir o áudio:', error);
+          });
+        }
+      });
 
-    socket.on('audio-pause', (data) => {
-      audioRef.current.currentTime = data.currentTime;
-      audioRef.current.pause();
-    });
+      socket.on('audio-pause', (data) => {
+        audioRef.current.currentTime = data.currentTime;
+        audioRef.current.pause();
+      });
 
-    socket.on('audio-volume', (data) => {
-      audioRef.current.volume = data.volume; // Sincroniza o volume
-    });
-  }
+      socket.on('audio-volume', (data) => {
+        audioRef.current.volume = data.volume / musicPercentage;
+      });
+    }
 
     return () => {
       socket.off('audio-play');

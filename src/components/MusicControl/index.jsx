@@ -17,7 +17,7 @@ export function MusicControl({ audioUrl, ...rest }) {
 
   const musicPercentageLocalStorage = localStorage.getItem('@registroparanormal:musicPercentage');
 
-  const musicPercentage = musicPercentageLocalStorage ? musicPercentageLocalStorage : 10;
+  const musicPercentage = musicPercentageLocalStorage ? musicPercentageLocalStorage : 50;
 
   const formatTime = (time) => {
     const minutes = Math.floor(time / 60);

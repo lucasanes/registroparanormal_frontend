@@ -8,7 +8,7 @@ export function ModalSom({ setModalClose }) {
 
   const musicPercentageLocalStorage = localStorage.getItem('@registroparanormal:musicPercentage');
 
-  const [divisor, setDivisor] = useState(musicPercentageLocalStorage ? musicPercentageLocalStorage : 10);
+  const [divisor, setDivisor] = useState(musicPercentageLocalStorage ? musicPercentageLocalStorage : 1);
 
   function handleEdit(e) {
     e.preventDefault();
@@ -32,7 +32,7 @@ export function ModalSom({ setModalClose }) {
 
         <Body>
 
-          <Input required autoComplete="divisor" name="divisor" label={'Divisor'} valor={divisor} setValor={setDivisor} type='number' maxValor={50}/>
+          <Input required autoComplete="divisor" name="divisor" label={'Divisor'} valor={divisor} setValor={setDivisor} type='number' maxValor={99}/>
 
         </Body>
 

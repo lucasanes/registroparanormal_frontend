@@ -6,7 +6,9 @@ import { Body, Container, Footer, Header } from "./styles";
 
 export function ModalSom({ setModalClose }) {
 
-  const [divisor, setDivisor] = useState(10);
+  const musicPercentageLocalStorage = localStorage.getItem('@registroparanormal:musicPercentage');
+
+  const [divisor, setDivisor] = useState(musicPercentageLocalStorage ? musicPercentageLocalStorage : 10);
 
   function handleEdit(e) {
     e.preventDefault();

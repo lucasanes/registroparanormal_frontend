@@ -19,6 +19,7 @@ export function MusicPlayer({streaming = false, ...rest}) {
     if (isPlaying) {
       socket.on('audio-play', (data) => {
         setAudioUrl(data.audioUrl);
+        audioRef.current.volume = 1 / musicPercentage;
         audioRef.current.currentTime = data.currentTime;
         if (isPlaying) {
           audioRef.current.play().catch(error => {

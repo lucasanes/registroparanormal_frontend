@@ -17,7 +17,7 @@ export function MusicControl({ audioUrl, ...rest }) {
 
   const musicPercentageLocalStorage = localStorage.getItem('@registroparanormal:musicPercentage');
 
-  const musicPercentage = musicPercentageLocalStorage ? musicPercentageLocalStorage : 50;
+  const musicPercentage = musicPercentageLocalStorage ? musicPercentageLocalStorage : 10;
 
   const formatTime = (time) => {
     const minutes = Math.floor(time / 60);
@@ -31,7 +31,6 @@ export function MusicControl({ audioUrl, ...rest }) {
     audioRef.current.volume = 1 / musicPercentage;
     audioRef.current.play()
     setPaused(false);
-    socket.emit('audio-volume', { audioUrl, volume: 1 / musicPercentage });
     setDuration(audioRef.current.duration);
   };
 
@@ -57,7 +56,7 @@ export function MusicControl({ audioUrl, ...rest }) {
 
   const handleVolumeChange = (volume) => {
     audioRef.current.volume = volume / musicPercentage;
-    socket.emit('audio-volume', { audioUrl, volume: volume / musicPercentage});
+    socket.emit('audio-volume', { audioUrl, volume});
   };
 
   const handleMute = () => {
@@ -112,7 +111,7 @@ export function MusicControl({ audioUrl, ...rest }) {
               <GoUnmute size={25}/>
             }
           </S.Mute>
-          {(showVolume && audioUrl) && <S.VolumeSlider color='secondary' size='md' minValue={0} maxValue={1} step={0.01} defaultValue={1} onChange={(value) => handleVolumeChange(value)}/>}
+          <S.VolumeSlider style={{display: (audioUrl && showVolume) ? 'block' : 'none'}} color='secondary' size='md' minValue={0} maxValue={1} step={0.01} defaultValue={1} onChange={(value) => handleVolumeChange(value)}/>
         </S.Volume>
 
       </S.Top>

@@ -79,7 +79,7 @@ export function Menu() {
               <MusicPlayer/>     
             </Li>
             <Li>
-              <Button onClick={() => setModalVolumeIsOpen(true)} color='white'> <GrVolumeControl size={25} /> Volume </Button>
+              <Button onClick={() => setModalVolumeIsOpen(true)} color={'blue'}> <GrVolumeControl size={25} /> Volume </Button>
             </Li>
             <Li>
               <Button onClick={() => { signOut(); abrirMenu() }}> <RiUserUnfollowLine size={30} /> Sair </Button>

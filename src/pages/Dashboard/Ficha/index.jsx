@@ -63,7 +63,7 @@ export function Ficha({ data, fichas, setFichas }) {
       </Header>
       <hr />
       <Desc>
-        <img src={portrait.normal || noportrait} />
+        <video src={portrait.normal || noportrait} autoPlay loop muted/>
         <Grade>
           <ParteGrade>
             <span>Origem:</span>

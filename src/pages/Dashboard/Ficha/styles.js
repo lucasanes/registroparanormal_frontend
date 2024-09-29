@@ -56,7 +56,7 @@ export const LinkButton = styled(Link, {
   border: "solid 1px transparent",
   borderRadius: ".5rem",
 
-  '&:hover': {
+  "&:hover": {
     border: "solid 1px $cyan",
   },
 
@@ -144,7 +144,7 @@ export const Desc = styled("div", {
     wordBreak: "break-word",
   },
 
-  img: {
+  video: {
     border: "1px solid white",
     borderRadius: "70rem",
     marginLeft: "1rem",

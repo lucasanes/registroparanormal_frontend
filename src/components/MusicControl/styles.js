@@ -14,7 +14,8 @@ export const Container = styled("div", {
     margin: 0,
     width: "5rem",
     height: "5rem",
-  }
+    border: "none",
+  },
 });
 
 export const Top = styled("div", {
@@ -48,7 +49,8 @@ export const TimeSlider = styled(Slider, {
   height: "3rem",
   backgroundColor: "transparent",
   color: "$secondary",
-  marginTop: "0.4rem",
+  marginTop: "0rem",
+  borderRadius: "2rem",
 });
 
 export const TimeText = styled("span", {

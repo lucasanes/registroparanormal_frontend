@@ -1,7 +1,6 @@
-import { useEffect } from 'react';
-import { Container, Footer, Header, Main, Body, Horas } from './styles';
+import noportrait from '../../../../../assets/img/noportrait.png';
 import pericias from '../../../../../components/mappers/pericias';
-import noportrait from '../../../../../assets/img/noportrait.png'
+import { Body, Container, Footer, Header, Horas, Main } from './styles';
 
 export function Rolagem({ data }) {
 
@@ -10,7 +9,7 @@ export function Rolagem({ data }) {
 
       <Header>
 
-        <img src={data.portrait || noportrait} />
+        <video src={data.portrait || noportrait} autoPlay loop muted/>
         <h1>{data.nomeFicha}</h1>
 
       </Header>

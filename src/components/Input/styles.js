@@ -87,7 +87,7 @@ export const LabelContainer = styled("label", {
   position: "absolute",
   width: "fit-content",
   whiteSpace: "nowrap",
-  bottom: "10%",
+  bottom: "20%",
   left: 15,
   zIndex: 0,
   fontSize: "2.4rem",
@@ -100,12 +100,12 @@ export const LabelContainer = styled("label", {
   variants: {
     img: {
       true: {
-        bottom: "52%",
+        bottom: "57%",
       },
     },
     video: {
       true: {
-        bottom: "52%",
+        bottom: "57%",
       },
     },
     hover: {

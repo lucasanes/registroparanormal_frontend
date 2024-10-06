@@ -71,8 +71,9 @@ export function Sessao({data, sessoes, setSessoes}) {
       <Header>
         <h2>{data.nome}</h2>
         <div>
-          <Link to={`/sessao/documentos/${data.id}`} target='_blank'><IoDocumentsOutline size={20} /></Link>
           <Link to={`/streaming/${data.id}`} target='_blank'><MdOutlinePlayCircle size={20} /></Link>
+          <Link to={`/webcam/${data.id}`} target='_blank'><MdOutlinePlayCircle size={20} /></Link>
+          <Link to={`/sessao/documentos/${data.id}`} target='_blank'><IoDocumentsOutline size={20} /></Link>
           <Button color={'blue'} onClick={() => setModalEditarSessaoIsOpen(true)}><BsGear size={18} /></Button>
           <Button onClick={() => setModalDeleteIsOpen(true)}><BiTrashAlt size={20} /></Button>
         </div>

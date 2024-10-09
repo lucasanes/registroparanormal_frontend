@@ -27,7 +27,7 @@ export function UserRoutes() {
       <Route path="/sessao/documentos/:id" element={<Documentos />} />
 
       <Route path="/streaming/:roomId" element={<Streaming />} />
-      <Route path="/webcam/:roomId" element={<WebCam />} />
+      <Route path="/webcam/:fichaId/:id" element={<WebCam />} />
     </Routes>
   );
 }

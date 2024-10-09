@@ -22,11 +22,31 @@ export const Container = styled("div", {
   }
 });
 
+export const ButtonRoom = styled("button", {
+  position: "fixed",
+  top: "10px",
+  left: "10px",
+  zIndex: 2,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  padding: "10px",
+  border: "none",
+  borderRadius: "5px",
+  backgroundColor: "$white25",
+  color: "$white",
+  transition: "0.2s",
+
+  "&:hover": {
+    backgroundColor: "$white50"
+  }
+});
+
 export const Buttons = styled("div", {
   zIndex: 2,
   position: "fixed",
   top: "10px",
-  left: "10px",
+  left: "60px",
   display: "flex",
 
   'button:first-child': {

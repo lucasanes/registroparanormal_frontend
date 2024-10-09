@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { BiTrashAlt } from 'react-icons/bi';
-import { BsGear } from 'react-icons/bs';
+import { BsCameraVideo, BsGear } from 'react-icons/bs';
 import { IoDocumentsOutline } from 'react-icons/io5';
 import { MdOutlinePlayCircle } from "react-icons/md";
 import { Link } from 'react-router-dom';
@@ -72,7 +72,7 @@ export function Sessao({data, sessoes, setSessoes}) {
         <h2>{data.nome}</h2>
         <div>
           <Link to={`/streaming/${data.id}`} target='_blank'><MdOutlinePlayCircle size={20} /></Link>
-          <Link to={`/webcam/${data.id}`} target='_blank'><MdOutlinePlayCircle size={20} /></Link>
+          <Link to={`/webcam/${data.id}/10`} target='_blank'><BsCameraVideo size={20} /></Link>
           <Link to={`/sessao/documentos/${data.id}`} target='_blank'><IoDocumentsOutline size={20} /></Link>
           <Button color={'blue'} onClick={() => setModalEditarSessaoIsOpen(true)}><BsGear size={18} /></Button>
           <Button onClick={() => setModalDeleteIsOpen(true)}><BiTrashAlt size={20} /></Button>

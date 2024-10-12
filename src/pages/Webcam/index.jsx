@@ -43,8 +43,6 @@ export default function Webcam() {
 
   useEffect(() => {
 
-    console.log(roomId)
-
     setRoomId(fichaId + id)
 
     peer.current.on("open", id => {

@@ -6,9 +6,9 @@ export async function shareWebcam(peer, socket, roomId, peerConnections) {
     video: {
       deviceId: cameraId ? { exact: cameraId } : undefined,
       aspectRatio: { ideal: 1.7777777778 },
-      width: { ideal: 1920 },
-      height: { ideal: 1080 },
-      frameRate: { ideal: 60 }
+      width: { ideal: 854, max: 854 },
+      height: { ideal: 480, max: 480 },
+      frameRate: { ideal: 30, max: 50 }
     },
     audio: false
   });

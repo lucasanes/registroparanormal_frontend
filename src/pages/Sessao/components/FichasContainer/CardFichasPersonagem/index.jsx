@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { BsEye, BsEyeSlash } from 'react-icons/bs';
+import { BsCameraVideo, BsEye, BsEyeSlash } from 'react-icons/bs';
 import { FaUserCircle } from "react-icons/fa";
 import { IoOpenOutline } from "react-icons/io5";
 import { useParams } from "react-router-dom";
@@ -168,6 +168,9 @@ export function CardFichasPersonagem({ data }) {
                     </LinkButton>
                 </div>
                 <div>
+                    <LinkIcon to={`https://vdo.ninja/?view=${data.id.replaceAll('-', '_')}`} target="_blank">
+                        <BsCameraVideo size={20} color={theme.colors.cyan} />
+                    </LinkIcon>
                     <LinkIcon to={`/ficha/portrait/${data.id}`} target="_blank">
                         <FaUserCircle size={20} color={theme.colors.cyan} />
                     </LinkIcon>

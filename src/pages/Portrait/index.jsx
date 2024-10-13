@@ -241,8 +241,8 @@ export function Portrait() {
       if (portraitAtual != undefined && portraitAtual != null) {
         if (portraitAtual.src != newPortrait) {
           setAnimation(true)
-          setTimeout(() => { setAnimation(false) }, 1000)
-          setTimeout(() => { setPortraitImg(newPortrait) }, 1000)
+          setTimeout(() => { setAnimation(false) }, 700)
+          setTimeout(() => { setPortraitImg(newPortrait) }, 500)
         }
       }
     }
@@ -295,7 +295,7 @@ export function Portrait() {
 
         <Dado key={dadoRolado} style={{display: dadoRolado < 1 ? 'none' : 'flex'}} id='dado' isCritico={dado.isCritico} isDesastre={dado.isDesastre} isDano={dado.isDano}>
           <span>{dado.valorTotal}</span>
-          <video width={700} height={700} autoPlay loop muted>
+          <video width={700} height={700} autoPlay muted>
             {dado.isCritico && <source src={criticDice} type="video/webm"/>}
             {dado.isDesastre && <source src={disasterDice} type="video/webm"/>}
             {!dado.isCritico && !dado.isDesastre && <source src={normalDice} type="video/webm"/>}

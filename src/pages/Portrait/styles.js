@@ -258,11 +258,11 @@ export const PortraitImg = styled("video", {
 
     animation: {
       true: {
-        animation: `${opacityDown} .5s`,
+        animation: `${opacityDown} .7s`,
         opacity: 0,
       },
       false: {
-        animation: `${opacityUp} .5s`,
+        animation: `${opacityUp} .7s`,
         opacity: 1,
       },
     },
@@ -372,18 +372,6 @@ const disasterAnimation = keyframes({
   },
 });
 
-const dadoAnimation = keyframes({
-  "0%": {
-    opacity: 1,
-  },
-  "99%": {
-    opacity: 1,
-  },
-  "100%": {
-    opacity: 0,
-  },
-});
-
 export const Dado = styled("div", {
   position: "absolute",
   right: "4rem",
@@ -392,7 +380,6 @@ export const Dado = styled("div", {
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  animation: `${dadoAnimation} 10s forwards`,
 
   svg: {
     filter: "drop-shadow(#343434 0 0 10px)",

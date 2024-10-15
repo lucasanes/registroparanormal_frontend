@@ -81,6 +81,15 @@ export function StatusContainer({ status, defesasData, portraitData, infosBarrin
       peMax2,
     })
   }
+
+  async function handleEditStatus(combate, insano, danoMassivo, inconsciente) {
+    await api.put(`/fichas/status/${id}`, {
+      combate,
+      insano,
+      danoMassivo,
+      inconsciente,
+    })
+  }
   
   function subtimer(combate, insano, danoMassivo, inconsciente) {
     clearTimeout(changinTimer)
@@ -118,7 +127,7 @@ export function StatusContainer({ status, defesasData, portraitData, infosBarrin
     socket.on(`status.inconsciente?${id}`, executeUpdateInconsciente);
 
     return () => {
-      handleEdit(false, false, false, false)
+      handleEditStatus(false, false, false, false)
 
       socket.off(`status.combate?${id}`, executeUpdateCombate);
       socket.off(`status.insano?${id}`, executeUpdateInsano);

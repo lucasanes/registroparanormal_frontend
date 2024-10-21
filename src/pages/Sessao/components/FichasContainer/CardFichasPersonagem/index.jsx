@@ -168,7 +168,7 @@ export function CardFichasPersonagem({ data }) {
                     </LinkButton>
                 </div>
                 <div>
-                    <LinkIcon to={`https://vdo.ninja/?view=${data.id.replaceAll('-', '_')}`} target="_blank">
+                    <LinkIcon to={`https://vdo.ninja/?view=${data.sessaoId.replaceAll('-', '_')}_sala_0`} target="_blank">
                         <BsCameraVideo size={20} color={theme.colors.cyan} />
                     </LinkIcon>
                     <LinkIcon to={`/ficha/portrait/${data.id}`} target="_blank">

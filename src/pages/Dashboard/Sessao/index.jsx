@@ -72,7 +72,7 @@ export function Sessao({data, sessoes, setSessoes}) {
         <h2>{data.nome}</h2>
         <div>
           <Link to={`/streaming/${data.id}`} target='_blank'><MdOutlinePlayCircle size={20} /></Link>
-          <Link to={`https://vdo.ninja/?push=${data.id.replaceAll('-', '_')}`} target='_blank'><BsCameraVideo size={20} /></Link>
+          <Link to={`https://vdo.ninja/?push=${data.id.replaceAll('-', '_')}_sala_10`} target='_blank'><BsCameraVideo size={20} /></Link>
           <Link to={`/sessao/documentos/${data.id}`} target='_blank'><IoDocumentsOutline size={20} /></Link>
           <Button color={'blue'} onClick={() => setModalEditarSessaoIsOpen(true)}><BsGear size={18} /></Button>
           <Button onClick={() => setModalDeleteIsOpen(true)}><BiTrashAlt size={20} /></Button>

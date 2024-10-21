@@ -1,12 +1,11 @@
-import { BodyContainer, Container, HeaderContainer } from './styles';
-import { CardFichasPersonagem } from "./CardFichasPersonagem";
-import { MdOutlineAddBox } from "react-icons/md";
 import { useState } from 'react';
-import { useFichas } from '../../../../hooks/useFichas';
+import { MdOutlineAddBox } from "react-icons/md";
 import { Modal } from '../../../../components/Modals/Modal';
-import { ModalAddPersonagem } from './ModalAddPersonagem';
-import { useParams } from 'react-router-dom';
 import { useAuth } from '../../../../hooks/useAuth';
+import { useFichas } from '../../../../hooks/useFichas';
+import { CardFichasPersonagem } from "./CardFichasPersonagem";
+import { ModalAddPersonagem } from './ModalAddPersonagem';
+import { BodyContainer, Container, HeaderContainer } from './styles';
 
 export function FichaContainer() {
 

@@ -26,6 +26,14 @@ export function UTContainer() {
   const [noReverse, setNoReverse] = useState(false);
 
   useEffect(() => {
+    const rolagensStorage = localStorage.getItem(
+      '@registroparanormal:rolagens'
+    );
+
+    const rolagens = rolagensStorage ? JSON.parse(rolagensStorage) : [];
+
+    setRolagens(rolagens);
+
     function updateRolagens({
       fichaId,
       nomeNPC,
@@ -41,6 +49,12 @@ export function UTContainer() {
         return;
       }
 
+      const rolagensStorage = localStorage.getItem(
+        '@registroparanormal:rolagens'
+      );
+
+      const rolagens = rolagensStorage ? JSON.parse(rolagensStorage) : [];
+
       if (fichaId == id) {
         const horas = new Date().getHours().toString().padStart(2, '0');
         const minutos = new Date().getMinutes().toString().padStart(2, '0');
@@ -48,39 +62,24 @@ export function UTContainer() {
 
         const horarioAtual = horas + ':' + minutos + ':' + segundos;
 
-        if (nomeNPC != null) {
-          setRolagens((prev) => [
-            ...prev,
-            {
-              valorTotal,
-              dadosRolados,
-              nome,
-              isDano,
-              isCritico,
-              isDesastre,
-              conta,
-              nomeFicha: nomeNPC,
-              portrait: noportrait,
-              horarioAtual,
-            },
-          ]);
-        } else {
-          setRolagens((prev) => [
-            ...prev,
-            {
-              valorTotal,
-              dadosRolados,
-              nome,
-              isDano,
-              isCritico,
-              isDesastre,
-              conta,
-              nomeFicha: 'Mestre',
-              portrait: noportrait,
-              horarioAtual,
-            },
-          ]);
-        }
+        const novaRolagem = {
+          valorTotal,
+          dadosRolados,
+          nome,
+          isDano,
+          isCritico,
+          isDesastre,
+          conta,
+          nomeFicha: nomeNPC ? nomeNPC : 'Mestre',
+          portrait: noportrait,
+          horarioAtual,
+        };
+
+        setRolagens((prev) => [...prev, novaRolagem]);
+        localStorage.setItem(
+          '@registroparanormal:rolagens',
+          JSON.stringify([...rolagens, novaRolagem])
+        );
       } else {
         fichas.forEach((ficha) => {
           if (ficha.id == fichaId && nome.length > 0) {
@@ -93,20 +92,24 @@ export function UTContainer() {
 
             const horarioAtual = horas + ':' + minutos + ':' + segundos;
 
-            setRolagens((prev) => [
-              ...prev,
-              {
-                valorTotal,
-                dadosRolados,
-                nome,
-                isDano,
-                isCritico,
-                conta,
-                nomeFicha: ficha.Principal[0].nome,
-                portrait: ficha.Portrait[0].normal,
-                horarioAtual,
-              },
-            ]);
+            const novaRolagem = {
+              valorTotal,
+              dadosRolados,
+              nome,
+              isDano,
+              isCritico,
+              isDesastre,
+              conta,
+              nomeFicha: ficha.Principal[0].nome,
+              portrait: ficha.Portrait[0].normal,
+              horarioAtual,
+            };
+
+            setRolagens((prev) => [...prev, novaRolagem]);
+            localStorage.setItem(
+              '@registroparanormal:rolagens',
+              JSON.stringify([...rolagens, novaRolagem])
+            );
           }
         });
       }
@@ -119,17 +122,20 @@ export function UTContainer() {
     };
   }, []);
 
+  function handleClear() {
+    localStorage.removeItem('@registroparanormal:rolagens');
+    setRolagens([]);
+  }
+
   return (
     <Container>
       <HeaderContainer>
         <ButtonIcon onClick={() => setNoReverse(!noReverse)}>
-          {' '}
-          <BsArrowDownUp size={21} color={'green'} />{' '}
+          <BsArrowDownUp size={21} color={'green'} />
         </ButtonIcon>
         <h1>Últimos Testes</h1>
-        <ButtonIcon onClick={() => setRolagens([])}>
-          {' '}
-          <MdOutlineCleaningServices size={22} color={'green'} />{' '}
+        <ButtonIcon onClick={handleClear}>
+          <MdOutlineCleaningServices size={22} color={'green'} />
         </ButtonIcon>
       </HeaderContainer>
 
